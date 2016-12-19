@@ -64,6 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="DataReader\ADataReader.cs" />
     <Compile Include="Exceptions\BlobDataException.cs" />
     <Compile Include="Exceptions\DiagnosticsException.cs" />

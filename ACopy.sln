@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{628845AB-6413-4B08-8520-7C57CA0E5FE9}"
 	ProjectSection(SolutionItems) = preProject
 		App.config = App.config
+		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALogger", "ALogger\ALogger.csproj", "{ADA41B5E-C16F-4F86-9D95-C3B196654FF7}"

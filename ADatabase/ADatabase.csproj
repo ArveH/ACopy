@@ -66,6 +66,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="ColumnType.cs" />
     <Compile Include="ConnectionHolderForTesting.cs" />
     <Compile Include="DBContext.cs" />

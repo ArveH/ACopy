@@ -82,6 +82,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="IntegrationTests\TestDoViewsSqlServer.cs" />
     <Compile Include="IntegrationTests\TestDoViewsOracle.cs" />
     <Compile Include="IntegrationTests\TestIndexesOracle.cs" />
