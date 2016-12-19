@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<RunSettings>  
+
+  <!-- MSTest adapter -->  
+  <MSTest>  
+    <AssemblyResolution>  
+      <Directory Path="E:\Development\Repos\ACopy\Oracle binaries" includeSubDirectories="false"/>  
+    </AssemblyResolution>  
+  </MSTest>  
+  
+</RunSettings>  

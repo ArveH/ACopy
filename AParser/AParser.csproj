@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{14BC427D-B57B-45C4-852E-9365BDFA8618}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AParser</RootNamespace>
+    <AssemblyName>AParser</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AParser.cs" />
+    <Compile Include="AParserFactory.cs" />
+    <Compile Include="ASTNodes\ASTFunctionParameterNode.cs" />
+    <Compile Include="ASTNodes\ASTNodeList.cs" />
+    <Compile Include="ASTNodes\FunctionNodes\ASTDayAddNode.cs" />
+    <Compile Include="ASTNodes\FunctionNodes\ASTFunctionNode.cs" />
+    <Compile Include="ASTNodes\FunctionNodes\ASTGetDateNode.cs" />
+    <Compile Include="ASTNodes\FunctionNodes\ASTGuid2StrNode.cs" />
+    <Compile Include="ASTNodes\FunctionNodes\ASTIfNullNode.cs" />
+    <Compile Include="ASTNodes\FunctionNodes\ASTModNode.cs" />
+    <Compile Include="ASTNodes\FunctionNodes\ASTMonthAddNode.cs" />
+    <Compile Include="ASTNodes\FunctionNodes\ASTToCharNode.cs" />
+    <Compile Include="ASTNodes\FunctionNodes\ASTToCounterNode.cs" />
+    <Compile Include="ASTNodes\FunctionNodes\ASTToFloatNode.cs" />
+    <Compile Include="ASTNodes\LeafNodes\ASTCommaNode.cs" />
+    <Compile Include="ASTNodes\LeafNodes\ASTEndParenthesesNode.cs" />
+    <Compile Include="ASTNodes\LeafNodes\ASTIdentifierNode.cs" />
+    <Compile Include="ASTNodes\ASTNodeBase.cs" />
+    <Compile Include="ASTNodes\ASTNodeFactory.cs" />
+    <Compile Include="ASTNodes\ASTStartParenthesesNode.cs" />
+    <Compile Include="ASTNodes\FunctionNodes\ASTToIntNode.cs" />
+    <Compile Include="ASTNodes\LeafNodes\ASTMaxDateNode.cs" />
+    <Compile Include="ASTNodes\LeafNodes\ASTMinDateNode.cs" />
+    <Compile Include="Exceptions\AParserException.cs" />
+    <Compile Include="IAParser.cs" />
+    <Compile Include="ASTNodes\IASTNode.cs" />
+    <Compile Include="ASTNodes\IASTNodeFactory.cs" />
+    <Compile Include="Tokenizer\AToken.cs" />
+    <Compile Include="Tokenizer\ATokenFactory.cs" />
+    <Compile Include="Tokenizer\ATokenizer.cs" />
+    <Compile Include="Exceptions\ATokenizerException.cs" />
+    <Compile Include="Tokenizer\ATokenizerFactory.cs" />
+    <Compile Include="Tokenizer\ATokens.cs" />
+    <Compile Include="Tokenizer\IAToken.cs" />
+    <Compile Include="Tokenizer\IATokenFactory.cs" />
+    <Compile Include="Tokenizer\IATokenizer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Translators\ASTNodeTranslator.cs" />
+    <Compile Include="Translators\ATranslator.cs" />
+    <Compile Include="Translators\ATranslatorFactory.cs" />
+    <Compile Include="Translators\IASTNodeTranslator.cs" />
+    <Compile Include="Translators\IATranslator.cs" />
+    <Compile Include="Translators\OracleNodeTranslators\OracleDayAddTranslator.cs" />
+    <Compile Include="Translators\OracleNodeTranslators\OracleGetDateTranslator.cs" />
+    <Compile Include="Translators\OracleNodeTranslators\OracleGuid2StrTranslator.cs" />
+    <Compile Include="Translators\OracleNodeTranslators\OracleIfNullTranslator.cs" />
+    <Compile Include="Translators\OracleNodeTranslators\OracleMaxDateTranslator.cs" />
+    <Compile Include="Translators\OracleNodeTranslators\OracleMinDateTranslator.cs" />
+    <Compile Include="Translators\OracleNodeTranslators\OracleModTranslator.cs" />
+    <Compile Include="Translators\OracleNodeTranslators\OracleMonthAddTranslator.cs" />
+    <Compile Include="Translators\OracleNodeTranslators\OracleToCharTranslator.cs" />
+    <Compile Include="Translators\OracleNodeTranslators\OracleToCounterTranslator.cs" />
+    <Compile Include="Translators\OracleNodeTranslators\OracleToFloatTranslator.cs" />
+    <Compile Include="Translators\OracleNodeTranslators\OracleToIntTranslator.cs" />
+    <Compile Include="Translators\OracleTranslator.cs" />
+    <Compile Include="Translators\SqlServerNodeTranslators\SqlServerDayAddTranslator.cs" />
+    <Compile Include="Translators\SqlServerNodeTranslators\SqlServerGetDateTranslator.cs" />
+    <Compile Include="Translators\SqlServerNodeTranslators\SqlServerGuid2StrTranslator.cs" />
+    <Compile Include="Translators\SqlServerNodeTranslators\SqlServerIfNullTranslator.cs" />
+    <Compile Include="Translators\SqlServerNodeTranslators\SqlServerMaxDateTranslator.cs" />
+    <Compile Include="Translators\SqlServerNodeTranslators\SqlServerMinDateTranslator.cs" />
+    <Compile Include="Translators\SqlServerNodeTranslators\SqlServerModTranslator.cs" />
+    <Compile Include="Translators\SqlServerNodeTranslators\SqlServerMonthAddTranslator.cs" />
+    <Compile Include="Translators\SqlServerNodeTranslators\SqlServerToCharTranslator.cs" />
+    <Compile Include="Translators\SqlServerNodeTranslators\SqlServerToCounterTranslator.cs" />
+    <Compile Include="Translators\SqlServerNodeTranslators\SqlServerToFloatTranslator.cs" />
+    <Compile Include="Translators\SqlServerNodeTranslators\SqlServerToIntTranslator.cs" />
+    <Compile Include="Translators\SqlServerTranslator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ADatabase\ADatabase.csproj">
+      <Project>{669d0f7b-39e9-4ad8-abb6-38ec3dc34dbc}</Project>
+      <Name>ADatabase</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

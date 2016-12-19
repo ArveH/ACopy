@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{456624A2-3782-473F-8567-740F7FE8A9F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ACopyLib</RootNamespace>
+    <AssemblyName>ACopyLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=4.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>F:\app\client\Arve\product\12.1.0\client_1\odp.net\managed\common\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataReader\ADataReader.cs" />
+    <Compile Include="Exceptions\BlobDataException.cs" />
+    <Compile Include="Exceptions\DiagnosticsException.cs" />
+    <Compile Include="Exceptions\ExecuteReaderException.cs" />
+    <Compile Include="Exceptions\FileException.cs" />
+    <Compile Include="Exceptions\NotValidDataException.cs" />
+    <Compile Include="Exceptions\NotValidXmlException.cs" />
+    <Compile Include="Exceptions\ReplaceException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reader\DataFileCompressedReader.cs" />
+    <Compile Include="Reader\DataFileReader.cs" />
+    <Compile Include="Reader\DataFileReaderFactory.cs" />
+    <Compile Include="Reader\DataFileUncompressedReader.cs" />
+    <Compile Include="Reader\IDataFileReader.cs" />
+    <Compile Include="Reader\IAReader.cs" />
+    <Compile Include="DataReader\ADataReaderFactory.cs" />
+    <Compile Include="Reader\AReader.cs" />
+    <Compile Include="Reader\AReaderFactory.cs" />
+    <Compile Include="Resources\Names.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Names.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TestLogger.cs" />
+    <Compile Include="U4Indexes\IU4Indexes.cs" />
+    <Compile Include="U4Indexes\U4Indexes.cs" />
+    <Compile Include="U4Indexes\U4IndexesFactory.cs" />
+    <Compile Include="Utils\FileHelper.cs" />
+    <Compile Include="U4Views\IU4Views.cs" />
+    <Compile Include="U4Views\IViewDefinition.cs" />
+    <Compile Include="U4Views\U4ViewFactory.cs" />
+    <Compile Include="U4Views\U4Views.cs" />
+    <Compile Include="U4Views\ViewDefinition.cs" />
+    <Compile Include="U4Views\ViewDefinitionFactory.cs" />
+    <Compile Include="Writer\DataFileWriter.cs" />
+    <Compile Include="Writer\DataFileBinaryWriter.cs" />
+    <Compile Include="Xml\IXmlSchema.cs" />
+    <Compile Include="Writer\IAWriter.cs" />
+    <Compile Include="Writer\TableComparer.cs" />
+    <Compile Include="Xml\XmlSchema.cs" />
+    <Compile Include="Xml\XmlSchemaFactory.cs" />
+    <Compile Include="Writer\DataFileTextWriter.cs" />
+    <Compile Include="Writer\AWriter.cs" />
+    <Compile Include="Writer\AWriterFactory.cs" />
+    <Compile Include="Xml\IAXmlReader.cs" />
+    <Compile Include="Xml\IAXmlWriter.cs" />
+    <Compile Include="Xml\AXmlReader.cs" />
+    <Compile Include="Xml\AXmlWriter.cs" />
+    <Compile Include="Xml\AXmlFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ADatabase\ADatabase.csproj">
+      <Project>{669d0f7b-39e9-4ad8-abb6-38ec3dc34dbc}</Project>
+      <Name>ADatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ALogger\ALogger.csproj">
+      <Project>{ada41b5e-c16f-4f86-9d95-c3b196654ff7}</Project>
+      <Name>ALogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AParser\AParser.csproj">
+      <Project>{14bc427d-b57b-45c4-852e-9365bdfa8618}</Project>
+      <Name>AParser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Names.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Names.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

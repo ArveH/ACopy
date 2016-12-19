@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{669D0F7B-39E9-4AD8-ABB6-38EC3DC34DBC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ADatabase</RootNamespace>
+    <AssemblyName>ADatabase</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=4.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <HintPath>..\Oracle binaries\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.2400\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ColumnType.cs" />
+    <Compile Include="ConnectionHolderForTesting.cs" />
+    <Compile Include="DBContext.cs" />
+    <Compile Include="DBSchema.cs" />
+    <Compile Include="DBType.cs" />
+    <Compile Include="Exceptions\ADatabaseException.cs" />
+    <Compile Include="DBContextFactory.cs" />
+    <Compile Include="Exceptions\AMaxWorkerThreadsException.cs" />
+    <Compile Include="IndexColumn.cs" />
+    <Compile Include="IndexColumnFactory.cs" />
+    <Compile Include="Interfaces\IColumnFactory.cs" />
+    <Compile Include="Interfaces\IColumn.cs" />
+    <Compile Include="Interfaces\ICommands.cs" />
+    <Compile Include="Interfaces\IDataCursor.cs" />
+    <Compile Include="Interfaces\IDBContext.cs" />
+    <Compile Include="Interfaces\IDBSchema.cs" />
+    <Compile Include="Interfaces\IFastCopy.cs" />
+    <Compile Include="Interfaces\IIndexColumn.cs" />
+    <Compile Include="Interfaces\IIndexDefinition.cs" />
+    <Compile Include="IndexDefinition.cs" />
+    <Compile Include="Interfaces\IPowerPlant.cs" />
+    <Compile Include="Interfaces\ITableDefinition.cs" />
+    <Compile Include="Interfaces\ITableShortInfo.cs" />
+    <Compile Include="Oracle\Columns\OracleBoolColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleColumnTypeConverter.cs" />
+    <Compile Include="Oracle\Columns\OracleDatetimeColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleFloatColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleGuidColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleInt16Column.cs" />
+    <Compile Include="Oracle\Columns\OracleInt64Column.cs" />
+    <Compile Include="Oracle\Columns\OracleInt8Column.cs" />
+    <Compile Include="Oracle\Columns\OracleIntColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleLongTextColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleMoneyColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleNumberColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleRawColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleVarchar2Column.cs" />
+    <Compile Include="Oracle\InternalOracleCommand.cs" />
+    <Compile Include="Oracle\OracleColumnFactory.cs" />
+    <Compile Include="Oracle\InternalOracleConnection.cs" />
+    <Compile Include="Oracle\OracleCommands.cs" />
+    <Compile Include="Oracle\OracleContext.cs" />
+    <Compile Include="Oracle\OracleDataCursor.cs" />
+    <Compile Include="Oracle\OracleFastCopy.cs" />
+    <Compile Include="Oracle\OraclePowerPlant.cs" />
+    <Compile Include="Oracle\OracleSchema.cs" />
+    <Compile Include="PowerPlant.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerBoolColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerCharColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerColumnTypeConverter.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerDatetimeColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerFloatColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerGuidColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerIdentityColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerInt16Column.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerInt32Column.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerInt64Column.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerInt8Column.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerLongTextColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerMoneyColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerRawColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerStringColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerVarcharColumn.cs" />
+    <Compile Include="SqlServer\InternalSqlServerCommand.cs" />
+    <Compile Include="SqlServer\InternalSqlServerConnection.cs" />
+    <Compile Include="SqlServer\SqlServerColumnFactory.cs" />
+    <Compile Include="SqlServer\SqlServerCommands.cs" />
+    <Compile Include="SqlServer\SqlServerContext.cs" />
+    <Compile Include="SqlServer\SqlServerDataCursor.cs" />
+    <Compile Include="SqlServer\SqlServerFastCopy.cs" />
+    <Compile Include="SqlServer\SqlServerPowerPlant.cs" />
+    <Compile Include="SqlServer\SqlServerSchema.cs" />
+    <Compile Include="SqlServer\Throttle.cs" />
+    <Compile Include="TableDefinition.cs" />
+    <Compile Include="TableShortInfo.cs" />
+    <Compile Include="TableShortInfoFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ALogger\ALogger.csproj">
+      <Project>{ada41b5e-c16f-4f86-9d95-c3b196654ff7}</Project>
+      <Name>ALogger</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(SolutionDir)\Oracle binaries\*.*" . /Y
+del ".\oraociei12.dll"
+powershell.exe -nologo -noprofile -command "&amp; { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('$(SolutionDir)\Oracle binaries\oraociei12.zip', '.'); }"
+del ".\oraociei12.z*"
+</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
