@@ -80,6 +80,7 @@
     <Compile Include="Arguments\UseCollationArgument.cs" />
     <Compile Include="Arguments\UseCompressionArgument.cs" />
     <Compile Include="Arguments\UserArgument.cs" />
+    <Compile Include="Arguments\UseU4IndexesArgument.cs" />
     <Compile Include="Arguments\ViewArgument.cs" />
     <Compile Include="UsageVisitor.cs" />
     <Compile Include="Arguments\DirectionArgument.cs" />

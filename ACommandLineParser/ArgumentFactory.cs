@@ -39,6 +39,8 @@ namespace ACommandLineParser
                     return new UseCollationArgument();
                 case "UseCompression":
                     return new UseCompressionArgument();
+                case "UseU4Indexes":
+                    return new UseU4IndexesArgument();
                 case "User":
                     return new UserArgument();
                 case "View":

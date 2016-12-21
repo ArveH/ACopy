@@ -145,5 +145,14 @@ namespace ACommandLineParserTest
             _arguments.AddCommandLineArguments(args);
             _arguments["-g"].Value.Should().Be("u4schema");
         }
+
+        [TestMethod]
+        public void TestUsingU4Indexes()
+        {
+            string[] args = { "-j" };
+
+            _arguments.AddCommandLineArguments(args);
+            _arguments["-j"].IsSet.Should().BeTrue("because parameter is set");
+        }
     }
 }
