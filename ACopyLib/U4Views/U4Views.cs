@@ -10,7 +10,7 @@ using DbType = ADatabase.DbType;
 
 namespace ACopyLib.U4Views
 {
-    class U4Views: IU4Views
+    internal class U4Views: IU4Views
     {
         private readonly IDbContext _dbContext;
 
@@ -19,14 +19,14 @@ namespace ACopyLib.U4Views
             _dbContext = dbContext;
         }
 
-        string _aagTableName = "aagview";
+        private string _aagTableName = "aagview";
         public string AagTableName
         {
             get { return _aagTableName; }
             set { _aagTableName = value; }
         }
 
-        string _asysTableName = "asysview";
+        private string _asysTableName = "asysview";
         public string AsysTableName
         {
             get { return _asysTableName; }

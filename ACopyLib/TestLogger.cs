@@ -5,7 +5,7 @@ using ALogger;
 
 namespace ACopyLib
 {
-    class TestLogger: IALogger
+    internal class TestLogger: IALogger
     {
         public void Write(string message)
         {

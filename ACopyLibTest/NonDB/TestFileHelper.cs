@@ -11,7 +11,7 @@ namespace ACopyLibTest
     [TestClass]
     public class TestFileHelper
     {
-        string _folder;
+        private string _folder;
         private const string SchemaFileSuffix = "aschema";
 
         [TestInitialize]

@@ -8,8 +8,8 @@ namespace AParserTest
     [TestClass]
     public class TestParser
     {
-        IAParser _parser;
-        List<IASTNode> _nodes;
+        private IAParser _parser;
+        private List<IASTNode> _nodes;
 
         [TestInitialize]
         public void Setup()
@@ -17,7 +17,7 @@ namespace AParserTest
             _parser = AParserFactory.CreateInstance(new ASTNodeFactory());
         }
 
-        void CreateNodeList(string input)
+        private void CreateNodeList(string input)
         {
             _nodes = _parser.CreateNodeList(input);
         }

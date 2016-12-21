@@ -9,7 +9,7 @@ namespace ACommandLineParserTest
     [TestClass]
     public class TestArguments
     {
-        IArgumentCollection _arguments;
+        private IArgumentCollection _arguments;
 
         [TestInitialize]
         public void Setup()

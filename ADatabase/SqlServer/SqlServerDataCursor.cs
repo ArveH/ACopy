@@ -4,10 +4,10 @@ namespace ADatabase.SqlServer
 {
     public class SqlServerDataCursor: IDataCursor
     {
-        IDbContext _dbContext;
-        InternalSqlServerConnection _connection;
-        InternalSqlServerCommand _command;
-        IDataReader _reader;
+        private IDbContext _dbContext;
+        private InternalSqlServerConnection _connection;
+        private InternalSqlServerCommand _command;
+        private IDataReader _reader;
 
         public SqlServerDataCursor(IDbContext dbContext)
         {

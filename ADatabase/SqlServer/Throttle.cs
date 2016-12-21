@@ -6,7 +6,7 @@ namespace ADatabase.SqlServer
 {
     public static class Throttle
     {
-        static readonly int _maxTries = 30;
+        private static readonly int _maxTries = 30;
 
         public static T Execute<T>(IDbContext dbContext, string sql, Func<InternalSqlServerCommand, T> func)
         {

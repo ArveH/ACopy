@@ -5,7 +5,7 @@ namespace ADatabase.Oracle
 {
     public class OracleCommands: ICommands
     {
-        IDbContext _dbContext;
+        private IDbContext _dbContext;
         public OracleCommands(IDbContext dbContext)
         {
             _dbContext = dbContext;

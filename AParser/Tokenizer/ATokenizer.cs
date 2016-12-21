@@ -23,7 +23,7 @@ namespace AParser
             get { return _text; }
         }
 
-        IATokenFactory _tokenFactory;
+        private IATokenFactory _tokenFactory;
         public IATokenFactory TokenFactory
         {
             get 

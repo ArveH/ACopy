@@ -12,11 +12,11 @@ namespace ADatabaseTest
     [TestClass]
     public class TestDatabase
     {
-        IDbContext _msContext;
-        IDbContext _oraContext;
-        ICommands _commands;
-        IDbSchema _dbSchema;
-        string _testTable;
+        private IDbContext _msContext;
+        private IDbContext _oraContext;
+        private ICommands _commands;
+        private IDbSchema _dbSchema;
+        private string _testTable;
         private readonly ConnectionStrings _connectionStrings = new ConnectionStrings(@"..\..\ConnectionStrings.json");
 
         [TestInitialize]
@@ -33,7 +33,7 @@ namespace ADatabaseTest
             _dbSchema.DropTable(_testTable);
         }
 
-        void Initialize(IDbContext dbContext)
+        private void Initialize(IDbContext dbContext)
         {
             _dbSchema = dbContext.PowerPlant.CreateDbSchema();
             _commands = dbContext.PowerPlant.CreateCommands();
@@ -298,7 +298,7 @@ namespace ADatabaseTest
             Test_CreateIndex();
         }
 
-        void Test_IsView()
+        private void Test_IsView()
         {
             const string testView = "vitestview";
             _dbSchema.DropView(testView);

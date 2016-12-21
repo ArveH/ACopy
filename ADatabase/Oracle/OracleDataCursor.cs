@@ -5,10 +5,10 @@ namespace ADatabase.Oracle
 {
     public class OracleDataCursor: IDataCursor
     {
-        IDbContext _dbContext;
-        InternalOracleConnection _connection;
-        InternalOracleCommand _command;
-        OracleDataReader _reader;
+        private IDbContext _dbContext;
+        private InternalOracleConnection _connection;
+        private InternalOracleCommand _command;
+        private OracleDataReader _reader;
 
         public OracleDataCursor(IDbContext dbContext)
         {

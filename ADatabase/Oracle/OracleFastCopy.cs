@@ -49,14 +49,14 @@ namespace ADatabase.Oracle
             return rowsCopied;
         }
 
-        long _largeBlobSize = 100000000;
+        private long _largeBlobSize = 100000000;
         public long LargeBlobSize
         {
             get { return _largeBlobSize; }
             set { _largeBlobSize = value; }
         }
 
-        int _batchSize = 10000;
+        private int _batchSize = 10000;
         public int BatchSize
         {
             get { return _batchSize; }

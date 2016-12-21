@@ -7,7 +7,7 @@ namespace ACommandLineParser
 {
     public class ArgumentCollection: IArgumentCollection
     {
-        readonly List<IArgument> _arguments;
+        private readonly List<IArgument> _arguments;
 
         public ArgumentCollection()
         {

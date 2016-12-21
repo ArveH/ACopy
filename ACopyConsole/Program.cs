@@ -12,11 +12,11 @@ using ALogger;
 
 namespace ACopyConsole
 {
-    class Program
+    internal class Program
     {
         private static string programName = "ACopyConsole";
 
-        static int Main(string[] args)
+        private static int Main(string[] args)
         {
             IArgumentCollection settings;
             try

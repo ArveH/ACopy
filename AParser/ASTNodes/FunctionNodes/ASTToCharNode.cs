@@ -1,6 +1,6 @@
 ﻿namespace AParser
 {
-    class ASTToCharNode : ASTFunctionNode
+    internal class ASTToCharNode : ASTFunctionNode
     {
         public ASTToCharNode(bool addSpace = true)
         {

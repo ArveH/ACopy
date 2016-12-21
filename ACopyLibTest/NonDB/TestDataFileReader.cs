@@ -14,8 +14,8 @@ namespace ACopyLibTest
     [TestClass]
     public class TestDataFileReader
     {
-        IColumnFactory _columnFactory;
-        IDataFileReader _fileReader;
+        private IColumnFactory _columnFactory;
+        private IDataFileReader _fileReader;
         private string _dataFileName;
 
         [TestInitialize]
