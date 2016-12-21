@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using ADatabase;
 using ADatabase.Interfaces;
@@ -16,36 +15,25 @@ namespace ACopyLib.U4Indexes
             _dbContext = dbContext;
         }
 
-        string _aagTableName = "aagindex";
-        public string AagTableName
-        {
-            get { return _aagTableName; }
-            set { _aagTableName = value; }
-        }
-
-        string _asysTableName = "asysindex";
-        public string AsysTableName
-        {
-            get { return _asysTableName; }
-            set { _asysTableName = value; }
-        }
+        public string AagTableName { get; set; } = "aagindex";
+        public string AsysTableName { get; set; } = "asysindex";
 
         private List<IIndexDefinition> ReadIndexDefinitionsFromDatabase(string selectStatement, string tableName)
         {
-            List<IIndexDefinition> indexDefinitions = new List<IIndexDefinition>();
+            var indexDefinitions = new List<IIndexDefinition>();
 
             IDataCursor cursor = null;
             try
             {
                 cursor = _dbContext.PowerPlant.CreateDataCursor();
-                IDataReader reader = cursor.ExecuteReader(selectStatement);
+                var reader = cursor.ExecuteReader(selectStatement);
                 while (reader.Read())
                 {
-                    string indexName = reader.GetString(0);
-                    string columnList = reader.GetString(1);
-                    string location = reader.GetString(2);
-                    bool isUnique = Convert.ToBoolean(reader.GetValue(3));
-                    string dbName = reader.GetString(4);
+                    var indexName = reader.GetString(0);
+                    var columnList = reader.GetString(1);
+                    var location = reader.GetString(2);
+                    var isUnique = Convert.ToBoolean(reader.GetValue(3));
+                    var dbName = reader.GetString(4);
                     var indexDefinition = _dbContext.PowerPlant.CreateIndexDefinition(indexName, tableName, location, isUnique);
                     indexDefinition.Columns = SplitColumns(columnList);
                     indexDefinition.DbSpecific = TableDefinition.ConvertStringToDbType(dbName);
@@ -55,7 +43,7 @@ namespace ACopyLib.U4Indexes
             }
             finally
             {
-                if (cursor != null) cursor.Close();
+                cursor?.Close();
             }
 
             return indexDefinitions;
@@ -73,25 +61,25 @@ namespace ACopyLib.U4Indexes
                         : IndexColumnFactory.CreateInstance("expression", column)).ToList();
         }
 
-        private bool IsLegalName(string column)
+        private static bool IsLegalName(string column)
         {
-            return column.All(c => Char.IsLetterOrDigit(c) || c=='_');
+            return column.All(c => char.IsLetterOrDigit(c) || c=='_');
         }
 
         private List<IIndexDefinition> GetIndexesFromIndexTable(string indexesTable, string tableName)
         {
-            string selectStatement = "";
+            var selectStatement = "";
             selectStatement += "SELECT index_name, column_list, location_name, unique_flag, db_name ";
-            selectStatement += string.Format("  FROM {0} ", indexesTable);
-            selectStatement += string.Format(" WHERE table_name = '{0}' ", tableName.ToLower());
+            selectStatement += $"  FROM {indexesTable} ";
+            selectStatement += $" WHERE table_name = '{tableName.ToLower()}' ";
 
             return ReadIndexDefinitionsFromDatabase(selectStatement, tableName);
         }
 
         public List<IIndexDefinition> GetIndexes(string tableName)
         {
-            List<IIndexDefinition> indexes = GetIndexesFromIndexTable(AagTableName, tableName);
-            List<IIndexDefinition> asysIndexes = GetIndexesFromIndexTable(AsysTableName, tableName);
+            var indexes = GetIndexesFromIndexTable(AagTableName, tableName);
+            var asysIndexes = GetIndexesFromIndexTable(AsysTableName, tableName);
             indexes.AddRange(
                 asysIndexes.Where(i => indexes.All(i2 => i2.IndexName != i.IndexName))
                 );

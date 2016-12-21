@@ -1,6 +1,5 @@
 ﻿using ADatabase;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TestSettingsHelper;
 
 namespace ACopyLibTest.IntegrationTests
 {

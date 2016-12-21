@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ACommandLineParser.Arguments
+﻿namespace ACommandLineParser.Arguments
 {
     public abstract class ArgumentBase: IArgument
     {

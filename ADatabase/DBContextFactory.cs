@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using ADatabase.Oracle;
+﻿using ADatabase.Oracle;
 using ADatabase.SqlServer;
 
 namespace ADatabase

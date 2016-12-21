@@ -1,7 +1,6 @@
 ﻿using ADatabase;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TestSettingsHelper;
 
 namespace ACopyLibTest
 {
