@@ -24,21 +24,19 @@ namespace ACopyLib.Xml
         private IAXmlReader _xmlReader;
         private IAXmlReader XmlReader => _xmlReader ?? (_xmlReader = AXmlFactory.CreateReader(_dbContext));
 
-        private IU4Indexes _u4Indexes;
-        public IU4Indexes U4Indexes
-        {
-            get { return _u4Indexes ?? (_u4Indexes = U4IndexesFactory.CreateInstance(_dbContext)); }
-            set { _u4Indexes = value; }
-        }
+        public IU4Indexes U4Indexes { get; set; }
 
         public ITableDefinition Write(string directory, string tableName, string schemaFileSuffix)
         {
             ITableDefinition tableDefinition = _dbSchema.GetTableDefinition(tableName);
 
             tableDefinition.Indexes = _dbSchema.GetIndexDefinitions(tableName);
-            var indexesNotAlreadyOnTable = U4Indexes.GetIndexes(tableName)
-                .Where(i => tableDefinition.Indexes.All(i2 => i2.IndexName != i.IndexName));
-            tableDefinition.Indexes.AddRange(indexesNotAlreadyOnTable);
+            if (U4Indexes != null)
+            {
+                var indexesNotAlreadyOnTable = U4Indexes.GetIndexes(tableName)
+                    .Where(i => tableDefinition.Indexes.All(i2 => i2.IndexName != i.IndexName));
+                tableDefinition.Indexes.AddRange(indexesNotAlreadyOnTable);
+            }
 
             XmlWriter.WriteSchema(tableDefinition, directory + tableDefinition.Name + "." + schemaFileSuffix);
             return tableDefinition;

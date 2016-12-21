@@ -95,5 +95,14 @@ namespace ACopyLib.Resources {
                 return ResourceManager.GetString("ParamNameSchemaFileSuffix", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UseU4Indexes.
+        /// </summary>
+        internal static string ParamNameUseU4Indexes {
+            get {
+                return ResourceManager.GetString("ParamNameUseU4Indexes", resourceCulture);
+            }
+        }
     }
 }

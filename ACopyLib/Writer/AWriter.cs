@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using ACopyLib.Resources;
+using ACopyLib.U4Indexes;
 using ACopyLib.Xml;
 using ADatabase;
 using ADatabase.Interfaces;
@@ -45,6 +46,7 @@ namespace ACopyLib.Writer
 
         public string DataFileSuffix { get; set; } = Names.DefaultDataFileSuffix;
         public string SchemaFileSuffix { get; set; } = Names.DefaultSchemaFileSuffix;
+        public bool UseU4Indexes { get; set; }
 
         public int MaxDegreeOfParallelism { get; set; } = -1;
 
@@ -126,7 +128,9 @@ namespace ACopyLib.Writer
 
                 _logger.Write($"{tableName,30} Started...");
 
-                ITableDefinition tableDefinition = XmlSchemaFactory.CreateInstance(_dbContext).Write(Directory, tableName, SchemaFileSuffix);
+                var xmlSchema = XmlSchemaFactory.CreateInstance(_dbContext);
+                if (UseU4Indexes) xmlSchema.U4Indexes = U4IndexesFactory.CreateInstance(_dbContext);
+                ITableDefinition tableDefinition = xmlSchema.Write(Directory, tableName, SchemaFileSuffix);
 	
 	            if (tableDefinition.HasRawColumn)
 	            {
@@ -193,7 +197,7 @@ namespace ACopyLib.Writer
 
                 if (tableDefinition.Columns[i].Type == ColumnType.Raw)
                 {
-                    string rawFileName = $"i{rowCounter.ToString("D15")}.raw";
+                    string rawFileName = $"i{rowCounter:D15}.raw";
                     dataWriter.Write(rawFileName);
                     WriteRawColumn(i, $@"{Directory}{tableDefinition.Name}\{rawFileName}", reader);
                 }

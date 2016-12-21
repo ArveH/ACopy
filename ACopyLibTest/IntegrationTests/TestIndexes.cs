@@ -74,13 +74,16 @@ namespace ACopyLibTest.IntegrationTests
             DbSchema.IsIndex("i_" + TestTable, TestTable).Should().BeTrue("because index should be recreated");
         }
 
-        private IXmlSchema SetupXmlSchemaAndTable()
+        private IXmlSchema SetupXmlSchemaAndTable(bool setU4Indexes = true)
         {
             var xmlSchema = XmlSchemaFactory.CreateInstance(DbContext);
-            var u4Indexes = U4IndexesFactory.CreateInstance(DbContext);
-            u4Indexes.AagTableName = Aagindex;
-            u4Indexes.AsysTableName = Asysindex;
-            xmlSchema.U4Indexes = u4Indexes;
+            if (setU4Indexes)
+            {
+                var u4Indexes = U4IndexesFactory.CreateInstance(DbContext);
+                u4Indexes.AagTableName = Aagindex;
+                u4Indexes.AsysTableName = Asysindex;
+                xmlSchema.U4Indexes = u4Indexes;
+            }
             xmlSchema.XmlWriter = AXmlFactory.CreateWriter();
             CreateTestTableWithIndex();
             CreateIndexTables();
@@ -111,6 +114,20 @@ namespace ACopyLibTest.IntegrationTests
             var tableDefinition = WriteAndReadSchema(xmlSchema);
 
             tableDefinition.Indexes.Count.Should().Be(2, "because an extra index was added from asysindex");
+
+            RecreateTableAndIndexes(tableDefinition);
+        }
+
+        // TestMethod
+        protected void TestIndexes_When_IndexExistsInAsysIndex_But_U4IndexesIsNotSet()
+        {
+            var xmlSchema = SetupXmlSchemaAndTable(false);
+
+            InsertIntoIndexesTable(Asysindex, "i_" + TestTable + "1", "id, val");
+
+            var tableDefinition = WriteAndReadSchema(xmlSchema);
+
+            tableDefinition.Indexes.Count.Should().Be(1, "because the extra index from asysindex should be ignored");
 
             RecreateTableAndIndexes(tableDefinition);
         }

@@ -31,7 +31,16 @@ namespace ACopyLibTest.IntegrationTests
         {
             TestIndexes_When_IndexExistsInAsysIndex();
 
-            DbSchema.IsIndex("i_" + TestTable + "1", TestTable).Should().BeFalse("because we are not running Oracle");
+            DbSchema.IsIndex("i_" + TestTable + "1", TestTable).Should().BeFalse("because we are not running Sql Server");
+        }
+
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestMSIndexes_When_IndexExistsInAsysIndex_But_U4IndexesIsNotSet()
+        {
+            TestIndexes_When_IndexExistsInAsysIndex_But_U4IndexesIsNotSet();
+
+            DbSchema.IsIndex("i_" + TestTable, TestTable).Should().BeTrue("because index should exists");
+            DbSchema.IsIndex("i_" + TestTable + "1", TestTable).Should().BeFalse("because additional indexex in asysIndex are ignored, and we are running Sql Server");
         }
 
         [TestMethod, TestCategory("SqlServer")]
@@ -40,7 +49,7 @@ namespace ACopyLibTest.IntegrationTests
             TestIndexes_When_IndexExistsInBothAagAndAsysIndex_Then_OnlyAAgAdded();
 
             DbSchema.IsIndex("i_" + TestTable, TestTable).Should().BeTrue("because index should exists");
-            DbSchema.IsIndex("i_" + TestTable + "1", TestTable).Should().BeFalse("because index should only exist when running Oracle");
+            DbSchema.IsIndex("i_" + TestTable + "1", TestTable).Should().BeFalse("because index should only exist when running Sql Server");
         }
 
         [TestMethod, TestCategory("SqlServer")]

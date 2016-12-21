@@ -129,4 +129,7 @@
   <data name="ParamNameSchemaFileSuffix" xml:space="preserve">
     <value>SchemaFileSuffix</value>
   </data>
+  <data name="ParamNameUseU4Indexes" xml:space="preserve">
+    <value>UseU4Indexes</value>
+  </data>
 </root>

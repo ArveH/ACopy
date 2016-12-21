@@ -36,6 +36,15 @@ namespace ACopyLibTest.IntegrationTests
         }
 
         [TestMethod, TestCategory("Oracle")]
+        public void TestOraIndexes_When_IndexExistsInAsysIndex_But_U4IndexesIsNotSet()
+        {
+            TestIndexes_When_IndexExistsInAsysIndex_But_U4IndexesIsNotSet();
+
+            DbSchema.IsIndex("i_" + TestTable, TestTable).Should().BeTrue("because index should exists");
+            DbSchema.IsIndex("i_" + TestTable + "1", TestTable).Should().BeFalse("because additional indexex in asysIndex are ignored, and we are running Oracle");
+        }
+
+        [TestMethod, TestCategory("Oracle")]
         public void TestOraIndexes_When_IndexExistsInBothAagAndAsysIndex_Then_OnlyAAgAdded()
         {
             TestIndexes_When_IndexExistsInBothAagAndAsysIndex_Then_OnlyAAgAdded();
