@@ -128,9 +128,12 @@
       <Project>{14bc427d-b57b-45c4-852e-9365bdfa8618}</Project>
       <Name>AParser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TestSettingsHelper\TestSettingsHelper.csproj">
+      <Project>{2fce9a0a-15e4-44ad-8e21-e929f3d7c67f}</Project>
+      <Name>TestSettingsHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

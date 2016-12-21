@@ -5,11 +5,13 @@ using System.Text;
 using ACopyLib.Writer;
 using ADatabase;
 using FluentAssertions;
+using TestSettingsHelper;
 
 namespace ACopyLibTest
 {
     public abstract class TestWriter
     {
+        protected ConnectionStrings ConnectionStrings = new ConnectionStrings(@"..\..\ConnectionStrings.json");
         protected IDbContext DbContext;
         protected IDbSchema DbSchema;
         protected ICommands Commands;

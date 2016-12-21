@@ -17,7 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AParserTest", "AParserTest\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{628845AB-6413-4B08-8520-7C57CA0E5FE9}"
 	ProjectSection(SolutionItems) = preProject
-		App.config = App.config
 		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
 	EndProjectSection
 EndProject
@@ -32,6 +31,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{3951F7D5-DF58-4BE6-A36F-C9A89A56F3E6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{B6CC4F3B-A61F-4869-82A3-8E61D7CF36DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSettingsHelper", "TestSettingsHelper\TestSettingsHelper.csproj", "{2FCE9A0A-15E4-44AD-8E21-E929F3D7C67F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +80,10 @@ Global
 		{F89638D9-E313-4A2F-9262-E067568E9497}.Debug|x86.Build.0 = Debug|x86
 		{F89638D9-E313-4A2F-9262-E067568E9497}.Release|x86.ActiveCfg = Release|x86
 		{F89638D9-E313-4A2F-9262-E067568E9497}.Release|x86.Build.0 = Release|x86
+		{2FCE9A0A-15E4-44AD-8E21-E929F3D7C67F}.Debug|x86.ActiveCfg = Debug|x86
+		{2FCE9A0A-15E4-44AD-8E21-E929F3D7C67F}.Debug|x86.Build.0 = Debug|x86
+		{2FCE9A0A-15E4-44AD-8E21-E929F3D7C67F}.Release|x86.ActiveCfg = Release|x86
+		{2FCE9A0A-15E4-44AD-8E21-E929F3D7C67F}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +97,6 @@ Global
 		{75791536-4B33-44FB-B6B5-36BE5F6DE67F} = {3951F7D5-DF58-4BE6-A36F-C9A89A56F3E6}
 		{ADA41B5E-C16F-4F86-9D95-C3B196654FF7} = {B6CC4F3B-A61F-4869-82A3-8E61D7CF36DD}
 		{621FD4C0-E857-41E9-953A-4F6B2BC8E760} = {3951F7D5-DF58-4BE6-A36F-C9A89A56F3E6}
+		{2FCE9A0A-15E4-44AD-8E21-E929F3D7C67F} = {3951F7D5-DF58-4BE6-A36F-C9A89A56F3E6}
 	EndGlobalSection
 EndGlobal

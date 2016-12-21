@@ -10,7 +10,7 @@ namespace ACopyLibTest.IntegrationTests
         [TestInitialize]
         public override void Setup()
         {
-            DbContext = DbContextFactory.CreateOracleContext(ConnectionHolderForTesting.GetOracleConnection());
+            DbContext = DbContextFactory.CreateOracleContext(ConnectionStrings.GetOracle());
             base.Setup();
         }
 

@@ -118,9 +118,6 @@
     <Compile Include="Xml\AXmlFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ADatabase\ADatabase.csproj">
       <Project>{669d0f7b-39e9-4ad8-abb6-38ec3dc34dbc}</Project>
       <Name>ADatabase</Name>

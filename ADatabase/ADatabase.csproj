@@ -70,7 +70,6 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ColumnType.cs" />
-    <Compile Include="ConnectionHolderForTesting.cs" />
     <Compile Include="DBContext.cs" />
     <Compile Include="DBSchema.cs" />
     <Compile Include="DBType.cs" />

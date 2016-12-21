@@ -1,5 +1,6 @@
 ﻿using ADatabase;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TestSettingsHelper;
 
 namespace ACopyLibTest.IntegrationTests
 {
@@ -9,7 +10,7 @@ namespace ACopyLibTest.IntegrationTests
         [TestInitialize]
         public override void Setup()
         {
-            DbContext = DbContextFactory.CreateSqlServerContext(ConnectionHolderForTesting.GetSqlServerConnection());
+            DbContext = DbContextFactory.CreateSqlServerContext(ConnectionStrings.GetSqlServer());
             DbSchema = DbContext.PowerPlant.CreateDbSchema();
             Commands = DbContext.PowerPlant.CreateCommands();
 

@@ -9,7 +9,7 @@ namespace ADatabaseTest
         [TestInitialize]
         public override void Setup()
         {
-            DbContext = DbContextFactory.CreateSqlServerContext(ConnectionHolderForTesting.GetSqlServerConnection());
+            DbContext = DbContextFactory.CreateSqlServerContext(ConnectionStrings.GetSqlServer());
             PowerPlant = DbContext.PowerPlant;
             DbSchema = PowerPlant.CreateDbSchema();
             ColumnFactory = PowerPlant.CreateColumnFactory();

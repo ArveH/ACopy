@@ -5,6 +5,7 @@ using ADatabase;
 using ADatabase.Interfaces;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TestSettingsHelper;
 
 namespace ADatabaseTest
 {
@@ -16,12 +17,13 @@ namespace ADatabaseTest
         ICommands _commands;
         IDbSchema _dbSchema;
         string _testTable;
+        private readonly ConnectionStrings _connectionStrings = new ConnectionStrings(@"..\..\ConnectionStrings.json");
 
         [TestInitialize]
         public void Setup()
         {
-            _msContext = DbContextFactory.CreateSqlServerContext(ConnectionHolderForTesting.GetSqlServerConnection());
-            _oraContext = DbContextFactory.CreateOracleContext(ConnectionHolderForTesting.GetOracleConnection());
+            _msContext = DbContextFactory.CreateSqlServerContext(_connectionStrings.GetSqlServer());
+            _oraContext = DbContextFactory.CreateOracleContext(_connectionStrings.GetOracle());
             _testTable = "htestdatabase";
         }
 

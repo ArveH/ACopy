@@ -6,9 +6,9 @@ namespace ADatabase
 {
     public static class DbContextFactory 
     {
-        public static IDbContext CreateSqlServerContext(string connectionStringName)
+        public static IDbContext CreateSqlServerContext(string connectionString)
         {
-            return new SqlServerContext(ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString);
+            return new SqlServerContext(connectionString);
         }
 
         public static IDbContext CreateSqlServerContext()
@@ -16,9 +16,9 @@ namespace ADatabase
             return new SqlServerContext();
         }
 
-        public static IDbContext CreateOracleContext(string connectionStringName)
+        public static IDbContext CreateOracleContext(string connectionString)
         {
-            return new OracleContext(ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString);
+            return new OracleContext(connectionString);
         }
 
         public static IDbContext CreateOracleContext()

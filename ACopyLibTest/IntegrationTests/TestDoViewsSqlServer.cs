@@ -9,7 +9,7 @@ namespace ACopyLibTest.IntegrationTests
         [TestInitialize]
         public override void Setup()
         {
-            DbContext = DbContextFactory.CreateSqlServerContext(ConnectionHolderForTesting.GetSqlServerConnection());
+            DbContext = DbContextFactory.CreateSqlServerContext(ConnectionStrings.GetSqlServer());
             base.Setup();
         }
 

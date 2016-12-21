@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using ADatabase;
 using FluentAssertions;
+using TestSettingsHelper;
 
 namespace ADatabaseTest
 {
     public abstract class TestColumnTypes
     {
+        protected ConnectionStrings ConnectionStrings = new ConnectionStrings(@"..\..\ConnectionStrings.json");
         protected IPowerPlant PowerPlant;
         protected IDbContext DbContext;
         protected IDbSchema DbSchema;

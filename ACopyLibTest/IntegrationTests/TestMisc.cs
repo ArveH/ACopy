@@ -4,11 +4,13 @@ using ACopyLib.Reader;
 using ACopyLib.Writer;
 using ADatabase;
 using FluentAssertions;
+using TestSettingsHelper;
 
 namespace ACopyLibTest.IntegrationTests
 {
     public abstract class TestMisc
     {
+        protected ConnectionStrings ConnectionStrings = new ConnectionStrings(@"..\..\ConnectionStrings.json");
         protected IDbContext DbContext;
         protected IDbSchema DbSchema;
         protected ICommands Commands;

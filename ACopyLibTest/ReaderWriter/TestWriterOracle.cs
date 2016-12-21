@@ -9,7 +9,7 @@ namespace ACopyLibTest
         [TestInitialize]
         public override void Setup()
         {
-            DbContext = DbContextFactory.CreateOracleContext(ConnectionHolderForTesting.GetOracleConnection());
+            DbContext = DbContextFactory.CreateOracleContext(ConnectionStrings.GetOracle());
             DbSchema = DbContext.PowerPlant.CreateDbSchema();
             Commands = DbContext.PowerPlant.CreateCommands();
 
