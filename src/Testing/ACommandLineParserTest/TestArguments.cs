@@ -154,5 +154,15 @@ namespace ACommandLineParserTest
             _arguments.AddCommandLineArguments(args);
             _arguments["-j"].IsSet.Should().BeTrue("because parameter is set");
         }
+
+        [TestMethod]
+        public void TestConfigFile()
+        {
+            string[] args = { "-xmyconfig.xml" };
+
+            _arguments.AddCommandLineArguments(args);
+            _arguments["-x"].Value.Should().Be("myconfig.xml");
+        }
+
     }
 }

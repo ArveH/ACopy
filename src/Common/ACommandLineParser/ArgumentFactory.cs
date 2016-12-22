@@ -15,6 +15,8 @@ namespace ACommandLineParser
                     return new BatchSizeArgument();
                 case "CreateClusteredIndex":
                     return new CreateClusteredIndexArgument();
+                case "ConfigFile":
+                    return new ConfigFileArgument();
                 case "ConnectionString":
                     return new ConnectionStringArgument();
                 case "Database":
