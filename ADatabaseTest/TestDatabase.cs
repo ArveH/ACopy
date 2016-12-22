@@ -118,52 +118,62 @@ namespace ADatabaseTest
             TestGetTableNames_When_SingleTable(_oraContext);
         }
 
-        private static void CompareToAcrparordAcrrepord(List<ITableShortInfo> actual)
+        private static void CompareToAcrparordAcrrepord(List<ITableShortInfo> actual, string shouldFind1, string shouldFind2)
         {
             (from t in actual
-             where String.Compare(t.Name, "acrparord", StringComparison.OrdinalIgnoreCase) == 0
-             select t).Count().Should().Be(1, "because acrparord exists");
+             where String.Compare(t.Name, shouldFind1, StringComparison.OrdinalIgnoreCase) == 0
+             select t).Count().Should().Be(1, $"because {shouldFind1} exists");
             (from t in actual
-             where String.Compare(t.Name, "acrrepord", StringComparison.OrdinalIgnoreCase) == 0
-             select t).Count().Should().Be(1, "because acrrepord exists");
+             where String.Compare(t.Name, shouldFind2, StringComparison.OrdinalIgnoreCase) == 0
+             select t).Count().Should().Be(1, $"because {shouldFind2} exists");
         }
 
-        private void TestGetTableNames_When_WildcardMany(IDbContext dbContext)
+        private void TestGetTableNames_When_Wildcard(IDbContext dbContext, string searchString, string shouldFind1, string shouldFind2)
         {
             Initialize(dbContext);
-            List<ITableShortInfo> actual = _dbSchema.GetTableNames("acr%ord");
-            CompareToAcrparordAcrrepord(actual);
+            const string table1 = "htest0table";
+            const string table2 = "htestsometable";
+            try
+            {
+                TestTableCreator.CreateTableSomeColumnsAndOneRow(dbContext, table1);
+                TestTableCreator.CreateTableSomeColumnsAndOneRow(dbContext, table2);
+                TestTableCreator.CreateTableSomeColumnsAndOneRow(dbContext, shouldFind1);
+                TestTableCreator.CreateTableSomeColumnsAndOneRow(dbContext, shouldFind2);
+                List<ITableShortInfo> actual = _dbSchema.GetTableNames(searchString);
+                CompareToAcrparordAcrrepord(actual, shouldFind1, shouldFind2);
+
+            }
+            finally
+            {
+                _dbSchema.DropTable(table1);
+                _dbSchema.DropTable(table2);
+                _dbSchema.DropTable(shouldFind1);
+                _dbSchema.DropTable(shouldFind2);
+            }
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMS_GetTableNames_When_WildcardMany()
         {
-            TestGetTableNames_When_WildcardMany(_msContext);
+            TestGetTableNames_When_Wildcard(_msContext, "htest%table", "htest1table", "htestarvetable");
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOra_GetTableNames_When_WildcardMany()
         {
-            TestGetTableNames_When_WildcardMany(_oraContext);
-        }
-
-        private void TestGetTableNames_When_WildcardOne(IDbContext dbContext)
-        {
-            Initialize(dbContext);
-            List<ITableShortInfo> actual = _dbSchema.GetTableNames("acr___ord");
-            CompareToAcrparordAcrrepord(actual);
+            TestGetTableNames_When_Wildcard(_oraContext, "htest%table", "htest1table", "htestarvetable");
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void Test_MS_GetTableNames_When_WildcardOne()
         {
-            TestGetTableNames_When_WildcardOne(_msContext);
+            TestGetTableNames_When_Wildcard(_msContext, "htest__table", "htest11table", "htest98table");
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void Test_Ora_GetTableNames_When_WildcardOne()
         {
-            TestGetTableNames_When_WildcardOne(_oraContext);
+            TestGetTableNames_When_Wildcard(_oraContext, "htest__table", "htest11table", "htest98table");
         }
 
         private void TestIsIndex()
