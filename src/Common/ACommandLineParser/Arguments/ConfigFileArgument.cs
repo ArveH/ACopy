@@ -1,11 +1,11 @@
 ﻿namespace ACommandLineParser.Arguments
 {
-    public class SchemaFileSuffixArgument: ArgumentBase
+    public class ConfigFileArgument: ArgumentBase
     {
-        public SchemaFileSuffixArgument()
+        public ConfigFileArgument()
         {
-            Name = $"SchemaFileSuffix";
-            ShortName = "-h";
+            Name = $"ConfigFile";
+            ShortName = "-x";
             _isSet = false;
         }
 
@@ -22,11 +22,10 @@
             }
         }
 
-        public override string Syntax => "-h<schema_file_suffix>";
+        public override string Syntax => "-x<full_path>";
 
         public override string Description =>
-            "Default suffix for a schema file is 'aschema', but you can set it to what you want. " +
-            "OBS: Remember to use the same value for copy in, as copy out";
+            "";
 
         public override bool IsOptional => true;
 
