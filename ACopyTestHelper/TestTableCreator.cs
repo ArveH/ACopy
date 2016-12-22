@@ -77,5 +77,22 @@ namespace ACopyTestHelper
             commands.ExecuteNonQuery(tmp);
             commands.ExecuteNonQuery($"create unique index {"i_" + tableName} on {tableName}(id)");
         }
+
+        public static TableDefinition CreateTableSomeColumnsAndOneRow(IDbContext dbContext, string tableName)
+        {
+            var columnFactory = dbContext.PowerPlant.CreateColumnFactory();
+            var columns = new List<IColumn>
+            {
+                columnFactory.CreateInstance(ColumnType.Int64, "id", false, "0"),
+                columnFactory.CreateInstance(ColumnType.Varchar, "flag", 1, false, "' '", ""),
+                columnFactory.CreateInstance(ColumnType.Varchar, "val", 50, false, "' '", "")
+            };
+            var tableDefinition = new TableDefinition(tableName, columns, "");
+            var dbSchema = dbContext.PowerPlant.CreateDbSchema();
+            dbSchema.CreateTable(tableDefinition);
+            var commands = dbContext.PowerPlant.CreateCommands();
+            commands.ExecuteNonQuery($"insert into {tableName} (id, flag, val) values (1, 'A', 'Some value')");
+            return tableDefinition;
+        }
     }
 }

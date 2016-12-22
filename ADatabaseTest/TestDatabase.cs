@@ -44,7 +44,8 @@ namespace ADatabaseTest
         private void TestExecuteNonQuery(IDbContext dbContext)
         {
             Initialize(dbContext);
-            _commands.ExecuteNonQuery("update acrclient set client = 'AH' where 1 = 0").Should().Be(0);
+            TestTableCreator.CreateTableSomeColumnsAndOneRow(dbContext, _testTable);
+            _commands.ExecuteNonQuery($"update {_testTable} set val = 'AH'").Should().Be(1);
         }
 
         [TestMethod, TestCategory("SqlServer")]
@@ -80,24 +81,9 @@ namespace ADatabaseTest
         private void TestCreateTableWithVarcharColumn(IDbContext dbContext)
         {
             Initialize(dbContext);
-            TableDefinition tableDefinition = CreateTableSomeColumnsAndOneRow(dbContext);
+            TableDefinition tableDefinition = TestTableCreator.CreateTableSomeColumnsAndOneRow(dbContext, _testTable);
 
             _dbSchema.IsTable(tableDefinition.Name).Should().BeTrue();
-        }
-
-        private TableDefinition CreateTableSomeColumnsAndOneRow(IDbContext dbContext)
-        {
-            IColumnFactory columnFactory = dbContext.PowerPlant.CreateColumnFactory();
-            List<IColumn> columns = new List<IColumn>
-            { 
-                columnFactory.CreateInstance(ColumnType.Int64, "id", false, "0"),
-                columnFactory.CreateInstance(ColumnType.Varchar, "flag", 1, false, "' '", ""),
-                columnFactory.CreateInstance(ColumnType.Varchar, "val", 50, false, "' '", "")
-            };
-            TableDefinition tableDefinition = new TableDefinition(_testTable, columns, "");
-            _dbSchema.CreateTable(tableDefinition);
-            _commands.ExecuteNonQuery(string.Format("insert into {0} (id, flag, val) values (1, 'A', 'Some value')", _testTable));
-            return tableDefinition;
         }
 
         [TestMethod, TestCategory("SqlServer")]
@@ -312,7 +298,7 @@ namespace ADatabaseTest
         public void Test_Ora_IsView()
         {
             Initialize(_oraContext);
-            CreateTableSomeColumnsAndOneRow(_oraContext);
+            TestTableCreator.CreateTableSomeColumnsAndOneRow(_oraContext, _testTable);
             Test_IsView();
         }
 
@@ -320,7 +306,7 @@ namespace ADatabaseTest
         public void Test_MS_IsView()
         {
             Initialize(_msContext);
-            CreateTableSomeColumnsAndOneRow(_msContext);
+            TestTableCreator.CreateTableSomeColumnsAndOneRow(_msContext, _testTable);
             Test_IsView();
         }
 
