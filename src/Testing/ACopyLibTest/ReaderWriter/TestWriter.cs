@@ -11,7 +11,7 @@ namespace ACopyLibTest
 {
     public abstract class TestWriter
     {
-        protected ConnectionStrings ConnectionStrings = new ConnectionStrings(@"..\..\ConnectionStrings.json");
+        protected ConnectionStrings ConnectionStrings = new ConnectionStrings();
         protected IDbContext DbContext;
         protected IDbSchema DbSchema;
         protected ICommands Commands;

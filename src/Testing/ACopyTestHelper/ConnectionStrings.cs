@@ -9,7 +9,7 @@ namespace ACopyTestHelper
     {
         private Dictionary<string, string> _connectionStrings = new Dictionary<string, string>();
 
-        public ConnectionStrings(string settingsFileFullPath)
+        public ConnectionStrings(string settingsFileFullPath= @"..\..\src\ConnectionStrings.json")
         {
             var settingsFileText = File.ReadAllText(settingsFileFullPath);
             var json = JObject.Parse(settingsFileText);

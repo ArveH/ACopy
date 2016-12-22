@@ -7,7 +7,7 @@ namespace ADatabaseTest
 {
     public abstract class TestColumnTypes
     {
-        protected ConnectionStrings ConnectionStrings = new ConnectionStrings(@"..\..\ConnectionStrings.json");
+        protected ConnectionStrings ConnectionStrings = new ConnectionStrings();
         protected IPowerPlant PowerPlant;
         protected IDbContext DbContext;
         protected IDbSchema DbSchema;

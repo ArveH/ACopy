@@ -10,7 +10,7 @@ namespace ACopyLibTest.IntegrationTests
 {
     public abstract class TestMisc
     {
-        protected ConnectionStrings ConnectionStrings = new ConnectionStrings(@"..\..\ConnectionStrings.json");
+        protected ConnectionStrings ConnectionStrings = new ConnectionStrings();
         protected IDbContext DbContext;
         protected IDbSchema DbSchema;
         protected ICommands Commands;

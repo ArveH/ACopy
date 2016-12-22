@@ -17,7 +17,7 @@ namespace ADatabaseTest
         private ICommands _commands;
         private IDbSchema _dbSchema;
         private string _testTable;
-        private readonly ConnectionStrings _connectionStrings = new ConnectionStrings(@"..\..\ConnectionStrings.json");
+        private readonly ConnectionStrings _connectionStrings = new ConnectionStrings();
 
         [TestInitialize]
         public void Setup()
