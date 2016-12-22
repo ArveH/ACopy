@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using ACopyLib.U4Indexes;
+﻿using ACopyLib.U4Indexes;
 using ACopyLib.Xml;
+using ACopyTestHelper;
 using ADatabase;
 using FluentAssertions;
 
@@ -23,24 +23,6 @@ namespace ACopyLibTest.IntegrationTests
             base.Cleanup();
         }
 
-        private void CreateIndexTables()
-        {
-            DbSchema.DropTable(Asysindex);
-            DbSchema.DropTable(Aagindex);
-            var columnFactory = DbContext.PowerPlant.CreateColumnFactory();
-            var columns = new List<IColumn>
-            { 
-                columnFactory.CreateInstance(ColumnType.String, "index_name", 60, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnType.String, "table_name", 60, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnType.String, "column_list", 510, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnType.String, "location_name", 50, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnType.Int8, "unique_flag", false, "0"),
-                columnFactory.CreateInstance(ColumnType.String, "db_name", 20, false, "' '", "Danish_Norwegian_CI_AS")
-            };
-            DbSchema.CreateTable(new TableDefinition(Aagindex, columns, ""));
-            DbSchema.CreateTable(new TableDefinition(Asysindex, columns, ""));
-        }
-
         private void InsertIntoIndexesTable(string indexesTable, string indexName, string columnList)
         {
             string insertStmt =
@@ -48,26 +30,10 @@ namespace ACopyLibTest.IntegrationTests
             Commands.ExecuteNonQuery(insertStmt);
         }
 
-        private void CreateTestTableWithIndex()
-        {
-            var columnFactory = DbContext.PowerPlant.CreateColumnFactory();
-            var columns = new List<IColumn>
-            { 
-                columnFactory.CreateInstance(ColumnType.Int64, "id", false, "0"),
-                columnFactory.CreateInstance(ColumnType.Int64, "id2", false, "0"),
-                columnFactory.CreateInstance(ColumnType.Varchar, "val", 50, false, "' '", "Danish_Norwegian_CI_AS") 
-            };
-            var tableDefinition = new TableDefinition(TestTable, columns, "");
-            DbSchema.CreateTable(tableDefinition);
-            string tmp = $"insert into {TestTable} (id, val) values (9, 'control value')";
-            Commands.ExecuteNonQuery(tmp);
-            Commands.ExecuteNonQuery($"create unique index {"i_" + TestTable} on {TestTable}(id)");
-        }
-
         // TestMethod
         protected void TestIndex()
         {
-            CreateTestTableWithIndex();
+            TestTableCreator.CreateTestTableWithIndex(DbContext, TestTable);
 
             WriteAndRead();
 
@@ -85,8 +51,8 @@ namespace ACopyLibTest.IntegrationTests
                 xmlSchema.U4Indexes = u4Indexes;
             }
             xmlSchema.XmlWriter = AXmlFactory.CreateWriter();
-            CreateTestTableWithIndex();
-            CreateIndexTables();
+            TestTableCreator.CreateTestTableWithIndex(DbContext, TestTable);
+            TestTableCreator.CreateIndexTables(DbContext, Asysindex, Aagindex);
             return xmlSchema;
         }
 

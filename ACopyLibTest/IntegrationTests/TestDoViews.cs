@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ACopyLib.U4Views;
+using ACopyTestHelper;
 using ADatabase;
 using FluentAssertions;
 
@@ -18,7 +19,7 @@ namespace ACopyLibTest.IntegrationTests
             DbSchema.DropView(Testview);
             DbSchema.DropTable(Asysview);
             DbSchema.DropTable(Aagview);
-            CreateTestableWithAllTypes(TestTable);
+            TestTableCreator.CreateTestableWithAllTypes(DbContext, TestTable);
             CreateViewTables();
         }
 
