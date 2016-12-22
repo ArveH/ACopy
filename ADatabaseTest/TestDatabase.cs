@@ -63,7 +63,8 @@ namespace ADatabaseTest
         private void TestIsTable_When_TableExists(IDbContext dbContext)
         {
             Initialize(dbContext);
-            _dbSchema.IsTable("asysdummy").Should().BeTrue("because asysdummy should exist");
+            TestTableCreator.CreateTableSomeColumnsAndOneRow(dbContext, _testTable);
+            _dbSchema.IsTable(_testTable).Should().BeTrue($"because {_testTable} should exist");
         }
 
         [TestMethod, TestCategory("SqlServer")]
@@ -101,7 +102,8 @@ namespace ADatabaseTest
         private void TestGetTableNames_When_SingleTable(IDbContext dbContext)
         {
             Initialize(dbContext);
-            _dbSchema.GetTableNames("asysdummy")[0].Name.Should().BeEquivalentTo("asysdummy");
+            TestTableCreator.CreateTableSomeColumnsAndOneRow(dbContext, _testTable);
+            _dbSchema.GetTableNames(_testTable)[0].Name.Should().BeEquivalentTo(_testTable);
         }
 
         [TestMethod, TestCategory("SqlServer")]
