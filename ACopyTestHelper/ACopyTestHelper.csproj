@@ -7,8 +7,8 @@
     <ProjectGuid>{2FCE9A0A-15E4-44AD-8E21-E929F3D7C67F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestSettingsHelper</RootNamespace>
-    <AssemblyName>TestSettingsHelper</AssemblyName>
+    <RootNamespace>ACopyTestHelper</RootNamespace>
+    <AssemblyName>ACopyTestHelper</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -36,6 +36,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="ConnectionStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

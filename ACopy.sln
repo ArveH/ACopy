@@ -32,7 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{3951
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{B6CC4F3B-A61F-4869-82A3-8E61D7CF36DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSettingsHelper", "TestSettingsHelper\TestSettingsHelper.csproj", "{2FCE9A0A-15E4-44AD-8E21-E929F3D7C67F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACopyTestHelper", "ACopyTestHelper\ACopyTestHelper.csproj", "{2FCE9A0A-15E4-44AD-8E21-E929F3D7C67F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

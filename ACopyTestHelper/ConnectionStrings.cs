@@ -3,7 +3,7 @@ using System.IO;
 using ADatabase.Exceptions;
 using Newtonsoft.Json.Linq;
 
-namespace TestSettingsHelper
+namespace ACopyTestHelper
 {
     public class ConnectionStrings
     {

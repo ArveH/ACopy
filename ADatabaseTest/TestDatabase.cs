@@ -5,7 +5,7 @@ using ADatabase;
 using ADatabase.Interfaces;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TestSettingsHelper;
+using ACopyTestHelper;
 
 namespace ADatabaseTest
 {

@@ -2,8 +2,8 @@
 using System.IO;
 using ACopyLib.Reader;
 using ACopyLib.Writer;
+using ACopyTestHelper;
 using ADatabase;
-using TestSettingsHelper;
 
 namespace ACopyLibTest.IntegrationTests
 {

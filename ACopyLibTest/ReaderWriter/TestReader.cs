@@ -7,7 +7,7 @@ using ACopyLib.Reader;
 using ACopyLib.Writer;
 using ADatabase;
 using FluentAssertions;
-using TestSettingsHelper;
+using ACopyTestHelper;
 
 namespace ACopyLibTest
 {

@@ -89,13 +89,13 @@
     <Compile Include="TestDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ACopyTestHelper\ACopyTestHelper.csproj">
+      <Project>{2FCE9A0A-15E4-44AD-8E21-E929F3D7C67F}</Project>
+      <Name>ACopyTestHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ADatabase\ADatabase.csproj">
       <Project>{669d0f7b-39e9-4ad8-abb6-38ec3dc34dbc}</Project>
       <Name>ADatabase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestSettingsHelper\TestSettingsHelper.csproj">
-      <Project>{2fce9a0a-15e4-44ad-8e21-e929f3d7c67f}</Project>
-      <Name>TestSettingsHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
