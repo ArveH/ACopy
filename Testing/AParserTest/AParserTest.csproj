@@ -87,17 +87,17 @@
     <Compile Include="TestSqlServerTranslator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ADatabase\ADatabase.csproj">
-      <Project>{669d0f7b-39e9-4ad8-abb6-38ec3dc34dbc}</Project>
-      <Name>ADatabase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\AParser\AParser.csproj">
-      <Project>{14bc427d-b57b-45c4-852e-9365bdfa8618}</Project>
-      <Name>AParser</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\..\Common\ADatabase\ADatabase.csproj">
+      <Project>{669D0F7B-39E9-4AD8-ABB6-38EC3DC34DBC}</Project>
+      <Name>ADatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\AParser\AParser.csproj">
+      <Project>{14BC427D-B57B-45C4-852E-9365BDFA8618}</Project>
+      <Name>AParser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

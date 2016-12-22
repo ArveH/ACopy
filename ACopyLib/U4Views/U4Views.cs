@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
 using ADatabase;
 using ALogger;
 using AParser;
+using System.Linq;
 using DbType = ADatabase.DbType;
 
 namespace ACopyLib.U4Views

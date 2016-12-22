@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ADatabase;
-using ADatabase.Interfaces;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ACopyTestHelper;
+using ADatabase;
+using ADatabase.Interfaces;
 
 namespace ADatabaseTest
 {

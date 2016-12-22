@@ -3,9 +3,9 @@ using System.IO;
 using System.IO.Compression;
 using System.Text;
 using ACopyLib.Writer;
-using ADatabase;
 using FluentAssertions;
 using ACopyTestHelper;
+using ADatabase;
 
 namespace ACopyLibTest
 {

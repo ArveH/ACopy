@@ -85,13 +85,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ACommandLineParser\ACommandLineParser.csproj">
-      <Project>{caa895b3-bfca-4f04-9660-5f7e3c36d1c9}</Project>
-      <Name>ACommandLineParser</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\..\Common\ACommandLineParser\ACommandLineParser.csproj">
+      <Project>{CAA895B3-BFCA-4F04-9660-5F7E3C36D1C9}</Project>
+      <Name>ACommandLineParser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

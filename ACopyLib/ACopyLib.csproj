@@ -118,24 +118,24 @@
     <Compile Include="Xml\AXmlFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ADatabase\ADatabase.csproj">
-      <Project>{669d0f7b-39e9-4ad8-abb6-38ec3dc34dbc}</Project>
-      <Name>ADatabase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ALogger\ALogger.csproj">
-      <Project>{ada41b5e-c16f-4f86-9d95-c3b196654ff7}</Project>
-      <Name>ALogger</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AParser\AParser.csproj">
-      <Project>{14bc427d-b57b-45c4-852e-9365bdfa8618}</Project>
-      <Name>AParser</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\Names.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Names.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\ADatabase\ADatabase.csproj">
+      <Project>{669D0F7B-39E9-4AD8-ABB6-38EC3DC34DBC}</Project>
+      <Name>ADatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\ALogger\ALogger.csproj">
+      <Project>{ADA41B5E-C16F-4F86-9D95-C3B196654FF7}</Project>
+      <Name>ALogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\AParser\AParser.csproj">
+      <Project>{14BC427D-B57B-45C4-852E-9365BDFA8618}</Project>
+      <Name>AParser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -89,8 +89,8 @@
     <Compile Include="TestDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ADatabase\ADatabase.csproj">
-      <Project>{669d0f7b-39e9-4ad8-abb6-38ec3dc34dbc}</Project>
+    <ProjectReference Include="..\..\Common\ADatabase\ADatabase.csproj">
+      <Project>{669D0F7B-39E9-4AD8-ABB6-38EC3DC34DBC}</Project>
       <Name>ADatabase</Name>
     </ProjectReference>
     <ProjectReference Include="..\ACopyTestHelper\ACopyTestHelper.csproj">

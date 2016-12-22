@@ -70,20 +70,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ACommandLineParser\ACommandLineParser.csproj">
-      <Project>{caa895b3-bfca-4f04-9660-5f7e3c36d1c9}</Project>
-      <Name>ACommandLineParser</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ACopyLib\ACopyLib.csproj">
       <Project>{456624A2-3782-473F-8567-740F7FE8A9F8}</Project>
       <Name>ACopyLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ADatabase\ADatabase.csproj">
-      <Project>{669d0f7b-39e9-4ad8-abb6-38ec3dc34dbc}</Project>
+    <ProjectReference Include="..\Common\ACommandLineParser\ACommandLineParser.csproj">
+      <Project>{CAA895B3-BFCA-4F04-9660-5F7E3C36D1C9}</Project>
+      <Name>ACommandLineParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\ADatabase\ADatabase.csproj">
+      <Project>{669D0F7B-39E9-4AD8-ABB6-38EC3DC34DBC}</Project>
       <Name>ADatabase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ALogger\ALogger.csproj">
-      <Project>{ada41b5e-c16f-4f86-9d95-c3b196654ff7}</Project>
+    <ProjectReference Include="..\Common\ALogger\ALogger.csproj">
+      <Project>{ADA41B5E-C16F-4F86-9D95-C3B196654FF7}</Project>
       <Name>ALogger</Name>
     </ProjectReference>
   </ItemGroup>

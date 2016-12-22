@@ -116,21 +116,17 @@
       <Project>{456624a2-3782-473f-8567-740f7fe8a9f8}</Project>
       <Name>ACopyLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ACopyTestHelper\ACopyTestHelper.csproj">
-      <Project>{2FCE9A0A-15E4-44AD-8E21-E929F3D7C67F}</Project>
-      <Name>ACopyTestHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ADatabase\ADatabase.csproj">
-      <Project>{669d0f7b-39e9-4ad8-abb6-38ec3dc34dbc}</Project>
+    <ProjectReference Include="..\..\Common\ADatabase\ADatabase.csproj">
+      <Project>{669D0F7B-39E9-4AD8-ABB6-38EC3DC34DBC}</Project>
       <Name>ADatabase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ALogger\ALogger.csproj">
+    <ProjectReference Include="..\..\Common\ALogger\ALogger.csproj">
       <Project>{ada41b5e-c16f-4f86-9d95-c3b196654ff7}</Project>
       <Name>ALogger</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\AParser\AParser.csproj">
-      <Project>{14bc427d-b57b-45c4-852e-9365bdfa8618}</Project>
-      <Name>AParser</Name>
+    <ProjectReference Include="..\ACopyTestHelper\ACopyTestHelper.csproj">
+      <Project>{2FCE9A0A-15E4-44AD-8E21-E929F3D7C67F}</Project>
+      <Name>ACopyTestHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
