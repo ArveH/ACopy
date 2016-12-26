@@ -34,6 +34,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALogger", "Common\ALogger\A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AParser", "Common\AParser\AParser.csproj", "{14BC427D-B57B-45C4-852E-9365BDFA8618}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{B8BECCD4-ADA0-4683-842A-E2E771CFC25F}"
+	ProjectSection(SolutionItems) = preProject
+		Config\OracleConversions.xml = Config\OracleConversions.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
