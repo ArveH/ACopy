@@ -17,7 +17,7 @@ namespace ACopyLibTest.IntegrationTests
         private IAWriter _writer;
         private IAReader _reader;
 
-        private const string Directory = @"e:\Temp\";
+        private const string Directory = @".\";
         protected string TestTable;
         private string _schemaFile;
         private string _dataFile;

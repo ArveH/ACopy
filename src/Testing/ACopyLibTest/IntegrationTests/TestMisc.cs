@@ -15,7 +15,7 @@ namespace ACopyLibTest.IntegrationTests
         protected IDbSchema DbSchema;
         protected ICommands Commands;
 
-        private const string Directory = @"e:\Temp\";
+        private const string Directory = @".\";
         protected const string TestTable = "testmisc";
         private const string SchemaFile = "testmisc.aschema";
         private const string DataFile = "testmisc.adata";

@@ -16,7 +16,7 @@ namespace ACopyLibTest
         protected IDbSchema DbSchema;
         protected ICommands Commands;
 
-        private const string Directory = @"e:\Temp\";
+        private const string Directory = @".\";
         private const string SchemaFile = "testwriter.aschema";
         private const string DataFile = "testwriter.adata";
         protected const string TestTable = "testwriter";

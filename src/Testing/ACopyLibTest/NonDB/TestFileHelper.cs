@@ -17,7 +17,7 @@ namespace ACopyLibTest
         [TestInitialize]
         public void Setup()
         {
-            _folder = @"e:\temp\";
+            _folder = @".\";
         }
 
         private ITableDefinition CreateTableDefinition(string tableName)

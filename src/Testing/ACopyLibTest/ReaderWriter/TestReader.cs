@@ -20,7 +20,7 @@ namespace ACopyLibTest
 
         protected const string TestGuid = "3f2504e0-4f89-11d3-9a0c-0305e82c3301";
         protected const string TestTable = "testreader";
-        private const string Directory = @"e:\temp\";
+        private const string Directory = @".\";
         protected string SchemaFile;
         protected string DataFile;
 
