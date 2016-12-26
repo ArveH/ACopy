@@ -1,6 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-  <connectionStrings>
-    <add name="ora_test" connectionString="Data Source=<server>/<sid>;User Id=<user>;Password=<pwd>;Self Tuning=false;" />
-    <add name="mss_test" connectionString="Server=(local);Database=<db>;Trusted_Connection=True;" />
-    <add name="mss_test2" connectionString="Data Source=<server>;User ID=<login>;Password=<pwd>;Min Pool Size=2;Max Pool Size=1000;Connect Timeout=600" />
-  </connectionStrings>
+﻿{
+  "connectionStrings": [
+    {
+      "ora_test": "Data Source=<server>/<sid>;User Id=<user>;Password=<pwd>;Self Tuning=false;"
+    },
+    {
+      "mss_test": "Server=(local);Database=<db>;Trusted_Connection=True;"
+    },
+    {
+      "mss_test2": "Data Source=<server>;User ID=<login>;Password=<pwd>;Min Pool Size=2;Max Pool Size=1000;Connect Timeout=600"
+    }
+  ]
+}
