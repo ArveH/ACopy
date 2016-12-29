@@ -18,7 +18,7 @@ namespace ACopyLib.Xml
             try
             {
 	            writer.WriteStartDocument();
-	            writer.WriteComment(string.Format("Table definition file for U4Copy program"));
+	            writer.WriteComment(string.Format("Table definition file for ACopy program"));
 	
 	            BodyToXmlFile(tableDefinition, writer);
 	            writer.WriteEndDocument();
