@@ -1,1 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Type conversion file for Unit4-->
+<
+    <Type Name="varchar2">
+        <ToACopy>varchar</ToACopy>
+        <ToOracle>varchar2</ToOracle>
+    </Type>
+    <Type Name="varchar">
+        <ToACopy>varchar</ToACopy>
+        <ToOracle>varchar2</ToOracle>
+    </Type>
+    <Type Name="char">
+        <ToACopy>varchar</ToACopy>
+        <ToOracle>varchar2</ToOracle>
+    </Type>
+    <Type Name="clob">
+        <ToACopy>LongText</ToACopy>
+        <ToOracle>clob</ToOracle>
+    </Type>
+    <Type Name="integer">
+        <ToACopy>int</ToACopy>
+        <ToOracle>number(15)</ToOracle>
+    </Type>
+    <Type Name="number(1)">
+        <ToACopy>bool</ToACopy>
+        <ToOracle>number(1)</ToOracle>
+    </Type>
+    <Type Name="number(3)">
+        <ToACopy>int8</ToACopy>
+        <ToOracle>number(3)</ToOracle>
+    </Type>
+    <Type Name="number(5)">
+        <ToACopy>int16</ToACopy>
+        <ToOracle>number(5)</ToOracle>
+    </Type>
+    <Type Name="number(20)">
+        <ToACopy>int64</ToACopy>
+        <ToOracle>number(20)</ToOracle>
+    </Type>
+    <Type Name="number(18,2)">
+        <ToACopy>money</ToACopy>
+        <ToOracle>number(30,3)</ToOracle>
+    </Type>
+    <Type Name="number(30,3)">
+        <ToACopy>money</ToACopy>
+        <ToOracle>number(30,3)</ToOracle>
+    </Type>
+    <Type Name="number">
+        <ToACopy>float</ToACopy>
+        <ToOracle>number(30,8)</ToOracle>
+    </Type>
+>
