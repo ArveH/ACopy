@@ -1,4 +1,6 @@
-﻿using ADatabase;
+﻿using System;
+using ADatabase;
+using ADatabase.Exceptions;
 using ADatabase.Oracle.Columns;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -191,7 +193,8 @@ namespace ADatabaseTest
         [TestMethod]
         public void TestUnknownType_Then_Exception()
         {
-            
+            Action act = () => GetACopyType("UNKNOWNTYPE");
+            act.ShouldThrow<ADatabaseException>().WithMessage("Copy program doesn't handle columns of type UNKNOWNTYPE");
         }
 
     }
