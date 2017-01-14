@@ -90,6 +90,7 @@
     <Compile Include="TestColumnTypesSqlServer.cs" />
     <Compile Include="TestConvertOracleToACopy.cs" />
     <Compile Include="TestDatabase.cs" />
+    <Compile Include="TestTypeOperatorChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ADatabase\ADatabase.csproj">
