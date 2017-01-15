@@ -5,7 +5,7 @@ namespace ADatabase.SqlServer.Columns
     public class SqlServerInt32Column : SqlServerColumn
     {
         public SqlServerInt32Column(string name, bool isNullable, string def)
-            : base(name, ColumnType.Int, isNullable, AdjustDefaultValue(def))
+            : base(name, ColumnTypeName.Int, isNullable, AdjustDefaultValue(def))
         {
         }
 

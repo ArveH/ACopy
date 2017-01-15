@@ -5,7 +5,7 @@ namespace ADatabase.Oracle.Columns
 {
     public abstract class OracleNumberColumn: OracleColumn
     {
-        public OracleNumberColumn(string name, ColumnType type, bool isNullable, string def)
+        public OracleNumberColumn(string name, ColumnTypeName type, bool isNullable, string def)
             : base(name, type, isNullable, def)
         {
         }

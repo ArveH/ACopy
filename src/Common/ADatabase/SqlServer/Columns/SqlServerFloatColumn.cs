@@ -10,7 +10,7 @@ namespace ADatabase.SqlServer.Columns
         {
             Details["Prec"] = 28;
             Details["Scale"] = 8;
-            Type = ColumnType.Float;
+            Type = ColumnTypeName.Float;
         }
 
         public override string TypeToString()

@@ -6,7 +6,7 @@ namespace ADatabase.Oracle.Columns
     public class OracleFloatColumn : OracleNumberColumn
     {
         public OracleFloatColumn(string name, bool isNullable, string def)
-            : base(name, ColumnType.Float, isNullable, def)
+            : base(name, ColumnTypeName.Float, isNullable, def)
         {
             Details["Prec"] = 30;
             Details["Scale"] = 8;

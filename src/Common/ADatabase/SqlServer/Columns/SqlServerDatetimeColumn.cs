@@ -6,7 +6,7 @@ namespace ADatabase.SqlServer.Columns
     public class SqlServerDatetimeColumn : SqlServerColumn
     {
         public SqlServerDatetimeColumn(string name, bool isNullable, string def)
-            : base(name, ColumnType.DateTime, isNullable, ConvertNativeDateToKeyword(def))
+            : base(name, ColumnTypeName.DateTime, isNullable, ConvertNativeDateToKeyword(def))
         {
         }
 

@@ -5,7 +5,7 @@ namespace ADatabase.SqlServer.Columns
 {
     public abstract class SqlServerColumn : IColumn
     {
-        protected SqlServerColumn(string name, ColumnType type, bool isNullable, string def)
+        protected SqlServerColumn(string name, ColumnTypeName type, bool isNullable, string def)
         {
             Name = name;
             Type = type;
@@ -15,7 +15,7 @@ namespace ADatabase.SqlServer.Columns
         }
 
         public string Name { get; set; }
-        public ColumnType Type { get; set; }
+        public ColumnTypeName Type { get; set; }
         public bool IsNullable { get; set; }
 
         private string _default;

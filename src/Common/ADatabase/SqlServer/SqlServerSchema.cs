@@ -117,12 +117,12 @@ namespace ADatabase.SqlServer
                     bool isNullable = reader.GetBoolean(5);
                     string collation = reader.GetString(6);
                     string def = reader.GetString(7);
-                    ColumnType colType = SqlServerColumnTypeConverter.GetColumnTypeFromNativeType(type, ref length, prec, scale);
+                    ColumnTypeName colType = SqlServerColumnTypeConverter.GetColumnTypeFromNativeType(type, ref length, prec, scale);
                     if (reader.GetBoolean(8))
                     {
-                        colType = ColumnType.Identity;
+                        colType = ColumnTypeName.Identity;
                     }
-                    if (colType == ColumnType.Raw)
+                    if (colType == ColumnTypeName.Raw)
                     {
                         tableHasRawColumn = true;
                     }
@@ -203,9 +203,9 @@ namespace ADatabase.SqlServer
 
         private string AddIdentityColumn(ITableDefinition tableDefinition)
         {
-            if (!tableDefinition.Columns.Exists(c => c.Type == ColumnType.Identity))
+            if (!tableDefinition.Columns.Exists(c => c.Type == ColumnTypeName.Identity))
             {
-                IColumn col = DbContext.PowerPlant.CreateColumnFactory().CreateInstance(ColumnType.Identity, "agrtid", false, "");
+                IColumn col = DbContext.PowerPlant.CreateColumnFactory().CreateInstance(ColumnTypeName.Identity, "agrtid", false, "");
                 return ", agrtid " + col.GetColumnDefinition();
             }
 

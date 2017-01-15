@@ -7,7 +7,7 @@ namespace ADatabase.SqlServer.Columns
         public SqlServerInt8Column(string name, bool isNullable, string def)
             : base(name, isNullable, def)
         {
-            Type = ColumnType.Int8;
+            Type = ColumnTypeName.Int8;
         }
 
         public override string TypeToString()

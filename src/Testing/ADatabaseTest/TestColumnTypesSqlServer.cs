@@ -24,7 +24,7 @@ namespace ADatabaseTest
             base.Cleanup();
         }
 
-        private void TestStringColumn(ColumnType colType)
+        private void TestStringColumn(ColumnTypeName colType)
         {
             TestColumn(colType, 50, false, "' '", "Danish_Norwegian_CI_AS");
         }
@@ -32,28 +32,28 @@ namespace ADatabaseTest
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Varchar()
         {
-            TestStringColumn(ColumnType.Varchar);
+            TestStringColumn(ColumnTypeName.Varchar);
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Char()
         {
-            TestStringColumn(ColumnType.Char);
+            TestStringColumn(ColumnTypeName.Char);
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_String()
         {
-            TestStringColumn(ColumnType.String);
+            TestStringColumn(ColumnTypeName.String);
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_LongText()
         {
-            TestStringColumn(ColumnType.LongText);
+            TestStringColumn(ColumnTypeName.LongText);
         }
 
-        private void TestNumberColumn(ColumnType type)
+        private void TestNumberColumn(ColumnTypeName type)
         {
             TestColumn(type, 0, false, "0", "");
         }
@@ -61,61 +61,61 @@ namespace ADatabaseTest
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Int()
         {
-            TestNumberColumn(ColumnType.Int);
+            TestNumberColumn(ColumnTypeName.Int);
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Bool()
         {
-            TestNumberColumn(ColumnType.Bool);
+            TestNumberColumn(ColumnTypeName.Bool);
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Int8()
         {
-            TestNumberColumn(ColumnType.Int8);
+            TestNumberColumn(ColumnTypeName.Int8);
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Int16()
         {
-            TestNumberColumn(ColumnType.Int16);
+            TestNumberColumn(ColumnTypeName.Int16);
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Int64()
         {
-            TestNumberColumn(ColumnType.Int64);
+            TestNumberColumn(ColumnTypeName.Int64);
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Money()
         {
-            TestNumberColumn(ColumnType.Money);
+            TestNumberColumn(ColumnTypeName.Money);
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Float()
         {
-            TestNumberColumn(ColumnType.Float);
+            TestNumberColumn(ColumnTypeName.Float);
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_DateTime()
         {
-            TestColumn(ColumnType.DateTime, 0, false, "convert(datetime,'19000101',112)", "");
+            TestColumn(ColumnTypeName.DateTime, 0, false, "convert(datetime,'19000101',112)", "");
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Guid()
         {
-            TestColumn(ColumnType.Guid, 0, true, "", "");
+            TestColumn(ColumnTypeName.Guid, 0, true, "", "");
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Raw()
         {
-            TestColumn(ColumnType.Raw, 0, true, "", "");
+            TestColumn(ColumnTypeName.Raw, 0, true, "", "");
         }
 
         [TestMethod, TestCategory("SqlServer")]

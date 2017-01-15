@@ -5,7 +5,7 @@ namespace ADatabase.SqlServer.Columns
     public class SqlServerGuidColumn : SqlServerColumn
     {
         public SqlServerGuidColumn(string name, bool isNullable, string def)
-            : base(name, ColumnType.Guid, isNullable, AdjustDefaultValue(def))
+            : base(name, ColumnTypeName.Guid, isNullable, AdjustDefaultValue(def))
         {
         }
 

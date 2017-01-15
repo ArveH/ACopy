@@ -7,7 +7,7 @@ namespace ADatabase.SqlServer.Columns
         public SqlServerBoolColumn(string name, bool isNullable, string def)
             : base(name, isNullable, def)
         {
-            Type = ColumnType.Bool;
+            Type = ColumnTypeName.Bool;
         }
 
         public override string TypeToString()

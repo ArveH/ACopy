@@ -51,7 +51,7 @@ namespace ACopyLibTest.IntegrationTests
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSWriteRead_When_Guid()
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.Guid, "test_col", true, "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Guid, "test_col", true, "");
             CreateTestTable1Row3Columns1Value(col, "'3f2504e0-4f89-11d3-9a0c-0305e82c3301'");
             WriteAndRead();
             VerifyType(col);

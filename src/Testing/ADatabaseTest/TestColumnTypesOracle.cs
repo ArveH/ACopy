@@ -24,7 +24,7 @@ namespace ADatabaseTest
             base.Cleanup();
         }
 
-        private void TestStringColumn(ColumnType colType)
+        private void TestStringColumn(ColumnTypeName colType)
         {
             TestColumn(colType, 50, false, "' '", "");
         }
@@ -32,28 +32,28 @@ namespace ADatabaseTest
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_Varchar()
         {
-            TestStringColumn(ColumnType.Varchar);
+            TestStringColumn(ColumnTypeName.Varchar);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_Char()
         {
-            TestStringColumn(ColumnType.Char);
+            TestStringColumn(ColumnTypeName.Char);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_String()
         {
-            TestStringColumn(ColumnType.String);
+            TestStringColumn(ColumnTypeName.String);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_LongText()
         {
-            TestStringColumn(ColumnType.LongText);
+            TestStringColumn(ColumnTypeName.LongText);
         }
 
-        private void TestNumberColumn(ColumnType type)
+        private void TestNumberColumn(ColumnTypeName type)
         {
             TestColumn(type, 0, false, "0", "");
         }
@@ -61,61 +61,61 @@ namespace ADatabaseTest
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_Int()
         {
-            TestNumberColumn(ColumnType.Int);
+            TestNumberColumn(ColumnTypeName.Int);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_Bool()
         {
-            TestNumberColumn(ColumnType.Bool);
+            TestNumberColumn(ColumnTypeName.Bool);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_Int8()
         {
-            TestNumberColumn(ColumnType.Int8);
+            TestNumberColumn(ColumnTypeName.Int8);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_Int16()
         {
-            TestNumberColumn(ColumnType.Int16);
+            TestNumberColumn(ColumnTypeName.Int16);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_Int64()
         {
-            TestNumberColumn(ColumnType.Int64);
+            TestNumberColumn(ColumnTypeName.Int64);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_Money()
         {
-            TestNumberColumn(ColumnType.Money);
+            TestNumberColumn(ColumnTypeName.Money);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_Float()
         {
-            TestNumberColumn(ColumnType.Float);
+            TestNumberColumn(ColumnTypeName.Float);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_DateTime()
         {
-            TestColumn(ColumnType.DateTime, 0, false, "to_date('19000101 00:00:00', 'yyyymmdd hh24:mi:ss')", "");
+            TestColumn(ColumnTypeName.DateTime, 0, false, "to_date('19000101 00:00:00', 'yyyymmdd hh24:mi:ss')", "");
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_Guid()
         {
-            TestColumn(ColumnType.Guid, 0, true, "", "");
+            TestColumn(ColumnTypeName.Guid, 0, true, "", "");
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_Raw()
         {
-            TestColumn(ColumnType.Raw, 0, true, "", "");
+            TestColumn(ColumnTypeName.Raw, 0, true, "", "");
         }
 
         [TestMethod, TestCategory("Oracle")]

@@ -5,7 +5,7 @@ namespace ADatabase.Oracle.Columns
     public class OracleVarchar2Column: OracleColumn
     {
         public OracleVarchar2Column(string name, int length, bool isNullable, string def)
-            : base(name, ColumnType.Varchar, isNullable, def)
+            : base(name, ColumnTypeName.Varchar, isNullable, def)
         {
             Details["Length"] = length;
         }

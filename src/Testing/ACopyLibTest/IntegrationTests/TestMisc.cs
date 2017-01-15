@@ -55,9 +55,9 @@ namespace ACopyLibTest.IntegrationTests
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             List<IColumn> columns = new List<IColumn>
             { 
-                columnFactory.CreateInstance(ColumnType.Int64, "id", false, "0"),
-                columnFactory.CreateInstance(ColumnType.Int, "seq_no", false, "0"),
-                columnFactory.CreateInstance(ColumnType.Varchar, "val", 50, false, "' '", "Danish_Norwegian_CI_AS") 
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", false, "0"),
+                columnFactory.CreateInstance(ColumnTypeName.Int, "seq_no", false, "0"),
+                columnFactory.CreateInstance(ColumnTypeName.Varchar, "val", 50, false, "' '", "Danish_Norwegian_CI_AS") 
             };
             TableDefinition tableDefinition = new TableDefinition(TestTable, columns, "");
             DbSchema.CreateTable(tableDefinition);

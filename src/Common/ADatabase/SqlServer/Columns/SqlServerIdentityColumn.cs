@@ -7,7 +7,7 @@ namespace ADatabase.SqlServer.Columns
         public SqlServerIdentityColumn(string name, bool isNullable, string def)
             : base(name, isNullable, def)
         {
-            Type = ColumnType.Identity;
+            Type = ColumnTypeName.Identity;
             Details["Identity"] = true;
         }
 

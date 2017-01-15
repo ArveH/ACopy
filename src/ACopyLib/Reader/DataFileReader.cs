@@ -82,10 +82,10 @@ namespace ACopyLib.Reader
             {
                 switch (col.Type)
                 {
-                    case ColumnType.Varchar:
-                    case ColumnType.Char:
-                    case ColumnType.String:
-                    case ColumnType.LongText:
+                    case ColumnTypeName.Varchar:
+                    case ColumnTypeName.Char:
+                    case ColumnTypeName.String:
+                    case ColumnTypeName.LongText:
                         throw new NotValidDataException(string.Format("Data for column '{0}' missing quote in line{1}", col.Name, _rowCounter));
                 }
             }

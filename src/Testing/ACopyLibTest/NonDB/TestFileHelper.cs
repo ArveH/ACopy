@@ -25,7 +25,7 @@ namespace ACopyLibTest
             IColumnFactory colFactory = new OracleColumnFactory();
             List<IColumn> columns = new List<IColumn>
             {
-                colFactory.CreateInstance(ColumnType.Int, "col1", false, "0")
+                colFactory.CreateInstance(ColumnTypeName.Int, "col1", false, "0")
             };
 
             return new TableDefinition(tableName, columns, "");

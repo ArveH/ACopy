@@ -91,7 +91,7 @@ namespace ACopyLib.Xml
         private static void ReadColumn(IColumnFactory columnFactory, List<IColumn> columns, XmlNode col)
         {
             string colName = col.Attributes["Name"].InnerText;
-            ColumnType type = (ColumnType)Enum.Parse(typeof(ColumnType), col["Type"].InnerText);
+            ColumnTypeName type = (ColumnTypeName)Enum.Parse(typeof(ColumnTypeName), col["Type"].InnerText);
             bool isNullable = Convert.ToBoolean(col["IsNullable"].InnerText);
             string def = col["Default"].InnerText;
 

@@ -5,7 +5,7 @@ namespace ADatabase.Oracle.Columns
     public class OracleRawColumn : OracleColumn
     {
         public OracleRawColumn(string name, bool isNullable, string def)
-            : base(name, ColumnType.Raw, isNullable, def)
+            : base(name, ColumnTypeName.Raw, isNullable, def)
         {
         }
 

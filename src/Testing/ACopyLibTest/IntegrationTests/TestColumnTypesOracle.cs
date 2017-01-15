@@ -52,7 +52,7 @@ namespace ACopyLibTest.IntegrationTests
         [TestMethod, TestCategory("Oracle")]
         public void TestOraWriteRead_When_Guid()
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.Guid, "test_col", 16, true, "", "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Guid, "test_col", 16, true, "", "");
             CreateTestTable1Row3Columns1Value(col, "hextoraw('3f2504e04f8911d39a0c0305e82c3301')");
             WriteAndRead();
             VerifyType(col);

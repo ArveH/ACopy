@@ -7,7 +7,7 @@ namespace ADatabase.SqlServer.Columns
         public SqlServerInt64Column(string name, bool isNullable, string def)
             : base(name, isNullable, def)
         {
-            Type = ColumnType.Int64;
+            Type = ColumnTypeName.Int64;
         }
 
         public override string TypeToString()

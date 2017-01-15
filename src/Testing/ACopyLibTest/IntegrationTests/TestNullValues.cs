@@ -18,7 +18,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_Int(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.Int, "test_col", true, "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int, "test_col", true, "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -27,7 +27,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_Float(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.Float, "test_col", true, "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Float, "test_col", true, "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -36,7 +36,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_Varchar(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.Varchar, "test_col", 50, true, "", "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Varchar, "test_col", 50, true, "", "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -45,7 +45,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_LongText(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.LongText, "test_col", -1, true, "", "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.LongText, "test_col", -1, true, "", "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -54,7 +54,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_Bool(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.Bool, "test_col", true, "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Bool, "test_col", true, "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -63,7 +63,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_Int64(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.Int64, "test_col", true, "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int64, "test_col", true, "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -72,7 +72,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_Guid(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.Guid, "test_col", 16, true, "", "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Guid, "test_col", 16, true, "", "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -81,7 +81,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_Raw(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.Raw, "test_col", true, "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Raw, "test_col", true, "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();

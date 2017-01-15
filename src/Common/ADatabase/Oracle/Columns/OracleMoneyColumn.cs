@@ -6,7 +6,7 @@ namespace ADatabase.Oracle.Columns
     public class OracleMoneyColumn : OracleNumberColumn
     {
         public OracleMoneyColumn(string name, bool isNullable, string def)
-            : base(name, ColumnType.Money, isNullable, def)
+            : base(name, ColumnTypeName.Money, isNullable, def)
         {
         }
 

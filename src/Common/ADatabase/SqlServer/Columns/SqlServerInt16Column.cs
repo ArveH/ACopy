@@ -7,7 +7,7 @@ namespace ADatabase.SqlServer.Columns
         public SqlServerInt16Column(string name, bool isNullable, string def)
             : base(name, isNullable, def)
         {
-            Type = ColumnType.Int16;
+            Type = ColumnTypeName.Int16;
         }
 
         public override string TypeToString()

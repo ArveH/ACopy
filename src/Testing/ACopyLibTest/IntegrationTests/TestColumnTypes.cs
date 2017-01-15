@@ -30,7 +30,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestWriteRead_When_Varchar()
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.Varchar, "test_col", 50, false, "' '", "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Varchar, "test_col", 50, false, "' '", "");
             CreateTestTable1Row3Columns1Value(col, "'Testing'");
             WriteAndRead();
             CheckString(col, "Testing");
@@ -39,7 +39,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestWriteRead_When_LongText()
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.LongText, "test_col", -1, false, "' '", "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.LongText, "test_col", -1, false, "' '", "");
             CreateTestTable1Row3Columns1Value(col, "'Testing'");
             WriteAndRead();
             CheckString(col, "Testing");
@@ -48,7 +48,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestWriteRead_When_Bool()
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.Bool, "test_col", false, "0");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Bool, "test_col", false, "0");
             CreateTestTable1Row3Columns1Value(col, "1");
             WriteAndRead();
             VerifyType(col);
@@ -57,7 +57,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestWriteRead_When_Int64()
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnType.Int64, "test_col", false, "0");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int64, "test_col", false, "0");
             CreateTestTable1Row3Columns1Value(col, "123456789012345");
             WriteAndRead();
             VerifyType(col);
@@ -68,11 +68,11 @@ namespace ACopyLibTest.IntegrationTests
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             List<IColumn> columns = new List<IColumn>
             { 
-                columnFactory.CreateInstance(ColumnType.Int64, "id", false, "0"),
-                columnFactory.CreateInstance(ColumnType.Guid, "guid1_col", true, ""),
-                columnFactory.CreateInstance(ColumnType.Guid, "guid2_col", true, ""),
-                columnFactory.CreateInstance(ColumnType.Varchar, "val", 50, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnType.Guid, "guid3_col", true, "")
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", false, "0"),
+                columnFactory.CreateInstance(ColumnTypeName.Guid, "guid1_col", true, ""),
+                columnFactory.CreateInstance(ColumnTypeName.Guid, "guid2_col", true, ""),
+                columnFactory.CreateInstance(ColumnTypeName.Varchar, "val", 50, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.Guid, "guid3_col", true, "")
             };
             TableDefinition tableDefinition = new TableDefinition(TestTable, columns, "");
             DbSchema.CreateTable(tableDefinition);
@@ -81,9 +81,9 @@ namespace ACopyLibTest.IntegrationTests
         private void CheckTableWith3GuidsHasCorrectTypes()
         {
             ITableDefinition tableDefinition = DbSchema.GetTableDefinition(TestTable);
-            tableDefinition.Columns[1].Type.Should().Be(ColumnType.Guid, "guid1_col should be guid");
-            tableDefinition.Columns[2].Type.Should().Be(ColumnType.Guid, "guid2_col should be guid");
-            tableDefinition.Columns[4].Type.Should().Be(ColumnType.Guid, "guid3_col should be guid");
+            tableDefinition.Columns[1].Type.Should().Be(ColumnTypeName.Guid, "guid1_col should be guid");
+            tableDefinition.Columns[2].Type.Should().Be(ColumnTypeName.Guid, "guid2_col should be guid");
+            tableDefinition.Columns[4].Type.Should().Be(ColumnTypeName.Guid, "guid3_col should be guid");
         }
 
         //TestMethod

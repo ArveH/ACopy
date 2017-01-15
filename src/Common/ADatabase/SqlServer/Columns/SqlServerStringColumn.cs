@@ -5,7 +5,7 @@
         public SqlServerStringColumn(string name, int length, bool isNullable, string def, string collation)
             : base(name, length, isNullable, def, collation)
         {
-            Type = ColumnType.String;
+            Type = ColumnTypeName.String;
         }
 
         public override string TypeToString()

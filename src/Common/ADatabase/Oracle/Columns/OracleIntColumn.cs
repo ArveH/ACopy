@@ -5,7 +5,7 @@ namespace ADatabase.Oracle.Columns
     public class OracleIntColumn: OracleNumberColumn
     {
         public OracleIntColumn(string name, bool isNullable, string def)
-            : base(name, ColumnType.Int, isNullable, def)
+            : base(name, ColumnTypeName.Int, isNullable, def)
         {
         }
 

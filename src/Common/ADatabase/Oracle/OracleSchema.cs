@@ -25,7 +25,7 @@ namespace ADatabase.Oracle
 
             ITableDefinition tableDefinition = DbContext.PowerPlant.CreateTableDefinition(tableName, columns, GetSegmentName(tableName));
             tableDefinition.HasRawColumn = (from col in tableDefinition.Columns
-                                               where col.Type == ColumnType.Raw
+                                               where col.Type == ColumnTypeName.Raw
                                                select col).Any();
 
             return tableDefinition;
@@ -48,7 +48,7 @@ namespace ADatabase.Oracle
                     int scale = reader.GetInt32(4);
                     bool isNullable = reader.GetString(5) == "Y";
                     string def = reader.IsDBNull(6) ? "" : reader.GetString(6).TrimEnd();
-                    ColumnType colType = OracleColumnTypeConverter.GetColumnTypeFromNativeType(type, length, prec, scale);
+                    ColumnTypeName colType = OracleColumnTypeConverter.GetColumnTypeFromNativeType(type, length, prec, scale);
                     columns.Add(columnFactory.CreateInstance(colType, name, length, prec, scale, isNullable, def, ""));
                 }
             }

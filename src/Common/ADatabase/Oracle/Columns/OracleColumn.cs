@@ -5,7 +5,7 @@ namespace ADatabase.Oracle.Columns
 {
     public abstract class OracleColumn : IColumn
     {
-        protected OracleColumn(string name, ColumnType type, bool isNullable, string def)
+        protected OracleColumn(string name, ColumnTypeName type, bool isNullable, string def)
         {
             Name = name;
             Type = type;
@@ -21,8 +21,8 @@ namespace ADatabase.Oracle.Columns
             set { _name = value; }
         }
 
-        private ColumnType _type;
-        public ColumnType Type
+        private ColumnTypeName _type;
+        public ColumnTypeName Type
         {
             get { return _type; }
             set { _type = value; }

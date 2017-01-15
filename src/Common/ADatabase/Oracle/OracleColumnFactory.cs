@@ -6,52 +6,52 @@ namespace ADatabase.Oracle
 {
     public class OracleColumnFactory : IColumnFactory
     {
-        public IColumn CreateInstance(ColumnType type, string name, int length, int prec, int scale, bool isNullable, string def, string collation)
+        public IColumn CreateInstance(ColumnTypeName type, string name, int length, int prec, int scale, bool isNullable, string def, string collation)
         {
             switch (type)
             {
-                case ColumnType.Varchar:
-                case ColumnType.Char:
-                case ColumnType.String:
+                case ColumnTypeName.Varchar:
+                case ColumnTypeName.Char:
+                case ColumnTypeName.String:
                     return new OracleVarchar2Column(name, length, isNullable, def);
-                case ColumnType.LongText:
+                case ColumnTypeName.LongText:
                     return new OracleLongTextColumn(name, isNullable, def, collation);
-                case ColumnType.Int:
+                case ColumnTypeName.Int:
                     return new OracleIntColumn(name, isNullable, def);
-                case ColumnType.Bool:
+                case ColumnTypeName.Bool:
                     return new OracleBoolColumn(name, isNullable, def);
-                case ColumnType.Int8:
+                case ColumnTypeName.Int8:
                     return new OracleInt8Column(name, isNullable, def);
-                case ColumnType.Int16:
+                case ColumnTypeName.Int16:
                     return new OracleInt16Column(name, isNullable, def);
-                case ColumnType.Int64:
+                case ColumnTypeName.Int64:
                     return new OracleInt64Column(name, isNullable, def);
-                case ColumnType.Money:
+                case ColumnTypeName.Money:
                     return new OracleMoneyColumn(name, isNullable, def);
-                case ColumnType.Float:
+                case ColumnTypeName.Float:
                     return new OracleFloatColumn(name, isNullable, def);
-                case ColumnType.DateTime:
+                case ColumnTypeName.DateTime:
                     return new OracleDatetimeColumn(name, isNullable, def);
-                case ColumnType.Guid:
+                case ColumnTypeName.Guid:
                     return new OracleGuidColumn(name, length==0?16:length, isNullable, def);
-                case ColumnType.Raw:
+                case ColumnTypeName.Raw:
                     return new OracleRawColumn(name, isNullable, def);
             }
 
             throw new NotImplementedException();
         }
 
-        public IColumn CreateInstance(ColumnType type, string name, int length, bool isNullable, string def, string collation)
+        public IColumn CreateInstance(ColumnTypeName type, string name, int length, bool isNullable, string def, string collation)
         {
             return CreateInstance(type, name, length, 0, 0, isNullable, def, collation);
         }
 
-        public IColumn CreateInstance(ColumnType type, string name, bool isNullable, string def)
+        public IColumn CreateInstance(ColumnTypeName type, string name, bool isNullable, string def)
         {
             return CreateInstance(type, name, 0, 0, 0, isNullable, def, "");
         }
 
-        public IColumn CreateInstance(ColumnType columnType, string colName, bool isNullable, string def, Dictionary<string, object> details)
+        public IColumn CreateInstance(ColumnTypeName columnType, string colName, bool isNullable, string def, Dictionary<string, object> details)
         {
             int length = 0;
             int prec = 0;

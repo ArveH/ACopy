@@ -4,7 +4,7 @@
     {
         public SqlServerCharColumn(string name, int length, bool isNullable, string def, string collation): base(name, length, isNullable, def, collation)
         {
-            Type = ColumnType.Char;
+            Type = ColumnTypeName.Char;
         }
 
         public override string TypeToString()

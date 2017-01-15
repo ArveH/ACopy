@@ -6,7 +6,7 @@ namespace ADatabase.SqlServer.Columns
     public class SqlServerVarcharColumn: SqlServerColumn
     {
         public SqlServerVarcharColumn(string name, int length, bool isNullable, string def, string collation)
-            : base(name, ColumnType.Varchar, isNullable, AdjustDefaultValue(def))
+            : base(name, ColumnTypeName.Varchar, isNullable, AdjustDefaultValue(def))
         {
             Details["Length"] = length;
             Details["Collation"] = collation;

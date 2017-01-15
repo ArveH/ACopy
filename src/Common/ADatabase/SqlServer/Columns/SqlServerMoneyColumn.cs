@@ -10,7 +10,7 @@ namespace ADatabase.SqlServer.Columns
         {
             Details["Prec"] = 28;
             Details["Scale"] = 3;
-            Type = ColumnType.Money;
+            Type = ColumnTypeName.Money;
         }
 
         public override string TypeToString()

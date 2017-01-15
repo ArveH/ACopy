@@ -3,7 +3,7 @@
     public class OracleInt8Column : OracleNumberColumn
     {
         public OracleInt8Column(string name, bool isNullable, string def)
-            : base(name, ColumnType.Int8, isNullable, def)
+            : base(name, ColumnTypeName.Int8, isNullable, def)
         {
         }
 

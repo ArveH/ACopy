@@ -221,7 +221,7 @@ namespace ACopyLib.Reader
                 return;
             }
 
-            var guidColumns = tableDefinition.Columns.FindAll(c => c.Type == ColumnType.Guid);
+            var guidColumns = tableDefinition.Columns.FindAll(c => c.Type == ColumnTypeName.Guid);
             var commands = _dbContext.PowerPlant.CreateCommands();
             foreach (var guidCol in guidColumns)
             {

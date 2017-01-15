@@ -5,7 +5,7 @@ namespace ADatabase.Oracle.Columns
     public class OracleGuidColumn : OracleColumn
     {
         public OracleGuidColumn(string name, int length, bool isNullable, string def)
-            : base(name, ColumnType.Guid, isNullable, ConvertNativeFunctionToKeyword(def))
+            : base(name, ColumnTypeName.Guid, isNullable, ConvertNativeFunctionToKeyword(def))
         {
             Details["length"] = length;
         }

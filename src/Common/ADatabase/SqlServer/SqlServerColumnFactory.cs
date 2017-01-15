@@ -6,56 +6,56 @@ namespace ADatabase.SqlServer
 {
     public class SqlServerColumnFactory : IColumnFactory
     {
-        public IColumn CreateInstance(ColumnType type, string name, int length, int prec, int scale, bool isNullable, string def, string collation)
+        public IColumn CreateInstance(ColumnTypeName type, string name, int length, int prec, int scale, bool isNullable, string def, string collation)
         {
             switch (type)
             {
-                case ColumnType.Varchar:
+                case ColumnTypeName.Varchar:
                     return new SqlServerVarcharColumn(name, length, isNullable, def, collation);
-                case ColumnType.Char:
+                case ColumnTypeName.Char:
                     return new SqlServerCharColumn(name, length, isNullable, def, collation);
-                case ColumnType.String:
+                case ColumnTypeName.String:
                     return new SqlServerStringColumn(name, length, isNullable, def, collation);
-                case ColumnType.LongText:
+                case ColumnTypeName.LongText:
                     return new SqlServerLongTextColumn(name, isNullable, def, collation);
-                case ColumnType.Int:
+                case ColumnTypeName.Int:
                     return new SqlServerInt32Column(name, isNullable, def);
-                case ColumnType.Bool:
+                case ColumnTypeName.Bool:
                     return new SqlServerBoolColumn(name, isNullable, def);
-                case ColumnType.Int8:
+                case ColumnTypeName.Int8:
                     return new SqlServerInt8Column(name, isNullable, def);
-                case ColumnType.Int16:
+                case ColumnTypeName.Int16:
                     return new SqlServerInt16Column(name, isNullable, def);
-                case ColumnType.Int64:
+                case ColumnTypeName.Int64:
                     return new SqlServerInt64Column(name, isNullable, def);
-                case ColumnType.Money:
+                case ColumnTypeName.Money:
                     return new SqlServerMoneyColumn(name, isNullable, def);
-                case ColumnType.Float:
+                case ColumnTypeName.Float:
                     return new SqlServerFloatColumn(name, isNullable, def);
-                case ColumnType.DateTime:
+                case ColumnTypeName.DateTime:
                     return new SqlServerDatetimeColumn(name, isNullable, def);
-                case ColumnType.Guid:
+                case ColumnTypeName.Guid:
                     return new SqlServerGuidColumn(name, isNullable, def);
-                case ColumnType.Raw:
+                case ColumnTypeName.Raw:
                     return new SqlServerRawColumn(name, isNullable, def);
-                case ColumnType.Identity:
+                case ColumnTypeName.Identity:
                     return new SqlServerIdentityColumn(name, isNullable, def);
             }
 
             throw new NotImplementedException();
         }
 
-        public IColumn CreateInstance(ColumnType type, string name, int length, bool isNullable, string def, string collation)
+        public IColumn CreateInstance(ColumnTypeName type, string name, int length, bool isNullable, string def, string collation)
         {
             return CreateInstance(type, name, length, 0, 0, isNullable, def, collation);
         }
 
-        public IColumn CreateInstance(ColumnType type, string name, bool isNullable, string def)
+        public IColumn CreateInstance(ColumnTypeName type, string name, bool isNullable, string def)
         {
             return CreateInstance(type, name, 0, 0, 0, isNullable, def, "");
         }
 
-        public IColumn CreateInstance(ColumnType columnType, string colName, bool isNullable, string def, Dictionary<string, object> details)
+        public IColumn CreateInstance(ColumnTypeName columnType, string colName, bool isNullable, string def, Dictionary<string, object> details)
         {
             int length = 0;
             int prec = 0;

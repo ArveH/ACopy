@@ -4,53 +4,53 @@ namespace ADatabase.Oracle.Columns
 {
     public static class OracleColumnTypeConverter
     {
-        public static ColumnType GetColumnTypeFromNativeType(string nativeType, int length, int prec, int scale)
+        public static ColumnTypeName GetColumnTypeFromNativeType(string nativeType, int length, int prec, int scale)
         {
             switch (nativeType)
             {
                 case "VARCHAR2":
                 case "VARCHAR":
                 case "CHAR":
-                    return ColumnType.Varchar;
+                    return ColumnTypeName.Varchar;
                 case "CLOB":
-                    return ColumnType.LongText;
+                    return ColumnTypeName.LongText;
                 case "INTEGER":
-                    return ColumnType.Int;
+                    return ColumnTypeName.Int;
                 case "NUMBER":
                     if (scale == 0)
                     {
                         switch (prec)
                         {
                             case 1:
-                                return ColumnType.Bool;
+                                return ColumnTypeName.Bool;
                             case 3:
-                                return ColumnType.Int8;
+                                return ColumnTypeName.Int8;
                             case 5:
-                                return ColumnType.Int16;
+                                return ColumnTypeName.Int16;
                             case 20:
-                                return ColumnType.Int64;
+                                return ColumnTypeName.Int64;
                             default:
-                                return ColumnType.Int;
+                                return ColumnTypeName.Int;
                         }
                     }
                     if ( (scale == 2 && prec == 18) || (scale == 3 && prec == 30) )
                     {
-                        return ColumnType.Money;
+                        return ColumnTypeName.Money;
                     }
-                    return ColumnType.Float;
+                    return ColumnTypeName.Float;
                 case "FLOAT":
-                    return ColumnType.Float;
+                    return ColumnTypeName.Float;
                 case "DATE":
-                    return ColumnType.DateTime;
+                    return ColumnTypeName.DateTime;
                 case "RAW":
                     if (length == 16 || length == 32 || length == 17 || length == 34)
                     {
-                        return ColumnType.Guid;
+                        return ColumnTypeName.Guid;
                     }
                     break;
                 case "BLOB":
                 case "LONG RAW":
-                    return ColumnType.Raw;
+                    return ColumnTypeName.Raw;
             }
 
             throw new ADatabaseException(string.Format("Copy program doesn't handle columns of type {0}", nativeType));

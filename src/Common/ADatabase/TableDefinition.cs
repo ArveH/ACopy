@@ -31,7 +31,7 @@ namespace ADatabase
         public void SetSizeForGuid(int rawLength)
         {
             Columns
-                .FindAll(c => c.Type == ColumnType.Guid)
+                .FindAll(c => c.Type == ColumnTypeName.Guid)
                 .ForEach(c => c.Details["length"] = rawLength);
         }
 

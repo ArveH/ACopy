@@ -36,7 +36,7 @@ namespace ADatabaseTest
             AssertColumns(expectedTableDefinition.Columns[0], retrievedTableDefinition.Columns[0]);
         }
 
-        protected void TestColumn(ColumnType type, int length, bool isNullable, string def, string collation)
+        protected void TestColumn(ColumnTypeName type, int length, bool isNullable, string def, string collation)
         {
             List<IColumn> columns = new List<IColumn> { ColumnFactory.CreateInstance(type, "col1", length, isNullable, def, collation) };
             ITableDefinition expectedTableDefinition = PowerPlant.CreateTableDefinition(TableName, columns, "");
@@ -49,42 +49,42 @@ namespace ADatabaseTest
         // TestMethod
         public void TestCreateTable_When_Date_And_MIN_DATE()
         {
-            TestColumn(ColumnType.DateTime, 0, false, "MIN_DATE", "");
+            TestColumn(ColumnTypeName.DateTime, 0, false, "MIN_DATE", "");
             DbSchema.GetTableDefinition(TableName).Columns[0].Default.Should().Be("MIN_DATE");
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_MAX_DATE()
         {
-            TestColumn(ColumnType.DateTime, 0, false, "MAX_DATE", "");
+            TestColumn(ColumnTypeName.DateTime, 0, false, "MAX_DATE", "");
             DbSchema.GetTableDefinition(TableName).Columns[0].Default.Should().Be("MAX_DATE");
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_MAX_DATE_Rounded()
         {
-            TestColumn(ColumnType.DateTime, 0, false, "TS2DAY(MAX_DATE)", "");
+            TestColumn(ColumnTypeName.DateTime, 0, false, "TS2DAY(MAX_DATE)", "");
             DbSchema.GetTableDefinition(TableName).Columns[0].Default.Should().Be("TS2DAY(MAX_DATE)");
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_TODAY()
         {
-            TestColumn(ColumnType.DateTime, 0, false, "TODAY", "");
+            TestColumn(ColumnTypeName.DateTime, 0, false, "TODAY", "");
             DbSchema.GetTableDefinition(TableName).Columns[0].Default.Should().Be("TODAY");
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_NOW()
         {
-            TestColumn(ColumnType.DateTime, 0, false, "NOW", "");
+            TestColumn(ColumnTypeName.DateTime, 0, false, "NOW", "");
             DbSchema.GetTableDefinition(TableName).Columns[0].Default.Should().Be("NOW");
         }
 
         // TestMethod
         public void TestCreateTable_When_Guid_And_GUIDAsDefault()
         {
-            TestColumn(ColumnType.Guid, 0, false, "GUID", "");
+            TestColumn(ColumnTypeName.Guid, 0, false, "GUID", "");
             DbSchema.GetTableDefinition(TableName).Columns[0].Default.Should().Be("GUID");
         }
     }

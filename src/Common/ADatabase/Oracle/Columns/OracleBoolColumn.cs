@@ -5,7 +5,7 @@ namespace ADatabase.Oracle.Columns
     public class OracleBoolColumn : OracleColumn
     {
         public OracleBoolColumn(string name, bool isNullable, string def)
-            : base(name, ColumnType.Bool, isNullable, def)
+            : base(name, ColumnTypeName.Bool, isNullable, def)
         {
         }
 

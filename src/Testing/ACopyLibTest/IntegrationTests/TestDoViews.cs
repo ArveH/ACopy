@@ -38,13 +38,13 @@ namespace ACopyLibTest.IntegrationTests
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             List<IColumn> columns = new List<IColumn>
             { 
-                columnFactory.CreateInstance(ColumnType.Int, "priority", false, "0"),
-                columnFactory.CreateInstance(ColumnType.Varchar, "query", 4000, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnType.Char, "status", 1, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnType.Char, "table_name", 25, false, "' '", "Danish_Norwegian_CI_AS")
+                columnFactory.CreateInstance(ColumnTypeName.Int, "priority", false, "0"),
+                columnFactory.CreateInstance(ColumnTypeName.Varchar, "query", 4000, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.Char, "status", 1, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.Char, "table_name", 25, false, "' '", "Danish_Norwegian_CI_AS")
             };
             DbSchema.CreateTable(new TableDefinition(Aagview, columns, ""));
-            columns.Add(columnFactory.CreateInstance(ColumnType.Char, "db_name", 10, false, "' '", "Danish_Norwegian_CI_AS"));
+            columns.Add(columnFactory.CreateInstance(ColumnTypeName.Char, "db_name", 10, false, "' '", "Danish_Norwegian_CI_AS"));
             DbSchema.CreateTable(new TableDefinition(Asysview, columns, ""));
         }
 
