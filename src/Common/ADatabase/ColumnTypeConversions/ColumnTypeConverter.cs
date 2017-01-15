@@ -7,7 +7,7 @@ namespace ADatabase
 {
     public class ColumnTypeConverter : IColumnTypeConverter
     {
-        private List<ITypeDescription> _types = new List<ITypeDescription>();
+        private List<IColumnTypeDescription> _types = new List<IColumnTypeDescription>();
 
         public ColumnTypeConverter()
         {

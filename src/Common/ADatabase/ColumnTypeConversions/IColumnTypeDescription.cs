@@ -2,10 +2,10 @@
 
 namespace ADatabase
 {
-    public interface ITypeDescription
+    public interface IColumnTypeDescription
     {
         string TypeName { get; set; }
-        string TypeTo { get; set; }
+        string ConvertTo { get; set; }
         List<ITypeConstraint> Constraints { get; set; }
     }
 }
