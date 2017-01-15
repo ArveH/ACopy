@@ -6,38 +6,38 @@ namespace ADatabase
     public class TypeOperatorChecker : ITypeOperatorChecker
     {
         private readonly List<int> _limitValues = new List<int>();
-        private readonly TypeOperator _typeOperator;
+        private readonly TypeOperatorName _typeOperatorName;
 
-        public TypeOperatorChecker(int limitValue, TypeOperator typeOperator)
+        public TypeOperatorChecker(int limitValue, TypeOperatorName typeOperatorName)
         {
             _limitValues.Add(limitValue);
-            _typeOperator = typeOperator;
+            _typeOperatorName = typeOperatorName;
         }
 
-        public TypeOperatorChecker(IEnumerable<int> limitValues, TypeOperator typeOperator)
+        public TypeOperatorChecker(IEnumerable<int> limitValues, TypeOperatorName typeOperatorName)
         {
             _limitValues.AddRange(limitValues);
-            _typeOperator = typeOperator;
+            _typeOperatorName = typeOperatorName;
         }
 
         public bool IsWithinLimits(int value)
         {
-            switch (_typeOperator)
+            switch (_typeOperatorName)
             {
-                case TypeOperator.Eq:
+                case TypeOperatorName.Eq:
                     return value == _limitValues[0];
-                case TypeOperator.Lt:
+                case TypeOperatorName.Lt:
                     return value < _limitValues[0];
-                case TypeOperator.Gt:
+                case TypeOperatorName.Gt:
                     return value > _limitValues[0];
-                case TypeOperator.LtEq:
+                case TypeOperatorName.LtEq:
                     return value <= _limitValues[0];
-                case TypeOperator.GtEq:
+                case TypeOperatorName.GtEq:
                     return value >= _limitValues[0];
-                case TypeOperator.In:
+                case TypeOperatorName.In:
                     return _limitValues.Contains(value);
                 default:
-                    throw new ArgumentOutOfRangeException($"TypeOperator \"{_typeOperator}\" doesn't exist.");
+                    throw new ArgumentOutOfRangeException($"TypeOperatorName \"{_typeOperatorName}\" doesn't exist.");
             }
         }
     }

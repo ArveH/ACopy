@@ -7,38 +7,38 @@
   <Type Name="clob" To="LongText"></Type>
   <Type Name="integer" To="int"></Type>
   <Type Name="number" To="bool">
-    <Precision Operation="=">1</Precision>
-    <Scale Operation="=">0</Scale>
+    <Precision Operator="=">1</Precision>
+    <Scale Operator="=">0</Scale>
   </Type>
   <Type Name="number" To="int8">
-    <Precision Operation="=">3</Precision>
-    <Scale Operation="=">0</Scale>
+    <Precision Operator="=">3</Precision>
+    <Scale Operator="=">0</Scale>
   </Type>
   <Type Name="number" To="int16">
-    <Precision Operation="=">5</Precision>
-    <Scale Operation="=">0</Scale>
+    <Precision Operator="=">5</Precision>
+    <Scale Operator="=">0</Scale>
   </Type>
   <Type Name="number" To="int">
-    <Precision Operation="=">15</Precision>
-    <Scale Operation="=">0</Scale>
+    <Precision Operator="=">15</Precision>
+    <Scale Operator="=">0</Scale>
   </Type>
   <Type Name="number" To="int64">
-    <Precision Operation=">=">20</Precision>
-    <Scale Operation="=">0</Scale>
+    <Precision Operator=">=">20</Precision>
+    <Scale Operator="=">0</Scale>
   </Type>
   <Type Name="number" To="money">
-    <Precision Operation="=">18</Precision>
-    <Scale Operation="=">2</Scale>
+    <Precision Operator="=">18</Precision>
+    <Scale Operator="=">2</Scale>
   </Type>
   <Type Name="number" To="money">
-    <Precision Operation=">=">30</Precision>
-    <Scale Operation="=">3</Scale>
+    <Precision Operator=">=">30</Precision>
+    <Scale Operator="=">3</Scale>
   </Type>
   <Type Name="number" To="float"></Type>
   <Type Name="float" To="float"></Type>
   <Type Name="date" To="datetime"></Type>
   <Type Name="raw" To="guid">
-    <Length Operation="in">16,32,17,34</Length>
+    <Length Operator="in">16,32,17,34</Length>
   </Type>
   <Type Name="blob" To="raw"></Type>
   <Type Name="long raw" To="raw"></Type>
