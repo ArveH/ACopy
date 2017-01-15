@@ -7,10 +7,12 @@ namespace ADatabase
 {
     public class ColumnTypeConverter : IColumnTypeConverter
     {
+        private readonly IXmlConversionsReader _xmlConversionsReader;
         private List<IColumnTypeDescription> _types = new List<IColumnTypeDescription>();
 
-        public ColumnTypeConverter()
+        public ColumnTypeConverter(IXmlConversionsReader xmlConversionsReader)
         {
+            _xmlConversionsReader = xmlConversionsReader;
         }
 
         public string FromSystem { get; private set; }
@@ -20,12 +22,7 @@ namespace ADatabase
         {
             try
             {
-                XmlDocument xmlDocument = new XmlDocument();
-                xmlDocument.LoadXml(conversionXml);
-                var rootNode = GetRootNode(xmlDocument);
-
-                if (rootNode.ChildNodes.Count == 0) throw new AColumnTypeException("No conversions found");
-
+                var rootNode = _xmlConversionsReader.GetRootNode(conversionXml);
                 foreach (XmlNode typeNode in rootNode.ChildNodes)
                 {
                     var typeName = typeNode.Attributes?["Name"].InnerText ?? "";
@@ -38,21 +35,6 @@ namespace ADatabase
 
                 throw new AColumnTypeException("Error when reading conversion XML", ex);
             }
-        }
-
-        private XmlNode GetRootNode(XmlDocument xmlDocument)
-        {
-            var rootNode = xmlDocument.DocumentElement?.SelectSingleNode("/TypeConversions");
-            if (rootNode == null) throw new AColumnTypeException("Can't find root element 'TypeConversions'");
-            if (rootNode.Attributes == null) throw new AColumnTypeException("Root element 'TypeConversions' has no attributes");
-            FromSystem = rootNode.Attributes["From"]?.InnerText;
-            if (string.IsNullOrWhiteSpace(FromSystem))
-                throw new AColumnTypeException("Error with attribute 'From' for 'TypeConversions'");
-            ToSystem = rootNode.Attributes["To"]?.InnerText;
-            if (string.IsNullOrWhiteSpace(ToSystem))
-                throw new AColumnTypeException("Error with attribute 'To' for 'TypeConversions'");
-
-            return rootNode;
         }
     }
 }

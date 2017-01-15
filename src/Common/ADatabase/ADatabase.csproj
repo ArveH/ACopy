@@ -74,6 +74,8 @@
     <Compile Include="..\..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ColumnTypeConversions\IXmlConversionsReader.cs" />
+    <Compile Include="ColumnTypeConversions\XmlConversionsReader.cs" />
     <Compile Include="ColumnTypeName.cs" />
     <Compile Include="ColumnTypeConversions\ColumnTypeConverter.cs" />
     <Compile Include="ColumnTypeConversions\ITypeConstraint.cs" />
