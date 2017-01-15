@@ -3,6 +3,6 @@
     public interface ITypeConstraint
     {
         ConstraintTypeName ConstraintType { get; set; }
-        ITypeOperatorChecker Operator { get; set; }
+        ITypeOperator Operator { get; set; }
     }
 }

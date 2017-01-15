@@ -3,6 +3,6 @@
     public class TypeConstraint : ITypeConstraint
     {
         public ConstraintTypeName ConstraintType { get; set; }
-        public ITypeOperatorChecker Operator { get; set; }
+        public ITypeOperator Operator { get; set; }
     }
 }

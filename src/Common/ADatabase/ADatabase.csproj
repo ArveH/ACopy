@@ -79,13 +79,13 @@
     <Compile Include="ColumnTypeConversions\ITypeConstraint.cs" />
     <Compile Include="ColumnTypeConversions\ITypeDescription.cs" />
     <Compile Include="ColumnTypeConversions\ITypeDescriptionFactory.cs" />
-    <Compile Include="ColumnTypeConversions\ITypeOperatorChecker.cs" />
+    <Compile Include="ColumnTypeConversions\ITypeOperator.cs" />
     <Compile Include="ColumnTypeConversions\ConstraintTypeName.cs" />
     <Compile Include="ColumnTypeConversions\TypeConstraint.cs" />
     <Compile Include="ColumnTypeConversions\TypeOperatorName.cs" />
     <Compile Include="ColumnTypeConversions\TypeDescription.cs" />
     <Compile Include="ColumnTypeConversions\TypeDescriptionFactory.cs" />
-    <Compile Include="ColumnTypeConversions\TypeOperatorChecker.cs" />
+    <Compile Include="ColumnTypeConversions\TypeOperator.cs" />
     <Compile Include="DBContext.cs" />
     <Compile Include="DBSchema.cs" />
     <Compile Include="DBType.cs" />
