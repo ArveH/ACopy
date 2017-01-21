@@ -5,6 +5,13 @@ namespace ADatabase
 {
     public class XmlConversionsReader : IXmlConversionsReader
     {
+        private readonly IColumnTypeDescriptionFactory _columnTypeDescriptionFactory;
+
+        public XmlConversionsReader(IColumnTypeDescriptionFactory columnTypeDescriptionFactory)
+        {
+            _columnTypeDescriptionFactory = columnTypeDescriptionFactory;
+        }
+
         public XmlNode GetRootNode(string xmlText)
         {
             XmlDocument xmlDocument = new XmlDocument();
@@ -34,7 +41,18 @@ namespace ADatabase
 
         public IColumnTypeDescription GetColumnTypeDescription(XmlNode xmlNode)
         {
-            throw new System.NotImplementedException();
+            var fromType = xmlNode.Attributes?["Name"]?.InnerText;
+            if (string.IsNullOrWhiteSpace(fromType))
+                throw new XmlException("Error with attribute 'Name' for 'Type'");
+            var toType = xmlNode.Attributes?["To"]?.InnerText;
+            if (string.IsNullOrWhiteSpace(toType))
+                throw new XmlException("Error with attribute 'To' for 'Type'");
+
+            var colDesc = _columnTypeDescriptionFactory.GetColumnTypeDescription();
+            colDesc.TypeName = fromType;
+            colDesc.ConvertTo = toType;
+
+            return colDesc;
         }
 
         public string GetSourceSystem(XmlNode rootNode)

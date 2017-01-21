@@ -1,13 +1,21 @@
-﻿namespace ADatabaseTest.Helpers
+﻿using System.Xml;
+
+namespace ADatabaseTest.Helpers
 {
     public static class ConversionXmlHelper
     {
-        public static string LegalXmlButNoConversions()
+        private static string GetHeading()
         {
             return
-                GetHeading() +
-                "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
-                "</TypeConversions>";
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?> " +
+                "<!--Type conversion file for Unit4--> ";
+        }
+
+        private static XmlNode GetXmlNode(string txt)
+        {
+            var xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(txt);
+            return xmlDocument.FirstChild;
         }
 
         public static string LegalXmlButIncorrectRootElement()
@@ -40,11 +48,39 @@
                 "</TypeConversions>";
         }
 
-        private static string GetHeading()
+        public static string LegalRootButNoConversions()
         {
             return
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?> " +
-                "<!--Type conversion file for Unit4--> ";
+                GetHeading() +
+                "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
+                "</TypeConversions>";
+        }
+
+        public static string LegalRootOneVarcharColumn()
+        {
+            return
+                GetHeading() +
+                "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
+                "<Type Name=\"varchar2\" To=\"varchar\"></Type>" +
+                "</TypeConversions>";
+        }
+
+        public static XmlNode NameAttributeMissingForType()
+        {
+            var txt = "<Type NoName=\"varchar2\" To=\"varchar\"></Type>";
+            return GetXmlNode(txt);
+        }
+
+        public static XmlNode ToAttributeMissingForType()
+        {
+            var txt = "<Type Name=\"varchar2\" NoTo=\"varchar\"></Type>";
+            return GetXmlNode(txt);
+        }
+
+        public static XmlNode OracleVarchar2()
+        {
+            var txt = "<Type Name=\"varchar2\" To=\"varchar\"></Type>";
+            return GetXmlNode(txt);
         }
     }
 }

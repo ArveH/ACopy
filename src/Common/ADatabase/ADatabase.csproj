@@ -74,6 +74,7 @@
     <Compile Include="..\..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ColumnTypeConversions\DatabaseSystemNames.cs" />
     <Compile Include="ColumnTypeConversions\IXmlConversionsReader.cs" />
     <Compile Include="ColumnTypeConversions\XmlConversionsReader.cs" />
     <Compile Include="ColumnTypeName.cs" />
@@ -82,7 +83,7 @@
     <Compile Include="ColumnTypeConversions\IColumnTypeDescription.cs" />
     <Compile Include="ColumnTypeConversions\IColumnTypeDescriptionFactory.cs" />
     <Compile Include="ColumnTypeConversions\ITypeOperator.cs" />
-    <Compile Include="ColumnTypeConversions\ConstraintTypeName.cs" />
+    <Compile Include="StringConstants\ConstraintTypeName.cs" />
     <Compile Include="ColumnTypeConversions\TypeConstraint.cs" />
     <Compile Include="ColumnTypeConversions\TypeOperatorName.cs" />
     <Compile Include="ColumnTypeConversions\ColumnTypeDescription.cs" />
