@@ -37,6 +37,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{B8BECCD4-ADA0-4683-842A-E2E771CFC25F}"
 	ProjectSection(SolutionItems) = preProject
 		Config\OracleConversions.xml = Config\OracleConversions.xml
+		Config\OracleConversions.xsd = Config\OracleConversions.xsd
 	EndProjectSection
 EndProject
 Global
