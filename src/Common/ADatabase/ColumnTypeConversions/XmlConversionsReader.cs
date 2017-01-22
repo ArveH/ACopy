@@ -42,34 +42,15 @@ namespace ADatabase
 
         public ITypeDescription GetColumnTypeDescription(XmlNode xmlNode)
         {
-            var fromType = xmlNode.Attributes?["Name"]?.InnerText;
-            if (string.IsNullOrWhiteSpace(fromType))
-                throw new XmlException("Error with attribute 'Name' for 'Type'");
-            var toType = xmlNode.Attributes?["To"]?.InnerText;
-            if (string.IsNullOrWhiteSpace(toType))
-                throw new XmlException("Error with attribute 'To' for 'Type'");
-
             var colDesc = _typeDescriptionFactory.GetColumnTypeDescription();
-            colDesc.TypeName = fromType;
-            colDesc.ConvertTo = toType;
+            GetTypeAttributes(xmlNode, colDesc);
 
             if (!xmlNode.HasChildNodes) return colDesc;
-            CheckTypeDetails(xmlNode);
 
+            CheckTypeDetails(xmlNode);
             foreach (XmlNode childNode in xmlNode.ChildNodes)
             {
-                var constraintName = childNode.Name;
-                var opName = childNode.Attributes?["Operator"].InnerText;
-                if (opName == "in")
-                {
-                    var constraintValues = childNode.InnerText.Split(',').Select(v => Convert.ToInt32(v));
-                    colDesc.AddConstraint(constraintName, opName, constraintValues);
-                }
-                else
-                {
-                    var constraintValue = Convert.ToInt32(childNode.InnerText);
-                    colDesc.AddConstraint(constraintName, opName, constraintValue);
-                }
+                GetTypeConstraints(childNode, colDesc);
             }
 
             return colDesc;
@@ -99,6 +80,36 @@ namespace ADatabase
                 if (!IsLegalTypeDetail(childNode.Name)) throw new XmlException($"Illegal type detail '{childNode.Name}' for type '{xmlNode.Attributes?["Name"].InnerText}'");
             }
         }
+
+        private static void GetTypeAttributes(XmlNode xmlNode, ITypeDescription colDesc)
+        {
+            var fromType = xmlNode.Attributes?["Name"]?.InnerText;
+            if (string.IsNullOrWhiteSpace(fromType))
+                throw new XmlException("Error with attribute 'Name' for 'Type'");
+            var toType = xmlNode.Attributes?["To"]?.InnerText;
+            if (string.IsNullOrWhiteSpace(toType))
+                throw new XmlException("Error with attribute 'To' for 'Type'");
+
+            colDesc.TypeName = fromType;
+            colDesc.ConvertTo = toType;
+        }
+
+        private static void GetTypeConstraints(XmlNode xmlNode, ITypeDescription colDesc)
+        {
+            var constraintName = xmlNode.Name;
+            var opName = xmlNode.Attributes?["Operator"].InnerText;
+            if (opName == "in")
+            {
+                var constraintValues = xmlNode.InnerText.Split(',').Select(v => Convert.ToInt32(v));
+                colDesc.AddConstraint(constraintName, opName, constraintValues);
+            }
+            else
+            {
+                var constraintValue = Convert.ToInt32(xmlNode.InnerText);
+                colDesc.AddConstraint(constraintName, opName, constraintValue);
+            }
+        }
+
         #endregion
     }
 }
