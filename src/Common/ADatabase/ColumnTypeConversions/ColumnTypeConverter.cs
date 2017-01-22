@@ -25,8 +25,8 @@ namespace ADatabase
                 var rootNode = _xmlConversionsReader.GetRootNode(conversionXml);
                 foreach (XmlNode typeNode in rootNode.ChildNodes)
                 {
-                    var typeName = typeNode.Attributes?["Name"].InnerText ?? "";
-                    var toType = typeNode.Attributes?["To"].InnerText ?? "";
+                    var typeDescription = _xmlConversionsReader.GetColumnTypeDescription(typeNode);
+                    _types.Add(typeDescription);
                 }
             }
             catch (Exception ex)

@@ -100,5 +100,13 @@ namespace ADatabaseTest.Helpers
                 "</Type>";
             return GetXmlNode(txt);
         }
+
+        public static XmlNode OracleGuid()
+        {
+            var txt = "<Type Name=\"raw\" To=\"guid\">" +
+                "<Length Operator=\"in\">16,32,17,34</Length>" +
+                "</Type>";
+            return GetXmlNode(txt);
+        }
     }
 }

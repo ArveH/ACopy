@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Xml;
 
 namespace ADatabase
@@ -59,8 +60,16 @@ namespace ADatabase
             {
                 var constraintName = childNode.Name;
                 var opName = childNode.Attributes?["Operator"].InnerText;
-                var constraintValue = Convert.ToInt32(childNode.InnerText);
-                colDesc.AddConstraint(constraintName, opName, constraintValue);
+                if (opName == "in")
+                {
+                    var constraintValues = childNode.InnerText.Split(',').Select(v => Convert.ToInt32(v));
+                    colDesc.AddConstraint(constraintName, opName, constraintValues);
+                }
+                else
+                {
+                    var constraintValue = Convert.ToInt32(childNode.InnerText);
+                    colDesc.AddConstraint(constraintName, opName, constraintValue);
+                }
             }
 
             return colDesc;

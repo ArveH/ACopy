@@ -22,6 +22,7 @@ namespace ADatabaseTest
             _xmlConversionsReader = new XmlConversionsReader(typeDescriptionFactory);
         }
 
+        #region Root node
         [TestMethod]
         public void TestGetRootNode_When_IllegalXml()
         {
@@ -72,7 +73,9 @@ namespace ADatabaseTest
             var sourceSystem = _xmlConversionsReader.GetDestinationSystem(rootNode);
             sourceSystem.Should().Be(DatabaseSystemName.ACopy);
         }
+        #endregion
 
+        #region GetColumnDescription
         [TestMethod]
         public void TestGetColumnTypeDescription_When_NameAttributeMissing()
         {
@@ -95,7 +98,7 @@ namespace ADatabaseTest
         }
 
         [TestMethod]
-        public void TestGetColumnTypeDescription_When_OracleVarchar2()
+        public void TestGetColumnTypeDescription_When_TypeAttributesOk()
         {
             var colDesc = _xmlConversionsReader.GetColumnTypeDescription(ConversionXmlHelper.OracleVarchar2());
             colDesc.TypeName.Should().Be("varchar2", "because type name is varchar");
@@ -103,7 +106,7 @@ namespace ADatabaseTest
         }
 
         [TestMethod]
-        public void TestGetColumnTypeDescription_When_OracleBool()
+        public void TestGetColumnTypeDescription_When_PrecisionAndScale()
         {
             var colDesc = _xmlConversionsReader.GetColumnTypeDescription(ConversionXmlHelper.OracleBool());
             colDesc.TypeName.Should().Be("number", "because type name is number");
@@ -121,5 +124,24 @@ namespace ADatabaseTest
             colDesc.Constraints[1].Operator.ConstraintValues[0].Should().Be(0, "because Bool has a Scale of 0");
 
         }
+
+        [TestMethod]
+        public void TestGetColumnTypeDescription_When_In()
+        {
+            var colDesc = _xmlConversionsReader.GetColumnTypeDescription(ConversionXmlHelper.OracleGuid());
+            colDesc.TypeName.Should().Be("raw", "because guid is raw(16) in Oracle");
+            colDesc.ConvertTo.Should().Be("guid", "because raw(16) should be guid");
+            colDesc.Constraints.Count.Should().Be(1, "because we should only have Length");
+
+            colDesc.Constraints[0].ConstraintType.Should().Be(ConstraintTypeName.Length);
+            colDesc.Constraints[0].Operator.OperatorName.Should().Be(TypeOperatorName.In);
+            colDesc.Constraints[0].Operator.ConstraintValues.Count.Should().Be(4, "because length can be 16 or 17 bytes (or 32 or 34 if unicode)");
+            colDesc.Constraints[0].Operator.ConstraintValues[0].Should().Be(16);
+            colDesc.Constraints[0].Operator.ConstraintValues[1].Should().Be(32);
+            colDesc.Constraints[0].Operator.ConstraintValues[2].Should().Be(17);
+            colDesc.Constraints[0].Operator.ConstraintValues[3].Should().Be(34);
+        }
+
+        #endregion
     }
 }
