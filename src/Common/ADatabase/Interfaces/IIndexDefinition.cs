@@ -11,7 +11,7 @@ namespace ADatabase
         string Location { get; }
         bool IsUnique { get; }
         bool IsClustered { get; }
-        DbType DbSpecific { get; set; }
+        DbTypeName DbSpecific { get; set; }
         List<IIndexColumn> Columns { get; set; }
     }
 }

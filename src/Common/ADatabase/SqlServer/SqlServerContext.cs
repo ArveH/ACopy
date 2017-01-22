@@ -9,7 +9,7 @@ namespace ADatabase.SqlServer
         public SqlServerContext(IALogger logger=null)
             : base(new SqlServerPowerPlant(), logger)
         {
-            DbType = DbType.SqlServer;
+            DbType = DbTypeName.SqlServer;
             PowerPlant.DbContext = this;
         }
 

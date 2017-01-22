@@ -112,7 +112,7 @@ namespace ACopyLib.Reader
 
         private void ClusteredIndexOnAgrtid(ITableDefinition tableDefinition)
         {
-            if (CreateClusteredIndex && _dbContext.DbType == DbType.SqlServer)
+            if (CreateClusteredIndex && _dbContext.DbType == DbTypeName.SqlServer)
             {
                 var index = _dbContext.PowerPlant.CreateIndexDefinition(
                     "aic_" + tableDefinition.Name,
@@ -131,7 +131,7 @@ namespace ACopyLib.Reader
             var tableDefinition = XmlSchemaFactory.CreateInstance(_dbContext).GetTableDefinition(schemaFile);
             SetCollationIfUseCollationParameterUsed(tableDefinition);
             _dbSchema.DropTable(tableDefinition.Name);
-            if (_dbContext.DbType == DbType.Oracle)
+            if (_dbContext.DbType == DbTypeName.Oracle)
             {
                 tableDefinition.SetSizeForGuid(17);
             }
@@ -141,7 +141,7 @@ namespace ACopyLib.Reader
 
         private void SetCollationIfUseCollationParameterUsed(ITableDefinition tableDefinition)
         {
-            if (_dbContext.DbType != DbType.SqlServer)
+            if (_dbContext.DbType != DbTypeName.SqlServer)
             {
                 return;
             }
@@ -174,7 +174,7 @@ namespace ACopyLib.Reader
                 }
                 catch (Exception ex)
                 {
-                    if (_dbContext.DbType == DbType.SqlServer && ADatabaseException.ShouldThrottle(ex))
+                    if (_dbContext.DbType == DbTypeName.SqlServer && ADatabaseException.ShouldThrottle(ex))
                     {
                         _logger.Write($"Throttling down when load table {tableDefinition.Name}, round {i}");
                         _logger.Write("Error causing throttle:");
@@ -216,7 +216,7 @@ namespace ACopyLib.Reader
 
         private void WhenOracleThenAlterTableOnGuidColumns(ITableDefinition tableDefinition)
         {
-            if (_dbContext.DbType != DbType.Oracle)
+            if (_dbContext.DbType != DbTypeName.Oracle)
             {
                 return;
             }

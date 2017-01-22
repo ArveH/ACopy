@@ -4,9 +4,9 @@ namespace AParser
 {
     public static class ATranslatorFactory
     {
-        public static IATranslator CreateInstance(DbType dbType, IASTNodeFactory nodeFactory)
+        public static IATranslator CreateInstance(DbTypeName dbType, IASTNodeFactory nodeFactory)
         {
-            if (dbType == DbType.Oracle)
+            if (dbType == DbTypeName.Oracle)
             {
                 return new OracleTranslator(nodeFactory);
             }

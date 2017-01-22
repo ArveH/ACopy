@@ -15,7 +15,7 @@ namespace ADatabase
             ConnectionString = connectionString;
         }
 
-        public DbType DbType { get; protected set; }
+        public DbTypeName DbType { get; protected set; }
 
         public abstract void CreateConnectionString(string connectionString);
         public abstract void CreateConnectionString(string user, string password, string database, string server);

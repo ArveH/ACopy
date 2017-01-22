@@ -4,7 +4,7 @@ namespace ADatabase
 {
     public interface IDbContext
     {
-        DbType DbType { get; }
+        DbTypeName DbType { get; }
         void CreateConnectionString(string connectionString);
         void CreateConnectionString(string user, string password, string database, string server);
         string ConnectionString { get; }

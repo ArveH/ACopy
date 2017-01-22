@@ -297,7 +297,7 @@ namespace ACopyLibTest
             DbSchema.CreateTable(tableDefinition);
             string stmt =
                 $"insert into {testTable} (bool_col, char_col, date_col, float_col, guid_col, int_col, int8_col, int16_col, int64_col, longtext_col, money_col, raw_col, string_col, varchar_col) ";
-            if (DbContext.DbType == DbType.SqlServer)
+            if (DbContext.DbType == DbTypeName.SqlServer)
             {
                 stmt += "values (1,'NO', 'Feb 23 1900', 123.12345678, '3f2504e0-4f89-11d3-9a0c-0305e82c3301', 1234567890, 150, 12345, 123456789012345, N'Very long text with æøå', 123.123, convert(varbinary, 'Lots of bytes'), N'A unicode ﺽ string', 'A varchar string')";
             }

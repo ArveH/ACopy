@@ -13,7 +13,7 @@ namespace AParserTest
             IASTNodeFactory nodeFactory = new ASTNodeFactory();
             IAParser parser = AParserFactory.CreateInstance(nodeFactory);
             ASTNodeList aNodes = parser.CreateNodeList(input);
-            IATranslator translator = ATranslatorFactory.CreateInstance(DbType.SqlServer, nodeFactory);
+            IATranslator translator = ATranslatorFactory.CreateInstance(DbTypeName.SqlServer, nodeFactory);
             ASTNodeList msNodes = translator.Translate(aNodes);
 
             string result = msNodes.ToString();

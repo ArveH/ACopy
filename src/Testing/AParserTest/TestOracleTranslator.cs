@@ -13,7 +13,7 @@ namespace AParserTest
             IASTNodeFactory nodeFactory = new ASTNodeFactory();
             IAParser parser = AParserFactory.CreateInstance(nodeFactory);
             ASTNodeList aNodes = parser.CreateNodeList(input);
-            IATranslator translator = ATranslatorFactory.CreateInstance(DbType.Oracle, nodeFactory);
+            IATranslator translator = ATranslatorFactory.CreateInstance(DbTypeName.Oracle, nodeFactory);
             ASTNodeList oraNodes = translator.Translate(aNodes);
 
             string result = oraNodes.ToString();

@@ -33,14 +33,14 @@ namespace ADatabase
 
         public bool IsClustered { get; private set; }
 
-        private DbType _dbSpecific = DbType.Any;
-        public DbType DbSpecific
+        private DbTypeName _dbSpecific = DbTypeName.Any;
+        public DbTypeName DbSpecific
         {
             get 
             {
                 if (IsClustered)
                 {
-                    return DbType.SqlServer;
+                    return DbTypeName.SqlServer;
                 }
                 return _dbSpecific; 
             }

@@ -8,7 +8,7 @@ namespace ADatabase.Oracle
         public OracleContext(IALogger logger = null)
             : base(new OraclePowerPlant(), logger)
         {
-            DbType = DbType.Oracle;
+            DbType = DbTypeName.Oracle;
             PowerPlant.DbContext = this;
         }
 

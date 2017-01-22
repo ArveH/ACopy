@@ -5,7 +5,7 @@ namespace ACopyLib.U4Views
     public interface IViewDefinition
     {
         string ViewName { get; set; }
-        DbType DbType { get; }
+        DbTypeName DbType { get; }
         string SelectStatement { get; set; }
     }
 }

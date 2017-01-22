@@ -35,17 +35,17 @@ namespace ADatabase
                 .ForEach(c => c.Details["length"] = rawLength);
         }
 
-        public static DbType ConvertStringToDbType(string dbType)
+        public static DbTypeName ConvertStringToDbType(string dbType)
         {
             if (String.Compare(dbType, "oracle", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                return DbType.Oracle;
+                return DbTypeName.Oracle;
             }
             if (String.Compare(dbType, "sqlserver", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                return DbType.SqlServer;
+                return DbTypeName.SqlServer;
             }
-            return DbType.Any;
+            return DbTypeName.Any;
         }
 
         public void SetCollation(string collation)

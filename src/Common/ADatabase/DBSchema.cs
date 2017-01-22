@@ -98,7 +98,7 @@ namespace ADatabase
 
         private bool IsIndexForThisDb(IIndexDefinition index)
         {
-            return index.DbSpecific == DbType.Any || index.DbSpecific == DbContext.DbType;
+            return index.DbSpecific == DbTypeName.Any || index.DbSpecific == DbContext.DbType;
         }
 
         public void DropView(string name, bool checkIfExists = true)

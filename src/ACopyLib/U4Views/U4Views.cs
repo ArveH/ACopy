@@ -6,7 +6,6 @@ using ADatabase;
 using ALogger;
 using AParser;
 using System.Linq;
-using DbType = ADatabase.DbType;
 
 namespace ACopyLib.U4Views
 {
@@ -35,7 +34,7 @@ namespace ACopyLib.U4Views
 
         private string GetDbTypeName()
         {
-            return _dbContext.DbType == DbType.Oracle ? "oracle" : "mssql";
+            return _dbContext.DbType == DbTypeName.Oracle ? "oracle" : "mssql";
         }
 
         public void DoViews(out int totalViews, out int failedViews, IALogger tmpLogger = null)
@@ -52,14 +51,14 @@ namespace ACopyLib.U4Views
             IDbSchema schema = _dbContext.PowerPlant.CreateDbSchema();
             IASTNodeFactory nodeFactory = new ASTNodeFactory();
             IAParser parser = AParserFactory.CreateInstance(nodeFactory);
-            if (_dbContext.DbType == DbType.Oracle)
+            if (_dbContext.DbType == DbTypeName.Oracle)
             {
                 parser.ExpandEmptyStrings = true;
             }
             IATranslator translator = ATranslatorFactory.CreateInstance(_dbContext.DbType, nodeFactory);
             foreach (var view in viewDefinitions)
             {
-                if (view.DbType != DbType.Any && view.DbType != _dbContext.DbType)
+                if (view.DbType != DbTypeName.Any && view.DbType != _dbContext.DbType)
                 {
                     continue;
                 }
@@ -86,12 +85,12 @@ namespace ACopyLib.U4Views
             StringBuilder createViewStmt = new StringBuilder("create view ");
             createViewStmt.Append(view.ViewName);
 
-            if (view.DbType == DbType.Any || parser.ExpandEmptyStrings)
+            if (view.DbType == DbTypeName.Any || parser.ExpandEmptyStrings)
             {
                 aNodes = parser.CreateNodeList(view.SelectStatement);
             }
 
-            if (view.DbType == DbType.Any)
+            if (view.DbType == DbTypeName.Any)
             {
                 if (!ColumnListContainStar(aNodes))
                 {

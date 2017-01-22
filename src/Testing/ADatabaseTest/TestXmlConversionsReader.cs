@@ -62,7 +62,7 @@ namespace ADatabaseTest
         {
             var rootNode = _xmlConversionsReader.GetRootNode(ConversionXmlHelper.LegalRootOneVarcharColumn());
             var sourceSystem = _xmlConversionsReader.GetSourceSystem(rootNode);
-            sourceSystem.Should().Be(DatabaseSystemNames.Oracle);
+            sourceSystem.Should().Be(DatabaseSystemName.Oracle);
         }
 
         [TestMethod]
@@ -70,7 +70,7 @@ namespace ADatabaseTest
         {
             var rootNode = _xmlConversionsReader.GetRootNode(ConversionXmlHelper.LegalRootOneVarcharColumn());
             var sourceSystem = _xmlConversionsReader.GetDestinationSystem(rootNode);
-            sourceSystem.Should().Be(DatabaseSystemNames.ACopy);
+            sourceSystem.Should().Be(DatabaseSystemName.ACopy);
         }
 
         [TestMethod]

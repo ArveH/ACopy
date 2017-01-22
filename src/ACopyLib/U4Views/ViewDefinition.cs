@@ -5,11 +5,11 @@ namespace ACopyLib.U4Views
 {
     public class ViewDefinition: IViewDefinition
     {
-        public ViewDefinition(DbType dbType): this(dbType, "", "")
+        public ViewDefinition(DbTypeName dbType): this(dbType, "", "")
         {
         }
 
-        public ViewDefinition(DbType dbType, string viewName, string selectStatement)
+        public ViewDefinition(DbTypeName dbType, string viewName, string selectStatement)
         {
             DbType = dbType;
             ViewName = viewName;
@@ -18,21 +18,21 @@ namespace ACopyLib.U4Views
 
         public string ViewName { get; set; }
 
-        public DbType DbType { get; private set; }
+        public DbTypeName DbType { get; private set; }
 
         public string SelectStatement { get; set; }
 
-        public static DbType ConvertFromStringToDbType(string dbType)
+        public static DbTypeName ConvertFromStringToDbType(string dbType)
         {
             if (String.Compare(dbType, "oracle", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                return DbType.Oracle;
+                return DbTypeName.Oracle;
             }
             if (String.Compare(dbType, "mssql", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                return DbType.SqlServer;
+                return DbTypeName.SqlServer;
             }
-            return DbType.Any;
+            return DbTypeName.Any;
         }
     }
 }
