@@ -77,9 +77,27 @@ namespace ADatabaseTest.Helpers
             return GetXmlNode(txt);
         }
 
+        public static XmlNode IllegatTypeDetail()
+        {
+            var txt = "<Type Name=\"number\" To=\"bool\">" +
+                "<Precision Operator=\"=\">1</Precision>" +
+                "<Illegal Operator=\"=\">0</Illegal>" +
+                "</Type>";
+            return GetXmlNode(txt);
+        }
+
         public static XmlNode OracleVarchar2()
         {
             var txt = "<Type Name=\"varchar2\" To=\"varchar\"></Type>";
+            return GetXmlNode(txt);
+        }
+
+        public static XmlNode OracleBool()
+        {
+            var txt = "<Type Name=\"number\" To=\"bool\">" +
+                "<Precision Operator=\"=\">1</Precision>" +
+                "<Scale Operator=\"=\">0</Scale>" +
+                "</Type>";
             return GetXmlNode(txt);
         }
     }

@@ -8,7 +8,7 @@ namespace ADatabase
     public class ColumnTypeConverter : IColumnTypeConverter
     {
         private readonly IXmlConversionsReader _xmlConversionsReader;
-        private List<IColumnTypeDescription> _types = new List<IColumnTypeDescription>();
+        private List<ITypeDescription> _types = new List<ITypeDescription>();
 
         public ColumnTypeConverter(IXmlConversionsReader xmlConversionsReader)
         {

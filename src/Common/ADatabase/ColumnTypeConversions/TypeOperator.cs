@@ -5,40 +5,49 @@ namespace ADatabase
 {
     public class TypeOperator : ITypeOperator
     {
-        private readonly List<int> _constraintValues = new List<int>();
-        private readonly TypeOperatorName _typeOperatorName;
+        public List<int> ConstraintValues { get; } = new List<int>();
+        public TypeOperatorName OperatorName { get; }
 
-        public TypeOperator(int constraintValue, TypeOperatorName typeOperatorName)
+        public TypeOperator(string typeOperatorName, IEnumerable<int> constraintValues)
         {
-            _constraintValues.Add(constraintValue);
-            _typeOperatorName = typeOperatorName;
-        }
-
-        public TypeOperator(IEnumerable<int> constraintValues, TypeOperatorName typeOperatorName)
-        {
-            _constraintValues.AddRange(constraintValues);
-            _typeOperatorName = typeOperatorName;
+            ConstraintValues.AddRange(constraintValues);
+            OperatorName = Convert(typeOperatorName);
         }
 
         public bool IsWithinConstraint(int value)
         {
-            switch (_typeOperatorName)
+            switch (OperatorName)
             {
                 case TypeOperatorName.Eq:
-                    return value == _constraintValues[0];
+                    return value == ConstraintValues[0];
                 case TypeOperatorName.Lt:
-                    return value < _constraintValues[0];
+                    return value < ConstraintValues[0];
                 case TypeOperatorName.Gt:
-                    return value > _constraintValues[0];
+                    return value > ConstraintValues[0];
                 case TypeOperatorName.LtEq:
-                    return value <= _constraintValues[0];
+                    return value <= ConstraintValues[0];
                 case TypeOperatorName.GtEq:
-                    return value >= _constraintValues[0];
+                    return value >= ConstraintValues[0];
                 case TypeOperatorName.In:
-                    return _constraintValues.Contains(value);
+                    return ConstraintValues.Contains(value);
                 default:
-                    throw new ArgumentOutOfRangeException($"TypeOperatorName \"{_typeOperatorName}\" doesn't exist.");
+                    throw new ArgumentOutOfRangeException($"TypeOperatorName \"{OperatorName}\" doesn't exist.");
             }
+        }
+
+        private TypeOperatorName Convert(string txt)
+        {
+            switch (txt)
+            {
+                case "=": return TypeOperatorName.Eq;
+                case "<": return TypeOperatorName.Lt;
+                case ">": return TypeOperatorName.Gt;
+                case "<=": return TypeOperatorName.LtEq;
+                case ">=": return TypeOperatorName.GtEq;
+                case "in": return TypeOperatorName.In;
+            }
+
+            throw new ArgumentException($"Can't convert '{txt}' to TypeOperatorName. Legal values are '=', '<', '>', '<=', '>=', 'in'");
         }
     }
 }

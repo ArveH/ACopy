@@ -75,19 +75,23 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ColumnTypeConversions\DatabaseSystemNames.cs" />
+    <Compile Include="ColumnTypeConversions\ITypeConstraintFactory.cs" />
+    <Compile Include="ColumnTypeConversions\ITypeOperatorFactory.cs" />
     <Compile Include="ColumnTypeConversions\IXmlConversionsReader.cs" />
+    <Compile Include="ColumnTypeConversions\TypeConstraintFactory.cs" />
+    <Compile Include="ColumnTypeConversions\TypeOperatorFactory.cs" />
     <Compile Include="ColumnTypeConversions\XmlConversionsReader.cs" />
     <Compile Include="ColumnTypeName.cs" />
     <Compile Include="ColumnTypeConversions\ColumnTypeConverter.cs" />
     <Compile Include="ColumnTypeConversions\ITypeConstraint.cs" />
-    <Compile Include="ColumnTypeConversions\IColumnTypeDescription.cs" />
-    <Compile Include="ColumnTypeConversions\IColumnTypeDescriptionFactory.cs" />
+    <Compile Include="ColumnTypeConversions\ITypeDescription.cs" />
+    <Compile Include="ColumnTypeConversions\ITypeDescriptionFactory.cs" />
     <Compile Include="ColumnTypeConversions\ITypeOperator.cs" />
     <Compile Include="StringConstants\ConstraintTypeName.cs" />
     <Compile Include="ColumnTypeConversions\TypeConstraint.cs" />
     <Compile Include="ColumnTypeConversions\TypeOperatorName.cs" />
-    <Compile Include="ColumnTypeConversions\ColumnTypeDescription.cs" />
-    <Compile Include="ColumnTypeConversions\ColumnTypeDescriptionFactory.cs" />
+    <Compile Include="ColumnTypeConversions\TypeDescription.cs" />
+    <Compile Include="ColumnTypeConversions\TypeDescriptionFactory.cs" />
     <Compile Include="ColumnTypeConversions\TypeOperator.cs" />
     <Compile Include="DBContext.cs" />
     <Compile Include="DBSchema.cs" />

@@ -16,8 +16,10 @@ namespace ADatabaseTest
         [TestInitialize]
         public void Startup()
         {
-            var columnTypeDescriptionFactory = new ColumnTypeDescriptionFactory();
-            _xmlConversionsReader = new XmlConversionsReader(columnTypeDescriptionFactory);
+            ITypeOperatorFactory typeOperatorFactory = new TypeOperatorFactory();
+            ITypeConstraintFactory typeConstraintFactory = new TypeConstraintFactory(typeOperatorFactory);
+            ITypeDescriptionFactory typeDescriptionFactory = new TypeDescriptionFactory(typeConstraintFactory);
+            _xmlConversionsReader = new XmlConversionsReader(typeDescriptionFactory);
         }
 
         [TestMethod]
@@ -86,6 +88,13 @@ namespace ADatabaseTest
         }
 
         [TestMethod]
+        public void TestGetColumnTypeDescription_When_IllegalTypeDetail()
+        {
+            Action act = () => _xmlConversionsReader.GetColumnTypeDescription(ConversionXmlHelper.IllegatTypeDetail());
+            act.ShouldThrow<XmlException>().WithMessage("Illegal type detail 'Illegal' for type 'number'");
+        }
+
+        [TestMethod]
         public void TestGetColumnTypeDescription_When_OracleVarchar2()
         {
             var colDesc = _xmlConversionsReader.GetColumnTypeDescription(ConversionXmlHelper.OracleVarchar2());
@@ -93,5 +102,24 @@ namespace ADatabaseTest
             colDesc.ConvertTo.Should().Be("varchar", "because varchar2 should be varchar");
         }
 
+        [TestMethod]
+        public void TestGetColumnTypeDescription_When_OracleBool()
+        {
+            var colDesc = _xmlConversionsReader.GetColumnTypeDescription(ConversionXmlHelper.OracleBool());
+            colDesc.TypeName.Should().Be("number", "because type name is number");
+            colDesc.ConvertTo.Should().Be("bool", "because number(1,0) should be bool");
+            colDesc.Constraints.Count.Should().Be(2, "because we should have Precision and Scale");
+
+            colDesc.Constraints[0].ConstraintType.Should().Be(ConstraintTypeName.Prec);
+            colDesc.Constraints[0].Operator.OperatorName.Should().Be(TypeOperatorName.Eq);
+            colDesc.Constraints[0].Operator.ConstraintValues.Count.Should().Be(1, "because there is only one value for Precision constraint");
+            colDesc.Constraints[0].Operator.ConstraintValues[0].Should().Be(1, "because Bool has a precision of 1");
+
+            colDesc.Constraints[1].ConstraintType.Should().Be(ConstraintTypeName.Scale);
+            colDesc.Constraints[1].Operator.OperatorName.Should().Be(TypeOperatorName.Eq);
+            colDesc.Constraints[1].Operator.ConstraintValues.Count.Should().Be(1, "because there is only one value for Scale constraint");
+            colDesc.Constraints[1].Operator.ConstraintValues[0].Should().Be(0, "because Bool has a Scale of 0");
+
+        }
     }
 }

@@ -5,11 +5,11 @@ namespace ADatabase
 {
     public class XmlConversionsReader : IXmlConversionsReader
     {
-        private readonly IColumnTypeDescriptionFactory _columnTypeDescriptionFactory;
+        private readonly ITypeDescriptionFactory _typeDescriptionFactory;
 
-        public XmlConversionsReader(IColumnTypeDescriptionFactory columnTypeDescriptionFactory)
+        public XmlConversionsReader(ITypeDescriptionFactory typeDescriptionFactory)
         {
-            _columnTypeDescriptionFactory = columnTypeDescriptionFactory;
+            _typeDescriptionFactory = typeDescriptionFactory;
         }
 
         public XmlNode GetRootNode(string xmlText)
@@ -39,7 +39,7 @@ namespace ADatabase
             return rootNode;
         }
 
-        public IColumnTypeDescription GetColumnTypeDescription(XmlNode xmlNode)
+        public ITypeDescription GetColumnTypeDescription(XmlNode xmlNode)
         {
             var fromType = xmlNode.Attributes?["Name"]?.InnerText;
             if (string.IsNullOrWhiteSpace(fromType))
@@ -48,9 +48,20 @@ namespace ADatabase
             if (string.IsNullOrWhiteSpace(toType))
                 throw new XmlException("Error with attribute 'To' for 'Type'");
 
-            var colDesc = _columnTypeDescriptionFactory.GetColumnTypeDescription();
+            var colDesc = _typeDescriptionFactory.GetColumnTypeDescription();
             colDesc.TypeName = fromType;
             colDesc.ConvertTo = toType;
+
+            if (!xmlNode.HasChildNodes) return colDesc;
+            CheckTypeDetails(xmlNode);
+
+            foreach (XmlNode childNode in xmlNode.ChildNodes)
+            {
+                var constraintName = childNode.Name;
+                var opName = childNode.Attributes?["Operator"].InnerText;
+                var constraintValue = Convert.ToInt32(childNode.InnerText);
+                colDesc.AddConstraint(constraintName, opName, constraintValue);
+            }
 
             return colDesc;
         }
@@ -64,5 +75,21 @@ namespace ADatabase
         {
             return rootNode.Attributes?["To"]?.InnerText;
         }
+
+        #region Private
+
+        private static bool IsLegalTypeDetail(string detail)
+        {
+            return detail == "Precision" || detail == "Scale" || detail == "Length";
+        }
+
+        private void CheckTypeDetails(XmlNode xmlNode)
+        {
+            foreach (XmlNode childNode in xmlNode.ChildNodes)
+            {
+                if (!IsLegalTypeDetail(childNode.Name)) throw new XmlException($"Illegal type detail '{childNode.Name}' for type '{xmlNode.Attributes?["Name"].InnerText}'");
+            }
+        }
+        #endregion
     }
 }
