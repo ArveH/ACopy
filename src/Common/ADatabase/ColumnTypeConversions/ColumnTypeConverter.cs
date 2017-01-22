@@ -23,6 +23,8 @@ namespace ADatabase
             try
             {
                 var rootNode = _xmlConversionsReader.GetRootNode(conversionXml);
+                FromSystem = _xmlConversionsReader.GetSourceSystem(rootNode);
+                ToSystem = _xmlConversionsReader.GetDestinationSystem(rootNode);
                 foreach (XmlNode typeNode in rootNode.ChildNodes)
                 {
                     var typeDescription = _xmlConversionsReader.GetColumnTypeDescription(typeNode);
@@ -35,6 +37,22 @@ namespace ADatabase
 
                 throw new AColumnTypeException("Error when reading conversion XML", ex);
             }
+        }
+
+        public string GetDestinationType(string nativeType, int? length, int? prec, int? scale)
+        {
+            string destinationType;
+
+            foreach (var type in _types)
+            {
+                if (type.TypeName != nativeType) continue;
+
+                foreach (var constraint in type.Constraints)
+                {
+                }
+            }
+
+            throw new AColumnTypeException($"Illegal type name '{nativeType}', length={length}, prec={prec}, scale={scale}");
         }
     }
 }

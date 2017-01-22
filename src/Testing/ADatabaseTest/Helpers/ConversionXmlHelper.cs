@@ -108,5 +108,23 @@ namespace ADatabaseTest.Helpers
                 "</Type>";
             return GetXmlNode(txt);
         }
+
+        public static string OneTypeNoConstraints(string sourceType, string destinationType)
+        {
+            return GetHeading() +
+                "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
+                $"<Type Name=\"{sourceType}\" To=\"{destinationType}\"></Type>" +
+                "</TypeConversions>";
+        }
+
+        public static string FromNumberXml(string destinationType, string prec, string scale)
+        {
+            return GetHeading() +
+                "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
+                $"<Type Name=\"number\" To=\"{destinationType}\"></Type>" +
+                $"<Precision Operator=\"=\">{prec}</Precision>" +
+                $"<Scale Operator=\"=\">{scale}</Scale>" +
+                "</TypeConversions>";
+        }
     }
 }
