@@ -9,5 +9,7 @@ namespace ADatabase
         List<ITypeConstraint> Constraints { get; }
         void AddConstraint(string constraintType, string operatorName, IEnumerable<int> constraintValues);
         void AddConstraint(string constraintType, string operatorName, int constraintValue);
+        bool Validate(string sourceType, int? length, int? prec, int? scale);
+        string GetDestinationString(int? length, int? prec, int? scale);
     }
 }

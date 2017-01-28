@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using ADatabase.Exceptions;
 
@@ -39,17 +40,14 @@ namespace ADatabase
             }
         }
 
-        public string GetDestinationType(string nativeType, int? length, int? prec, int? scale)
+        public string GetDestinationType(string sourceType, int? length, int? prec, int?scale)
         {
-            string destinationType;
-
             foreach (var type in _types)
             {
-                if (type.TypeName == nativeType)
-                    return destinationType = $"{type.ConvertTo}({length})";
+                if (type.Validate(sourceType, length, prec, scale)) return type.GetDestinationString(length, prec, scale);
             }
 
-            throw new AColumnTypeException($"Illegal type name '{nativeType}', length={length}, prec={prec}, scale={scale}");
+            throw new AColumnTypeException($"Illegal type: '{sourceType}', length={length}, prec={prec}, scale={scale}");
         }
     }
 }

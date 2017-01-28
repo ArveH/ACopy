@@ -1,45 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--Type conversion file for Unit4-->
 <TypeConversions From="Oracle" To="ACopy">
-  <Type Name="varchar2" To="varchar"></Type>
-  <Type Name="varchar" To="varchar"></Type>
-  <Type Name="char" To="varchar"></Type>
-  <Type Name="clob" To="LongText"></Type>
-  <Type Name="integer" To="int"></Type>
-  <Type Name="number" To="bool">
-    <Precision Operator="=">1</Precision>
+  <Type Source="varchar2(@Length)" Destination="varchar(@Length)"/>
+  <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>
+  <Type Source="char(@Length)" Destination="varchar(@Length)"/>
+  <Type Source="clob" Destination="LongText"/>
+  <Type Source="integer" Destination="int"/>
+  <Type Source="number(@Prec,@Scale)" Destination="bool">
+    <Prec Operator="=">1</Prec>
     <Scale Operator="=">0</Scale>
   </Type>
-  <Type Name="number" To="int8">
-    <Precision Operator="=">3</Precision>
+  <Type Source="number(@Prec,@Scale)" Destination="int8">
+    <Prec Operator="=">3</Prec>
     <Scale Operator="=">0</Scale>
   </Type>
-  <Type Name="number" To="int16">
-    <Precision Operator="=">5</Precision>
+  <Type Source="number(@Prec,@Scale)" Destination="int16">
+    <Prec Operator="=">5</Prec>
     <Scale Operator="=">0</Scale>
   </Type>
-  <Type Name="number" To="int">
-    <Precision Operator="=">15</Precision>
+  <Type Source="number(@Prec,@Scale)" Destination="int">
+    <Prec Operator="=">15</Prec>
     <Scale Operator="=">0</Scale>
   </Type>
-  <Type Name="number" To="int64">
-    <Precision Operator=">=">20</Precision>
+  <Type Source="number(@Prec,@Scale)" Destination="int64">
+    <Prec Operator=">=">20</Prec>
     <Scale Operator="=">0</Scale>
   </Type>
-  <Type Name="number" To="money">
-    <Precision Operator="=">18</Precision>
+  <Type Source="number(@Prec,@Scale)" Destination="money">
+    <Prec Operator="=">18</Prec>
     <Scale Operator="=">2</Scale>
   </Type>
-  <Type Name="number" To="money">
-    <Precision Operator=">=">30</Precision>
+  <Type Source="number(@Prec,@Scale)" Destination="money">
+    <Prec Operator=">=">30</Prec>
     <Scale Operator="=">3</Scale>
   </Type>
-  <Type Name="number" To="float"></Type>
-  <Type Name="float" To="float"></Type>
-  <Type Name="date" To="datetime"></Type>
-  <Type Name="raw" To="guid">
+  <Type Source="number(@Prec,@Scale)" Destination="float"></Type>
+  <Type Source="float" Destination="float"></Type>
+  <Type Source="date" Destination="datetime"></Type>
+  <Type Source="raw(@Length)" Destination="guid">
     <Length Operator="in">16,32,17,34</Length>
   </Type>
-  <Type Name="blob" To="raw"></Type>
-  <Type Name="long raw" To="raw"></Type>
+  <Type Source="blob" Destination="raw"></Type>
+  <Type Source="long raw" Destination="raw"></Type>
 </TypeConversions>

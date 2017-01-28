@@ -2,7 +2,8 @@
 {
     public interface ITypeConstraint
     {
-        ConstraintTypeName ConstraintType { get; }
+        string ConstraintType { get; }
         ITypeOperator Operator { get; }
+        bool IsWithinConstraint(int? val);
     }
 }

@@ -79,14 +79,14 @@ namespace ADatabaseTest
         [TestMethod]
         public void TestGetColumnTypeDescription_When_NameAttributeMissing()
         {
-            Action act = () => _xmlConversionsReader.GetColumnTypeDescription(ConversionXmlHelper.NameAttributeMissingForType());
+            Action act = () => _xmlConversionsReader.GetColumnTypeDescription(ConversionXmlHelper.SourceAttributeMissingForType());
             act.ShouldThrow<XmlException>().WithMessage("Error with attribute 'Name' for 'Type'");
         }
 
         [TestMethod]
         public void TestGetColumnTypeDescription_When_ToAttributeMissing()
         {
-            Action act = () => _xmlConversionsReader.GetColumnTypeDescription(ConversionXmlHelper.ToAttributeMissingForType());
+            Action act = () => _xmlConversionsReader.GetColumnTypeDescription(ConversionXmlHelper.DestinationAttributeMissingForType());
             act.ShouldThrow<XmlException>().WithMessage("Error with attribute 'To' for 'Type'");
         }
 
@@ -94,7 +94,7 @@ namespace ADatabaseTest
         public void TestGetColumnTypeDescription_When_IllegalTypeDetail()
         {
             Action act = () => _xmlConversionsReader.GetColumnTypeDescription(ConversionXmlHelper.IllegatTypeDetail());
-            act.ShouldThrow<XmlException>().WithMessage("Illegal type detail 'Illegal' for type 'number'");
+            act.ShouldThrow<XmlException>().WithMessage("Illegal type detail 'Illegal' for type 'number(@Prec,@Scale)'");
         }
 
         [TestMethod]
@@ -113,12 +113,12 @@ namespace ADatabaseTest
             colDesc.ConvertTo.Should().Be("bool", "because number(1,0) should be bool");
             colDesc.Constraints.Count.Should().Be(2, "because we should have Precision and Scale");
 
-            colDesc.Constraints[0].ConstraintType.Should().Be(ConstraintTypeName.Prec);
+            colDesc.Constraints[0].ConstraintType.Should().Be("Prec");
             colDesc.Constraints[0].Operator.OperatorName.Should().Be(TypeOperatorName.Eq);
             colDesc.Constraints[0].Operator.ConstraintValues.Count.Should().Be(1, "because there is only one value for Precision constraint");
             colDesc.Constraints[0].Operator.ConstraintValues[0].Should().Be(1, "because Bool has a precision of 1");
 
-            colDesc.Constraints[1].ConstraintType.Should().Be(ConstraintTypeName.Scale);
+            colDesc.Constraints[1].ConstraintType.Should().Be("Scale");
             colDesc.Constraints[1].Operator.OperatorName.Should().Be(TypeOperatorName.Eq);
             colDesc.Constraints[1].Operator.ConstraintValues.Count.Should().Be(1, "because there is only one value for Scale constraint");
             colDesc.Constraints[1].Operator.ConstraintValues[0].Should().Be(0, "because Bool has a Scale of 0");
@@ -133,7 +133,7 @@ namespace ADatabaseTest
             colDesc.ConvertTo.Should().Be("guid", "because raw(16) should be guid");
             colDesc.Constraints.Count.Should().Be(1, "because we should only have Length");
 
-            colDesc.Constraints[0].ConstraintType.Should().Be(ConstraintTypeName.Length);
+            colDesc.Constraints[0].ConstraintType.Should().Be("Length");
             colDesc.Constraints[0].Operator.OperatorName.Should().Be(TypeOperatorName.In);
             colDesc.Constraints[0].Operator.ConstraintValues.Count.Should().Be(4, "because length can be 16 or 17 bytes (or 32 or 34 if unicode)");
             colDesc.Constraints[0].Operator.ConstraintValues[0].Should().Be(16);

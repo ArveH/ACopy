@@ -14,8 +14,10 @@ namespace ADatabase
             OperatorName = Convert(typeOperatorName);
         }
 
-        public bool IsWithinConstraint(int value)
+        public bool IsWithinConstraint(int? value)
         {
+            if (value == null) return false;
+
             switch (OperatorName)
             {
                 case TypeOperatorName.Eq:
@@ -29,7 +31,7 @@ namespace ADatabase
                 case TypeOperatorName.GtEq:
                     return value >= ConstraintValues[0];
                 case TypeOperatorName.In:
-                    return ConstraintValues.Contains(value);
+                    return ConstraintValues.Contains(value.Value);
                 default:
                     throw new ArgumentOutOfRangeException($"TypeOperatorName \"{OperatorName}\" doesn't exist.");
             }

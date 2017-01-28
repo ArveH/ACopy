@@ -61,26 +61,26 @@ namespace ADatabaseTest.Helpers
             return
                 GetHeading() +
                 "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
-                "<Type Name=\"varchar2\" To=\"varchar\"></Type>" +
+                "<Type Source=\"varchar2(@Length)\" Destination=\"varchar(@Length)\"></Type>" +
                 "</TypeConversions>";
         }
 
-        public static XmlNode NameAttributeMissingForType()
+        public static XmlNode SourceAttributeMissingForType()
         {
-            var txt = "<Type NoName=\"varchar2\" To=\"varchar\"></Type>";
+            var txt = "<Type NoSource=\"varchar2(@Langth)\" Destination=\"varchar(@Length)\"></Type>";
             return GetXmlNode(txt);
         }
 
-        public static XmlNode ToAttributeMissingForType()
+        public static XmlNode DestinationAttributeMissingForType()
         {
-            var txt = "<Type Name=\"varchar2\" NoTo=\"varchar\"></Type>";
+            var txt = "<Type Source=\"varchar2(@Length)\" NoDestination=\"varchar(@Length)\"></Type>";
             return GetXmlNode(txt);
         }
 
         public static XmlNode IllegatTypeDetail()
         {
-            var txt = "<Type Name=\"number\" To=\"bool\">" +
-                "<Precision Operator=\"=\">1</Precision>" +
+            var txt = "<Type Source=\"number(@Prec,@Scale)\" Destination=\"bool\">" +
+                "<Prec Operator=\"=\">1</Prec>" +
                 "<Illegal Operator=\"=\">0</Illegal>" +
                 "</Type>";
             return GetXmlNode(txt);
@@ -88,14 +88,14 @@ namespace ADatabaseTest.Helpers
 
         public static XmlNode OracleVarchar2()
         {
-            var txt = "<Type Name=\"varchar2\" To=\"varchar\"></Type>";
+            var txt = "<Type Source=\"varchar2(@Length)\" Destination=\"varchar(@Length)\"></Type>";
             return GetXmlNode(txt);
         }
 
         public static XmlNode OracleBool()
         {
-            var txt = "<Type Name=\"number\" To=\"bool\">" +
-                "<Precision Operator=\"=\">1</Precision>" +
+            var txt = "<Type Source=\"number(@Prec,@Scale)\" Destination=\"bool\">" +
+                "<Prec Operator=\"=\">1</Prec>" +
                 "<Scale Operator=\"=\">0</Scale>" +
                 "</Type>";
             return GetXmlNode(txt);
@@ -103,7 +103,7 @@ namespace ADatabaseTest.Helpers
 
         public static XmlNode OracleGuid()
         {
-            var txt = "<Type Name=\"raw\" To=\"guid\">" +
+            var txt = "<Type Source=\"raw(@Length)\" Destination=\"guid\">" +
                 "<Length Operator=\"in\">16,32,17,34</Length>" +
                 "</Type>";
             return GetXmlNode(txt);
@@ -113,17 +113,18 @@ namespace ADatabaseTest.Helpers
         {
             return GetHeading() +
                 "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
-                $"<Type Name=\"{sourceType}\" To=\"{destinationType}\"></Type>" +
+                $"<Type Source=\"{sourceType}\" Destination=\"{destinationType}\"></Type>" +
                 "</TypeConversions>";
         }
 
         public static string FromNumberXml(string destinationType, string prec, string scale)
         {
             return GetHeading() +
-                "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
-                $"<Type Name=\"number\" To=\"{destinationType}\"></Type>" +
-                $"<Precision Operator=\"=\">{prec}</Precision>" +
-                $"<Scale Operator=\"=\">{scale}</Scale>" +
+                "<TypeConversions From=\"Oracle\" To=\"ACopy\">\n" +
+                $"<Type Source=\"number(@Prec,@Scale)\" Destination=\"{destinationType}\">\n" +
+                $"<Prec Operator=\"=\">{prec}</Prec>\n" +
+                $"<Scale Operator=\"=\">{scale}</Scale>\n" +
+                $"</Type>\n" +
                 "</TypeConversions>";
         }
     }

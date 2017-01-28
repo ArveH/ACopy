@@ -6,6 +6,6 @@ namespace ADatabase
     {
         TypeOperatorName OperatorName { get; }
         List<int> ConstraintValues { get; }
-        bool IsWithinConstraint(int value);
+        bool IsWithinConstraint(int? value);
     }
 }

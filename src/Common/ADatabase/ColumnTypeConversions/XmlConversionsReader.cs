@@ -70,28 +70,28 @@ namespace ADatabase
 
         private static bool IsLegalTypeDetail(string detail)
         {
-            return detail == "Precision" || detail == "Scale" || detail == "Length";
+            return detail == "Prec" || detail == "Scale" || detail == "Length";
         }
 
         private void CheckTypeDetails(XmlNode xmlNode)
         {
             foreach (XmlNode childNode in xmlNode.ChildNodes)
             {
-                if (!IsLegalTypeDetail(childNode.Name)) throw new XmlException($"Illegal type detail '{childNode.Name}' for type '{xmlNode.Attributes?["Name"].InnerText}'");
+                if (!IsLegalTypeDetail(childNode.Name)) throw new XmlException($"Illegal type detail '{childNode.Name}' for type '{xmlNode.Attributes?["Source"].InnerText}'");
             }
         }
 
         private static void GetTypeAttributes(XmlNode xmlNode, ITypeDescription colDesc)
         {
-            var fromType = xmlNode.Attributes?["Name"]?.InnerText;
-            if (string.IsNullOrWhiteSpace(fromType))
+            var sourceType = xmlNode.Attributes?["Source"]?.InnerText;
+            if (string.IsNullOrWhiteSpace(sourceType))
                 throw new XmlException("Error with attribute 'Name' for 'Type'");
-            var toType = xmlNode.Attributes?["To"]?.InnerText;
-            if (string.IsNullOrWhiteSpace(toType))
+            var destinationType = xmlNode.Attributes?["Destination"]?.InnerText;
+            if (string.IsNullOrWhiteSpace(destinationType))
                 throw new XmlException("Error with attribute 'To' for 'Type'");
 
-            colDesc.TypeName = fromType;
-            colDesc.ConvertTo = toType;
+            colDesc.TypeName = sourceType;
+            colDesc.ConvertTo = destinationType;
         }
 
         private static void GetTypeConstraints(XmlNode xmlNode, ITypeDescription colDesc)
