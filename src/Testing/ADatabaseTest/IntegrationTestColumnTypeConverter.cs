@@ -11,19 +11,30 @@ namespace ADatabaseTest
     [TestClass]
     public class IntegrationTestColumnTypeConverter
     {
+        private readonly IColumnTypeConverter _columnTypeConverter =
+            new ColumnTypeConverter(
+                new XmlConversionsReader(
+                    new TypeDescriptionFactory(
+                        new TypeConstraintFactory(
+                            new TypeOperatorFactory()))));
+
         [TestMethod]
         public void TestGetDestinationType_When_IllegalTypeName()
         {
-            ITypeOperatorFactory typeOperatorFactory = new TypeOperatorFactory();
-            ITypeConstraintFactory typeConstraintFactory = new TypeConstraintFactory(typeOperatorFactory);
-            ITypeDescriptionFactory typeDescriptionFactory = new TypeDescriptionFactory(typeConstraintFactory);
-            IXmlConversionsReader xmlConversionsReader = new XmlConversionsReader(typeDescriptionFactory);
-            IColumnTypeConverter columnTypeConverter = new ColumnTypeConverter(xmlConversionsReader);
-            columnTypeConverter.Initialize(ConversionXmlHelper.OneTypeNoConstraints("varchar2", "varchar"));
+            _columnTypeConverter.Initialize(ConversionXmlHelper.OneTypeNoConstraints("varchar2", "varchar"));
 
-            Action act = () => columnTypeConverter.GetDestinationType("illegal_type", null, null, null);
+            Action act = () => _columnTypeConverter.GetDestinationType("illegal_type", null, null, null);
             act.ShouldThrow<AColumnTypeException>()
                 .WithMessage("Illegal type name 'illegal_type', length=, prec=, scale=");
+        }
+
+        [TestMethod]
+        public void TestGetDestinationType_When_varchar2()
+        {
+            _columnTypeConverter.Initialize(ConversionXmlHelper.OneTypeNoConstraints("varchar2", "varchar"));
+
+            var destinationType = _columnTypeConverter.GetDestinationType("varchar2", 25, null, null);
+            destinationType.Should().Be("varchar(25)");
         }
 
     }

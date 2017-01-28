@@ -45,11 +45,8 @@ namespace ADatabase
 
             foreach (var type in _types)
             {
-                if (type.TypeName != nativeType) continue;
-
-                foreach (var constraint in type.Constraints)
-                {
-                }
+                if (type.TypeName == nativeType)
+                    return destinationType = $"{type.ConvertTo}({length})";
             }
 
             throw new AColumnTypeException($"Illegal type name '{nativeType}', length={length}, prec={prec}, scale={scale}");
