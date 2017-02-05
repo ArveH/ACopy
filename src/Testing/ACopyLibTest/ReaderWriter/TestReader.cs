@@ -435,7 +435,8 @@ namespace ACopyLibTest
         private void CheckAllValues()
         {
             IDataCursor cursor = DbContext.PowerPlant.CreateDataCursor();
-            ITableDefinition tableDefinition = DbSchema.GetTableDefinition(TestTable);
+            var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleConversions.xml");
+            ITableDefinition tableDefinition = DbSchema.GetTableDefinition(columnTypeConverter, TestTable);
             try 
 	        {	        
                 IDataReader reader = cursor.ExecuteReader(string.Format("select * from {0}", TestTable));

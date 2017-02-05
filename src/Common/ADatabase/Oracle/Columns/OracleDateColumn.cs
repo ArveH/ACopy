@@ -3,9 +3,9 @@ using System.Globalization;
 
 namespace ADatabase.Oracle.Columns
 {
-    public class OracleDatetimeColumn : OracleColumn
+    public class OracleDateColumn : OracleColumn
     {
-        public OracleDatetimeColumn(string name, bool isNullable, string def)
+        public OracleDateColumn(string name, bool isNullable, string def)
             : base(name, ColumnTypeName.DateTime, isNullable, ConvertNativeDateToKeyword(def))
         {
         }

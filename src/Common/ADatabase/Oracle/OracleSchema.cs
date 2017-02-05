@@ -18,10 +18,11 @@ namespace ADatabase.Oracle
         {
         }
 
-        public override ITableDefinition GetTableDefinition(string tableName)
+        // Write to file from DB
+        public override ITableDefinition GetTableDefinition(IColumnTypeConverter columnTypeConverter, string tableName)
         {
             List<IColumn> columns = new List<IColumn>();
-            GetColumnInfo(tableName, columns);
+            GetColumnInfo(columnTypeConverter, tableName, columns);
 
             ITableDefinition tableDefinition = DbContext.PowerPlant.CreateTableDefinition(tableName, columns, GetSegmentName(tableName));
             tableDefinition.HasRawColumn = (from col in tableDefinition.Columns
@@ -31,7 +32,7 @@ namespace ADatabase.Oracle
             return tableDefinition;
         }
 
-        private void GetColumnInfo(string tableName, List<IColumn> columns)
+        private void GetColumnInfo(IColumnTypeConverter columnTypeConverter, string tableName, List<IColumn> columns)
         {
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             string selectStmt = CreateSelectStatementForColumns(tableName);

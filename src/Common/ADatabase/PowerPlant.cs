@@ -20,6 +20,13 @@ namespace ADatabase
             return new IndexDefinition(indexName, tableName, location, isUnique, id, isClustered);
         }
 
+        public IColumnTypeConverter CreateColumnTypeConverter(string conversionsFile)
+        {
+            var columnTypeConverter = new ColumnTypeConverter(new XmlConversionsReader(new TypeDescriptionFactory(new TypeConstraintFactory(new TypeOperatorFactory()))));
+            columnTypeConverter.Initialize(conversionsFile);
+            return columnTypeConverter;
+        }
+
         public abstract IDbSchema CreateDbSchema();
         public abstract ICommands CreateCommands();
         public abstract IColumnFactory CreateColumnFactory();

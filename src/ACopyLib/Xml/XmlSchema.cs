@@ -8,6 +8,7 @@ namespace ACopyLib.Xml
     {
         private readonly IDbContext _dbContext;
         private readonly IDbSchema _dbSchema;
+
         public XmlSchema(IDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -26,9 +27,9 @@ namespace ACopyLib.Xml
 
         public IU4Indexes U4Indexes { get; set; }
 
-        public ITableDefinition Write(string directory, string tableName, string schemaFileSuffix)
+        public ITableDefinition Write(string directory, IColumnTypeConverter columnsTypeConverter, string tableName, string schemaFileSuffix)
         {
-            ITableDefinition tableDefinition = _dbSchema.GetTableDefinition(tableName);
+            ITableDefinition tableDefinition = _dbSchema.GetTableDefinition(columnsTypeConverter, tableName);
 
             tableDefinition.Indexes = _dbSchema.GetIndexDefinitions(tableName);
             if (U4Indexes != null)

@@ -118,6 +118,7 @@ namespace ACopyConsole
             if (settings["MaxDegreeOfParallelism"].IsSet) writer.MaxDegreeOfParallelism = int.Parse(settings["MaxDegreeOfParallelism"].Value);
             if (settings["DataFileSuffix"].IsSet) writer.DataFileSuffix = settings["DataFileSuffix"].Value;
             if (settings["SchemaFileSuffix"].IsSet) writer.SchemaFileSuffix = settings["SchemaFileSuffix"].Value;
+            if (settings["ConversionsFile"].IsSet) writer.ConversionsFile = settings["ConversionsFile"].Value;
             writer.UseCompression = settings["UseCompression"].IsSet;
             writer.UseU4Indexes = settings["UseU4Indexes"].IsSet;
             writer.Write(tables);

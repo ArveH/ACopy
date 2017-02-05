@@ -41,51 +41,58 @@ namespace ADatabaseTest
             List<IColumn> columns = new List<IColumn> { ColumnFactory.CreateInstance(type, "col1", length, isNullable, def, collation) };
             ITableDefinition expectedTableDefinition = PowerPlant.CreateTableDefinition(TableName, columns, "");
             DbSchema.CreateTable(expectedTableDefinition);
-            ITableDefinition retrievedTableDefinition = DbSchema.GetTableDefinition(TableName);
+            var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleConversions.xml");
+            ITableDefinition retrievedTableDefinition = DbSchema.GetTableDefinition(columnTypeConverter, TableName);
 
             AssertTableDefinition(expectedTableDefinition, retrievedTableDefinition);
+        }
+
+        public void VerifyTableDefinitionDefaultValue(string expected)
+        {
+            var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleConversions.xml");
+            DbSchema.GetTableDefinition(columnTypeConverter, TableName).Columns[0].Default.Should().Be(expected);
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_MIN_DATE()
         {
             TestColumn(ColumnTypeName.DateTime, 0, false, "MIN_DATE", "");
-            DbSchema.GetTableDefinition(TableName).Columns[0].Default.Should().Be("MIN_DATE");
+            VerifyTableDefinitionDefaultValue("MIN_DATE");
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_MAX_DATE()
         {
             TestColumn(ColumnTypeName.DateTime, 0, false, "MAX_DATE", "");
-            DbSchema.GetTableDefinition(TableName).Columns[0].Default.Should().Be("MAX_DATE");
+            VerifyTableDefinitionDefaultValue("MAX_DATE");
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_MAX_DATE_Rounded()
         {
             TestColumn(ColumnTypeName.DateTime, 0, false, "TS2DAY(MAX_DATE)", "");
-            DbSchema.GetTableDefinition(TableName).Columns[0].Default.Should().Be("TS2DAY(MAX_DATE)");
+            VerifyTableDefinitionDefaultValue("TS2DAY(MAX_DATE)");
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_TODAY()
         {
             TestColumn(ColumnTypeName.DateTime, 0, false, "TODAY", "");
-            DbSchema.GetTableDefinition(TableName).Columns[0].Default.Should().Be("TODAY");
+            VerifyTableDefinitionDefaultValue("TODAY");
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_NOW()
         {
             TestColumn(ColumnTypeName.DateTime, 0, false, "NOW", "");
-            DbSchema.GetTableDefinition(TableName).Columns[0].Default.Should().Be("NOW");
+            VerifyTableDefinitionDefaultValue("NOW");
         }
 
         // TestMethod
         public void TestCreateTable_When_Guid_And_GUIDAsDefault()
         {
             TestColumn(ColumnTypeName.Guid, 0, false, "GUID", "");
-            DbSchema.GetTableDefinition(TableName).Columns[0].Default.Should().Be("GUID");
+            VerifyTableDefinitionDefaultValue("GUID");
         }
     }
 }

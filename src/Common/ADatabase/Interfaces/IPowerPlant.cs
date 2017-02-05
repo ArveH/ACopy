@@ -13,5 +13,6 @@ namespace ADatabase
         IColumnFactory CreateColumnFactory();
         IFastCopy CreateFastCopy();
         IDataCursor CreateDataCursor();
+        IColumnTypeConverter CreateColumnTypeConverter(string conversionsFile);
     }
 }

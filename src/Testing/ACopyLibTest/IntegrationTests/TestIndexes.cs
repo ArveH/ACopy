@@ -65,7 +65,8 @@ namespace ACopyLibTest.IntegrationTests
 
         private ITableDefinition WriteAndReadSchema(IXmlSchema xmlSchema)
         {
-            xmlSchema.Write(".\\", TestTable, "aschema");
+            var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleConversions.xml");
+            xmlSchema.Write(".\\", columnTypeConverter, TestTable, "aschema");
             var tableDefinition = xmlSchema.GetTableDefinition(".\\" + TestTable + ".aschema");
             return tableDefinition;
         }

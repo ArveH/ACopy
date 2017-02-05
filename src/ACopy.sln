@@ -38,6 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{B8BECC
 	ProjectSection(SolutionItems) = preProject
 		Config\Conversions.xsd = Config\Conversions.xsd
 		Config\Unit4OracleConversions.xml = Config\Unit4OracleConversions.xml
+		Config\Unit4SqlServerConversions.xml = Config\Unit4SqlServerConversions.xml
 	EndProjectSection
 EndProject
 Global

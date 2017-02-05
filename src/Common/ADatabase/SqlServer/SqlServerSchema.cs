@@ -81,7 +81,7 @@ namespace ADatabase.SqlServer
             return (string)Commands.ExecuteScalar(selectStmt);
         }
 
-        public override ITableDefinition GetTableDefinition(string tableName)
+        public override ITableDefinition GetTableDefinition(IColumnTypeConverter columnTypeConverter, string tableName)
         {
             string selectStmt = "";
             selectStmt += "SELECT c.name, " + "\n";

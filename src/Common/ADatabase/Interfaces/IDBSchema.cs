@@ -7,7 +7,7 @@ namespace ADatabase
     public interface IDbSchema
     {
         List<ITableShortInfo> GetTableNames(string searchString);
-        ITableDefinition GetTableDefinition(string name);
+        ITableDefinition GetTableDefinition(IColumnTypeConverter columnTypeConverter, string name);
         bool IsTable(string tableName);
         long GetRowCount(string tableName);
         void CreateTable(ITableDefinition tableDefinition);

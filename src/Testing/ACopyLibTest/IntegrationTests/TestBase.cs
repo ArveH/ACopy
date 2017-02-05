@@ -14,6 +14,7 @@ namespace ACopyLibTest.IntegrationTests
         protected IDbSchema DbSchema;
         protected ICommands Commands;
         protected IColumnFactory ColumnFactory;
+        protected IColumnTypeConverter ColumnTypeConverter;
         private IAWriter _writer;
         private IAReader _reader;
 
@@ -33,6 +34,7 @@ namespace ACopyLibTest.IntegrationTests
             DbSchema = DbContext.PowerPlant.CreateDbSchema();
             Commands = DbContext.PowerPlant.CreateCommands();
             ColumnFactory = DbContext.PowerPlant.CreateColumnFactory();
+            ColumnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleConversions.xml");
             Cleanup();
         }
 

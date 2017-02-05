@@ -3,11 +3,21 @@ using System.Globalization;
 
 namespace ADatabase.Oracle.Columns
 {
-    public abstract class OracleNumberColumn: OracleColumn
+    public class OracleNumberColumn: OracleColumn
     {
-        public OracleNumberColumn(string name, ColumnTypeName type, bool isNullable, string def)
-            : base(name, type, isNullable, def)
+        private readonly string _typeToString;
+
+        public OracleNumberColumn(string name, int prec, int scale, bool isNullable, string def)
+            : base(name, ColumnTypeName.Dec, isNullable, def)
         {
+            Details["Prec"] = prec;
+            Details["Scale"] = scale;
+            _typeToString = $"number({prec},{scale})";
+        }
+
+        public override string TypeToString()
+        {
+            return _typeToString;
         }
 
         public override string ToString(object value)

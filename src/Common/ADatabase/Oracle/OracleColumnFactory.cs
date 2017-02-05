@@ -15,26 +15,19 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.String:
                     return new OracleVarchar2Column(name, length, isNullable, def);
                 case ColumnTypeName.LongText:
-                    return new OracleLongTextColumn(name, isNullable, def, collation);
-                case ColumnTypeName.Int:
-                    return new OracleIntColumn(name, isNullable, def);
+                    return new OracleClobColumn(name, isNullable, def, collation);
                 case ColumnTypeName.Bool:
-                    return new OracleBoolColumn(name, isNullable, def);
                 case ColumnTypeName.Int8:
-                    return new OracleInt8Column(name, isNullable, def);
                 case ColumnTypeName.Int16:
-                    return new OracleInt16Column(name, isNullable, def);
+                case ColumnTypeName.Int:
                 case ColumnTypeName.Int64:
-                    return new OracleInt64Column(name, isNullable, def);
                 case ColumnTypeName.Money:
-                    return new OracleMoneyColumn(name, isNullable, def);
+                    return new OracleNumberColumn(name, prec, scale, isNullable, def);
                 case ColumnTypeName.Float:
-                    return new OracleFloatColumn(name, isNullable, def);
+                    return new OracleBinaryFloatColumn(name, isNullable, def);
                 case ColumnTypeName.DateTime:
-                    return new OracleDatetimeColumn(name, isNullable, def);
+                    return new OracleDateColumn(name, isNullable, def);
                 case ColumnTypeName.Guid:
-                    return new OracleGuidColumn(name, length==0?16:length, isNullable, def);
-                case ColumnTypeName.Raw:
                     return new OracleRawColumn(name, isNullable, def);
             }
 

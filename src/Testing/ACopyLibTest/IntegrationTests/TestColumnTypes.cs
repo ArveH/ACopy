@@ -14,7 +14,7 @@ namespace ACopyLibTest.IntegrationTests
 
         protected void VerifyType(IColumn col)
         {
-            ITableDefinition tableDefinition = DbSchema.GetTableDefinition(TestTable);
+            ITableDefinition tableDefinition = DbSchema.GetTableDefinition(ColumnTypeConverter, TestTable);
             tableDefinition.Columns[1].Type.Should().Be(col.Type);
             tableDefinition.Columns[1].Default.Should().Be(col.Default);
             tableDefinition.Columns[1].IsNullable.Should().Be(col.IsNullable);
@@ -80,7 +80,7 @@ namespace ACopyLibTest.IntegrationTests
 
         private void CheckTableWith3GuidsHasCorrectTypes()
         {
-            ITableDefinition tableDefinition = DbSchema.GetTableDefinition(TestTable);
+            ITableDefinition tableDefinition = DbSchema.GetTableDefinition(ColumnTypeConverter, TestTable);
             tableDefinition.Columns[1].Type.Should().Be(ColumnTypeName.Guid, "guid1_col should be guid");
             tableDefinition.Columns[2].Type.Should().Be(ColumnTypeName.Guid, "guid2_col should be guid");
             tableDefinition.Columns[4].Type.Should().Be(ColumnTypeName.Guid, "guid3_col should be guid");

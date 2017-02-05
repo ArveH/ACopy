@@ -1,6 +1,6 @@
 ﻿using System;
 using ADatabase;
-using ADatabase.Oracle.Columns;
+using ADatabase.Oracle;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -61,7 +61,7 @@ namespace ACopyLibTest
         {
             TestReader_When_Guid();
             var val = Commands.ExecuteScalar(string.Format("select test_col from {0}", TestTable));
-            Guid guid = OracleGuidColumn.ConvertToGuid((byte[])val);
+            Guid guid = OracleGuidHelper.ConvertToGuid((byte[])val);
             guid.ToString().Should().Be(TestGuid);
         }
 

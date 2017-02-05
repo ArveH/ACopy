@@ -7,7 +7,7 @@ namespace ACopyLib.Xml
     {
         IAXmlWriter XmlWriter { get; set; }
         IU4Indexes U4Indexes { get; set; }
-        ITableDefinition Write(string directory, string tableName, string schemaFileSuffix);
+        ITableDefinition Write(string directory, IColumnTypeConverter columnsTypeConverter, string tableName, string schemaFileSuffix);
         ITableDefinition GetTableDefinition(string fileName);
     }
 }

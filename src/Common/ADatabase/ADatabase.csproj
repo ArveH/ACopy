@@ -116,18 +116,11 @@
     <Compile Include="Interfaces\IPowerPlant.cs" />
     <Compile Include="Interfaces\ITableDefinition.cs" />
     <Compile Include="Interfaces\ITableShortInfo.cs" />
-    <Compile Include="Oracle\Columns\OracleBoolColumn.cs" />
     <Compile Include="Oracle\Columns\OracleColumn.cs" />
     <Compile Include="Oracle\Columns\OracleColumnTypeConverter.cs" />
-    <Compile Include="Oracle\Columns\OracleDatetimeColumn.cs" />
-    <Compile Include="Oracle\Columns\OracleFloatColumn.cs" />
-    <Compile Include="Oracle\Columns\OracleGuidColumn.cs" />
-    <Compile Include="Oracle\Columns\OracleInt16Column.cs" />
-    <Compile Include="Oracle\Columns\OracleInt64Column.cs" />
-    <Compile Include="Oracle\Columns\OracleInt8Column.cs" />
-    <Compile Include="Oracle\Columns\OracleIntColumn.cs" />
-    <Compile Include="Oracle\Columns\OracleLongTextColumn.cs" />
-    <Compile Include="Oracle\Columns\OracleMoneyColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleDateColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleBinaryFloatColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleClobColumn.cs" />
     <Compile Include="Oracle\Columns\OracleNumberColumn.cs" />
     <Compile Include="Oracle\Columns\OracleRawColumn.cs" />
     <Compile Include="Oracle\Columns\OracleVarchar2Column.cs" />
@@ -138,6 +131,7 @@
     <Compile Include="Oracle\OracleContext.cs" />
     <Compile Include="Oracle\OracleDataCursor.cs" />
     <Compile Include="Oracle\OracleFastCopy.cs" />
+    <Compile Include="Oracle\OracleGuidHelper.cs" />
     <Compile Include="Oracle\OraclePowerPlant.cs" />
     <Compile Include="Oracle\OracleSchema.cs" />
     <Compile Include="PowerPlant.cs" />
@@ -186,6 +180,12 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\Config\Unit4OracleConversions.xml">
+      <Link>Resources\Unit4OracleConversions.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

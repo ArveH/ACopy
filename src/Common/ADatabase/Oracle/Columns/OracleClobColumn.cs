@@ -1,8 +1,8 @@
 ﻿namespace ADatabase.Oracle.Columns
 {
-    public class OracleLongTextColumn: OracleVarchar2Column
+    public class OracleClobColumn: OracleVarchar2Column
     {
-        public OracleLongTextColumn(string name, bool isNullable, string def, string collation)
+        public OracleClobColumn(string name, bool isNullable, string def, string collation)
             : base(name, -1, isNullable, def)
         {
             Type = ColumnTypeName.LongText;
