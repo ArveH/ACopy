@@ -15,7 +15,7 @@
                   </xs:simpleContent>
                 </xs:complexType>
               </xs:element>
-              <xs:element minOccurs="0" name="Precision">
+              <xs:element minOccurs="0" name="Prec">
                 <xs:complexType>
                   <xs:simpleContent>
                     <xs:extension base="xs:unsignedByte">
@@ -34,13 +34,11 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="Name" type="xs:string" use="required" />
-            <xs:attribute name="To" type="xs:string" use="required" />
+            <xs:attribute name="Source" type="xs:string" use="required" />
+            <xs:attribute name="Destination" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
       </xs:sequence>
-      <xs:attribute name="From" type="xs:string" use="required" />
-      <xs:attribute name="To" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
 </xs:schema>
