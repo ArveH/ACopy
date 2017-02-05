@@ -36,15 +36,20 @@ namespace ADatabaseTest
             AssertColumns(expectedTableDefinition.Columns[0], retrievedTableDefinition.Columns[0]);
         }
 
-        protected void TestColumn(ColumnTypeName type, int length, bool isNullable, string def, string collation)
+        protected void TestColumn(ColumnTypeName type, int length, int prec, int scale, bool isNullable, string def, string collation)
         {
-            List<IColumn> columns = new List<IColumn> { ColumnFactory.CreateInstance(type, "col1", length, isNullable, def, collation) };
+            List<IColumn> columns = new List<IColumn> { ColumnFactory.CreateInstance(type, "col1", length, prec, scale, isNullable, def, collation) };
             ITableDefinition expectedTableDefinition = PowerPlant.CreateTableDefinition(TableName, columns, "");
             DbSchema.CreateTable(expectedTableDefinition);
             var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleConversions.xml");
             ITableDefinition retrievedTableDefinition = DbSchema.GetTableDefinition(columnTypeConverter, TableName);
 
             AssertTableDefinition(expectedTableDefinition, retrievedTableDefinition);
+        }
+
+        protected void TestDateTimeDefauleValue(string defValue)
+        {
+            TestColumn(ColumnTypeName.DateTime, 0, 0, 0, false, defValue, "");
         }
 
         public void VerifyTableDefinitionDefaultValue(string expected)
@@ -56,42 +61,42 @@ namespace ADatabaseTest
         // TestMethod
         public void TestCreateTable_When_Date_And_MIN_DATE()
         {
-            TestColumn(ColumnTypeName.DateTime, 0, false, "MIN_DATE", "");
+            TestDateTimeDefauleValue("MIN_DATE");
             VerifyTableDefinitionDefaultValue("MIN_DATE");
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_MAX_DATE()
         {
-            TestColumn(ColumnTypeName.DateTime, 0, false, "MAX_DATE", "");
+            TestDateTimeDefauleValue("MAX_DATE");
             VerifyTableDefinitionDefaultValue("MAX_DATE");
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_MAX_DATE_Rounded()
         {
-            TestColumn(ColumnTypeName.DateTime, 0, false, "TS2DAY(MAX_DATE)", "");
+            TestDateTimeDefauleValue("TS2DAY(MAX_DATE)");
             VerifyTableDefinitionDefaultValue("TS2DAY(MAX_DATE)");
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_TODAY()
         {
-            TestColumn(ColumnTypeName.DateTime, 0, false, "TODAY", "");
+            TestDateTimeDefauleValue("TODAY");
             VerifyTableDefinitionDefaultValue("TODAY");
         }
 
         // TestMethod
         public void TestCreateTable_When_Date_And_NOW()
         {
-            TestColumn(ColumnTypeName.DateTime, 0, false, "NOW", "");
+            TestDateTimeDefauleValue("NOW");
             VerifyTableDefinitionDefaultValue("NOW");
         }
 
         // TestMethod
         public void TestCreateTable_When_Guid_And_GUIDAsDefault()
         {
-            TestColumn(ColumnTypeName.Guid, 0, false, "GUID", "");
+            TestColumn(ColumnTypeName.Guid, 16, 0, 0, false, "GUID", "");
             VerifyTableDefinitionDefaultValue("GUID");
         }
     }

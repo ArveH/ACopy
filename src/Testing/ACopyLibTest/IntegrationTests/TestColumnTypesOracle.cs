@@ -37,7 +37,7 @@ namespace ACopyLibTest.IntegrationTests
         public void TestOraWriteRead_When_Bool()
         {
             TestWriteRead_When_Bool();
-            var val = (short)Commands.ExecuteScalar(string.Format("select test_col from {0}", TestTable));
+            var val = (short)Commands.ExecuteScalar($"select test_col from {TestTable}");
             val.Should().Be(1);
         }
 
@@ -45,14 +45,14 @@ namespace ACopyLibTest.IntegrationTests
         public void TestOraWriteRead_When_Int64()
         {
             TestWriteRead_When_Int64();
-            var val = Commands.ExecuteScalar(string.Format("select test_col from {0}", TestTable));
+            var val = Commands.ExecuteScalar($"select test_col from {TestTable}");
             Convert.ToInt64(val).Should().Be(123456789012345);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestOraWriteRead_When_Guid()
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Guid, "test_col", 16, true, "", "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Raw, "test_col", 16, true, "", "");
             CreateTestTable1Row3Columns1Value(col, "hextoraw('3f2504e04f8911d39a0c0305e82c3301')");
             WriteAndRead();
             VerifyType(col);
@@ -60,7 +60,8 @@ namespace ACopyLibTest.IntegrationTests
 
         private void InsertIntoTableWith3Guids()
         {
-            string tmp = string.Format("insert into {0} (id, guid1_col, guid2_col, val, guid3_col) values (9, hextoraw('1f2504e04f8911d39a0c0305e82c3301'), hextoraw('2f2504e04f8911d39a0c0305e82c3302'), 'control value', hextoraw('3f2504e04f8911d39a0c0305e82c3303'))", TestTable);
+            string tmp =
+                $"insert into {TestTable} (id, guid1_col, guid2_col, val, guid3_col) values (9, hextoraw('1f2504e04f8911d39a0c0305e82c3301'), hextoraw('2f2504e04f8911d39a0c0305e82c3302'), 'control value', hextoraw('3f2504e04f8911d39a0c0305e82c3303'))";
             Commands.ExecuteNonQuery(tmp);
         }
 

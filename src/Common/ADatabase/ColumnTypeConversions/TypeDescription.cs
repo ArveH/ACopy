@@ -7,7 +7,7 @@ namespace ADatabase
 {
     public class TypeDescription : ITypeDescription
     {
-        private static readonly Regex TypeRegex = new Regex(@"(?<type>\w+)(\(@(?<first>Length|Prec|Scale)(,@(?<second>Length|Prec|Scale))?\))?");
+        private static readonly Regex TypeRegex = new Regex(@"(?<type>\w+)(\(@(?<first>Length|Prec|Scale)(, ??@(?<second>Length|Prec|Scale))?\))?");
         private readonly ITypeConstraintFactory _typeConstraintFactory;
 
         public TypeDescription(ITypeConstraintFactory typeConstraintFactory)
@@ -46,7 +46,7 @@ namespace ADatabase
             Constraints.Add(constraint);
         }
 
-        public bool Validate(string sourceType, int? length, int? prec, int? scale)
+        public bool Validate(string sourceType, int length, int prec, int scale)
         {
             var match = TypeRegex.Match(sourceType);
             if (!match.Success) return false;
@@ -69,19 +69,22 @@ namespace ADatabase
             return false;
         }
 
-        public string GetDestinationString(int? length, int? prec, int? scale)
+        public string GetDestinationType(ref int length, ref int prec, ref int scale)
         {
-            var result = ConvertTo;
             if (ConvertToParameters.ContainsKey("Length"))
             {
-                if (length == null) throw new AColumnTypeException($"No Length value given for destination type '{ConvertTo}'");
-                return ConvertTo + $"({length})";
+                if (length == 0) throw new AColumnTypeException($"No Length value given for destination type '{ConvertTo}'");
+                if (ConvertToParameters["Length"] != -99) length = ConvertToParameters["Length"];
+                prec = 0;
+                scale = 0;
             }
-            if (ConvertToParameters.ContainsKey("Prec"))
+            else if (ConvertToParameters.ContainsKey("Prec"))
             {
-                if (prec == null) throw new AColumnTypeException($"No Precision value given for destination type '{ConvertTo}'");
+                if (prec == 0) throw new AColumnTypeException($"No Precision value given for destination type '{ConvertTo}'");
                 if (!ConvertToParameters.ContainsKey("Scale")) throw new AColumnTypeException($"No Scale value given for destination type '{ConvertTo}'");
-                return ConvertTo + $"({length})";
+                length = 0;
+                if (ConvertToParameters["Prec"] != -99) prec = ConvertToParameters["Prec"];
+                if (ConvertToParameters["Scale"] != -99) scale = ConvertToParameters["Scale"];
             }
             return ConvertTo;
         }

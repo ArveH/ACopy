@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using ADatabase;
 using ADatabase.Exceptions;
+using ADatabase.Extensions;
 using ADatabase.Oracle.Columns;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,9 +12,22 @@ namespace ADatabaseTest
     [TestClass]
     public class TestConvertOracleToACopy
     {
+        private IColumnTypeConverter _columnTypeConverter;
+
+        [TestInitialize]
+        public void Startup()
+        {
+            _columnTypeConverter = new ColumnTypeConverter(new XmlConversionsReader(new TypeDescriptionFactory(new TypeConstraintFactory(new TypeOperatorFactory()))));
+            _columnTypeConverter.Initialize(File.ReadAllText("Resources/Unit4OracleConversions.xml"));
+        }
+
         private ColumnTypeName GetACopyType(string type, int len=0, int prec=0, int scale=0)
         {
-            return OracleColumnTypeConverter.GetColumnTypeFromNativeType(type, len, prec, scale);
+            var newLength = len;
+            var newPrec = prec;
+            var newScale = scale;
+
+            return _columnTypeConverter.GetDestinationType(type, ref newLength, ref newPrec, ref newScale).Oracle2ColumnTypeName();
         }
 
         [TestMethod]

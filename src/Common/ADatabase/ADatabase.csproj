@@ -101,6 +101,7 @@
     <Compile Include="DBContextFactory.cs" />
     <Compile Include="Exceptions\AMaxWorkerThreadsException.cs" />
     <Compile Include="ColumnTypeConversions\Interfaces\IColumnTypeConverter.cs" />
+    <Compile Include="Extensions\StringCustomExtensions.cs" />
     <Compile Include="IndexColumn.cs" />
     <Compile Include="IndexColumnFactory.cs" />
     <Compile Include="Interfaces\IColumnFactory.cs" />
@@ -117,7 +118,7 @@
     <Compile Include="Interfaces\ITableDefinition.cs" />
     <Compile Include="Interfaces\ITableShortInfo.cs" />
     <Compile Include="Oracle\Columns\OracleColumn.cs" />
-    <Compile Include="Oracle\Columns\OracleColumnTypeConverter.cs" />
+    <Compile Include="Oracle\Columns\OracleColumnTypeNameConverter.cs" />
     <Compile Include="Oracle\Columns\OracleDateColumn.cs" />
     <Compile Include="Oracle\Columns\OracleBinaryFloatColumn.cs" />
     <Compile Include="Oracle\Columns\OracleClobColumn.cs" />
@@ -187,6 +188,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>xcopy "$(SolutionDir)\..\Oracle binaries\*.*" . /Y

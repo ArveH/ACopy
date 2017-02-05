@@ -26,7 +26,7 @@ namespace ADatabaseTest
 
         private void TestStringColumn(ColumnTypeName colType)
         {
-            TestColumn(colType, 50, false, "' '", "Danish_Norwegian_CI_AS");
+            TestColumn(colType, 50, 0, 0, false, "' '", "Danish_Norwegian_CI_AS");
         }
 
         [TestMethod, TestCategory("SqlServer")]
@@ -55,7 +55,7 @@ namespace ADatabaseTest
 
         private void TestNumberColumn(ColumnTypeName type)
         {
-            TestColumn(type, 0, false, "0", "");
+            TestColumn(type, 0, 0, 0, false, "0", "");
         }
 
         [TestMethod, TestCategory("SqlServer")]
@@ -103,19 +103,19 @@ namespace ADatabaseTest
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_DateTime()
         {
-            TestColumn(ColumnTypeName.DateTime, 0, false, "convert(datetime,'19000101',112)", "");
+            TestDateTimeDefauleValue("convert(datetime,'19000101',112)");
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Guid()
         {
-            TestColumn(ColumnTypeName.Guid, 0, true, "", "");
+            TestColumn(ColumnTypeName.Guid, 16, 0, 0, true, "", "");
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Raw()
         {
-            TestColumn(ColumnTypeName.Raw, 0, true, "", "");
+            TestColumn(ColumnTypeName.Raw, 0, 0, 0, true, "", "");
         }
 
         [TestMethod, TestCategory("SqlServer")]

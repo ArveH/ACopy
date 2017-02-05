@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 
 namespace ADatabase
 {
@@ -23,7 +24,7 @@ namespace ADatabase
         public IColumnTypeConverter CreateColumnTypeConverter(string conversionsFile)
         {
             var columnTypeConverter = new ColumnTypeConverter(new XmlConversionsReader(new TypeDescriptionFactory(new TypeConstraintFactory(new TypeOperatorFactory()))));
-            columnTypeConverter.Initialize(conversionsFile);
+            columnTypeConverter.Initialize(File.ReadAllText(conversionsFile));
             return columnTypeConverter;
         }
 

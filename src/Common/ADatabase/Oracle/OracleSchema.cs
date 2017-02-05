@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using ADatabase.Exceptions;
+using ADatabase.Extensions;
 using ADatabase.Interfaces;
 using ADatabase.Oracle.Columns;
 using Oracle.ManagedDataAccess.Client;
@@ -49,7 +50,8 @@ namespace ADatabase.Oracle
                     int scale = reader.GetInt32(4);
                     bool isNullable = reader.GetString(5) == "Y";
                     string def = reader.IsDBNull(6) ? "" : reader.GetString(6).TrimEnd();
-                    ColumnTypeName colType = OracleColumnTypeConverter.GetColumnTypeFromNativeType(type, length, prec, scale);
+                    string sourceType = type.ToOracleTypeWithParameters();
+                    var colType = columnTypeConverter.GetDestinationType(sourceType, ref length, ref prec, ref scale).ACopy2ColumnTypeName();
                     columns.Add(columnFactory.CreateInstance(colType, name, length, prec, scale, isNullable, def, ""));
                 }
             }

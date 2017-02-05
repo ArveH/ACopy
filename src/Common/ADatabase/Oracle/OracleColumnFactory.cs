@@ -22,13 +22,14 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.Int:
                 case ColumnTypeName.Int64:
                 case ColumnTypeName.Money:
-                    return new OracleNumberColumn(name, prec, scale, isNullable, def);
                 case ColumnTypeName.Float:
-                    return new OracleBinaryFloatColumn(name, isNullable, def);
+                    return new OracleNumberColumn(name, prec, scale, isNullable, def);
                 case ColumnTypeName.DateTime:
                     return new OracleDateColumn(name, isNullable, def);
                 case ColumnTypeName.Guid:
-                    return new OracleRawColumn(name, isNullable, def);
+                    return new OracleRawColumn(name, 16, isNullable, def);
+                case ColumnTypeName.Raw:
+                    return new OracleRawColumn(name, length, isNullable, def);
             }
 
             throw new NotImplementedException();

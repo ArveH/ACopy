@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using ADatabase.Exceptions;
+using ADatabase.Extensions;
 
 namespace ADatabase
 {
@@ -40,11 +41,15 @@ namespace ADatabase
             }
         }
 
-        public string GetDestinationType(string sourceType, int? length, int? prec, int?scale)
+        public string GetDestinationType(string sourceType, ref int length, ref int prec, ref int scale)
         {
             foreach (var type in _types)
             {
-                if (type.Validate(sourceType, length, prec, scale)) return type.GetDestinationString(length, prec, scale);
+                if (type.Validate(sourceType, length, prec, scale))
+                {
+
+                    return type.GetDestinationType(ref length, ref prec, ref scale);
+                }
             }
 
             throw new AColumnTypeException($"Illegal type: '{sourceType}', length={length}, prec={prec}, scale={scale}");
