@@ -4,7 +4,7 @@
   <Type Source="varchar2(@Length)" Destination="varchar(@Length)"/>
   <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>
   <Type Source="char(@Length)" Destination="varchar(@Length)"/>
-  <Type Source="clob" Destination="LongText"/>
+  <Type Source="clob" Destination="longtext"/>
   <Type Source="integer" Destination="int"/>
   <Type Source="number(@Prec,@Scale)" Destination="bool">
     <Prec Operator="=">1</Prec>

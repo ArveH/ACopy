@@ -40,28 +40,28 @@ namespace ADatabaseTest
         [TestMethod]
         public void TestGetRootNode_When_FromAttributeMissing()
         {
-            Action act = () => _xmlConversionsReader.GetRootNode(ConversionXmlHelper.FromAttributeMissing());
+            Action act = () => _xmlConversionsReader.GetRootNode(ConversionXmlHelper.FromAttributeMissingXml());
             act.ShouldThrow<XmlException>().WithMessage("Error with attribute 'From' for 'TypeConversions'");
         }
 
         [TestMethod]
         public void TestGetRootNode_When_ToAttributeMissing()
         {
-            Action act = () => _xmlConversionsReader.GetRootNode(ConversionXmlHelper.ToAttributeBlank());
+            Action act = () => _xmlConversionsReader.GetRootNode(ConversionXmlHelper.ToAttributeBlankXml());
             act.ShouldThrow<XmlException>().WithMessage("Error with attribute 'To' for 'TypeConversions'");
         }
 
         [TestMethod]
         public void TestGetRootNode_When_LegalXmlButNoConversions()
         {
-            Action act = () => _xmlConversionsReader.GetRootNode(ConversionXmlHelper.LegalRootButNoConversions());
+            Action act = () => _xmlConversionsReader.GetRootNode(ConversionXmlHelper.LegalRootButNoConversionsXml());
             act.ShouldThrow<XmlException>().WithMessage("No conversions found");
         }
 
         [TestMethod]
         public void TestGetSourceSystem()
         {
-            var rootNode = _xmlConversionsReader.GetRootNode(ConversionXmlHelper.LegalRootOneVarcharColumn());
+            var rootNode = _xmlConversionsReader.GetRootNode(ConversionXmlHelper.Unit4OracleConversionsXml());
             var sourceSystem = _xmlConversionsReader.GetSourceSystem(rootNode);
             sourceSystem.Should().Be(DatabaseSystemName.Oracle);
         }
@@ -69,7 +69,7 @@ namespace ADatabaseTest
         [TestMethod]
         public void TestGetDestinationSystem()
         {
-            var rootNode = _xmlConversionsReader.GetRootNode(ConversionXmlHelper.LegalRootOneVarcharColumn());
+            var rootNode = _xmlConversionsReader.GetRootNode(ConversionXmlHelper.Unit4OracleConversionsXml());
             var sourceSystem = _xmlConversionsReader.GetDestinationSystem(rootNode);
             sourceSystem.Should().Be(DatabaseSystemName.ACopy);
         }

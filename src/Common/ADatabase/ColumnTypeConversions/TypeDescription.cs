@@ -80,7 +80,7 @@ namespace ADatabase
             if (ConvertToParameters.ContainsKey("Prec"))
             {
                 if (prec == null) throw new AColumnTypeException($"No Precision value given for destination type '{ConvertTo}'");
-                if (!ConvertToParameters.ContainsKey("Scale")) throw new AColumnTypeException($"No Precision value given for destination type '{ConvertTo}'");
+                if (!ConvertToParameters.ContainsKey("Scale")) throw new AColumnTypeException($"No Scale value given for destination type '{ConvertTo}'");
                 return ConvertTo + $"({length})";
             }
             return ConvertTo;

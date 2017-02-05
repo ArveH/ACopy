@@ -4,7 +4,7 @@ namespace ADatabaseTest.Helpers
 {
     public static class ConversionXmlHelper
     {
-        private static string GetHeading()
+        private static string GetHeadingXml()
         {
             return
                 "<?xml version=\"1.0\" encoding=\"utf-8\"?> " +
@@ -18,50 +18,55 @@ namespace ADatabaseTest.Helpers
             return xmlDocument.FirstChild;
         }
 
+        private static string GetOneNumberTypeXml(string destinationType, string prec, string scale)
+        {
+            return $"<Type Source=\"number(@Prec,@Scale)\" Destination=\"{destinationType}\">\n" +
+                   $"<Prec Operator=\"=\">{prec}</Prec>\n" +
+                   $"<Scale Operator=\"=\">{scale}</Scale>\n" +
+                   $"</Type>\n";
+        }
+
+        private static string GetOneTypeNoOperatorXml(string sourceType, string destinationType)
+        {
+            return $"<Type Source=\"{sourceType}\" Destination=\"{destinationType}\">\n" +
+                   $"</Type>\n";
+        }
+
         public static string LegalXmlButIncorrectRootElement()
         {
             return
-                GetHeading() +
+                GetHeadingXml() +
                 "<MyBody></MyBody>";
         }
 
-        public static string TypeConversionsHasNoAttributes()
+        public static string TypeConversionsHasNoAttributesXml()
         {
             return
-                GetHeading() +
+                GetHeadingXml() +
                 "<TypeConversions />";
         }
 
-        public static string FromAttributeMissing()
+        public static string FromAttributeMissingXml()
         {
             return
-                GetHeading() +
+                GetHeadingXml() +
                 "<TypeConversions To=\"ACopy\">" +
                 "</TypeConversions>";
         }
 
-        public static string ToAttributeBlank()
+        public static string ToAttributeBlankXml()
         {
             return
-                GetHeading() +
+                GetHeadingXml() +
                 "<TypeConversions From=\"Oracle\" To=\"\">" +
                 "</TypeConversions>";
         }
 
-        public static string LegalRootButNoConversions()
+        public static string LegalRootButNoConversionsXml()
         {
             return
-                GetHeading() +
+                GetHeadingXml() +
                 "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
-                "</TypeConversions>";
-        }
-
-        public static string LegalRootOneVarcharColumn()
-        {
-            return
-                GetHeading() +
-                "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
-                "<Type Source=\"varchar2(@Length)\" Destination=\"varchar(@Length)\"></Type>" +
                 "</TypeConversions>";
         }
 
@@ -109,22 +114,48 @@ namespace ADatabaseTest.Helpers
             return GetXmlNode(txt);
         }
 
-        public static string OneTypeNoConstraints(string sourceType, string destinationType)
+        public static string OracleGuidXml()
         {
-            return GetHeading() +
-                "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
-                $"<Type Source=\"{sourceType}\" Destination=\"{destinationType}\"></Type>" +
+            return GetHeadingXml() +
+                   "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
+                   "<Type Source=\"raw(@Length)\" Destination=\"guid\">" +
+                   "<Length Operator=\"in\">16,32,17,34</Length>" +
+                   "</Type>" +
+                   "</TypeConversions>";
+        }
+
+        public static string OneNumberTypeXml(string destinationType, string prec, string scale)
+        {
+            return GetHeadingXml() +
+                "<TypeConversions From=\"Oracle\" To=\"ACopy\">\n" +
+                GetOneNumberTypeXml(destinationType, prec, scale) +
                 "</TypeConversions>";
         }
 
-        public static string FromNumberXml(string destinationType, string prec, string scale)
+        public static string Unit4OracleConversionsXml()
         {
-            return GetHeading() +
+            return GetHeadingXml() +
                 "<TypeConversions From=\"Oracle\" To=\"ACopy\">\n" +
-                $"<Type Source=\"number(@Prec,@Scale)\" Destination=\"{destinationType}\">\n" +
-                $"<Prec Operator=\"=\">{prec}</Prec>\n" +
-                $"<Scale Operator=\"=\">{scale}</Scale>\n" +
-                $"</Type>\n" +
+                GetOneTypeNoOperatorXml("varchar2(@Length)", "varchar(@Length)") +
+                GetOneTypeNoOperatorXml("varchar(@Length)", "varchar(@Length)") +
+                GetOneTypeNoOperatorXml("char(@Length)", "varchar(@Length)") +
+                GetOneTypeNoOperatorXml("clob", "longtext") +
+                GetOneTypeNoOperatorXml("integer", "int") +
+                GetOneNumberTypeXml("bool", "1", "0") +
+                GetOneNumberTypeXml("int8", "3", "0") +
+                GetOneNumberTypeXml("int16", "5", "0") +
+                GetOneNumberTypeXml("int", "15", "0") +
+                GetOneNumberTypeXml("int64", "20", "0") +
+                GetOneNumberTypeXml("money", "18", "2") +
+                GetOneNumberTypeXml("money", "30", "3") +
+                GetOneTypeNoOperatorXml("number(@Prec,@Scale)", "float") +
+                GetOneTypeNoOperatorXml("float", "float") +
+                GetOneTypeNoOperatorXml("date", "datetime") +
+                   "<Type Source=\"raw(@Length)\" Destination=\"guid\">" +
+                   "<Length Operator=\"in\">16,32,17,34</Length>" +
+                   "</Type>" +
+                GetOneTypeNoOperatorXml("blob", "raw") +
+                GetOneTypeNoOperatorXml("long raw", "raw") +
                 "</TypeConversions>";
         }
     }
