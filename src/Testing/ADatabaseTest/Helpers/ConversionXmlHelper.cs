@@ -132,7 +132,7 @@ namespace ADatabaseTest.Helpers
                 "</TypeConversions>";
         }
 
-        public static string Unit4OracleConversionsXml()
+        public static string Unit4OracleToACopyConversionsXml()
         {
             return GetHeadingXml() +
                 "<TypeConversions From=\"Oracle\" To=\"ACopy\">\n" +
@@ -158,5 +158,27 @@ namespace ADatabaseTest.Helpers
                 GetOneTypeNoOperatorXml("long raw", "raw") +
                 "</TypeConversions>";
         }
+
+        public static string ACopyToUnit4OracleConversionsXml()
+        {
+            return GetHeadingXml() +
+                "<TypeConversions From=\"ACopy\" To=\"Oracle\">\n" +
+                GetOneTypeNoOperatorXml("varchar(@Length)", "varchar2(@Length)") +
+                GetOneTypeNoOperatorXml("char(@Length)", "varchar2(@Length)") +
+                GetOneTypeNoOperatorXml("longtext", "clob") +
+                GetOneTypeNoOperatorXml("integer", "int") +
+                GetOneTypeNoOperatorXml("bool", "number()") +
+                GetOneTypeNoOperatorXml("int8", "number()") +
+                GetOneTypeNoOperatorXml("int16", "number()") +
+                GetOneTypeNoOperatorXml("int", "number()") +
+                GetOneTypeNoOperatorXml("int64", "number()") +
+                GetOneTypeNoOperatorXml("money", "number()") +
+                GetOneTypeNoOperatorXml("float", "number()") +
+                GetOneTypeNoOperatorXml("datetime", "date") +
+                GetOneTypeNoOperatorXml("guid", "raw(16)") +
+                GetOneTypeNoOperatorXml("blob", "blob") +
+                "</TypeConversions>";
+        }
+
     }
 }
