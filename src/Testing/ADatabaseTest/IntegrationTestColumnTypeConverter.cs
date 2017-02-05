@@ -11,6 +11,10 @@ namespace ADatabaseTest
     [TestClass]
     public class IntegrationTestColumnTypeConverter
     {
+        private int _length;
+        private int _prec;
+        private int _scale;
+
         private readonly IColumnTypeConverter _columnTypeConverter =
             new ColumnTypeConverter(
                 new XmlConversionsReader(
@@ -18,145 +22,164 @@ namespace ADatabaseTest
                         new TypeConstraintFactory(
                             new TypeOperatorFactory()))));
 
-        private string GetDestinationType(string input, int length, int prec, int scale)
+        private string GetDestinationType(string input, ref int length, ref int prec, ref int scale)
         {
-            var newLength = length;
-            var newPrec = prec;
-            var newScale = scale;
-
-            return _columnTypeConverter.GetDestinationType("illegal_type(@Length)", ref length, ref prec, ref scale);
+            return _columnTypeConverter.GetDestinationType(input, ref length, ref prec, ref scale);
         }
 
         [TestInitialize]
         public void Startup()
         {
+            _length = 0;
+            _prec = 0;
+            _scale = 0;
             _columnTypeConverter.Initialize(ConversionXmlHelper.Unit4OracleConversionsXml());
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_IllegalTypeName()
         {
-            Action act = () => GetDestinationType("illegal_type(@Length)", 25, 0, 0);
+            _length = 25;
+            Action act = () => GetDestinationType("illegal_type(@Length)", ref _length, ref _prec, ref _scale);
             act.ShouldThrow<AColumnTypeException>()
-                .WithMessage("Illegal type: 'illegal_type(@Length)', length=25, prec=, scale=");
+                .WithMessage("Illegal type: 'illegal_type(@Length)', length=25, prec=0, scale=0");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_Varchar2ToVarchar()
         {
-            var destinationType = GetDestinationType("varchar2(@Length)", 25, 0, 0);
-            destinationType.Should().Be("varchar(25)");
+            _length = 25;
+            var destinationType = GetDestinationType("varchar2(@Length)", ref _length, ref _prec, ref _scale);
+            destinationType.Should().Be("varchar");
+            _length.Should().Be(25);
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_VarcharToVarchar()
         {
-            var destinationType = GetDestinationType("varchar(@Length)", 25, 0, 0);
-            destinationType.Should().Be("varchar(25)");
+            _length = 25;
+            var destinationType = GetDestinationType("varchar(@Length)", ref _length, ref _prec, ref _scale);
+            destinationType.Should().Be("varchar");
+            _length.Should().Be(25);
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_CharToVarchar()
         {
-            var destinationType = GetDestinationType("char(@Length)", 25, 0, 0);
-            destinationType.Should().Be("varchar(25)");
+            _length = 25;
+            var destinationType = GetDestinationType("char(@Length)", ref _length, ref _prec, ref _scale);
+            destinationType.Should().Be("varchar");
+            _length.Should().Be(25);
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_ClobToLongText()
         {
-            var destinationType = GetDestinationType("clob", 0, 0, 0);
+            var destinationType = GetDestinationType("clob", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("longtext");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_NumberToBool()
         {
-            var destinationType = GetDestinationType("number(@Prec,@Scale)", 0, 1, 0);
+            _prec = 1;
+            var destinationType = GetDestinationType("number(@Prec,@Scale)", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("bool");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_NumberToInt8()
         {
-            var destinationType = GetDestinationType("number(@Prec,@Scale)", 0, 3, 0);
+            _prec = 3;
+            var destinationType = GetDestinationType("number(@Prec,@Scale)", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("int8");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_NumberToInt16()
         {
-            var destinationType = GetDestinationType("number(@Prec,@Scale)", 0, 5, 0);
+            _prec = 5;
+            var destinationType = GetDestinationType("number(@Prec,@Scale)", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("int16");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_NumberToInt()
         {
-            var destinationType = GetDestinationType("number(@Prec,@Scale)", 0, 15, 0);
+            _prec = 15;
+            var destinationType = GetDestinationType("number(@Prec,@Scale)", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("int");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_NumberToInt64()
         {
-            var destinationType = GetDestinationType("number(@Prec,@Scale)", 0, 20, 0);
+            _prec = 20;
+            var destinationType = GetDestinationType("number(@Prec,@Scale)", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("int64");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_NumberToMoney18_2()
         {
-            var destinationType = GetDestinationType("number(@Prec,@Scale)", 0, 18, 2);
+            _prec = 18;
+            _scale = 2;
+            var destinationType = GetDestinationType("number(@Prec,@Scale)", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("money");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_NumberToMoney30_3()
         {
-            var destinationType = GetDestinationType("number(@Prec,@Scale)", 0, 30, 3);
+            _prec = 30;
+            _scale = 3;
+            var destinationType = GetDestinationType("number(@Prec,@Scale)", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("money");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_AnyUnrecognizedNumber()
         {
-            var destinationType = GetDestinationType("number(@Prec,@Scale)", 0, 32, 9);
+            _prec = 32;
+            _scale = 9;
+            var destinationType = GetDestinationType("number(@Prec,@Scale)", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("float");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_FloatToFloat()
         {
-            var destinationType = GetDestinationType("float", 0, 0, 0);
+            var destinationType = GetDestinationType("float", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("float");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_DateToDateTime()
         {
-            var destinationType = GetDestinationType("date", 32, 0, 0);
+            _length = 32;
+            var destinationType = GetDestinationType("date", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("datetime");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_BlobToRaw()
         {
-            var destinationType = GetDestinationType("blob", 0, 0, 0);
+            var destinationType = GetDestinationType("blob", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("raw");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_Guid()
         {
-            var destinationType = GetDestinationType("raw(@Length)", 16, 0, 0);
+            _length = 16;
+            var destinationType = GetDestinationType("raw(@Length)", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("guid");
         }
 
         [TestMethod]
         public void TestGetDestinationType_When_LongRawToRaw()
         {
-            var destinationType = GetDestinationType("long raw", 0, 0, 0);
+            var destinationType = GetDestinationType("long raw", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("raw");
         }
     }
