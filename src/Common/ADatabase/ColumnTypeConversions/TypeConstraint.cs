@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ADatabase
+﻿namespace ADatabase
 {
     public class TypeConstraint : ITypeConstraint
     {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using ADatabase.Exceptions;
+﻿using ADatabase.Exceptions;
 
 namespace ADatabase.Extensions
 {
@@ -10,24 +8,24 @@ namespace ADatabase.Extensions
         {
             switch (str)
             {
-                case "VARCHAR2":
-                case "VARCHAR":
-                case "CHAR":
+                case "varchar2":
+                case "varchar":
+                case "char":
                     return ColumnTypeName.Varchar;
-                case "CLOB":
+                case "clob":
                     return ColumnTypeName.LongText;
-                case "INTEGER":
+                case "integer":
                     return ColumnTypeName.Int;
-                case "NUMBER":
+                case "number":
                     return ColumnTypeName.Dec;
-                case "FLOAT":
+                case "float":
                     return ColumnTypeName.Float;
-                case "DATE":
+                case "date":
                     return ColumnTypeName.DateTime;
-                case "LONG RAW":
-                case "RAW":
+                case "long raw":
+                case "raw":
                     return ColumnTypeName.Raw;
-                case "BLOB":
+                case "blob":
                     return ColumnTypeName.Blob;
             }
 

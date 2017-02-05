@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml;
 using ADatabase;
 using ADatabase.Exceptions;
 using ADatabaseTest.Helpers;

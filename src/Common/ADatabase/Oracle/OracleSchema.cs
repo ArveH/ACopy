@@ -7,7 +7,6 @@ using System.Threading;
 using ADatabase.Exceptions;
 using ADatabase.Extensions;
 using ADatabase.Interfaces;
-using ADatabase.Oracle.Columns;
 using Oracle.ManagedDataAccess.Client;
 
 namespace ADatabase.Oracle

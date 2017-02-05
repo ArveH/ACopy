@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Xml;
 using ADatabase;
-using ADatabase.Exceptions;
 using ADatabaseTest.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;

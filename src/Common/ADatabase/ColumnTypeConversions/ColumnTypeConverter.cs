@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml;
 using ADatabase.Exceptions;
-using ADatabase.Extensions;
 
 namespace ADatabase
 {
