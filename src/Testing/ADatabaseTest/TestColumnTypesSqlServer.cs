@@ -113,7 +113,7 @@ namespace ADatabaseTest
         }
 
         [TestMethod, TestCategory("SqlServer")]
-        public void TestMSCreateTable_When_Raw()
+        public void TestMSCreateTable_When_Blob()
         {
             TestColumn(ColumnTypeName.Raw, 0, 0, 0, true, "", "");
         }

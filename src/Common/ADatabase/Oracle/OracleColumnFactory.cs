@@ -30,6 +30,8 @@ namespace ADatabase.Oracle
                     return new OracleRawColumn(name, 16, isNullable, def);
                 case ColumnTypeName.Raw:
                     return new OracleRawColumn(name, length, isNullable, def);
+                case ColumnTypeName.Blob:
+                    return new OracleBlobColumn(name, isNullable, def);
             }
 
             throw new NotImplementedException();

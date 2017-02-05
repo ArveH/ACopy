@@ -113,7 +113,7 @@ namespace ADatabaseTest
         }
 
         [TestMethod, TestCategory("Oracle")]
-        public void TestOraCreateTable_When_Raw()
+        public void TestOraCreateTable_When_Blob()
         {
             TestColumn(ColumnTypeName.Blob, 0, 0, 0, true, "", "");
         }

@@ -40,6 +40,6 @@
   <Type Source="raw(@Length)" Destination="guid">
     <Length Operator="in">16,32,17,34</Length>
   </Type>
-  <Type Source="blob" Destination="raw"></Type>
+  <Type Source="blob" Destination="blob"></Type>
   <Type Source="long raw" Destination="raw"></Type>
 </TypeConversions>

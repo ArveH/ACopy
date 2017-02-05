@@ -117,6 +117,7 @@
     <Compile Include="Interfaces\IPowerPlant.cs" />
     <Compile Include="Interfaces\ITableDefinition.cs" />
     <Compile Include="Interfaces\ITableShortInfo.cs" />
+    <Compile Include="Oracle\Columns\OracleBlobColumn.cs" />
     <Compile Include="Oracle\Columns\OracleColumn.cs" />
     <Compile Include="Oracle\Columns\OracleColumnTypeNameConverter.cs" />
     <Compile Include="Oracle\Columns\OracleDateColumn.cs" />
