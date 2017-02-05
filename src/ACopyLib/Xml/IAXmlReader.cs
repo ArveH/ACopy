@@ -4,6 +4,6 @@ namespace ACopyLib.Xml
 {
     public interface IAXmlReader
     {
-        ITableDefinition ReadSchema(string fileName);
+        ITableDefinition ReadSchema(IColumnTypeConverter columnsTypeConverter, string fileName);
     }
 }

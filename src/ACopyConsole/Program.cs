@@ -134,6 +134,7 @@ namespace ACopyConsole
             if (settings["UseCollation"].IsSet) reader.Collation = settings["UseCollation"].Value;
             if (settings["DataFileSuffix"].IsSet) reader.DataFileSuffix = settings["DataFileSuffix"].Value;
             if (settings["SchemaFileSuffix"].IsSet) reader.SchemaFileSuffix= settings["SchemaFileSuffix"].Value;
+            if (settings["ConversionsFile"].IsSet) reader.ConversionsFile = settings["ConversionsFile"].Value;
             reader.CreateClusteredIndex = settings["CreateClusteredIndex"].IsSet;
 
             Stopwatch stopWatch = new Stopwatch();

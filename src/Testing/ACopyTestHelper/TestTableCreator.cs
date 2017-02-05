@@ -83,7 +83,7 @@ namespace ACopyTestHelper
             var columnFactory = dbContext.PowerPlant.CreateColumnFactory();
             var columns = new List<IColumn>
             {
-                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", false, "0"),
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 28, 0, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "flag", 1, false, "' '", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "val", 50, false, "' '", "")
             };

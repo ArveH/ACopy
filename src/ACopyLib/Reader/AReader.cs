@@ -43,6 +43,7 @@ namespace ACopyLib.Reader
         public string Collation { get; set; }
         public string DataFileSuffix { get; set; } = Names.DefaultDataFileSuffix;
         public string SchemaFileSuffix { get; set; } = Names.DefaultSchemaFileSuffix;
+        public string ConversionsFile { get; set; }
 
 
         public AReader(IDbContext dbContext, IALogger logger)
@@ -128,7 +129,8 @@ namespace ACopyLib.Reader
 
         private ITableDefinition CreateTable(string schemaFile)
         {
-            var tableDefinition = XmlSchemaFactory.CreateInstance(_dbContext).GetTableDefinition(schemaFile);
+            var columnsTypeConverter = _dbContext.PowerPlant.CreateColumnTypeConverter(ConversionsFile);
+            var tableDefinition = XmlSchemaFactory.CreateInstance(_dbContext).GetTableDefinition(columnsTypeConverter, schemaFile);
             SetCollationIfUseCollationParameterUsed(tableDefinition);
             _dbSchema.DropTable(tableDefinition.Name);
             if (_dbContext.DbType == DbTypeName.Oracle)

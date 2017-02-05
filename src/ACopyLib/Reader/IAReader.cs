@@ -12,5 +12,6 @@ namespace ACopyLib.Reader
         string Collation { get; set; }
         string DataFileSuffix { get; set; }
         string SchemaFileSuffix { get; set; }
+        string ConversionsFile { get; set; }
     }
 }

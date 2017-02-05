@@ -36,9 +36,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AParser", "Common\AParser\A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{B8BECCD4-ADA0-4683-842A-E2E771CFC25F}"
 	ProjectSection(SolutionItems) = preProject
+		Config\AcopyToUnit4Oracle.xml = Config\AcopyToUnit4Oracle.xml
 		Config\Conversions.xsd = Config\Conversions.xsd
 		Config\Unit4OracleConversions.xml = Config\Unit4OracleConversions.xml
-		Config\Unit4SqlServerConversions.xml = Config\Unit4SqlServerConversions.xml
 	EndProjectSection
 EndProject
 Global

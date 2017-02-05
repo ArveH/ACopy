@@ -8,6 +8,6 @@ namespace ACopyLib.Xml
         IAXmlWriter XmlWriter { get; set; }
         IU4Indexes U4Indexes { get; set; }
         ITableDefinition Write(string directory, IColumnTypeConverter columnsTypeConverter, string tableName, string schemaFileSuffix);
-        ITableDefinition GetTableDefinition(string fileName);
+        ITableDefinition GetTableDefinition(IColumnTypeConverter columnsTypeConverter, string fileName);
     }
 }

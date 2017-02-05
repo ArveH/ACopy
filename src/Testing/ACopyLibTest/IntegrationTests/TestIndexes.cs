@@ -67,7 +67,8 @@ namespace ACopyLibTest.IntegrationTests
         {
             var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleConversions.xml");
             xmlSchema.Write(".\\", columnTypeConverter, TestTable, "aschema");
-            var tableDefinition = xmlSchema.GetTableDefinition(".\\" + TestTable + ".aschema");
+            var columnsTypeConverter = new ColumnTypeConverter(new XmlConversionsReader(new TypeDescriptionFactory(new TypeConstraintFactory(new TypeOperatorFactory()))));
+            var tableDefinition = xmlSchema.GetTableDefinition(columnsTypeConverter, ".\\" + TestTable + ".aschema");
             return tableDefinition;
         }
 

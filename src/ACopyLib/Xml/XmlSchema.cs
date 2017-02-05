@@ -43,9 +43,9 @@ namespace ACopyLib.Xml
             return tableDefinition;
         }
 
-        public ITableDefinition GetTableDefinition(string fileName)
+        public ITableDefinition GetTableDefinition(IColumnTypeConverter columnsTypeConverter, string fileName)
         {
-            return XmlReader.ReadSchema(fileName);
+            return XmlReader.ReadSchema(columnsTypeConverter,  fileName);
         }
     }
 }

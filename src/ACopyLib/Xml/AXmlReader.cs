@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Xml;
 using ACopyLib.Exceptions;
 using ADatabase;
+using ADatabase.Extensions;
 using ADatabase.Interfaces;
 
 namespace ACopyLib.Xml
@@ -19,7 +20,7 @@ namespace ACopyLib.Xml
             _dbContext = dbContext;
         }
 
-        public ITableDefinition ReadSchema(string fileName)
+        public ITableDefinition ReadSchema(IColumnTypeConverter columnsTypeConverter, string fileName)
         {
             ITableDefinition tableDefinition = _dbContext.PowerPlant.CreateTableDefinition();
             try
@@ -27,7 +28,7 @@ namespace ACopyLib.Xml
 	            XmlDocument xmlDocument = new XmlDocument();
 	            xmlDocument.Load(fileName);
                 ReadTableInfo(tableDefinition, xmlDocument);
-                ReadColumns(tableDefinition, xmlDocument);
+                ReadColumns(columnsTypeConverter, tableDefinition, xmlDocument);
                 ReadIndexes(tableDefinition, xmlDocument);
             }
             catch (XmlException ex)
@@ -78,25 +79,30 @@ namespace ACopyLib.Xml
             tableDefinition.Location = rootNode.Attributes["Location"].InnerText;
         }
 
-        private void ReadColumns(ITableDefinition tableDefinition, XmlDocument xmlDocument)
+        private void ReadColumns(IColumnTypeConverter columnsTypeConverter, ITableDefinition tableDefinition, XmlDocument xmlDocument)
         {
             var rootNode = xmlDocument.DocumentElement.SelectSingleNode("/Table");
             IColumnFactory columnFactory = _dbContext.PowerPlant.CreateColumnFactory();
             foreach (XmlNode col in rootNode.ChildNodes[0].ChildNodes)
             {
-                ReadColumn(columnFactory, tableDefinition.Columns, col);
+                ReadColumn(columnFactory, columnsTypeConverter, tableDefinition.Columns, col);
             }
         }
 
-        private static void ReadColumn(IColumnFactory columnFactory, List<IColumn> columns, XmlNode col)
+        private static void ReadColumn(IColumnFactory columnFactory, IColumnTypeConverter columnsTypeConverter, List<IColumn> columns, XmlNode col)
         {
             string colName = col.Attributes["Name"].InnerText;
-            ColumnTypeName type = (ColumnTypeName)Enum.Parse(typeof(ColumnTypeName), col["Type"].InnerText);
+            string type = col["Type"].InnerText.ToLower();
             bool isNullable = Convert.ToBoolean(col["IsNullable"].InnerText);
             string def = col["Default"].InnerText;
 
             Dictionary<string, object> colDetails = ReadColumnDetails(col);
-            columns.Add(columnFactory.CreateInstance(type, colName, isNullable, def, colDetails));
+            var length = colDetails.ContainsKey("Length") ? (int)colDetails["Length"] : 0;
+            var prec = colDetails.ContainsKey("Prec") ? (int)colDetails["Prec"] : 0;
+            var scale = colDetails.ContainsKey("Scale") ? (int)colDetails["Scale"] : 0;
+            var collation = colDetails.ContainsKey("Collation") ? (string)colDetails["Collation"] : "";
+            var destinationType = columnsTypeConverter.GetDestinationType(type, ref length, ref prec, ref scale).Oracle2ColumnTypeName();
+            columns.Add(columnFactory.CreateInstance(destinationType, colName, length, prec, scale, isNullable, def, collation));
         }
 
         private static Dictionary<string, object> ReadColumnDetails(XmlNode col)
