@@ -53,7 +53,7 @@ namespace ACopyTestHelper
                 columnFactory.CreateInstance(ColumnTypeName.String, "table_name", 60, false, "' '", "Danish_Norwegian_CI_AS"),
                 columnFactory.CreateInstance(ColumnTypeName.String, "column_list", 510, false, "' '", "Danish_Norwegian_CI_AS"),
                 columnFactory.CreateInstance(ColumnTypeName.String, "location_name", 50, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnTypeName.Int8, "unique_flag", false, "0"),
+                columnFactory.CreateInstance(ColumnTypeName.Int8, "unique_flag", 0, 3, 0, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.String, "db_name", 20, false, "' '", "Danish_Norwegian_CI_AS")
             };
             dbSchema.CreateTable(new TableDefinition(aagIndex, columns, ""));
@@ -65,8 +65,8 @@ namespace ACopyTestHelper
             var columnFactory = dbContext.PowerPlant.CreateColumnFactory();
             var columns = new List<IColumn>
             {
-                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", false, "0"),
-                columnFactory.CreateInstance(ColumnTypeName.Int64, "id2", false, "0"),
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 20, 0, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "id2", 0, 20, 0, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "val", 50, false, "' '", "Danish_Norwegian_CI_AS")
             };
             var tableDefinition = new TableDefinition(tableName, columns, "");
@@ -83,7 +83,7 @@ namespace ACopyTestHelper
             var columnFactory = dbContext.PowerPlant.CreateColumnFactory();
             var columns = new List<IColumn>
             {
-                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 28, 0, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 20, 0, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "flag", 1, false, "' '", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "val", 50, false, "' '", "")
             };
