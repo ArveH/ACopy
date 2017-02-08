@@ -15,6 +15,8 @@ namespace ACopyLibTest.IntegrationTests
         protected ICommands Commands;
         protected IColumnFactory ColumnFactory;
         protected IColumnTypeConverter ColumnTypeConverter;
+        protected string ConversionFileForWrite;
+        protected string ConversionFileForRead;
         private IAWriter _writer;
         private IAReader _reader;
 
@@ -34,7 +36,7 @@ namespace ACopyLibTest.IntegrationTests
             DbSchema = DbContext.PowerPlant.CreateDbSchema();
             Commands = DbContext.PowerPlant.CreateCommands();
             ColumnFactory = DbContext.PowerPlant.CreateColumnFactory();
-            ColumnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleConversions.xml");
+            ColumnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter(ConversionFileForWrite);
             Cleanup();
         }
 
@@ -65,7 +67,7 @@ namespace ACopyLibTest.IntegrationTests
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             List<IColumn> columns = new List<IColumn>
             { 
-                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", false, "0"),
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 20, 0, false, "0", ""),
                 col,
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "val", 50, false, "' '", "Danish_Norwegian_CI_AS") 
             };
@@ -78,11 +80,13 @@ namespace ACopyLibTest.IntegrationTests
         protected void WriteAndRead()
         {
             _writer.Directory = Directory;
+            _writer.ConversionsFile = ConversionFileForWrite;
             _writer.Write(new List<string> { TestTable });
 
             DbSchema.DropTable(TestTable);
 
             _reader.Directory = Directory;
+            _reader.ConversionsFile = ConversionFileForRead;
             int totalTables;
             int failedTables;
             _reader.Read(new List<string> { TestTable }, out totalTables, out failedTables);

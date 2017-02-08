@@ -48,7 +48,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestWriteRead_When_Bool()
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Bool, "test_col", false, "0");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Bool, "test_col", 0, 1, 0, false, "0", "");
             CreateTestTable1Row3Columns1Value(col, "1");
             WriteAndRead();
             VerifyType(col);
@@ -57,7 +57,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestWriteRead_When_Int64()
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int64, "test_col", false, "0");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int64, "test_col", 0, 20, 0, false, "0", "");
             CreateTestTable1Row3Columns1Value(col, "123456789012345");
             WriteAndRead();
             VerifyType(col);
@@ -68,7 +68,7 @@ namespace ACopyLibTest.IntegrationTests
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             List<IColumn> columns = new List<IColumn>
             { 
-                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", false, "0"),
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 20, 0, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Guid, "guid1_col", true, ""),
                 columnFactory.CreateInstance(ColumnTypeName.Guid, "guid2_col", true, ""),
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "val", 50, false, "' '", "Danish_Norwegian_CI_AS"),

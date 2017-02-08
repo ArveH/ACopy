@@ -38,7 +38,7 @@ namespace ACopyLibTest.IntegrationTests
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             List<IColumn> columns = new List<IColumn>
             { 
-                columnFactory.CreateInstance(ColumnTypeName.Int, "priority", false, "0"),
+                columnFactory.CreateInstance(ColumnTypeName.Int, "priority", 0, 15, 0, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "query", 4000, false, "' '", "Danish_Norwegian_CI_AS"),
                 columnFactory.CreateInstance(ColumnTypeName.Char, "status", 1, false, "' '", "Danish_Norwegian_CI_AS"),
                 columnFactory.CreateInstance(ColumnTypeName.Char, "table_name", 25, false, "' '", "Danish_Norwegian_CI_AS")

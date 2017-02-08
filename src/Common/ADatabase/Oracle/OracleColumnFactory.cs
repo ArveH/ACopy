@@ -25,7 +25,7 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.Money:
                 case ColumnTypeName.Float:
                 case ColumnTypeName.Dec:
-                    return new OracleNumberColumn(name, prec, scale, isNullable, def);
+                    return new OracleNumberColumn(name, type, prec, scale, isNullable, def);
                 case ColumnTypeName.DateTime:
                     return new OracleDateColumn(name, isNullable, def);
                 case ColumnTypeName.Guid:

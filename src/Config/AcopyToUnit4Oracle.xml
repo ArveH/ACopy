@@ -19,6 +19,8 @@
   </Type>
   <Type Source="float" Destination="number(30,8)">
   </Type>
+  <Type Source="dec(@Prec,@Scale)" Destination="number(@Prec,@Scale)">
+  </Type>
   <Type Source="datetime" Destination="date">
   </Type>
   <Type Source="guid" Destination="raw(16)">

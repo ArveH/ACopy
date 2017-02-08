@@ -7,8 +7,8 @@ namespace ADatabase.Oracle.Columns
     {
         private readonly string _typeToString;
 
-        public OracleNumberColumn(string name, int prec, int scale, bool isNullable, string def)
-            : base(name, ColumnTypeName.Dec, isNullable, def)
+        public OracleNumberColumn(string name, ColumnTypeName columnTypeName, int prec, int scale, bool isNullable, string def)
+            : base(name, columnTypeName, isNullable, def)
         {
             Details["Prec"] = prec;
             Details["Scale"] = scale;
