@@ -167,13 +167,13 @@ namespace ADatabaseTest.Helpers
                 GetOneTypeNoOperatorXml("char(@Length)", "varchar2(@Length)") +
                 GetOneTypeNoOperatorXml("longtext", "clob") +
                 GetOneTypeNoOperatorXml("integer", "int") +
-                GetOneTypeNoOperatorXml("bool", "number()") +
-                GetOneTypeNoOperatorXml("int8", "number()") +
-                GetOneTypeNoOperatorXml("int16", "number()") +
-                GetOneTypeNoOperatorXml("int", "number()") +
-                GetOneTypeNoOperatorXml("int64", "number()") +
-                GetOneTypeNoOperatorXml("money", "number()") +
-                GetOneTypeNoOperatorXml("float", "number()") +
+                GetOneTypeNoOperatorXml("bool", "number(1,0)") +
+                GetOneTypeNoOperatorXml("int8", "number(3,0)") +
+                GetOneTypeNoOperatorXml("int16", "number(5,0)") +
+                GetOneTypeNoOperatorXml("int", "number(15,0)") +
+                GetOneTypeNoOperatorXml("int64", "number(20,0)") +
+                GetOneTypeNoOperatorXml("money", "number(30,3)") +
+                GetOneTypeNoOperatorXml("float", "float") +
                 GetOneTypeNoOperatorXml("datetime", "date") +
                 GetOneTypeNoOperatorXml("guid", "raw(16)") +
                 GetOneTypeNoOperatorXml("blob", "blob") +

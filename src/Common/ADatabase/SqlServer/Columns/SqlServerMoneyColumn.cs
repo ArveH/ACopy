@@ -29,12 +29,12 @@ namespace ADatabase.SqlServer.Columns
             {
                 return null;
             }
-            return Decimal.Parse(value, CultureInfo.InvariantCulture);
+            return decimal.Parse(value, CultureInfo.InvariantCulture);
         }
 
         public override Type GetDotNetType()
         {
-            return typeof(Decimal);
+            return typeof(decimal);
         }
     }
 }

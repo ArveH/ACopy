@@ -31,7 +31,7 @@ namespace ADatabase.SqlServer.Columns
 
         public override Type GetDotNetType()
         {
-            return typeof(Int64);
+            return typeof(long);
         }
     }
 }

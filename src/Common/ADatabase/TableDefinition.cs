@@ -32,16 +32,16 @@ namespace ADatabase
         {
             Columns
                 .FindAll(c => c.Type == ColumnTypeName.Guid)
-                .ForEach(c => c.Details["length"] = rawLength);
+                .ForEach(c => c.Details["Length"] = rawLength);
         }
 
         public static DbTypeName ConvertStringToDbType(string dbType)
         {
-            if (String.Compare(dbType, "oracle", StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(dbType, "oracle", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return DbTypeName.Oracle;
             }
-            if (String.Compare(dbType, "sqlserver", StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(dbType, "sqlserver", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return DbTypeName.SqlServer;
             }

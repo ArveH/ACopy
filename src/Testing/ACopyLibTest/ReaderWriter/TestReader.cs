@@ -443,19 +443,21 @@ namespace ACopyLibTest
                 IDataReader reader = cursor.ExecuteReader(string.Format("select * from {0}", TestTable));
 		        reader.Read();
 
-                tableDefinition.Columns[0].ToString(reader["bool_col"]).Should().Be("1");
-                tableDefinition.Columns[1].ToString(reader["char_col"]).Should().Be("'NO'");
-                tableDefinition.Columns[2].ToString(reader["date_col"]).Should().Be("19000223 00:00:00");
-                tableDefinition.Columns[3].ToString(reader["float_col"]).Should().Be("123.12345678");
-                tableDefinition.Columns[4].ToString(reader["guid_col"]).Should().Be(TestGuid);
-                tableDefinition.Columns[5].ToString(reader["int_col"]).Should().Be("1234567890");
-                tableDefinition.Columns[6].ToString(reader["int8_col"]).Should().Be("150");
-                tableDefinition.Columns[7].ToString(reader["int16_col"]).Should().Be("12345");
-                tableDefinition.Columns[8].ToString(reader["int64_col"]).Should().Be("123456789012345");
-                tableDefinition.Columns[9].ToString(reader["longtext_col"]).Should().Be("'Very long text with æøå'");
-                tableDefinition.Columns[10].ToString(reader["money_col"]).Should().Be("123.123");
-                tableDefinition.Columns[12].ToString(reader["string_col"]).Should().Be("'A unicode ﺽ string'");
-                tableDefinition.Columns[13].ToString(reader["varchar_col"]).Should().Be("'A varchar string'");
+                tableDefinition.Columns[0].ToString(reader["bool_col"]).Should().Be("1", "because bool was true");
+
+	            var tmp = reader["bool_col"];
+                tableDefinition.Columns[1].ToString(reader["char_col"]).Should().Be("'NO'", "because that's the value for char_col");
+                tableDefinition.Columns[2].ToString(reader["date_col"]).Should().Be("19000223 00:00:00", "because that's the value for date_col");
+                tableDefinition.Columns[3].ToString(reader["float_col"]).Should().Be("123.12345678", "because that's the value for float_col");
+                tableDefinition.Columns[4].ToString(reader["guid_col"]).Should().Be(TestGuid, "because that's the value for guid_col");
+                tableDefinition.Columns[5].ToString(reader["int_col"]).Should().Be("1234567890", "because that's the value for int_col");
+                tableDefinition.Columns[6].ToString(reader["int8_col"]).Should().Be("150", "because that's the value for int8_col");
+                tableDefinition.Columns[7].ToString(reader["int16_col"]).Should().Be("12345", "because that's the value for int16_col");
+                tableDefinition.Columns[8].ToString(reader["int64_col"]).Should().Be("123456789012345", "because that's the value for int64_col");
+                tableDefinition.Columns[9].ToString(reader["longtext_col"]).Should().Be("'Very long text with æøå'", "because that's the value for longtext_col");
+                tableDefinition.Columns[10].ToString(reader["money_col"]).Should().Be("123.123", "because that's the value for money_col");
+                tableDefinition.Columns[12].ToString(reader["string_col"]).Should().Be("'A unicode ﺽ string'", "because that's the value for string_col");
+                tableDefinition.Columns[13].ToString(reader["varchar_col"]).Should().Be("'A varchar string'", "because that's the value for varchar_col");
 
                 string blob = Encoding.Default.GetString((byte[])reader["raw_col"]);
                 blob.Should().Be("A long blob");

@@ -20,7 +20,7 @@ namespace ADatabase.SqlServer
                 {
                     if (ADatabaseException.ShouldThrottle(ex))
                     {
-                        dbContext.Logger.Write(String.Format("Throttling down \"{0}...\", round {1}", sql.Substring(0, Math.Min(sql.Length, 40)), i));
+                        dbContext.Logger.Write(string.Format("Throttling down \"{0}...\", round {1}", sql.Substring(0, Math.Min(sql.Length, 40)), i));
                         Thread.Sleep(10000 + i * i * i * 1000);
                     }
                     else

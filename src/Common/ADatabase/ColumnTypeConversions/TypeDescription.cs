@@ -6,7 +6,8 @@ namespace ADatabase
 {
     public class TypeDescription : ITypeDescription
     {
-        private static readonly Regex TypeRegex = new Regex(@"(?<type>\w+)(\(@(?<first>Length|Prec|Scale)(, ??@(?<second>Length|Prec|Scale))?\))?");
+        private static readonly Regex TypeRegex = new Regex(@"(?<type>\w+)(\(@?(?<first>Length|Prec|Scale|-?\d+)(, ??@?(?<second>Length|Prec|Scale|\d+))?\))?");
+
         private readonly ITypeConstraintFactory _typeConstraintFactory;
 
         public TypeDescription(ITypeConstraintFactory typeConstraintFactory)
@@ -72,14 +73,14 @@ namespace ADatabase
         {
             if (ConvertToParameters.ContainsKey("Length"))
             {
-                if (length == 0) throw new AColumnTypeException($"No Length value given for destination type '{ConvertTo}'");
+                if (length == 0 && ConvertToParameters["Length"] == -99) throw new AColumnTypeException($"No Length value given for destination type '{ConvertTo}'");
                 if (ConvertToParameters["Length"] != -99) length = ConvertToParameters["Length"];
                 prec = 0;
                 scale = 0;
             }
             else if (ConvertToParameters.ContainsKey("Prec"))
             {
-                if (prec == 0) throw new AColumnTypeException($"No Precision value given for destination type '{ConvertTo}'");
+                if (prec == 0 && ConvertToParameters["Prec"] == -99) throw new AColumnTypeException($"No Precision value given for destination type '{ConvertTo}'");
                 if (!ConvertToParameters.ContainsKey("Scale")) throw new AColumnTypeException($"No Scale value given for destination type '{ConvertTo}'");
                 length = 0;
                 if (ConvertToParameters["Prec"] != -99) prec = ConvertToParameters["Prec"];
@@ -93,14 +94,24 @@ namespace ADatabase
             var match = TypeRegex.Match(value);
             if (!match.Success) throw new AColumnTypeException($"Illegal type: '{value}'");
             var convertTo = match.Groups["type"].Value;
-            if (match.Groups["first"].Success) parameters.Add(match.Groups["first"].Value, -99);
-            if (match.Groups["second"].Success) parameters.Add(match.Groups["second"].Value, -99);
+            if (match.Groups["first"].Success && match.Groups["second"].Success)
+            {
+                var first = match.Groups["first"].Value;
+                var second = match.Groups["second"].Value;
+                int tmp;
+                if (!int.TryParse(first, out tmp)) tmp = -99;
+                parameters.Add("Prec", tmp);
+                if (!int.TryParse(second, out tmp)) tmp = -99;
+                parameters.Add("Scale", tmp);
+            }
+            else if (match.Groups["first"].Success)
+            {
+                int tmp;
+                if (!int.TryParse(match.Groups["first"].Value, out tmp)) tmp = -99;
+                parameters.Add("Length", tmp);
+            }
 
-            if (parameters.Count == 0) return convertTo;
-            if (parameters.ContainsKey("Length") && parameters.Count == 1) return convertTo;
-            if (parameters.ContainsKey("Prec") && parameters.ContainsKey("Scale") && parameters.Count == 2) return convertTo;
-
-            throw new AColumnTypeException($"Illegal parameter or parameter combination for type: '{value}', parameters: '{string.Join(",", parameters.Keys)}'");
+            return convertTo;
         }
     }
 }

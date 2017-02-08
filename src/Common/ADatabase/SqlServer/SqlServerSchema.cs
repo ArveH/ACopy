@@ -96,7 +96,7 @@ namespace ADatabase.SqlServer
             selectStmt += "FROM   sys.columns c " + "\n";
             selectStmt += "       JOIN sys.types t " + "\n";
             selectStmt += "         ON c.user_type_id = t.user_type_id " + "\n";
-            selectStmt += String.Format("WHERE  c.object_id = Object_id('{0}') ", tableName) + "\n";
+            selectStmt += string.Format("WHERE  c.object_id = Object_id('{0}') ", tableName) + "\n";
             selectStmt += "ORDER  BY c.column_id ";
 
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
@@ -237,8 +237,8 @@ namespace ADatabase.SqlServer
             selectStmt += "WHERE  ic.column_id = tc.column_id " + "\n";
             selectStmt += "       AND ic.object_id = tc.object_id " + "\n";
             selectStmt += "       AND is_included_column = 0 " + "\n";
-            selectStmt += String.Format("       AND index_id = {0} ", index.IndexId) + "\n";
-            selectStmt += String.Format("       AND ic.object_id = Object_id('{0}') ", index.TableName) + "\n";
+            selectStmt += string.Format("       AND index_id = {0} ", index.IndexId) + "\n";
+            selectStmt += string.Format("       AND ic.object_id = Object_id('{0}') ", index.TableName) + "\n";
             selectStmt += "       AND is_included_column = 0 ";
 
             List<IIndexColumn> columns = new List<IIndexColumn>();
@@ -262,7 +262,7 @@ namespace ADatabase.SqlServer
 
         protected override List<IIndexDefinition> GetIndexesForTable(string tableName)
         {
-            String selectStmt = "";
+            string selectStmt = "";
             selectStmt += "SELECT DISTINCT i.name, " + "\n";
             selectStmt += "                s.name      loc_name, " + "\n";
             selectStmt += "                i.index_id  indid, " + "\n";

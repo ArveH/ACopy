@@ -219,7 +219,7 @@ namespace ADatabase.Oracle
         protected override List<IIndexDefinition> GetIndexesForTable(string tableName)
         {
             List<IIndexDefinition> indexes = new List<IIndexDefinition>();
-            String selectStmt = "";
+            string selectStmt = "";
             selectStmt = selectStmt + "SELECT i.index_name, " + "\n";
             selectStmt = selectStmt + "       i.tablespace_name, " + "\n";
             selectStmt = selectStmt + "       i.uniqueness " + "\n";

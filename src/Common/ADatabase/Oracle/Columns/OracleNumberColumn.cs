@@ -22,12 +22,13 @@ namespace ADatabase.Oracle.Columns
 
         public override string ToString(object value)
         {
-            return Convert.ToDecimal(value).ToString(CultureInfo.InvariantCulture);
+            // The # removes trailing zero. Will round up last number if more than 8 decimals. 
+            return Convert.ToDecimal(value).ToString("0.########", CultureInfo.InvariantCulture);
         }
 
         public override Type GetDotNetType()
         {
-            return typeof(Decimal);
+            return typeof(decimal);
         }
 
         public override object ToInternalType(string value)
@@ -36,7 +37,7 @@ namespace ADatabase.Oracle.Columns
             {
                 return DBNull.Value;
             }
-            return Decimal.Parse(value, CultureInfo.InvariantCulture);
+            return decimal.Parse(value, CultureInfo.InvariantCulture);
         }
     }
 }

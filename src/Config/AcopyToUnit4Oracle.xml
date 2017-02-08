@@ -3,6 +3,7 @@
 <TypeConversions From="ACopy" To="Oracle">
   <Type Source="varchar(@Length)" Destination="varchar2(@Length)"/>
   <Type Source="char(@Length)" Destination="varchar2(@Length)"/>
+  <Type Source="string(@Length)" Destination="varchar2(@Length)"/>
   <Type Source="longtext" Destination="clob"/>
   <Type Source="bool" Destination="number(1,0)">
   </Type>
@@ -16,10 +17,16 @@
   </Type>
   <Type Source="money" Destination="number(30,3)">
   </Type>
-  <Type Source="float" Destination="number(30,6)"></Type>
-  <Type Source="datetime" Destination="date"></Type>
+  <Type Source="float" Destination="number(30,8)">
+  </Type>
+  <Type Source="datetime" Destination="date">
+  </Type>
   <Type Source="guid" Destination="raw(16)">
   </Type>
-  <Type Source="blob" Destination="blob"></Type>
-  <Type Source="long raw" Destination="raw"></Type>
+  <Type Source="blob" Destination="blob">
+  </Type>
+  <Type Source="raw" Destination="blob">
+  </Type>
+  <Type Source="long raw" Destination="raw">
+  </Type>
 </TypeConversions>

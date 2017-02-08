@@ -68,7 +68,7 @@ namespace ACopyLibTest
             TestReader_When_AllTypes();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("SqlServer")]
         public void TestMSReader_When_AllTypes_And_Compressed()
         {
             TestReader_When_AllTypes_And_Compressed();

@@ -7,7 +7,7 @@ namespace ADatabase
     {
         public IndexColumn(string name, string expression)
         {
-            if (String.IsNullOrWhiteSpace(expression))
+            if (string.IsNullOrWhiteSpace(expression))
             {
                 _name = name.ToLower();
                 IsExpression = false;

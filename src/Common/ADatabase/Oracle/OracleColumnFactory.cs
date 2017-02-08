@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ADatabase.Exceptions;
 using ADatabase.Oracle.Columns;
 
 namespace ADatabase.Oracle
@@ -23,6 +24,7 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.Int64:
                 case ColumnTypeName.Money:
                 case ColumnTypeName.Float:
+                case ColumnTypeName.Dec:
                     return new OracleNumberColumn(name, prec, scale, isNullable, def);
                 case ColumnTypeName.DateTime:
                     return new OracleDateColumn(name, isNullable, def);
@@ -34,7 +36,7 @@ namespace ADatabase.Oracle
                     return new OracleBlobColumn(name, isNullable, def);
             }
 
-            throw new NotImplementedException();
+            throw new AColumnTypeException($"Illegal type: {type}");
         }
 
         public IColumn CreateInstance(ColumnTypeName type, string name, int length, bool isNullable, string def, string collation)
