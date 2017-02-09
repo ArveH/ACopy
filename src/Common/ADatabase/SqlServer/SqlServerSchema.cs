@@ -122,7 +122,7 @@ namespace ADatabase.SqlServer
                     {
                         colType = ColumnTypeName.Identity;
                     }
-                    if (colType == ColumnTypeName.Raw)
+                    if (colType == ColumnTypeName.Blob)
                     {
                         tableHasRawColumn = true;
                     }

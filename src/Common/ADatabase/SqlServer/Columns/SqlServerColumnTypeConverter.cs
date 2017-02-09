@@ -47,7 +47,7 @@ namespace ADatabase.SqlServer.Columns
                 case "varbinary":
                     if (length == -1)
                     {
-                        return ColumnTypeName.Raw;
+                        return ColumnTypeName.Blob;
                     }
                     break;
             }

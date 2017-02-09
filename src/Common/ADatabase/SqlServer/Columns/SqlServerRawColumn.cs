@@ -5,7 +5,7 @@ namespace ADatabase.SqlServer.Columns
     public class SqlServerRawColumn : SqlServerColumn
     {
         public SqlServerRawColumn(string name, bool isNullable, string def)
-            : base(name, ColumnTypeName.Raw, isNullable, def)
+            : base(name, ColumnTypeName.Blob, isNullable, def)
         {
         }
 

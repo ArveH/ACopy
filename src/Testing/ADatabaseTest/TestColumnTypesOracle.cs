@@ -91,7 +91,7 @@ namespace ADatabaseTest
         [TestMethod, TestCategory("Oracle")]
         public void TestOraCreateTable_When_Money()
         {
-            TestNumberColumn(ColumnTypeName.Money, 18, 3);
+            TestNumberColumn(ColumnTypeName.Money, 30, 3);
         }
 
         [TestMethod, TestCategory("Oracle")]

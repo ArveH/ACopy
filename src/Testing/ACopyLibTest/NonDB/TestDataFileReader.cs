@@ -158,18 +158,18 @@ namespace ACopyLibTest
         {
             return new List<IColumn>
             { 
-                _columnFactory.CreateInstance(ColumnTypeName.Bool, "bool_col", false, "0"),
+                _columnFactory.CreateInstance(ColumnTypeName.Bool, "bool_col", 0, 1, 0, false, "0", ""),
                 _columnFactory.CreateInstance(ColumnTypeName.Char, "char_col", 2, false, "' '", "Danish_Norwegian_CI_AS"),
                 _columnFactory.CreateInstance(ColumnTypeName.DateTime, "date_col", false, "convert(datetime,'19000101',112)"),
-                _columnFactory.CreateInstance(ColumnTypeName.Float, "float_col", false, "0"),
+                _columnFactory.CreateInstance(ColumnTypeName.Float, "float_col", 0, 30, 8, false, "0", ""),
                 _columnFactory.CreateInstance(ColumnTypeName.Guid, "guid_col", true, ""),
-                _columnFactory.CreateInstance(ColumnTypeName.Int, "int_col", false, "0"),
-                _columnFactory.CreateInstance(ColumnTypeName.Int8, "int8_col", false, "0"),
-                _columnFactory.CreateInstance(ColumnTypeName.Int16, "int16_col", false, "0"),
-                _columnFactory.CreateInstance(ColumnTypeName.Int64, "int64_col", false, "0"),
+                _columnFactory.CreateInstance(ColumnTypeName.Int, "int_col", 0, 15, 0, false, "0", ""),
+                _columnFactory.CreateInstance(ColumnTypeName.Int8, "int8_col", 0, 3, 0, false, "0", ""),
+                _columnFactory.CreateInstance(ColumnTypeName.Int16, "int16_col", 0, 5, 0, false, "0", ""),
+                _columnFactory.CreateInstance(ColumnTypeName.Int64, "int64_col", 0, 20, 0, false, "0", ""),
                 _columnFactory.CreateInstance(ColumnTypeName.LongText, "longtext_col", 0, false, "' '", "Danish_Norwegian_CI_AS"),
-                _columnFactory.CreateInstance(ColumnTypeName.Money, "money_col", false, "0"),
-                _columnFactory.CreateInstance(ColumnTypeName.Raw, "raw_col", true, ""),
+                _columnFactory.CreateInstance(ColumnTypeName.Money, "money_col", 0, 30, 3, false, "0", ""),
+                _columnFactory.CreateInstance(ColumnTypeName.Blob, "raw_col", true, ""),
                 _columnFactory.CreateInstance(ColumnTypeName.String, "string_col", 50, false, "' '", "Danish_Norwegian_CI_AS"),
                 _columnFactory.CreateInstance(ColumnTypeName.Varchar, "varchar_col", 50, false, "' '", "Danish_Norwegian_CI_AS")
             };

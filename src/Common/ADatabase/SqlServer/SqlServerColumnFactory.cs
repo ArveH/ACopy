@@ -36,7 +36,7 @@ namespace ADatabase.SqlServer
                     return new SqlServerDatetimeColumn(name, isNullable, def);
                 case ColumnTypeName.Guid:
                     return new SqlServerGuidColumn(name, isNullable, def);
-                case ColumnTypeName.Raw:
+                case ColumnTypeName.Blob:
                     return new SqlServerRawColumn(name, isNullable, def);
                 case ColumnTypeName.Identity:
                     return new SqlServerIdentityColumn(name, isNullable, def);
