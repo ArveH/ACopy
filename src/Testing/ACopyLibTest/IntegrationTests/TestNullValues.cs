@@ -18,7 +18,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_Int(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int, "test_col", true, "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int, "test_col", 0, 15, 0, true, "", "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -27,7 +27,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_Float(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Float, "test_col", true, "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Float, "test_col", 0, 30, 8, true, "", "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -54,7 +54,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_Bool(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Bool, "test_col", true, "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Bool, "test_col", 0, 1, 0, true, "", "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -63,7 +63,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_Int64(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int64, "test_col", true, "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int64, "test_col", 0, 20, 0, true, "", "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -81,7 +81,7 @@ namespace ACopyLibTest.IntegrationTests
         //TestMethod
         protected void TestNullValue_When_Raw(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Raw, "test_col", true, "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Blob, "test_col", true, "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
