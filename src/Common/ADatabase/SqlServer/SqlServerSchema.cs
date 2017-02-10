@@ -101,7 +101,7 @@ namespace ADatabase.SqlServer
 
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             List<IColumn> columns = new List<IColumn>();
-            bool tableHasRawColumn = false;
+            bool tableHasBlobColumn = false;
             IDataCursor cursor = null;
             try
             {
@@ -124,7 +124,7 @@ namespace ADatabase.SqlServer
                     }
                     if (colType == ColumnTypeName.Blob)
                     {
-                        tableHasRawColumn = true;
+                        tableHasBlobColumn = true;
                     }
                     columns.Add(
                         columnFactory.CreateInstance(
@@ -149,7 +149,7 @@ namespace ADatabase.SqlServer
             }
 
             ITableDefinition tableDefinition = DbContext.PowerPlant.CreateTableDefinition(tableName, columns, GetSegmentName(tableName));
-            tableDefinition.HasRawColumn = tableHasRawColumn;
+            tableDefinition.HasBlobColumn = tableHasBlobColumn;
 
             tableDefinition.Columns.RemoveAll(c => c.Name == "agrtid");
 

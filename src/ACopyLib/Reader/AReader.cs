@@ -231,6 +231,7 @@ namespace ACopyLib.Reader
                 //    create column as raw(17)
                 //    copy data
                 //    resize to raw(16)
+                // This is a bug with the oracle reader.
                 commands.ExecuteNonQuery($"alter table {tableDefinition.Name} modify {guidCol.Name} raw(16)");
             }
         }

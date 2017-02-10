@@ -37,7 +37,7 @@ namespace ADatabase.SqlServer
                 case ColumnTypeName.Guid:
                     return new SqlServerGuidColumn(name, isNullable, def);
                 case ColumnTypeName.Blob:
-                    return new SqlServerRawColumn(name, isNullable, def);
+                    return new SqlServerBlobColumn(name, isNullable, def);
                 case ColumnTypeName.Identity:
                     return new SqlServerIdentityColumn(name, isNullable, def);
             }

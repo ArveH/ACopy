@@ -70,9 +70,9 @@ namespace ACopyLibTest.IntegrationTests
         }
 
         [TestMethod, TestCategory("SqlServer")]
-        public void TestMSNullValue_When_Raw()
+        public void TestMSNullValue_When_Blob()
         {
-            TestNullValue_When_Raw(CheckValue);
+            TestNullValue_When_Blob(CheckValue);
         }
     }
 }

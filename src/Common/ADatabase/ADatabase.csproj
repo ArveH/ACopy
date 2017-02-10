@@ -119,7 +119,6 @@
     <Compile Include="Interfaces\ITableShortInfo.cs" />
     <Compile Include="Oracle\Columns\OracleBlobColumn.cs" />
     <Compile Include="Oracle\Columns\OracleColumn.cs" />
-    <Compile Include="Oracle\Columns\OracleColumnTypeNameConverter.cs" />
     <Compile Include="Oracle\Columns\OracleDateColumn.cs" />
     <Compile Include="Oracle\Columns\OracleBinaryFloatColumn.cs" />
     <Compile Include="Oracle\Columns\OracleClobColumn.cs" />
@@ -152,7 +151,7 @@
     <Compile Include="SqlServer\Columns\SqlServerInt8Column.cs" />
     <Compile Include="SqlServer\Columns\SqlServerLongTextColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerMoneyColumn.cs" />
-    <Compile Include="SqlServer\Columns\SqlServerRawColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerBlobColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerStringColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerVarcharColumn.cs" />
     <Compile Include="SqlServer\InternalSqlServerCommand.cs" />

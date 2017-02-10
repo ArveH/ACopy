@@ -26,7 +26,7 @@ namespace ADatabase.Oracle
 
         public int RowPreFetch { get; set; }
 
-        public IDataReader ExecuteReader(string selectStatement, bool hasRawColumn)
+        public IDataReader ExecuteReader(string selectStatement, bool hasBlobColumn)
         {
             _connection = new InternalOracleConnection(_dbContext.ConnectionString);
 

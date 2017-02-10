@@ -135,7 +135,7 @@ namespace ACopyLib.Writer
                 if (UseU4Indexes) xmlSchema.U4Indexes = U4IndexesFactory.CreateInstance(_dbContext);
                 ITableDefinition tableDefinition = xmlSchema.Write(Directory, columnsTypeConverter, tableName, SchemaFileSuffix);
 	
-	            if (tableDefinition.HasRawColumn)
+	            if (tableDefinition.HasBlobColumn)
 	            {
 	                System.IO.Directory.CreateDirectory($@"{Directory}{tableDefinition.Name}");
 	            }
@@ -166,7 +166,7 @@ namespace ACopyLib.Writer
                 IDataCursor cursor = _dbContext.PowerPlant.CreateDataCursor();
                 try
                 {
-                    IDataReader reader = cursor.ExecuteReader(selectStmt, tableDefinition.HasRawColumn);
+                    IDataReader reader = cursor.ExecuteReader(selectStmt, tableDefinition.HasBlobColumn);
                     while (reader.Read())
                     {
                         WriteRow(rowCounter, reader, tableDefinition, dataWriter);
@@ -202,7 +202,7 @@ namespace ACopyLib.Writer
                 {
                     string rawFileName = $"i{rowCounter:D15}.raw";
                     dataWriter.Write(rawFileName);
-                    WriteRawColumn(i, $@"{Directory}{tableDefinition.Name}\{rawFileName}", reader);
+                    WriteBlobColumn(i, $@"{Directory}{tableDefinition.Name}\{rawFileName}", reader);
                 }
                 else
                 {
@@ -212,7 +212,7 @@ namespace ACopyLib.Writer
             }
         }
 
-        private void WriteRawColumn(int colId, string rawFileName, IDataReader reader)
+        private void WriteBlobColumn(int colId, string rawFileName, IDataReader reader)
         {
             byte[] buf = new byte[RawBufferSize];
             using (DataFileBinaryWriter writer = new DataFileBinaryWriter(rawFileName, UseCompression))

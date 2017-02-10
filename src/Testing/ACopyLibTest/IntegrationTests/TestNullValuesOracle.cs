@@ -72,9 +72,9 @@ namespace ACopyLibTest.IntegrationTests
         }
 
         [TestMethod, TestCategory("Oracle")]
-        public void TestOraNullValue_When_Raw()
+        public void TestOraNullValue_When_Blob()
         {
-            TestNullValue_When_Raw(CheckValue);
+            TestNullValue_When_Blob(CheckValue);
         }
     }
 }

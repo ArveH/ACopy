@@ -22,7 +22,7 @@ namespace ADatabase.Extensions
                     return ColumnTypeName.Float;
                 case "date":
                     return ColumnTypeName.DateTime;
-                case "long raw":
+                case "longraw":
                 case "raw":
                     return ColumnTypeName.Raw;
                 case "blob":
@@ -82,9 +82,10 @@ namespace ADatabase.Extensions
                 case "VARCHAR2":
                 case "VARCHAR":
                 case "CHAR":
-                case "LONG RAW":
                 case "RAW":
                     return str.ToLower() + "(@Length)";
+                case "LONG RAW":
+                    return "longraw(@Length)";
                 case "NUMBER":
                     return str.ToLower() + "(@Prec, @Scale)";
                 default:

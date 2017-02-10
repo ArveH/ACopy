@@ -41,18 +41,18 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("Oracle")]
-        public void TestOraReader_When_RawColumn()
+        public void TestOraReader_When_BlobColumn()
         {
-            TestReader_When_RawColumn();
-            var val = Commands.ExecuteScalar(string.Format("select utl_raw.cast_to_varchar2(dbms_lob.substr(raw_col)) as tmp from {0}", TestTable));
+            TestReader_When_BlobColumn();
+            var val = Commands.ExecuteScalar(string.Format("select utl_raw.cast_to_varchar2(dbms_lob.substr(blob_col)) as tmp from {0}", TestTable));
             val.Should().Be("A long blob");
         }
 
         [TestMethod, TestCategory("Oracle")]
-        public void TestOraReader_When_RawColumn_And_Compressed()
+        public void TestOraReader_When_BlobColumn_And_Compressed()
         {
-            TestReader_When_RawColumn_And_Compressed();
-            var val = Commands.ExecuteScalar(string.Format("select utl_raw.cast_to_varchar2(dbms_lob.substr(raw_col)) as tmp from {0}", TestTable));
+            TestReader_When_BlobColumn_And_Compressed();
+            var val = Commands.ExecuteScalar(string.Format("select utl_raw.cast_to_varchar2(dbms_lob.substr(blob_col)) as tmp from {0}", TestTable));
             val.Should().Be("A long blob");
         }
 

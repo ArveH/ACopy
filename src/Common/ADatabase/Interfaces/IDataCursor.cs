@@ -4,7 +4,7 @@ namespace ADatabase
 {
     public interface IDataCursor
     {
-        IDataReader ExecuteReader(string selectStatement, bool hasRawColumn=false);
+        IDataReader ExecuteReader(string selectStatement, bool hasBlobColumn=false);
         void Close();
     }
 }

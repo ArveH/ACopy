@@ -79,7 +79,7 @@ namespace ACopyLibTest.IntegrationTests
         }
 
         //TestMethod
-        protected void TestNullValue_When_Raw(Action checkValue)
+        protected void TestNullValue_When_Blob(Action checkValue)
         {
             IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Blob, "test_col", true, "");
             CreateTestTable1Row3Columns1Value(col);

@@ -41,5 +41,6 @@
     <Length Operator="in">16,32,17,34</Length>
   </Type>
   <Type Source="blob" Destination="blob"></Type>
-  <Type Source="long raw" Destination="raw"></Type>
+  <Type Source="raw" Destination="blob"></Type>
+  <Type Source="longraw" Destination="blob"></Type>
 </TypeConversions>

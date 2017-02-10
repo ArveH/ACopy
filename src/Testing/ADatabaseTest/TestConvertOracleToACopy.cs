@@ -220,17 +220,17 @@ namespace ADatabaseTest
         }
 
         [TestMethod]
-        public void TestBlob_Then_Raw()
+        public void TestBlob_Then_Blob()
         {
             var acopyType = GetACopyType("BLOB", ref _length, ref _prec, ref _scale);
             acopyType.Should().Be(ColumnTypeName.Blob);
         }
 
         [TestMethod]
-        public void TestLongRaw_Then_Raw()
+        public void TestLongRaw_Then_Blob()
         {
-            var acopyType = GetACopyType("LONG RAW", ref _length, ref _prec, ref _scale);
-            acopyType.Should().Be(ColumnTypeName.Raw);
+            var acopyType = GetACopyType("LONGRAW", ref _length, ref _prec, ref _scale);
+            acopyType.Should().Be(ColumnTypeName.Blob);
         }
 
         [TestMethod]

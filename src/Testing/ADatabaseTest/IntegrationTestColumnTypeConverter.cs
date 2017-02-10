@@ -161,10 +161,10 @@ namespace ADatabaseTest
         }
 
         [TestMethod]
-        public void TestGetDestinationType_When_BlobToRaw()
+        public void TestGetDestinationType_When_BlobToBlob()
         {
             var destinationType = GetDestinationTypeWhenOracleToACopy("blob", ref _length, ref _prec, ref _scale);
-            destinationType.Should().Be("raw");
+            destinationType.Should().Be("blob");
         }
 
         [TestMethod]
@@ -176,10 +176,10 @@ namespace ADatabaseTest
         }
 
         [TestMethod]
-        public void TestGetDestinationType_When_LongRawToRaw()
+        public void TestGetDestinationType_When_LongRawToBlob()
         {
-            var destinationType = GetDestinationTypeWhenOracleToACopy("long raw", ref _length, ref _prec, ref _scale);
-            destinationType.Should().Be("raw");
+            var destinationType = GetDestinationTypeWhenOracleToACopy("longraw", ref _length, ref _prec, ref _scale);
+            destinationType.Should().Be("blob");
         }
 
         [TestMethod]

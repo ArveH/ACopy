@@ -2,9 +2,9 @@
 
 namespace ADatabase.SqlServer.Columns
 {
-    public class SqlServerRawColumn : SqlServerColumn
+    public class SqlServerBlobColumn : SqlServerColumn
     {
-        public SqlServerRawColumn(string name, bool isNullable, string def)
+        public SqlServerBlobColumn(string name, bool isNullable, string def)
             : base(name, ColumnTypeName.Blob, isNullable, def)
         {
         }
@@ -28,12 +28,12 @@ namespace ADatabase.SqlServer.Columns
 
         public override string ToString(object value)
         {
-            throw new NotImplementedException("Column.ToFile for RAW");
+            throw new NotImplementedException("Column.ToFile for BLOB");
         }
 
         public override object ToInternalType(string value)
         {
-            throw new NotImplementedException("Column.ToInternalType for RAW");
+            throw new NotImplementedException("Column.ToInternalType for BLOB");
         }
 
         public override Type GetDotNetType()

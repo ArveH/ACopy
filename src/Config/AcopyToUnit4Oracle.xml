@@ -29,6 +29,6 @@
   </Type>
   <Type Source="raw" Destination="blob">
   </Type>
-  <Type Source="long raw" Destination="raw">
+  <Type Source="longraw" Destination="blob">
   </Type>
 </TypeConversions>

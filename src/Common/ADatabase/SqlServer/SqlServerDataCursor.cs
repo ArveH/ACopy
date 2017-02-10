@@ -22,12 +22,12 @@ namespace ADatabase.SqlServer
             Close();
         }
 
-        public IDataReader ExecuteReader(string selectStatement, bool hasRawColumn)
+        public IDataReader ExecuteReader(string selectStatement, bool hasBlobColumn)
         {
             _connection = new InternalSqlServerConnection(_dbContext.ConnectionString);
             _command = new InternalSqlServerCommand(selectStatement, _connection);
             CommandBehavior behavior = CommandBehavior.Default;
-            if (hasRawColumn)
+            if (hasBlobColumn)
             {
                 behavior |= CommandBehavior.SequentialAccess;
             }

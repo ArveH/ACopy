@@ -10,7 +10,7 @@ namespace ADatabase
             Name = name;
             Location = location;
             Columns = columns;
-            HasRawColumn = false;
+            HasBlobColumn = false;
         }
 
         public string Name { get; set; }
@@ -21,7 +21,7 @@ namespace ADatabase
 
         public List<IIndexDefinition> Indexes { get; set; }
 
-        public bool HasRawColumn { get; set; }
+        public bool HasBlobColumn { get; set; }
 
         /// <summary>
         /// Special handling used because of a bug in Oracle. We temporarily set guid columns to raw(17) (instead of raw(16)).

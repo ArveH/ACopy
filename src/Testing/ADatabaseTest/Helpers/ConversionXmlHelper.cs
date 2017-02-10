@@ -154,8 +154,9 @@ namespace ADatabaseTest.Helpers
                    "<Type Source=\"raw(@Length)\" Destination=\"guid\">" +
                    "<Length Operator=\"in\">16,32,17,34</Length>" +
                    "</Type>" +
-                GetOneTypeNoOperatorXml("blob", "raw") +
-                GetOneTypeNoOperatorXml("long raw", "raw") +
+                GetOneTypeNoOperatorXml("blob", "blob") +
+                GetOneTypeNoOperatorXml("raw", "blob") +
+                GetOneTypeNoOperatorXml("longraw", "blob") +
                 "</TypeConversions>";
         }
 

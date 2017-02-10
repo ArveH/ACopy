@@ -148,7 +148,7 @@ namespace ACopyLibTest
             val.Should().Be("Line 1");
         }
 
-        private void CreateSchemaFileForRaw(string fullPath)
+        private void CreateSchemaFileForBlob(string fullPath)
         {
             using (StreamWriter writer = new StreamWriter(fullPath))
             {
@@ -165,8 +165,8 @@ namespace ACopyLibTest
                 writer.WriteLine("      <Default>0</Default>");
                 writer.WriteLine("    </Column>");
                 writer.WriteLine("    <Column");
-                writer.WriteLine("      Name=\"raw_col\">");
-                writer.WriteLine("      <Type>Raw</Type>");
+                writer.WriteLine("      Name=\"blob_col\">");
+                writer.WriteLine("      <Type>Blob</Type>");
                 writer.WriteLine("      <IsNullable>True</IsNullable>");
                 writer.WriteLine("      <Default />");
                 writer.WriteLine("    </Column>");
@@ -185,7 +185,7 @@ namespace ACopyLibTest
             }
         }
 
-        private void CreateDataFilesForRaw(string fullPath)
+        private void CreateDataFilesForBlob(string fullPath)
         {
             using (StreamWriter writer = new StreamWriter(fullPath))
             {
@@ -203,20 +203,20 @@ namespace ACopyLibTest
         }
 
         //TestMethod
-        protected void TestReader_When_RawColumn()
+        protected void TestReader_When_BlobColumn()
         {
-            CreateSchemaFileForRaw(Directory + SchemaFile);
-            CreateDataFilesForRaw(Directory + DataFile);
+            CreateSchemaFileForBlob(Directory + SchemaFile);
+            CreateDataFilesForBlob(Directory + DataFile);
 
             Read();
             DbSchema.IsTable(TestTable).Should().BeTrue();
         }
 
         //TestMethod
-        protected void TestReader_When_RawColumn_And_Compressed()
+        protected void TestReader_When_BlobColumn_And_Compressed()
         {
-            CreateSchemaFileForRaw(Directory + SchemaFile);
-            CreateDataFilesForRaw(Directory + DataFile);
+            CreateSchemaFileForBlob(Directory + SchemaFile);
+            CreateDataFilesForBlob(Directory + DataFile);
             CompressDataFile(Directory + DataFile);
             CompressDataFile(Directory + TestTable + @"\" + "i000000000000000.raw");
 
@@ -317,8 +317,8 @@ namespace ACopyLibTest
                 writer.WriteLine("      </Details>");
                 writer.WriteLine("    </Column>");
                 writer.WriteLine("    <Column");
-                writer.WriteLine("      Name=\"raw_col\">");
-                writer.WriteLine("      <Type>Raw</Type>");
+                writer.WriteLine("      Name=\"blob_col\">");
+                writer.WriteLine("      <Type>Blob</Type>");
                 writer.WriteLine("      <IsNullable>True</IsNullable>");
                 writer.WriteLine("      <Default />");
                 writer.WriteLine("    </Column>");
@@ -459,7 +459,7 @@ namespace ACopyLibTest
                 tableDefinition.Columns[12].ToString(reader["string_col"]).Should().Be("'A unicode ﺽ string'", "because that's the value for string_col");
                 tableDefinition.Columns[13].ToString(reader["varchar_col"]).Should().Be("'A varchar string'", "because that's the value for varchar_col");
 
-                string blob = Encoding.Default.GetString((byte[])reader["raw_col"]);
+                string blob = Encoding.Default.GetString((byte[])reader["blob_col"]);
                 blob.Should().Be("A long blob");
 	        }
 	        finally

@@ -8,7 +8,7 @@ namespace ADatabase
         string Location { get; set; }
         List<IColumn> Columns { get; }
         List<IIndexDefinition> Indexes { get; set; }
-        bool HasRawColumn { get; set; }
+        bool HasBlobColumn { get; set; }
         void SetSizeForGuid(int rawLength);
         void SetCollation(string collation);
     }

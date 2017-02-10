@@ -39,18 +39,18 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("SqlServer")]
-        public void TestMSReader_When_RawColumn()
+        public void TestMSReader_When_BlobColumn()
         {
-            TestReader_When_RawColumn();
-            var val = Commands.ExecuteScalar(string.Format("select convert(varchar(100), raw_col) as raw from {0}", TestTable));
+            TestReader_When_BlobColumn();
+            var val = Commands.ExecuteScalar(string.Format("select convert(varchar(100), blob_col) as blob from {0}", TestTable));
             val.Should().Be("A long blob");
         }
 
         [TestMethod, TestCategory("SqlServer")]
-        public void TestMSReader_When_RawColumn_And_Compressed()
+        public void TestMSReader_When_BlobColumn_And_Compressed()
         {
-            TestReader_When_RawColumn_And_Compressed();
-            var val = Commands.ExecuteScalar(string.Format("select convert(varchar(100), raw_col) as raw from {0}", TestTable));
+            TestReader_When_BlobColumn_And_Compressed();
+            var val = Commands.ExecuteScalar(string.Format("select convert(varchar(100), blob_col) as blob from {0}", TestTable));
             val.Should().Be("A long blob");
         }
 

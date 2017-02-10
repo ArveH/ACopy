@@ -25,7 +25,7 @@ namespace ADatabase.Oracle
             GetColumnInfo(columnTypeConverter, tableName, columns);
 
             ITableDefinition tableDefinition = DbContext.PowerPlant.CreateTableDefinition(tableName, columns, GetSegmentName(tableName));
-            tableDefinition.HasRawColumn = (from col in tableDefinition.Columns
+            tableDefinition.HasBlobColumn = (from col in tableDefinition.Columns
                                                where col.Type == ColumnTypeName.Blob
                                                select col).Any();
 
