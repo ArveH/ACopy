@@ -17,6 +17,8 @@ namespace ACommandLineParser
                     return new CreateClusteredIndexArgument();
                 case "ConfigFile":
                     return new ConfigFileArgument();
+                case "ConversionsFile":
+                    return new ConversionsFileArgument();
                 case "ConnectionString":
                     return new ConnectionStringArgument();
                 case "Database":

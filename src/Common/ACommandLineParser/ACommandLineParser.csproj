@@ -66,6 +66,7 @@
     <Compile Include="ArgumentFactory.cs" />
     <Compile Include="ArgumentCollectionFactory.cs" />
     <Compile Include="Arguments\BatchSizeArgument.cs" />
+    <Compile Include="Arguments\ConversionsFileArgument.cs" />
     <Compile Include="Arguments\CreateClusteredIndexArgument.cs" />
     <Compile Include="Arguments\ConnectionStringArgument.cs" />
     <Compile Include="Arguments\DatabaseArgument.cs" />

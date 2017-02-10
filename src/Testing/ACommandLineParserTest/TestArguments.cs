@@ -164,5 +164,14 @@ namespace ACommandLineParserTest
             _arguments["-x"].Value.Should().Be("myconfig.xml");
         }
 
+        [TestMethod]
+        public void TestConversionsFile()
+        {
+            string[] args = { "-kUnit4OracleWriter.xml" };
+
+            _arguments.AddCommandLineArguments(args);
+            _arguments["-k"].Value.Should().Be("Unit4OracleWriter.xml");
+        }
+
     }
 }
