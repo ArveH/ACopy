@@ -119,7 +119,7 @@ namespace ACopyLibTest
         {
             IAReader reader = AReaderFactory.CreateInstance(DbContext);
             reader.Directory = Directory;
-            reader.ConversionsFile = "Resources/ACopyToUnit4Oracle.xml";
+            reader.ConversionsFile = "Resources/Unit4OracleReaderConversions.xml";
             int totalTables;
             int failedTables;
             reader.Read(new List<string> { TestTable }, out totalTables, out failedTables);
@@ -436,7 +436,7 @@ namespace ACopyLibTest
         private void CheckAllValues()
         {
             IDataCursor cursor = DbContext.PowerPlant.CreateDataCursor();
-            var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleConversions.xml");
+            var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleWriterConversions.xml");
             ITableDefinition tableDefinition = DbSchema.GetTableDefinition(columnTypeConverter, TestTable);
             try 
 	        {	        

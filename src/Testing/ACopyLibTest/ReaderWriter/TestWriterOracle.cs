@@ -15,8 +15,8 @@ namespace ACopyLibTest
 
             DbSchema.DropTable(TestTable);
             DeleteFiles();
-            ConversionFileForRead = "Resources/ACopyToUnit4Oracle.xml";
-            ConversionFileForWrite = "Resources/Unit4OracleConversions.xml";
+            ConversionFileForRead = "Resources/Unit4OracleReaderConversions.xml";
+            ConversionFileForWrite = "Resources/Unit4OracleWriterConversions.xml";
 
             base.Setup();
         }

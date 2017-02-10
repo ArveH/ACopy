@@ -132,7 +132,7 @@ namespace ADatabaseTest.Helpers
                 "</TypeConversions>";
         }
 
-        public static string Unit4OracleToACopyConversionsXml()
+        public static string Unit4OracleWriterConversionsXml()
         {
             return GetHeadingXml() +
                 "<TypeConversions From=\"Oracle\" To=\"ACopy\">\n" +
@@ -160,7 +160,7 @@ namespace ADatabaseTest.Helpers
                 "</TypeConversions>";
         }
 
-        public static string ACopyToUnit4OracleConversionsXml()
+        public static string Unit4OracleReaderConversionsXml()
         {
             return GetHeadingXml() +
                 "<TypeConversions From=\"ACopy\" To=\"Oracle\">\n" +

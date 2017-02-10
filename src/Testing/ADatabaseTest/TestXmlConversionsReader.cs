@@ -60,7 +60,7 @@ namespace ADatabaseTest
         [TestMethod]
         public void TestGetSourceSystem()
         {
-            var rootNode = _xmlConversionsReader.GetRootNode(ConversionXmlHelper.Unit4OracleToACopyConversionsXml());
+            var rootNode = _xmlConversionsReader.GetRootNode(ConversionXmlHelper.Unit4OracleWriterConversionsXml());
             var sourceSystem = _xmlConversionsReader.GetSourceSystem(rootNode);
             sourceSystem.Should().Be(DatabaseSystemName.Oracle);
         }
@@ -68,7 +68,7 @@ namespace ADatabaseTest
         [TestMethod]
         public void TestGetDestinationSystem()
         {
-            var rootNode = _xmlConversionsReader.GetRootNode(ConversionXmlHelper.Unit4OracleToACopyConversionsXml());
+            var rootNode = _xmlConversionsReader.GetRootNode(ConversionXmlHelper.Unit4OracleWriterConversionsXml());
             var sourceSystem = _xmlConversionsReader.GetDestinationSystem(rootNode);
             sourceSystem.Should().Be(DatabaseSystemName.ACopy);
         }

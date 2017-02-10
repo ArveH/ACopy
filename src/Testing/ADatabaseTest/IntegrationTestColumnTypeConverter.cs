@@ -23,7 +23,7 @@ namespace ADatabaseTest
 
         private string GetDestinationTypeWhenOracleToACopy(string input, ref int length, ref int prec, ref int scale)
         {
-            _columnTypeConverter.Initialize(ConversionXmlHelper.Unit4OracleToACopyConversionsXml());
+            _columnTypeConverter.Initialize(ConversionXmlHelper.Unit4OracleWriterConversionsXml());
             return _columnTypeConverter.GetDestinationType(input, ref length, ref prec, ref scale);
         }
 
@@ -185,7 +185,7 @@ namespace ADatabaseTest
         [TestMethod]
         public void TestGetDestinationType_When_Int64ToNumber_20_0()
         {
-            _columnTypeConverter.Initialize(ConversionXmlHelper.ACopyToUnit4OracleConversionsXml());
+            _columnTypeConverter.Initialize(ConversionXmlHelper.Unit4OracleReaderConversionsXml());
             var destinationType = _columnTypeConverter.GetDestinationType("int64", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("number");
             _prec.Should().Be(20);

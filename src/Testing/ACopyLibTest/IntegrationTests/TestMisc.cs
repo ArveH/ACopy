@@ -67,7 +67,7 @@ namespace ACopyLibTest.IntegrationTests
         {
             IAWriter writer = AWriterFactory.CreateInstance(DbContext);
             writer.Directory = Directory;
-            writer.ConversionsFile = "Resources/Unit4OracleConversions.xml";
+            writer.ConversionsFile = "Resources/Unit4OracleWriterConversions.xml";
             writer.UseCompression = true;
             writer.Write(new List<string> { TestTable });
         }
@@ -76,7 +76,7 @@ namespace ACopyLibTest.IntegrationTests
         {
             IAReader reader = AReaderFactory.CreateInstance(DbContext);
             reader.Directory = Directory;
-            reader.ConversionsFile = "Resources/ACopyToUnit4Oracle.xml";
+            reader.ConversionsFile = "Resources/Unit4OracleReaderConversions.xml";
             int totalTables;
             int failedTables;
             reader.Read(new List<string> { TestTable }, out totalTables, out failedTables);

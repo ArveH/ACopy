@@ -11,8 +11,8 @@ namespace ACopyLibTest.IntegrationTests
         [TestInitialize]
         public override void Setup()
         {
-            ConversionFileForWrite = "Resources/Unit4OracleConversions.xml";
-            ConversionFileForRead = "Resources/ACopyToUnit4Oracle.xml";
+            ConversionFileForWrite = "Resources/Unit4OracleWriterConversions.xml";
+            ConversionFileForRead = "Resources/Unit4OracleReaderConversions.xml";
             DbContext = DbContextFactory.CreateOracleContext(ConnectionStrings.GetOracle());
             base.Setup();
         }

@@ -182,17 +182,17 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="..\..\Config\AcopyToUnit4Oracle.xml">
-      <Link>Resources\AcopyToUnit4Oracle.xml</Link>
+    <Content Include="..\..\Config\Unit4OracleReaderConversions.xml">
+      <Link>Resources\Unit4OracleReaderConversions.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\Config\Unit4OracleConversions.xml">
-      <Link>Resources\Unit4OracleConversions.xml</Link>
+    <Content Include="..\..\Config\Unit4OracleWriterConversions.xml">
+      <Link>Resources\Unit4OracleWriterConversions.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>xcopy "$(SolutionDir)\..\Oracle binaries\*.*" . /Y

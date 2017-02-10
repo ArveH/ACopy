@@ -41,7 +41,7 @@ namespace ADatabaseTest
             List<IColumn> columns = new List<IColumn> { ColumnFactory.CreateInstance(type, "col1", length, prec, scale, isNullable, def, collation) };
             ITableDefinition expectedTableDefinition = PowerPlant.CreateTableDefinition(TableName, columns, "");
             DbSchema.CreateTable(expectedTableDefinition);
-            var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleConversions.xml");
+            var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleWriterConversions.xml");
             ITableDefinition retrievedTableDefinition = DbSchema.GetTableDefinition(columnTypeConverter, TableName);
 
             AssertTableDefinition(expectedTableDefinition, retrievedTableDefinition);
@@ -54,7 +54,7 @@ namespace ADatabaseTest
 
         public void VerifyTableDefinitionDefaultValue(string expected)
         {
-            var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleConversions.xml");
+            var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleWriterConversions.xml");
             DbSchema.GetTableDefinition(columnTypeConverter, TableName).Columns[0].Default.Should().Be(expected);
         }
 

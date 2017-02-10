@@ -23,7 +23,7 @@ namespace ADatabaseTest
             _prec = 0;
             _scale = 0;
             _columnTypeConverter = new ColumnTypeConverter(new XmlConversionsReader(new TypeDescriptionFactory(new TypeConstraintFactory(new TypeOperatorFactory()))));
-            _columnTypeConverter.Initialize(File.ReadAllText("Resources/Unit4OracleConversions.xml"));
+            _columnTypeConverter.Initialize(File.ReadAllText("Resources/Unit4OracleWriterConversions.xml"));
         }
 
         private ColumnTypeName GetACopyType(string type, ref int len, ref int prec, ref int scale)

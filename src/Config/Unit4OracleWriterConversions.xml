@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--Type conversion file for Unit4-->
+<!--The From and To parameters are currently not in use -->
 <TypeConversions From="Oracle" To="ACopy">
   <Type Source="varchar2(@Length)" Destination="varchar(@Length)"/>
   <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>
