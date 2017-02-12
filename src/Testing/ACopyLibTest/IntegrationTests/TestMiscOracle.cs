@@ -12,6 +12,8 @@ namespace ACopyLibTest.IntegrationTests
             DbContext = DbContextFactory.CreateOracleContext(ConnectionStrings.GetOracle());
             DbSchema = DbContext.PowerPlant.CreateDbSchema();
             Commands = DbContext.PowerPlant.CreateCommands();
+            ConversionFileForRead = "Resources/Unit4OracleReaderConversions.xml";
+            ConversionFileForWrite = "Resources/Unit4OracleWriterConversions.xml";
 
             DbSchema.DropTable(TestTable);
             DeleteFiles();

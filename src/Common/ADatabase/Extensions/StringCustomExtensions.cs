@@ -9,14 +9,17 @@ namespace ADatabase.Extensions
             switch (str)
             {
                 case "varchar":
+                case "varchar2":
                     return ADatabase.ColumnTypeName.Varchar;
                 case "nvarchar":
+                case "nvarchar2":
                     return ADatabase.ColumnTypeName.NVarchar;
                 case "char":
                     return ADatabase.ColumnTypeName.Char;
                 case "nchar":
                     return ADatabase.ColumnTypeName.NChar;
                 case "longtext":
+                case "clob":
                     return ADatabase.ColumnTypeName.LongText;
                 case "nlongtext":
                     return ADatabase.ColumnTypeName.NLongText;
@@ -41,6 +44,7 @@ namespace ADatabase.Extensions
                     return ADatabase.ColumnTypeName.Dec;
                 case "float":
                     return ADatabase.ColumnTypeName.Float;
+                case "date":
                 case "datetime":
                     return ADatabase.ColumnTypeName.DateTime;
                 case "datetime2":
