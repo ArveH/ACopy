@@ -3,7 +3,8 @@
 <TypeConversions From="ACopy" To="Oracle">
   <Type Source="varchar(@Length)" Destination="varchar2(@Length)"/>
   <Type Source="char(@Length)" Destination="varchar2(@Length)"/>
-  <Type Source="string(@Length)" Destination="varchar2(@Length)"/>
+  <Type Source="nvarchar(@Length)" Destination="varchar2(@Length)"/>
+  <Type Source="nchar(@Length)" Destination="varchar2(@Length)"/>
   <Type Source="longtext" Destination="clob"/>
   <Type Source="bool" Destination="number(1,0)">
   </Type>

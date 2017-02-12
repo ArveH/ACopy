@@ -121,10 +121,10 @@ namespace ADatabaseTest
         private static void CompareToAcrparordAcrrepord(List<ITableShortInfo> actual, string shouldFind1, string shouldFind2)
         {
             (from t in actual
-             where String.Compare(t.Name, shouldFind1, StringComparison.OrdinalIgnoreCase) == 0
+             where string.Compare(t.Name, shouldFind1, StringComparison.OrdinalIgnoreCase) == 0
              select t).Count().Should().Be(1, $"because {shouldFind1} exists");
             (from t in actual
-             where String.Compare(t.Name, shouldFind2, StringComparison.OrdinalIgnoreCase) == 0
+             where string.Compare(t.Name, shouldFind2, StringComparison.OrdinalIgnoreCase) == 0
              select t).Count().Should().Be(1, $"because {shouldFind2} exists");
         }
 

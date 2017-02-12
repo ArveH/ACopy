@@ -15,6 +15,8 @@ namespace ACopyLibTest
             DbContext = DbContextFactory.CreateOracleContext(ConnectionStrings.GetOracle());
             DbSchema = DbContext.PowerPlant.CreateDbSchema();
             Commands = DbContext.PowerPlant.CreateCommands();
+            ConversionFileForRead = "Resources/Unit4OracleReaderConversions.xml";
+            ConversionFileForWrite = "Resources/Unit4OracleWriterConversions.xml";
 
             SchemaFile = TestTable + ".aschema";
             DataFile = TestTable + ".adata";

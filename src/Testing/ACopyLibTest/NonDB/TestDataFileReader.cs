@@ -53,7 +53,7 @@ namespace ACopyLibTest
         {
             List<IColumn> columns = new List<IColumn>
             { 
-                _columnFactory.CreateInstance(ColumnTypeName.String, "val", 50, false, "' '", "Danish_Norwegian_CI_AS"),
+                _columnFactory.CreateInstance(ColumnTypeName.NVarchar, "val", 50, false, "' '", "Danish_Norwegian_CI_AS"),
                 _columnFactory.CreateInstance(ColumnTypeName.Int64, "id", false, "0")
             };
             return columns;
@@ -170,7 +170,7 @@ namespace ACopyLibTest
                 _columnFactory.CreateInstance(ColumnTypeName.LongText, "longtext_col", 0, false, "' '", "Danish_Norwegian_CI_AS"),
                 _columnFactory.CreateInstance(ColumnTypeName.Money, "money_col", 0, 30, 3, false, "0", ""),
                 _columnFactory.CreateInstance(ColumnTypeName.Blob, "blob_col", true, ""),
-                _columnFactory.CreateInstance(ColumnTypeName.String, "string_col", 50, false, "' '", "Danish_Norwegian_CI_AS"),
+                _columnFactory.CreateInstance(ColumnTypeName.NVarchar, "nvarchar_col", 50, false, "' '", "Danish_Norwegian_CI_AS"),
                 _columnFactory.CreateInstance(ColumnTypeName.Varchar, "varchar_col", 50, false, "' '", "Danish_Norwegian_CI_AS")
             };
 

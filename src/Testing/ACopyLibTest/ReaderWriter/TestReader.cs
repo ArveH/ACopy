@@ -17,6 +17,8 @@ namespace ACopyLibTest
         protected IDbContext DbContext;
         protected IDbSchema DbSchema;
         protected ICommands Commands;
+        protected string ConversionFileForWrite;
+        protected string ConversionFileForRead;
 
         protected const string TestGuid = "3f2504e0-4f89-11d3-9a0c-0305e82c3301";
         protected const string TestTable = "testreader";
@@ -119,7 +121,7 @@ namespace ACopyLibTest
         {
             IAReader reader = AReaderFactory.CreateInstance(DbContext);
             reader.Directory = Directory;
-            reader.ConversionsFile = "Resources/Unit4OracleReaderConversions.xml";
+            reader.ConversionsFile = ConversionFileForRead;
             int totalTables;
             int failedTables;
             reader.Read(new List<string> { TestTable }, out totalTables, out failedTables);
@@ -323,8 +325,8 @@ namespace ACopyLibTest
                 writer.WriteLine("      <Default />");
                 writer.WriteLine("    </Column>");
                 writer.WriteLine("    <Column");
-                writer.WriteLine("      Name=\"string_col\">");
-                writer.WriteLine("      <Type>String</Type>");
+                writer.WriteLine("      Name=\"nvarchar_col\">");
+                writer.WriteLine("      <Type>NVarchar</Type>");
                 writer.WriteLine("      <IsNullable>False</IsNullable>");
                 writer.WriteLine("      <Default>' '</Default>");
                 writer.WriteLine("      <Details>");
@@ -436,7 +438,7 @@ namespace ACopyLibTest
         private void CheckAllValues()
         {
             IDataCursor cursor = DbContext.PowerPlant.CreateDataCursor();
-            var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter("Resources/Unit4OracleWriterConversions.xml");
+            var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter(ConversionFileForWrite);
             ITableDefinition tableDefinition = DbSchema.GetTableDefinition(columnTypeConverter, TestTable);
             try 
 	        {	        
@@ -456,7 +458,7 @@ namespace ACopyLibTest
                 tableDefinition.Columns[8].ToString(reader["int64_col"]).Should().Be("123456789012345", "because that's the value for int64_col");
                 tableDefinition.Columns[9].ToString(reader["longtext_col"]).Should().Be("'Very long text with æøå'", "because that's the value for longtext_col");
                 tableDefinition.Columns[10].ToString(reader["money_col"]).Should().Be("123.123", "because that's the value for money_col");
-                tableDefinition.Columns[12].ToString(reader["string_col"]).Should().Be("'A unicode ﺽ string'", "because that's the value for string_col");
+                tableDefinition.Columns[12].ToString(reader["nvarchar_col"]).Should().Be("'A unicode ﺽ string'", "because that's the value for string_col");
                 tableDefinition.Columns[13].ToString(reader["varchar_col"]).Should().Be("'A varchar string'", "because that's the value for varchar_col");
 
                 string blob = Encoding.Default.GetString((byte[])reader["blob_col"]);

@@ -12,7 +12,7 @@ namespace ADatabase.SqlServer.Columns
 
         public override string TypeToString()
         {
-            return string.Format("bit");
+            return "bit";
         }
 
         public override string ToString(object value)

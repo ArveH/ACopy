@@ -8,19 +8,18 @@ namespace ADatabase.SqlServer.Columns
         public SqlServerMoneyColumn(string name, bool isNullable, string def)
             : base(name, isNullable, def)
         {
-            Details["Prec"] = 28;
-            Details["Scale"] = 3;
             Type = ColumnTypeName.Money;
         }
 
         public override string TypeToString()
         {
-            return "dec(28,3)";
+            return "money";
         }
 
         public override string ToString(object value)
         {
-            return Convert.ToDecimal(value).ToString(CultureInfo.InvariantCulture);
+            // The # removes trailing zero. Will round up last number if more than 8 decimals. 
+            return Convert.ToDecimal(value).ToString("0.########", CultureInfo.InvariantCulture);
         }
 
         public override object ToInternalType(string value)

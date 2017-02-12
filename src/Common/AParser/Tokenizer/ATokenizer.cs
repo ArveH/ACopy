@@ -278,12 +278,12 @@ namespace AParser
         #region Character methods
         private static bool IsLegalNameChar(char c)
         {
-            return Char.IsLetterOrDigit(c) || c == '_';
+            return char.IsLetterOrDigit(c) || c == '_';
         }
 
         private static bool IsWhitespace(char c)
         {
-            return Char.IsWhiteSpace(c);
+            return char.IsWhiteSpace(c);
         }
         #endregion
     }

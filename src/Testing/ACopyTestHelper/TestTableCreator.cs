@@ -22,13 +22,13 @@ namespace ACopyTestHelper
                 columnFactory.CreateInstance(ColumnTypeName.LongText, "longtext_col", 0, false, "' '", "Danish_Norwegian_CI_AS"),
                 columnFactory.CreateInstance(ColumnTypeName.Money, "money_col", 0, 30, 3, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Blob, "blob_col", true, ""),
-                columnFactory.CreateInstance(ColumnTypeName.String, "string_col", 50, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.NVarchar, "nvarchar_col", 50, false, "' '", "Danish_Norwegian_CI_AS"),
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "varchar_col", 50, false, "' '", "Danish_Norwegian_CI_AS")
             };
             var tableDefinition = new TableDefinition(tableName, columns, "");
             var dbSchema = dbContext.PowerPlant.CreateDbSchema();
             dbSchema.CreateTable(tableDefinition);
-            var stmt = $"insert into {tableName} (bool_col, char_col, date_col, float_col, guid_col, int_col, int8_col, int16_col, int64_col, longtext_col, money_col, blob_col, string_col, varchar_col) ";
+            var stmt = $"insert into {tableName} (bool_col, char_col, date_col, float_col, guid_col, int_col, int8_col, int16_col, int64_col, longtext_col, money_col, blob_col, nvarchar_col, varchar_col) ";
             if (dbContext.DbType == DbTypeName.SqlServer)
             {
                 stmt += "values (1,'NO', 'Feb 23 1900', 123.12345678, '3f2504e0-4f89-11d3-9a0c-0305e82c3301', 1234567890, 150, 12345, 123456789012345, N'Very long text with æøå', 123.123, convert(varbinary, 'Lots of bytes'), N'A unicode ﺽ string', 'A varchar string')";
@@ -49,12 +49,12 @@ namespace ACopyTestHelper
             var columnFactory = dbContext.PowerPlant.CreateColumnFactory();
             var columns = new List<IColumn>
             {
-                columnFactory.CreateInstance(ColumnTypeName.String, "index_name", 60, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnTypeName.String, "table_name", 60, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnTypeName.String, "column_list", 510, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnTypeName.String, "location_name", 50, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.NVarchar, "index_name", 60, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.NVarchar, "table_name", 60, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.NVarchar, "column_list", 510, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.NVarchar, "location_name", 50, false, "' '", "Danish_Norwegian_CI_AS"),
                 columnFactory.CreateInstance(ColumnTypeName.Int8, "unique_flag", 0, 3, 0, false, "0", ""),
-                columnFactory.CreateInstance(ColumnTypeName.String, "db_name", 20, false, "' '", "Danish_Norwegian_CI_AS")
+                columnFactory.CreateInstance(ColumnTypeName.NVarchar, "db_name", 20, false, "' '", "Danish_Norwegian_CI_AS")
             };
             dbSchema.CreateTable(new TableDefinition(aagIndex, columns, ""));
             dbSchema.CreateTable(new TableDefinition(asysIndex, columns, ""));

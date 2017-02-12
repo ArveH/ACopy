@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Type conversion file for Unit4-->
+<!--The From and To parameters are currently not in use -->
+<TypeConversions From="SqlServer" To="ACopy">
+  <Type Source="varchar" Destination="longtext">
+    <Length Operator="=">-1</Length>
+  </Type>
+  <Type Source="nvarchar" Destination="longtext">
+    <Length Operator="=">-1</Length>
+  </Type>
+  <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>
+  <Type Source="nvarchar(@Length)" Destination="nvarchar(@Length)"/>
+  <Type Source="char(@Length)" Destination="char(@Length)"/>
+  <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>
+  <Type Source="bool" Destination="bool">
+  </Type>
+  <Type Source="bit" Destination="bool">
+  </Type>
+  <Type Source="tinyint" Destination="int8">
+  </Type>
+  <Type Source="smallint" Destination="int16">
+  </Type>
+  <Type Source="int" Destination="int"/>
+  <Type Source="bigint" Destination="int64">
+  </Type>
+  <Type Source="dec(@Prec,@Scale)" Destination="money">
+    <Prec Operator="=">28</Prec>
+    <Scale Operator="=">3</Scale>
+  </Type>
+  <Type Source="dec(@Prec,@Scale)" Destination="float"></Type>
+  <Type Source="float" Destination="float"></Type>
+  <Type Source="money" Destination="money"></Type>
+  <Type Source="datetime" Destination="datetime"></Type>
+  <Type Source="datetime2" Destination="datetime"></Type>
+  <Type Source="uniqueidentifier" Destination="guid">
+  </Type>
+  <Type Source="varbinary" Destination="blob">
+    <Length Operator="=">-1</Length>
+  </Type>
+  <Type Source="varbinary(@Length)" Destination="raw(@Length)"></Type>
+</TypeConversions>

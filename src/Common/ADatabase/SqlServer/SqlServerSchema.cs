@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using ADatabase.Exceptions;
+using ADatabase.Extensions;
 using ADatabase.Interfaces;
 using ADatabase.SqlServer.Columns;
 
@@ -112,12 +113,14 @@ namespace ADatabase.SqlServer
                     string name = reader.GetString(0);
                     string type = reader.GetString(1);
                     int length = reader.GetInt16(2);
+                    if (length != -1 && (type == "nvarchar" || type == "nchar")) length /= 2;
                     int prec = reader.GetByte(3);
                     int scale = reader.GetByte(4);
                     bool isNullable = reader.GetBoolean(5);
                     string collation = reader.GetString(6);
                     string def = reader.GetString(7);
-                    ColumnTypeName colType = SqlServerColumnTypeConverter.GetColumnTypeFromNativeType(type, ref length, prec, scale);
+                    string sourceType = type.AddParameters();
+                    ColumnTypeName colType = columnTypeConverter.GetDestinationType(sourceType, ref length, ref prec, ref scale).ColumnTypeName();
                     if (reader.GetBoolean(8))
                     {
                         colType = ColumnTypeName.Identity;

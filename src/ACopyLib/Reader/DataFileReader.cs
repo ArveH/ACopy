@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using ACopyLib.Exceptions;
 using ADatabase;
@@ -84,9 +85,12 @@ namespace ACopyLib.Reader
                 {
                     case ColumnTypeName.Varchar:
                     case ColumnTypeName.Char:
-                    case ColumnTypeName.String:
+                    case ColumnTypeName.NVarchar:
+                    case ColumnTypeName.NChar:
                     case ColumnTypeName.LongText:
-                        throw new NotValidDataException(string.Format("Data for column '{0}' missing quote in line{1}", col.Name, _rowCounter));
+                    case ColumnTypeName.NLongText:
+                        throw new NotValidDataException(
+                            $"Data for column '{col.Name}' missing quote in line{_rowCounter}");
                 }
             }
         }

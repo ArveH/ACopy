@@ -24,11 +24,11 @@ namespace ACopyLib.U4Views
 
         public static DbTypeName ConvertFromStringToDbType(string dbType)
         {
-            if (String.Compare(dbType, "oracle", StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(dbType, "oracle", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return DbTypeName.Oracle;
             }
-            if (String.Compare(dbType, "mssql", StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(dbType, "mssql", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return DbTypeName.SqlServer;
             }

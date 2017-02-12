@@ -13,6 +13,8 @@ namespace ADatabaseTest
             PowerPlant = DbContext.PowerPlant;
             DbSchema = PowerPlant.CreateDbSchema();
             ColumnFactory = PowerPlant.CreateColumnFactory();
+            ConversionFileForRead = "Resources/Unit4OracleReaderConversions.xml";
+            ConversionFileForWrite = "Resources/Unit4OracleWriterConversions.xml";
 
             TableName = "horatestcolumntypes";
             DbSchema.DropTable(TableName);
@@ -39,12 +41,6 @@ namespace ADatabaseTest
         public void TestOraCreateTable_When_Char()
         {
             TestStringColumn(ColumnTypeName.Char);
-        }
-
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraCreateTable_When_String()
-        {
-            TestStringColumn(ColumnTypeName.String);
         }
 
         [TestMethod, TestCategory("Oracle")]

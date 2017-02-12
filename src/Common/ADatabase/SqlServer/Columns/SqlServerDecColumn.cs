@@ -3,22 +3,28 @@ using System.Globalization;
 
 namespace ADatabase.SqlServer.Columns
 {
-    public class SqlServerFloatColumn : SqlServerInt32Column
+    public class SqlServerDecColumn: SqlServerInt32Column
     {
-        public SqlServerFloatColumn(string name, bool isNullable, string def)
+        private readonly string _typeToString;
+
+        public SqlServerDecColumn(string name, int prec, int scale, bool isNullable, string def)
             : base(name, isNullable, def)
         {
+            Details["Prec"] = prec;
+            Details["Scale"] = scale;
             Type = ColumnTypeName.Float;
+            _typeToString = $"dec({prec},{scale})";
         }
 
         public override string TypeToString()
         {
-            return "float";
+            return _typeToString;
         }
 
         public override string ToString(object value)
         {
-            return Convert.ToDecimal(value).ToString(CultureInfo.InvariantCulture);
+            // The # removes trailing zero. Will round up last number if more than 8 decimals. 
+            return Convert.ToDecimal(value).ToString("0.########", CultureInfo.InvariantCulture);
         }
 
         public override object ToInternalType(string value)
@@ -32,7 +38,8 @@ namespace ADatabase.SqlServer.Columns
 
         public override Type GetDotNetType()
         {
-            return typeof(double);
+            return typeof(decimal);
         }
+
     }
 }

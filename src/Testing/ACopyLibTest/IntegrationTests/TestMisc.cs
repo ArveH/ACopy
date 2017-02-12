@@ -19,6 +19,9 @@ namespace ACopyLibTest.IntegrationTests
         protected const string TestTable = "testmisc";
         private const string SchemaFile = "testmisc.aschema";
         private const string DataFile = "testmisc.adata";
+        protected string ConversionFileForWrite;
+        protected string ConversionFileForRead;
+
 
         public abstract void Setup();
 
@@ -67,7 +70,7 @@ namespace ACopyLibTest.IntegrationTests
         {
             IAWriter writer = AWriterFactory.CreateInstance(DbContext);
             writer.Directory = Directory;
-            writer.ConversionsFile = "Resources/Unit4OracleWriterConversions.xml";
+            writer.ConversionsFile = ConversionFileForWrite;
             writer.UseCompression = true;
             writer.Write(new List<string> { TestTable });
         }
@@ -76,7 +79,7 @@ namespace ACopyLibTest.IntegrationTests
         {
             IAReader reader = AReaderFactory.CreateInstance(DbContext);
             reader.Directory = Directory;
-            reader.ConversionsFile = "Resources/Unit4OracleReaderConversions.xml";
+            reader.ConversionsFile = ConversionFileForRead;
             int totalTables;
             int failedTables;
             reader.Read(new List<string> { TestTable }, out totalTables, out failedTables);

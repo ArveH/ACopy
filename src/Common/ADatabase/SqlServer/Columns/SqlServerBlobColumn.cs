@@ -4,14 +4,17 @@ namespace ADatabase.SqlServer.Columns
 {
     public class SqlServerBlobColumn : SqlServerColumn
     {
-        public SqlServerBlobColumn(string name, bool isNullable, string def)
+        private readonly string _typeString;
+        public SqlServerBlobColumn(string name, int length, bool isNullable, string def)
             : base(name, ColumnTypeName.Blob, isNullable, def)
         {
+            Details["Length"] = length;
+            _typeString = length == 0 || length == -1 ? "varbinary(max)" : $"varbinary({length})";
         }
 
         public override string TypeToString()
         {
-            return "varbinary(max)";
+            return _typeString;
         }
 
         public override string GetColumnDefinition()

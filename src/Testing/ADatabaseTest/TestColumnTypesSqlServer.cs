@@ -13,6 +13,8 @@ namespace ADatabaseTest
             PowerPlant = DbContext.PowerPlant;
             DbSchema = PowerPlant.CreateDbSchema();
             ColumnFactory = PowerPlant.CreateColumnFactory();
+            ConversionFileForRead = "Resources/Unit4MssReaderConversions.xml";
+            ConversionFileForWrite = "Resources/Unit4MssWriterConversions.xml";
 
             TableName = "hmstestcolumntypes";
             DbSchema.DropTable(TableName);
@@ -44,13 +46,13 @@ namespace ADatabaseTest
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_String()
         {
-            TestStringColumn(ColumnTypeName.String);
+            TestStringColumn(ColumnTypeName.NVarchar);
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_LongText()
         {
-            TestStringColumn(ColumnTypeName.LongText);
+            TestColumn(ColumnTypeName.LongText, -1, 0, 0, false, "' '", "Danish_Norwegian_CI_AS");
         }
 
         private void TestNumberColumn(ColumnTypeName type)
@@ -115,7 +117,7 @@ namespace ADatabaseTest
         [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Blob()
         {
-            TestColumn(ColumnTypeName.Blob, 0, 0, 0, true, "", "");
+            TestColumn(ColumnTypeName.Blob, -1, 0, 0, true, "", "");
         }
 
         [TestMethod, TestCategory("SqlServer")]

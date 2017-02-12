@@ -5,16 +5,19 @@ namespace ADatabase.SqlServer.Columns
 {
     public class SqlServerVarcharColumn: SqlServerColumn
     {
+        protected string TypeString;
+
         public SqlServerVarcharColumn(string name, int length, bool isNullable, string def, string collation)
             : base(name, ColumnTypeName.Varchar, isNullable, AdjustDefaultValue(def))
         {
             Details["Length"] = length;
             Details["Collation"] = collation;
+            TypeString = length == -1 ? "varchar(max)" : $"varchar({length})";
         }
 
         public override string TypeToString()
         {
-            return string.Format("varchar({0})", (int)Details["Length"]);
+            return TypeString;
         }
 
         public override string GetColumnDefinition()

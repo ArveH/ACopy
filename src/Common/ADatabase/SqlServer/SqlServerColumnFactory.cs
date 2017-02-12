@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ADatabase.Exceptions;
 using ADatabase.SqlServer.Columns;
 
 namespace ADatabase.SqlServer
@@ -14,8 +15,8 @@ namespace ADatabase.SqlServer
                     return new SqlServerVarcharColumn(name, length, isNullable, def, collation);
                 case ColumnTypeName.Char:
                     return new SqlServerCharColumn(name, length, isNullable, def, collation);
-                case ColumnTypeName.String:
-                    return new SqlServerStringColumn(name, length, isNullable, def, collation);
+                case ColumnTypeName.NVarchar:
+                    return new SqlServerNVarcharColumn(name, length, isNullable, def, collation);
                 case ColumnTypeName.LongText:
                     return new SqlServerLongTextColumn(name, isNullable, def, collation);
                 case ColumnTypeName.Int:
@@ -32,17 +33,20 @@ namespace ADatabase.SqlServer
                     return new SqlServerMoneyColumn(name, isNullable, def);
                 case ColumnTypeName.Float:
                     return new SqlServerFloatColumn(name, isNullable, def);
+                case ColumnTypeName.Dec:
+                    return new SqlServerDecColumn(name, prec, scale, isNullable, def);
                 case ColumnTypeName.DateTime:
                     return new SqlServerDatetimeColumn(name, isNullable, def);
                 case ColumnTypeName.Guid:
                     return new SqlServerGuidColumn(name, isNullable, def);
                 case ColumnTypeName.Blob:
-                    return new SqlServerBlobColumn(name, isNullable, def);
+                case ColumnTypeName.Raw:
+                    return new SqlServerBlobColumn(name, length, isNullable, def);
                 case ColumnTypeName.Identity:
                     return new SqlServerIdentityColumn(name, isNullable, def);
             }
 
-            throw new NotImplementedException();
+            throw new AColumnTypeException($"Illegal type: {type}");
         }
 
         public IColumn CreateInstance(ColumnTypeName type, string name, int length, bool isNullable, string def, string collation)

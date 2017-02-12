@@ -15,6 +15,11 @@ namespace ACopyLibTest
 
             DbSchema.DropTable(TestTable);
             DeleteFiles();
+
+            ConversionFileForRead = "Resources/Unit4MssReaderConversions.xml";
+            ConversionFileForWrite = "Resources/Unit4MssWriterConversions.xml";
+
+            base.Setup();
         }
 
         [TestCleanup]

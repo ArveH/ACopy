@@ -12,6 +12,8 @@ namespace ACopyLibTest.IntegrationTests
             DbContext = DbContextFactory.CreateSqlServerContext(ConnectionStrings.GetSqlServer());
             DbSchema = DbContext.PowerPlant.CreateDbSchema();
             Commands = DbContext.PowerPlant.CreateCommands();
+            ConversionFileForRead = "Resources/Unit4MssReaderConversions.xml";
+            ConversionFileForWrite = "Resources/Unit4MssWriterConversions.xml";
 
             DbSchema.DropTable(TestTable);
             DeleteFiles();

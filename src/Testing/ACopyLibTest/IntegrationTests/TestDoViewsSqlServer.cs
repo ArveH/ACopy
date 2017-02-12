@@ -10,6 +10,8 @@ namespace ACopyLibTest.IntegrationTests
         public override void Setup()
         {
             DbContext = DbContextFactory.CreateSqlServerContext(ConnectionStrings.GetSqlServer());
+            ConversionFileForRead = "Resources/Unit4MssReaderConversions.xml";
+            ConversionFileForWrite = "Resources/Unit4MssWriterConversions.xml";
             base.Setup();
         }
 

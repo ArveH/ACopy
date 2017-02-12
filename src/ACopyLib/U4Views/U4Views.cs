@@ -72,7 +72,7 @@ namespace ACopyLib.U4Views
                 }
                 catch (Exception ex)
                 {
-                    logger.Write(String.Format("ERROR: Can't create view '{0}'", view.ViewName));
+                    logger.Write(string.Format("ERROR: Can't create view '{0}'", view.ViewName));
                     logger.Write(ex.Message);
                     failedViews++;
                 }

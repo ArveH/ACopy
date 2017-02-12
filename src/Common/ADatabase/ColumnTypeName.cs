@@ -1,4 +1,26 @@
 ﻿namespace ADatabase
 {
-    public enum ColumnTypeName { Varchar, Char, String, LongText, Bool, Int8, Int16, Int, Int64, Money, Dec, Float, DateTime, Guid, Blob, Raw, Identity }
+    public enum ColumnTypeName
+    {
+        Blob,
+        Bool,
+        Char,
+        DateTime,
+        DateTime2,
+        Dec,
+        Float,
+        Guid,
+        Identity,
+        Int,
+        Int16,
+        Int64,
+        Int8,
+        LongText,
+        Money,
+        NChar,
+        NLongText,
+        NVarchar,
+        Raw,
+        Varchar
+    }
 }

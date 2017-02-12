@@ -50,25 +50,25 @@ namespace ACopyLibTest.IntegrationTests
 
         private void InsertIntoAsysview(string query)
         {
-            string insertStmt = String.Format("insert into {0} (table_name, status, db_name, query) values ('{1}', 'N', ' ', '{2}')", Asysview, Testview, query);
+            string insertStmt = string.Format("insert into {0} (table_name, status, db_name, query) values ('{1}', 'N', ' ', '{2}')", Asysview, Testview, query);
             Commands.ExecuteNonQuery(insertStmt);
         }
 
         private void InsertIntoAsysview(string viewName, string testVal)
         {
-            string insertStmt = String.Format("insert into {0} (table_name, status, query) values ('{1}', 'N', 'select ''{2}'' as col0 from {3}')", Asysview, viewName, testVal, TestTable);
+            string insertStmt = string.Format("insert into {0} (table_name, status, query) values ('{1}', 'N', 'select ''{2}'' as col0 from {3}')", Asysview, viewName, testVal, TestTable);
             Commands.ExecuteNonQuery(insertStmt);
         }
 
         private void InsertIntoAagview()
         {
-            string insertStmt = String.Format("insert into {0} (table_name, status, query) values ('{1}', 'N', 'select ''a'' as col0 from {2}')", Aagview, Testview, TestTable);
+            string insertStmt = string.Format("insert into {0} (table_name, status, query) values ('{1}', 'N', 'select ''a'' as col0 from {2}')", Aagview, Testview, TestTable);
             Commands.ExecuteNonQuery(insertStmt);
         }
 
         private void InsertIntoAagview(string query)
         {
-            string insertStmt = String.Format("insert into {0} (table_name, status, query) values ('{1}', 'N', '{2}')", Aagview, Testview, query);
+            string insertStmt = string.Format("insert into {0} (table_name, status, query) values ('{1}', 'N', '{2}')", Aagview, Testview, query);
             Commands.ExecuteNonQuery(insertStmt);
         }
 

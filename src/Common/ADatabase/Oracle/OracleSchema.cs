@@ -49,8 +49,8 @@ namespace ADatabase.Oracle
                     int scale = reader.GetInt32(4);
                     bool isNullable = reader.GetString(5) == "Y";
                     string def = reader.IsDBNull(6) ? "" : reader.GetString(6).TrimEnd();
-                    string sourceType = type.ToOracleTypeWithParameters();
-                    var colType = columnTypeConverter.GetDestinationType(sourceType, ref length, ref prec, ref scale).ACopy2ColumnTypeName();
+                    string sourceType = type.AddParameters();
+                    var colType = columnTypeConverter.GetDestinationType(sourceType, ref length, ref prec, ref scale).ColumnTypeName();
                     columns.Add(columnFactory.CreateInstance(colType, name, length, prec, scale, isNullable, def, ""));
                 }
             }

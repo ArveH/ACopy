@@ -6,11 +6,7 @@
             : base(name, -1, isNullable, def, collation)
         {
             Type = ColumnTypeName.LongText;
-        }
-
-        public override string TypeToString()
-        {
-            return "nvarchar(max)";
+            TypeString = "nvarchar(max)";
         }
     }
 }

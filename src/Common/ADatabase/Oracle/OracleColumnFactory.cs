@@ -13,7 +13,8 @@ namespace ADatabase.Oracle
             {
                 case ColumnTypeName.Varchar:
                 case ColumnTypeName.Char:
-                case ColumnTypeName.String:
+                case ColumnTypeName.NVarchar:
+                case ColumnTypeName.NChar:
                     return new OracleVarchar2Column(name, length, isNullable, def);
                 case ColumnTypeName.LongText:
                     return new OracleClobColumn(name, isNullable, def, collation);

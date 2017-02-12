@@ -129,7 +129,7 @@ namespace ACopyConsole
             IALogger logger = new ConsoleLogger();
             IAReader reader = AReaderFactory.CreateInstance(dbContext, logger);
             reader.Directory = settings["Folder"].Value;
-            if (settings["MaxDegreeOfParallelism"].IsSet) reader.MaxDegreeOfParallelism = Int32.Parse(settings["MaxDegreeOfParallelism"].Value);
+            if (settings["MaxDegreeOfParallelism"].IsSet) reader.MaxDegreeOfParallelism = int.Parse(settings["MaxDegreeOfParallelism"].Value);
             if (settings["BatchSize"].IsSet) reader.BatchSize = int.Parse(settings["BatchSize"].Value);
             if (settings["UseCollation"].IsSet) reader.Collation = settings["UseCollation"].Value;
             if (settings["DataFileSuffix"].IsSet) reader.DataFileSuffix = settings["DataFileSuffix"].Value;

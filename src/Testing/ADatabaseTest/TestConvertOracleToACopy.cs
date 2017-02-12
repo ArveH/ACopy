@@ -28,7 +28,7 @@ namespace ADatabaseTest
 
         private ColumnTypeName GetACopyType(string type, ref int len, ref int prec, ref int scale)
         {
-            return _columnTypeConverter.GetDestinationType(type.ToOracleTypeWithParameters(), ref _length, ref _prec, ref _scale).ACopy2ColumnTypeName();
+            return _columnTypeConverter.GetDestinationType(type.AddParameters(), ref _length, ref _prec, ref _scale).ColumnTypeName();
         }
 
         [TestMethod]
