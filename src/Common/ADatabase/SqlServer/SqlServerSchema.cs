@@ -8,7 +8,6 @@ using System.Threading;
 using ADatabase.Exceptions;
 using ADatabase.Extensions;
 using ADatabase.Interfaces;
-using ADatabase.SqlServer.Columns;
 
 namespace ADatabase.SqlServer
 {

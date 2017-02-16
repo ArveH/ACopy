@@ -93,6 +93,9 @@
     <Compile Include="Helpers\ConversionXmlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IntegrationTestColumnTypeConverter.cs" />
+    <Compile Include="TestDefaultValues.cs" />
+    <Compile Include="TestDefaultValuesOracle.cs" />
+    <Compile Include="TestDefaultValuesSqlServer.cs" />
     <Compile Include="TestTypeDescription.cs" />
     <Compile Include="TestXmlConversionsReader.cs" />
     <Compile Include="TestColumnTypes.cs" />

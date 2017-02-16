@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ACopyLib.U4Views;
 using ACopyTestHelper;
 using ADatabase;

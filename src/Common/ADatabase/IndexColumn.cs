@@ -1,5 +1,4 @@
-﻿using System;
-using ADatabase.Interfaces;
+﻿using ADatabase.Interfaces;
 
 namespace ADatabase
 {

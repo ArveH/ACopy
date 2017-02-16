@@ -9,15 +9,9 @@ namespace ADatabaseTest
         [TestInitialize]
         public override void Setup()
         {
-            DbContext = DbContextFactory.CreateSqlServerContext(ConnectionStrings.GetSqlServer());
-            PowerPlant = DbContext.PowerPlant;
-            DbSchema = PowerPlant.CreateDbSchema();
-            ColumnFactory = PowerPlant.CreateColumnFactory();
             ConversionFileForRead = "Resources/Unit4MssReaderConversions.xml";
             ConversionFileForWrite = "Resources/Unit4MssWriterConversions.xml";
-
-            TableName = "hmstestcolumntypes";
-            DbSchema.DropTable(TableName);
+            base.Setup();
         }
 
         [TestCleanup]
@@ -103,12 +97,6 @@ namespace ADatabaseTest
         }
 
         [TestMethod, TestCategory("SqlServer")]
-        public void TestMSCreateTable_When_DateTime()
-        {
-            TestDateTimeDefauleValue("convert(datetime,'19000101',112)");
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
         public void TestMSCreateTable_When_Guid()
         {
             TestColumn(ColumnTypeName.Guid, 16, 0, 0, true, "", "");
@@ -118,42 +106,6 @@ namespace ADatabaseTest
         public void TestMSCreateTable_When_Blob()
         {
             TestColumn(ColumnTypeName.Blob, -1, 0, 0, true, "", "");
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
-        public void TestMSCreateTable_When_Date_And_MIN_DATE()
-        {
-            TestCreateTable_When_Date_And_MIN_DATE();
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
-        public void TestMSCreateTable_When_Date_And_MAX_DATE()
-        {
-            TestCreateTable_When_Date_And_MAX_DATE();
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
-        public void TestMSCreateTable_When_Date_And_MAX_DATE_Rounded()
-        {
-            TestCreateTable_When_Date_And_MAX_DATE_Rounded();
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
-        public void TestMSCreateTable_When_Date_And_TODAY()
-        {
-            TestCreateTable_When_Date_And_TODAY();
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
-        public void TestMSCreateTable_When_Date_And_NOW()
-        {
-            TestCreateTable_When_Date_And_NOW();
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
-        public void TestMSCreateTable_When_Guid_And_GUIDAsDefault()
-        {
-            TestCreateTable_When_Guid_And_GUIDAsDefault();
         }
     }
 }

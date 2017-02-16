@@ -9,15 +9,9 @@ namespace ADatabaseTest
         [TestInitialize]
         public override void Setup()
         {
-            DbContext = DbContextFactory.CreateOracleContext(ConnectionStrings.GetOracle());
-            PowerPlant = DbContext.PowerPlant;
-            DbSchema = PowerPlant.CreateDbSchema();
-            ColumnFactory = PowerPlant.CreateColumnFactory();
             ConversionFileForRead = "Resources/Unit4OracleReaderConversions.xml";
             ConversionFileForWrite = "Resources/Unit4OracleWriterConversions.xml";
-
-            TableName = "horatestcolumntypes";
-            DbSchema.DropTable(TableName);
+            base.Setup();
         }
 
         [TestCleanup]
@@ -112,42 +106,6 @@ namespace ADatabaseTest
         public void TestOraCreateTable_When_Blob()
         {
             TestColumn(ColumnTypeName.Blob, 0, 0, 0, true, "", "");
-        }
-
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraCreateTable_When_Date_And_MIN_DATE()
-        {
-            TestCreateTable_When_Date_And_MIN_DATE();
-        }
-
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraCreateTable_When_Date_And_MAX_DATE()
-        {
-            TestCreateTable_When_Date_And_MAX_DATE();
-        }
-
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraCreateTable_When_Date_And_MAX_DATE_Rounded()
-        {
-            TestCreateTable_When_Date_And_MAX_DATE_Rounded();
-        }
-
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraCreateTable_When_Date_And_TODAY()
-        {
-            TestCreateTable_When_Date_And_TODAY();
-        }
-
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraCreateTable_When_Date_And_NOW()
-        {
-            TestCreateTable_When_Date_And_NOW();
-        }
-
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraCreateTable_When_Guid_And_GUIDAsDefault()
-        {
-            TestCreateTable_When_Guid_And_GUIDAsDefault();
         }
     }
 }
