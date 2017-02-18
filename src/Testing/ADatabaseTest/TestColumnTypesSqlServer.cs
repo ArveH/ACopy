@@ -11,6 +11,8 @@ namespace ADatabaseTest
         {
             ConversionFileForRead = "Resources/Unit4MssReaderConversions.xml";
             ConversionFileForWrite = "Resources/Unit4MssWriterConversions.xml";
+            DbContext = DbContextFactory.CreateSqlServerContext(ConnectionStrings.GetSqlServer());
+
             base.Setup();
         }
 

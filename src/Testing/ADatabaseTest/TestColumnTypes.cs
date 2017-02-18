@@ -18,7 +18,6 @@ namespace ADatabaseTest
 
         public virtual void Setup()
         {
-            DbContext = DbContextFactory.CreateSqlServerContext(ConnectionStrings.GetSqlServer());
             PowerPlant = DbContext.PowerPlant;
             DbSchema = PowerPlant.CreateDbSchema();
             ColumnFactory = PowerPlant.CreateColumnFactory();

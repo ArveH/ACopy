@@ -11,6 +11,8 @@ namespace ADatabaseTest
         {
             ConversionFileForRead = "Resources/Unit4OracleReaderConversions.xml";
             ConversionFileForWrite = "Resources/Unit4OracleWriterConversions.xml";
+            DbContext = DbContextFactory.CreateOracleContext(ConnectionStrings.GetOracle());
+
             base.Setup();
         }
 

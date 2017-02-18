@@ -1,14 +1,18 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ADatabase;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ADatabaseTest
 {
     [TestClass]
     public class TestDefaultValuesOracle: TestDefaultValues
     {
+        [TestInitialize]
         public override void Setup()
         {
             ConversionFileForRead = "Resources/Unit4OracleReaderConversions.xml";
             ConversionFileForWrite = "Resources/Unit4OracleWriterConversions.xml";
+            DbContext = DbContextFactory.CreateOracleContext(ConnectionStrings.GetOracle());
+
             base.Setup();
         }
 
