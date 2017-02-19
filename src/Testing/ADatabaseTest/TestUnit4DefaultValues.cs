@@ -3,7 +3,7 @@ using FluentAssertions;
 
 namespace ADatabaseTest
 {
-    public abstract class TestDefaultValues: TestColumnTypes
+    public abstract class TestUnit4DefaultValues: TestUnit4ColumnTypesBase
     {
         protected void TestDateTimeDefauleValue(string defValue)
         {

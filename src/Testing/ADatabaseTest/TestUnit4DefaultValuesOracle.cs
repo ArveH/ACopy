@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ADatabaseTest
 {
     [TestClass]
-    public class TestDefaultValuesOracle: TestDefaultValues
+    public class TestUnit4DefaultValuesOracle: TestUnit4DefaultValues
     {
         [TestInitialize]
         public override void Setup()

@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ADatabaseTest
 {
     [TestClass]
-    public class TestColumnTypesSqlServer: TestColumnTypes
+    public class TestUnit4ColumnTypesBaseSqlServer: TestUnit4ColumnTypesBase
     {
         [TestInitialize]
         public override void Setup()

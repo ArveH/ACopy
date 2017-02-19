@@ -5,7 +5,7 @@ using FluentAssertions;
 
 namespace ADatabaseTest
 {
-    public abstract class TestColumnTypes
+    public abstract class TestUnit4ColumnTypesBase
     {
         protected ConnectionStrings ConnectionStrings = new ConnectionStrings();
         protected IPowerPlant PowerPlant;

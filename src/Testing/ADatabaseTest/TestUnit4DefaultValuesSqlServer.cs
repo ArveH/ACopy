@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ADatabaseTest
 {
-    public class TestDefaultValuesSqlServer: TestDefaultValues
+    public class TestUnit4DefaultValuesSqlServer: TestUnit4DefaultValues
     {
         [TestInitialize]
         public override void Setup()
