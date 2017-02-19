@@ -118,7 +118,6 @@ namespace ACopyConsole
             if (settings["MaxDegreeOfParallelism"].IsSet) writer.MaxDegreeOfParallelism = int.Parse(settings["MaxDegreeOfParallelism"].Value);
             if (settings["DataFileSuffix"].IsSet) writer.DataFileSuffix = settings["DataFileSuffix"].Value;
             if (settings["SchemaFileSuffix"].IsSet) writer.SchemaFileSuffix = settings["SchemaFileSuffix"].Value;
-            if (settings["ConversionsFile"].IsSet) writer.ConversionsFile = settings["ConversionsFile"].Value;
             writer.UseCompression = settings["UseCompression"].IsSet;
             writer.UseU4Indexes = settings["UseU4Indexes"].IsSet;
             writer.Write(tables);
@@ -134,7 +133,6 @@ namespace ACopyConsole
             if (settings["UseCollation"].IsSet) reader.Collation = settings["UseCollation"].Value;
             if (settings["DataFileSuffix"].IsSet) reader.DataFileSuffix = settings["DataFileSuffix"].Value;
             if (settings["SchemaFileSuffix"].IsSet) reader.SchemaFileSuffix= settings["SchemaFileSuffix"].Value;
-            if (settings["ConversionsFile"].IsSet) reader.ConversionsFile = settings["ConversionsFile"].Value;
             reader.CreateClusteredIndex = settings["CreateClusteredIndex"].IsSet;
 
             Stopwatch stopWatch = new Stopwatch();

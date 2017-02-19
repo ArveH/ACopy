@@ -10,5 +10,7 @@ namespace ADatabase
         string ConnectionString { get; }
         IPowerPlant PowerPlant { get; }
         IALogger Logger { get; }
+        IColumnTypeConverter ColumnTypeConverterForWrite { get; set; }
+        IColumnTypeConverter ColumnTypeConverterForRead { get; set; }
     }
 }

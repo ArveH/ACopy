@@ -14,9 +14,6 @@ namespace ACopyLibTest.IntegrationTests
         protected IDbSchema DbSchema;
         protected ICommands Commands;
         protected IColumnFactory ColumnFactory;
-        protected IColumnTypeConverter ColumnTypeConverter;
-        protected string ConversionFileForWrite;
-        protected string ConversionFileForRead;
         private IAWriter _writer;
         private IAReader _reader;
 
@@ -36,7 +33,6 @@ namespace ACopyLibTest.IntegrationTests
             DbSchema = DbContext.PowerPlant.CreateDbSchema();
             Commands = DbContext.PowerPlant.CreateCommands();
             ColumnFactory = DbContext.PowerPlant.CreateColumnFactory();
-            ColumnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter(ConversionFileForWrite);
             Cleanup();
         }
 
@@ -80,13 +76,11 @@ namespace ACopyLibTest.IntegrationTests
         protected void WriteAndRead()
         {
             _writer.Directory = Directory;
-            _writer.ConversionsFile = ConversionFileForWrite;
             _writer.Write(new List<string> { TestTable });
 
             DbSchema.DropTable(TestTable);
 
             _reader.Directory = Directory;
-            _reader.ConversionsFile = ConversionFileForRead;
             int totalTables;
             int failedTables;
             _reader.Read(new List<string> { TestTable }, out totalTables, out failedTables);

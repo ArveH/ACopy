@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ADatabaseTest
 {
     [TestClass]
-    public class TestConvertOracleToACopy
+    public class TestConvertUnit4OracleToACopy
     {
         private IColumnTypeConverter _columnTypeConverter;
         private int _length;

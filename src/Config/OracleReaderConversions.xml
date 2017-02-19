@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Default type conversion file for ACopy (Oracle Reader)-->
+<TypeConversions From="Default" To="Oracle">
+  <Type Source="blob" Destination="blob"/>
+  <Type Source="bool" Destination="number(1,0)"/>
+  <Type Source="char(@Length)" Destination="char(@Length)"/>
+  <Type Source="datetime" Destination="date"/>
+  <Type Source="datetime2" Destination="date"/>
+  <Type Source="dec(@Prec,@Scale)" Destination="number(@Prec,@Scale)"/>
+  <Type Source="float(@Length)" Destination="float(49)"/>
+  <Type Source="guid" Destination="raw(16)"/>
+  <Type Source="identity(@Length)" Destination="number(@Length,0)"/>
+  <Type Source="int" Destination="int"/>
+  <Type Source="int16" Destination="number(5,0)"/>
+  <Type Source="int64" Destination="number(20,0)"/>
+  <Type Source="int8" Destination="number(3,0)"/>
+  <Type Source="longtext" Destination="clob"/>
+  <Type Source="money" Destination="number(19,4)"/>
+  <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>
+  <Type Source="nlongtext" Destination="nclob"/>
+  <Type Source="nvarchar(@Length)" Destination="nvarchar2(@Length)"/>
+  <Type Source="raw" Destination="raw"/>
+  <Type Source="longraw" Destination="longraw"/>
+  <Type Source="varchar(@Length)" Destination="varchar2(@Length)"/>
+</TypeConversions>

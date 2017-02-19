@@ -5,11 +5,18 @@ namespace ADatabase.Oracle
 {
     public class OracleContext: DbContext
     {
+        private const string ConversionFileForWrite = @"Resources\Unit4OracleWriterConversions.xml";
+        private const string ConversionFileForRead = @"Resources\unit4OracleReaderConversions.xml";
+
         public OracleContext(IALogger logger = null)
             : base(new OraclePowerPlant(), logger)
         {
             DbType = DbTypeName.Oracle;
             PowerPlant.DbContext = this;
+            ColumnTypeConverterForWrite =
+                PowerPlant.CreateColumnTypeConverter(ConversionFileForWrite);
+            ColumnTypeConverterForRead =
+                PowerPlant.CreateColumnTypeConverter(ConversionFileForRead);
         }
 
         public OracleContext(string connectionString, IALogger logger=null)
@@ -35,5 +42,8 @@ namespace ADatabase.Oracle
 
             ConnectionString = builder.ToString();
         }
+
+        public sealed override IColumnTypeConverter ColumnTypeConverterForWrite { get; set; }
+        public sealed override IColumnTypeConverter ColumnTypeConverterForRead { get; set; }
     }
 }

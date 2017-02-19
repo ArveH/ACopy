@@ -6,11 +6,18 @@ namespace ADatabase.SqlServer
 {
     public class SqlServerContext : DbContext
     {
+        private const string ConversionFileForWrite = @"Resources\Unit4MssWriterConversions.xml";
+        private const string ConversionFileForRead = @"Resources\Unit4MssReaderConversions.xml";
+
         public SqlServerContext(IALogger logger=null)
             : base(new SqlServerPowerPlant(), logger)
         {
             DbType = DbTypeName.SqlServer;
             PowerPlant.DbContext = this;
+            PowerPlant.DbContext.ColumnTypeConverterForWrite =
+                PowerPlant.CreateColumnTypeConverter(ConversionFileForWrite);
+            PowerPlant.DbContext.ColumnTypeConverterForRead =
+                PowerPlant.CreateColumnTypeConverter(ConversionFileForRead);
         }
 
         public SqlServerContext(string conectionString, IALogger logger=null)
@@ -43,5 +50,8 @@ namespace ADatabase.SqlServer
 
             ConnectionString = builder.ToString();
         }
+
+        public override IColumnTypeConverter ColumnTypeConverterForWrite { get; set; }
+        public override IColumnTypeConverter ColumnTypeConverterForRead { get; set; }
     }
 }

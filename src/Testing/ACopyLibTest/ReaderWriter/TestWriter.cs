@@ -30,7 +30,6 @@ namespace ACopyLibTest
         {
             writer = AWriterFactory.CreateInstance(DbContext);
             writer.Directory = Directory;
-            writer.ConversionsFile = ConversionFileForWrite;
         }
 
         public virtual void Cleanup()

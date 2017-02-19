@@ -121,7 +121,6 @@ namespace ACopyLibTest
         {
             IAReader reader = AReaderFactory.CreateInstance(DbContext);
             reader.Directory = Directory;
-            reader.ConversionsFile = ConversionFileForRead;
             int totalTables;
             int failedTables;
             reader.Read(new List<string> { TestTable }, out totalTables, out failedTables);

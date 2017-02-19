@@ -70,7 +70,6 @@ namespace ACopyLibTest.IntegrationTests
         {
             IAWriter writer = AWriterFactory.CreateInstance(DbContext);
             writer.Directory = Directory;
-            writer.ConversionsFile = ConversionFileForWrite;
             writer.UseCompression = true;
             writer.Write(new List<string> { TestTable });
         }
@@ -79,7 +78,6 @@ namespace ACopyLibTest.IntegrationTests
         {
             IAReader reader = AReaderFactory.CreateInstance(DbContext);
             reader.Directory = Directory;
-            reader.ConversionsFile = ConversionFileForRead;
             int totalTables;
             int failedTables;
             reader.Read(new List<string> { TestTable }, out totalTables, out failedTables);

@@ -101,7 +101,7 @@
     <Compile Include="TestUnit4ColumnTypesBase.cs" />
     <Compile Include="TestUnit4ColumnTypesBaseOracle.cs" />
     <Compile Include="TestUnit4ColumnTypesBaseSqlServer.cs" />
-    <Compile Include="TestConvertOracleToACopy.cs" />
+    <Compile Include="TestConvertUnit4OracleToACopy.cs" />
     <Compile Include="TestDatabase.cs" />
     <Compile Include="TestTypeOperatorChecker.cs" />
   </ItemGroup>

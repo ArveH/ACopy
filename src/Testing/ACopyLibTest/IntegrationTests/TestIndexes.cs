@@ -10,14 +10,10 @@ namespace ACopyLibTest.IntegrationTests
     {
         private const string Asysindex = "testasysindex";
         private const string Aagindex = "testaagindex";
-        private IColumnTypeConverter _converterForRead;
-        private IColumnTypeConverter _converterForWrite;
 
         public virtual void Setup()
         {
             base.Setup("testindexes");
-            _converterForWrite = DbContext.PowerPlant.CreateColumnTypeConverter(ConversionFileForWrite);
-            _converterForRead = DbContext.PowerPlant.CreateColumnTypeConverter(ConversionFileForRead);
         }
 
         public override void Cleanup()
@@ -69,8 +65,8 @@ namespace ACopyLibTest.IntegrationTests
 
         private ITableDefinition WriteAndReadSchema(IXmlSchema xmlSchema)
         {
-            xmlSchema.Write(".\\", _converterForWrite, TestTable, "aschema");
-            var tableDefinition = xmlSchema.GetTableDefinition(_converterForRead, ".\\" + TestTable + ".aschema");
+            xmlSchema.Write(".\\", DbContext.ColumnTypeConverterForWrite, TestTable, "aschema");
+            var tableDefinition = xmlSchema.GetTableDefinition(DbContext.ColumnTypeConverterForRead, ".\\" + TestTable + ".aschema");
             return tableDefinition;
         }
 

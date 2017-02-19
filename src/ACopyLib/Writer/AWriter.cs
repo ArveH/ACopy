@@ -47,7 +47,6 @@ namespace ACopyLib.Writer
         public string DataFileSuffix { get; set; } = Names.DefaultDataFileSuffix;
         public string SchemaFileSuffix { get; set; } = Names.DefaultSchemaFileSuffix;
         public bool UseU4Indexes { get; set; }
-        public string ConversionsFile { get; set; }
 
         public int MaxDegreeOfParallelism { get; set; } = -1;
 
@@ -129,11 +128,9 @@ namespace ACopyLib.Writer
 
                 _logger.Write($"{tableName,30} Started...");
 
-                var columnsTypeConverter = _dbContext.PowerPlant.CreateColumnTypeConverter(ConversionsFile);
-
                 var xmlSchema = XmlSchemaFactory.CreateInstance(_dbContext);
                 if (UseU4Indexes) xmlSchema.U4Indexes = U4IndexesFactory.CreateInstance(_dbContext);
-                ITableDefinition tableDefinition = xmlSchema.Write(Directory, columnsTypeConverter, tableName, SchemaFileSuffix);
+                ITableDefinition tableDefinition = xmlSchema.Write(Directory, _dbContext.ColumnTypeConverterForWrite, tableName, SchemaFileSuffix);
 	
 	            if (tableDefinition.HasBlobColumn)
 	            {
