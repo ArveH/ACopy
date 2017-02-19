@@ -5,8 +5,8 @@ namespace ADatabase.Oracle
 {
     public class OracleContext: DbContext
     {
-        private const string ConversionFileForWrite = @"Resources\Unit4OracleWriterConversions.xml";
-        private const string ConversionFileForRead = @"Resources\unit4OracleReaderConversions.xml";
+        private const string ConversionFileForWrite = @"Resources\OracleWriterConversions.xml";
+        private const string ConversionFileForRead = @"Resources\OracleReaderConversions.xml";
 
         public OracleContext(IALogger logger = null)
             : base(new OraclePowerPlant(), logger)

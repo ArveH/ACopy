@@ -5,9 +5,11 @@
         Blob,
         Bool,
         Char,
+        Date,
         DateTime,
         DateTime2,
         Dec,
+        Double,
         Float,
         Guid,
         Identity,
@@ -21,6 +23,10 @@
         NLongText,
         NVarchar,
         Raw,
-        Varchar
+        SmallDateTime,
+        SmallMoney,
+        Timestamp,
+        Varchar,
+        Xml
     }
 }

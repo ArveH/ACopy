@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ADatabaseTest
 {
     [TestClass]
-    public class IntegrationTestColumnTypeConverter
+    public class IntegrationTestUnit4ColumnTypeConverter
     {
         private int _length;
         private int _prec;

@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ADatabaseTest
 {
     [TestClass]
-    public class TestUnit4ColumnTypesBaseOracle: TestUnit4ColumnTypesBase
+    public class TestUnit4ColumnTypesOracle: TestUnit4ColumnTypesBase
     {
         [TestInitialize]
         public override void Setup()

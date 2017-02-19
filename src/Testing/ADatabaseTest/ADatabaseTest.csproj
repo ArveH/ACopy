@@ -92,16 +92,18 @@
     </Compile>
     <Compile Include="Helpers\ConversionXmlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IntegrationTestColumnTypeConverter.cs" />
-    <Compile Include="TestUnit4DefaultValues.cs" />
-    <Compile Include="TestUnit4DefaultValuesOracle.cs" />
-    <Compile Include="TestUnit4DefaultValuesSqlServer.cs" />
+    <Compile Include="TestColumnTypesBase.cs" />
+    <Compile Include="TestColumnTypesOracle.cs" />
+    <Compile Include="Unit4\IntegrationTestUnit4ColumnTypeConverter.cs" />
+    <Compile Include="Unit4\TestUnit4DefaultValues.cs" />
+    <Compile Include="Unit4\TestUnit4DefaultValuesOracle.cs" />
+    <Compile Include="Unit4\TestUnit4DefaultValuesSqlServer.cs" />
     <Compile Include="TestTypeDescription.cs" />
     <Compile Include="TestXmlConversionsReader.cs" />
-    <Compile Include="TestUnit4ColumnTypesBase.cs" />
-    <Compile Include="TestUnit4ColumnTypesBaseOracle.cs" />
-    <Compile Include="TestUnit4ColumnTypesBaseSqlServer.cs" />
-    <Compile Include="TestConvertUnit4OracleToACopy.cs" />
+    <Compile Include="Unit4\TestUnit4ColumnTypesBase.cs" />
+    <Compile Include="Unit4\TestUnit4ColumnTypesOracle.cs" />
+    <Compile Include="Unit4\TestUnit4ColumnTypesSqlServer.cs" />
+    <Compile Include="Unit4\TestConvertUnit4OracleToACopy.cs" />
     <Compile Include="TestDatabase.cs" />
     <Compile Include="TestTypeOperatorChecker.cs" />
   </ItemGroup>
