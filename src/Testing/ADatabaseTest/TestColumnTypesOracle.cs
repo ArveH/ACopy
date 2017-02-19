@@ -29,12 +29,19 @@ namespace ADatabaseTest
         public void TestBlobCol_When_Oracle()
         {
             CreateTable(ColumnTypeName.Blob, -1, 0, 0, true, null, null);
-            VerifyColumnType("BLOB", 4000, 0, 0); // Oracle will report data_length as 4000 (strange, but probably since up to 4000 bytes can be stored in-line in the tablespace).
+            VerifyColumnType("BLOB", null, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestBoolCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Bool, 0, 1, 0, false, "0", null);
+            VerifyColumnType("NUMBER", null, 1, 0); // Oracle will report data_length as 4000 (strange, but probably since up to 4000 bytes can be stored in-line in the tablespace).
         }
 
         #region Private helpers
 
-        private void VerifyColumnType(string expectedType, int expectedLength, int expectedPrec, int expectedScale)
+        private void VerifyColumnType(string expectedType, int? expectedLength, int? expectedPrec, int? expectedScale)
         {
             var selectStmt = "";
             selectStmt += "SELECT data_type, " + "\n";
@@ -69,9 +76,9 @@ namespace ADatabaseTest
                 cursor.Close();
             }
             type.Should().Be(expectedType);
-            length.Should().Be(expectedLength, "because that's the expected length");
-            prec.Should().Be(expectedPrec, "because that's the expected precision");
-            scale.Should().Be(expectedScale, "because that's the expected scale");
+            if (expectedLength != null) length.Should().Be(expectedLength, "because that's the expected length");
+            if (expectedPrec != null) prec.Should().Be(expectedPrec, "because that's the expected precision");
+            if (expectedScale != null) scale.Should().Be(expectedScale, "because that's the expected scale");
         }
 
         #endregion
