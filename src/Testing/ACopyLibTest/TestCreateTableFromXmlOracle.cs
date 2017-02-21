@@ -4,6 +4,7 @@ using System.Data;
 using ACopyLib.Xml;
 using ACopyLibTest.Helpers;
 using ADatabase;
+using ADatabase.Extensions;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -73,6 +74,13 @@ namespace ACopyLibTest
         {
             CreateTable(ColumnTypeName.Dec, 0, 5, 0, false, "", null);
             VerifyColumnType("NUMBER", null, 5, 0);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestDoubleCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Double, 0, 0, 0, false, "", null);
+            VerifyColumnType("BINARY_DOUBLE", null, null, null);
         }
 
 

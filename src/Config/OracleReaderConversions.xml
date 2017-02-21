@@ -8,7 +8,8 @@
   <Type Source="datetime" Destination="date"/>
   <Type Source="datetime2" Destination="date"/>
   <Type Source="dec(@Prec,@Scale)" Destination="number(@Prec,@Scale)"/>
-  <Type Source="float(@Length)" Destination="float(49)"/>
+  <Type Source="double" Destination="binary_double"/>
+  <Type Source="float" Destination="binary_float"/>
   <Type Source="guid" Destination="raw(16)"/>
   <Type Source="identity(@Length)" Destination="number(@Length,0)"/>
   <Type Source="int" Destination="int"/>

@@ -11,34 +11,36 @@ namespace ADatabase.Oracle
         {
             switch (type)
             {
+                case ColumnTypeName.Blob:
+                    return new OracleBlobColumn(name, isNullable, def);
+                case ColumnTypeName.Bool:
+                case ColumnTypeName.Dec:
+                case ColumnTypeName.Double:
+                    return new OracleDoubleColumn(name, isNullable, def);
+                case ColumnTypeName.Float:
+                case ColumnTypeName.Int:
+                case ColumnTypeName.Int16:
+                case ColumnTypeName.Int64:
+                case ColumnTypeName.Int8:
+                case ColumnTypeName.Money:
+                    return new OracleNumberColumn(name, type, prec, scale, isNullable, def);
                 case ColumnTypeName.Char:
                     return new OracleCharColumn(name, length, isNullable, def);
                 case ColumnTypeName.Date:
                 case ColumnTypeName.DateTime:
                 case ColumnTypeName.DateTime2:
                     return new OracleDateColumn(name, isNullable, def);
-                case ColumnTypeName.Varchar:
-                    return new OracleVarchar2Column(name, length, isNullable, def);
+                case ColumnTypeName.Guid:
+                    return new OracleRawColumn(name, 16, isNullable, def);
+                case ColumnTypeName.LongText:
+                    return new OracleClobColumn(name, isNullable, def, collation);
                 case ColumnTypeName.NVarchar:
                 case ColumnTypeName.NChar:
                     return new OracleVarchar2Column(name, length, isNullable, def);
-                case ColumnTypeName.LongText:
-                    return new OracleClobColumn(name, isNullable, def, collation);
-                case ColumnTypeName.Bool:
-                case ColumnTypeName.Int8:
-                case ColumnTypeName.Int16:
-                case ColumnTypeName.Int:
-                case ColumnTypeName.Int64:
-                case ColumnTypeName.Money:
-                case ColumnTypeName.Float:
-                case ColumnTypeName.Dec:
-                    return new OracleNumberColumn(name, type, prec, scale, isNullable, def);
-                case ColumnTypeName.Guid:
-                    return new OracleRawColumn(name, 16, isNullable, def);
                 case ColumnTypeName.Raw:
                     return new OracleRawColumn(name, length, isNullable, def);
-                case ColumnTypeName.Blob:
-                    return new OracleBlobColumn(name, isNullable, def);
+                case ColumnTypeName.Varchar:
+                    return new OracleVarchar2Column(name, length, isNullable, def);
             }
 
             throw new AColumnTypeException($"Illegal type: {type}");

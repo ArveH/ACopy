@@ -89,7 +89,7 @@
     <Compile Include="ColumnTypeConversions\Interfaces\ITypeOperator.cs" />
     <Compile Include="Enums\ConstraintTypeName.cs" />
     <Compile Include="ColumnTypeConversions\TypeConstraint.cs" />
-    <Compile Include="Enums\ExtensionMethods.cs" />
+    <Compile Include="Extensions\EnumCustomExtensions.cs" />
     <Compile Include="Enums\TypeOperatorName.cs" />
     <Compile Include="ColumnTypeConversions\TypeDescription.cs" />
     <Compile Include="ColumnTypeConversions\TypeDescriptionFactory.cs" />
@@ -123,6 +123,7 @@
     <Compile Include="Oracle\Columns\OracleColumn.cs" />
     <Compile Include="Oracle\Columns\OracleDateColumn.cs" />
     <Compile Include="Oracle\Columns\OracleClobColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleDoubleColumn.cs" />
     <Compile Include="Oracle\Columns\OracleNumberColumn.cs" />
     <Compile Include="Oracle\Columns\OracleRawColumn.cs" />
     <Compile Include="Oracle\Columns\OracleVarchar2Column.cs" />
