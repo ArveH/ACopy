@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using ACopyLib.Xml;
+using ACopyLibTest.Helpers;
 using ADatabase;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ADatabaseTest
+namespace ACopyLibTest
 {
     [TestClass]
-    public class TestColumnTypesOracle: TestColumnTypesBase
+    public class TestCreateTableFromXmlOracle: TestColumnTypesBase
     {
         [TestInitialize]
         public override void Setup()
@@ -74,6 +77,15 @@ namespace ADatabaseTest
 
 
         #region Private helpers
+
+        protected void CreateTable(ColumnTypeName type, int length, int prec, int scale, bool isNullable, string def, string collation)
+        {
+            IAXmlReader xmlReader = new AXmlReader(DbContext);
+            ITableDefinition expectedTableDefinition = xmlReader.ReadSchema(
+                DbContext.ColumnTypeConverterForRead,
+                XmlFileHelper.CreateSchemaXmlOneColumn(TableName, type.ConvertToString(), length, prec, scale, isNullable, def, collation));
+            DbSchema.CreateTable(expectedTableDefinition);
+        }
 
         private void VerifyColumnType(string expectedType, int? expectedLength, int? expectedPrec, int? expectedScale)
         {

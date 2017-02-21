@@ -1,35 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--Type conversion file for Unit4-->
 <TypeConversions From="ACopy" To="Oracle">
-  <Type Source="varchar(@Length)" Destination="varchar2(@Length)"/>
+  <Type Source="blob" Destination="blob"/>
+  <Type Source="bool" Destination="number(1,0)"/>
   <Type Source="char(@Length)" Destination="varchar2(@Length)"/>
-  <Type Source="nvarchar(@Length)" Destination="varchar2(@Length)"/>
-  <Type Source="nchar(@Length)" Destination="varchar2(@Length)"/>
+  <Type Source="date" Destination="date"/>
+  <Type Source="datetime" Destination="date"/>
+  <Type Source="dec(@Prec,@Scale)" Destination="number(@Prec,@Scale)"/>
+  <Type Source="float" Destination="number(30,8)"/>
+  <Type Source="guid" Destination="raw(16)"/>
+  <Type Source="int" Destination="number(15,0)"/>
+  <Type Source="int16" Destination="number(5,0)"/>
+  <Type Source="int64" Destination="number(20,0)"/>
+  <Type Source="int8" Destination="number(3,0)"/>
   <Type Source="longtext" Destination="clob"/>
-  <Type Source="bool" Destination="number(1,0)">
-  </Type>
-  <Type Source="int8" Destination="number(3,0)">
-  </Type>
-  <Type Source="int16" Destination="number(5,0)">
-  </Type>
-  <Type Source="int" Destination="number(15,0)">
-  </Type>
-  <Type Source="int64" Destination="number(20,0)">
-  </Type>
-  <Type Source="money" Destination="number(30,3)">
-  </Type>
-  <Type Source="float" Destination="number(30,8)">
-  </Type>
-  <Type Source="dec(@Prec,@Scale)" Destination="number(@Prec,@Scale)">
-  </Type>
-  <Type Source="datetime" Destination="date">
-  </Type>
-  <Type Source="guid" Destination="raw(16)">
-  </Type>
-  <Type Source="blob" Destination="blob">
-  </Type>
-  <Type Source="raw" Destination="blob">
-  </Type>
-  <Type Source="longraw" Destination="blob">
-  </Type>
+  <Type Source="money" Destination="number(30,3)"/>
+  <Type Source="nchar(@Length)" Destination="varchar2(@Length)"/>
+  <Type Source="nvarchar(@Length)" Destination="varchar2(@Length)"/>
+  <Type Source="raw" Destination="blob"/>
+  <Type Source="varchar(@Length)" Destination="varchar2(@Length)"/>
 </TypeConversions>

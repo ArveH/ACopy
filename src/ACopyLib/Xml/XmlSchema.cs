@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
+using System.Xml;
+using ACopyLib.Exceptions;
 using ACopyLib.U4Indexes;
 using ADatabase;
 
@@ -45,7 +48,14 @@ namespace ACopyLib.Xml
 
         public ITableDefinition GetTableDefinition(IColumnTypeConverter columnsTypeConverter, string fileName)
         {
-            return XmlReader.ReadSchema(columnsTypeConverter,  fileName);
+            try
+            {
+                return XmlReader.ReadSchema(columnsTypeConverter, File.ReadAllText(fileName));
+            }
+            catch (XmlException ex)
+            {
+                throw new NotValidXmlException($"The schema file '{fileName}' is invalid", ex);
+            }
         }
     }
 }

@@ -89,6 +89,7 @@
     <Compile Include="ColumnTypeConversions\Interfaces\ITypeOperator.cs" />
     <Compile Include="Enums\ConstraintTypeName.cs" />
     <Compile Include="ColumnTypeConversions\TypeConstraint.cs" />
+    <Compile Include="Enums\ExtensionMethods.cs" />
     <Compile Include="Enums\TypeOperatorName.cs" />
     <Compile Include="ColumnTypeConversions\TypeDescription.cs" />
     <Compile Include="ColumnTypeConversions\TypeDescriptionFactory.cs" />

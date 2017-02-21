@@ -92,8 +92,6 @@
     </Compile>
     <Compile Include="Helpers\ConversionXmlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestColumnTypesBase.cs" />
-    <Compile Include="TestColumnTypesOracle.cs" />
     <Compile Include="Unit4\IntegrationTestUnit4ColumnTypeConverter.cs" />
     <Compile Include="Unit4\TestUnit4DefaultValues.cs" />
     <Compile Include="Unit4\TestUnit4DefaultValuesOracle.cs" />

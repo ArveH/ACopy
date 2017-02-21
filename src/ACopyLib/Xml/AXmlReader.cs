@@ -20,21 +20,14 @@ namespace ACopyLib.Xml
             _dbContext = dbContext;
         }
 
-        public ITableDefinition ReadSchema(IColumnTypeConverter columnsTypeConverter, string fileName)
+        public ITableDefinition ReadSchema(IColumnTypeConverter columnsTypeConverter, string schemaXml)
         {
             ITableDefinition tableDefinition = _dbContext.PowerPlant.CreateTableDefinition();
-            try
-            {
-	            XmlDocument xmlDocument = new XmlDocument();
-	            xmlDocument.Load(fileName);
-                ReadTableInfo(tableDefinition, xmlDocument);
-                ReadColumns(columnsTypeConverter, tableDefinition, xmlDocument);
-                ReadIndexes(tableDefinition, xmlDocument);
-            }
-            catch (XmlException ex)
-            {
-                throw new NotValidXmlException(string.Format("The schema file '{0}' is invalid", fileName), ex);
-            }
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(schemaXml);
+            ReadTableInfo(tableDefinition, xmlDocument);
+            ReadColumns(columnsTypeConverter, tableDefinition, xmlDocument);
+            ReadIndexes(tableDefinition, xmlDocument);
 
             return tableDefinition;
         }
