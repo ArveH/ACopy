@@ -3,16 +3,16 @@ using System.Globalization;
 
 namespace ADatabase.Oracle.Columns
 {
-    public class OracleDoubleColumn: OracleColumn
+    public class OracleFloatColumn: OracleColumn
     {
-        public OracleDoubleColumn(string name, bool isNullable, string def)
-            : base(name, ColumnTypeName.Double,  isNullable, def)
+        public OracleFloatColumn(string name, bool isNullable, string def)
+            : base(name, ColumnTypeName.Float,  isNullable, def)
         {
         }
 
         public override string TypeToString()
         {
-            return "binary_double";
+            return "binary_float";
         }
 
         public override string ToString(object value)

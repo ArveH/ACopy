@@ -83,6 +83,12 @@ namespace ACopyLibTest
             VerifyColumnType("BINARY_DOUBLE", null, null, null);
         }
 
+        [TestMethod, TestCategory("Oracle")]
+        public void TestFloatCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Float, 0, 0, 0, false, "", null);
+            VerifyColumnType("BINARY_FLOAT", null, null, null);
+        }
 
         #region Private helpers
 

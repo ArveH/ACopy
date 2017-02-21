@@ -15,9 +15,6 @@ namespace ADatabase.Oracle
                     return new OracleBlobColumn(name, isNullable, def);
                 case ColumnTypeName.Bool:
                 case ColumnTypeName.Dec:
-                case ColumnTypeName.Double:
-                    return new OracleDoubleColumn(name, isNullable, def);
-                case ColumnTypeName.Float:
                 case ColumnTypeName.Int:
                 case ColumnTypeName.Int16:
                 case ColumnTypeName.Int64:
@@ -30,6 +27,10 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.DateTime:
                 case ColumnTypeName.DateTime2:
                     return new OracleDateColumn(name, isNullable, def);
+                case ColumnTypeName.Double:
+                    return new OracleDoubleColumn(name, isNullable, def);
+                case ColumnTypeName.Float:
+                    return new OracleFloatColumn(name, isNullable, def);
                 case ColumnTypeName.Guid:
                     return new OracleRawColumn(name, 16, isNullable, def);
                 case ColumnTypeName.LongText:

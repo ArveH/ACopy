@@ -124,6 +124,7 @@
     <Compile Include="Oracle\Columns\OracleDateColumn.cs" />
     <Compile Include="Oracle\Columns\OracleClobColumn.cs" />
     <Compile Include="Oracle\Columns\OracleDoubleColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleFloatColumn.cs" />
     <Compile Include="Oracle\Columns\OracleNumberColumn.cs" />
     <Compile Include="Oracle\Columns\OracleRawColumn.cs" />
     <Compile Include="Oracle\Columns\OracleVarchar2Column.cs" />
