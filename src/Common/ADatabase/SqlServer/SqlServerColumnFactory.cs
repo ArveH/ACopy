@@ -11,43 +11,45 @@ namespace ADatabase.SqlServer
         {
             switch (type)
             {
-                case ColumnTypeName.Varchar:
-                    return new SqlServerVarcharColumn(name, length, isNullable, def, collation);
-                case ColumnTypeName.Char:
-                    return new SqlServerCharColumn(name, length, isNullable, def, collation);
-                case ColumnTypeName.NVarchar:
-                    return new SqlServerNVarcharColumn(name, length, isNullable, def, collation);
-                case ColumnTypeName.LongText:
-                    return new SqlServerLongTextColumn(name, isNullable, def, collation);
-                case ColumnTypeName.Int:
-                    return new SqlServerInt32Column(name, isNullable, def);
+                case ColumnTypeName.Blob:
+                case ColumnTypeName.Raw:
+                    return new SqlServerBlobColumn(name, length, isNullable, def);
                 case ColumnTypeName.Bool:
                     return new SqlServerBoolColumn(name, isNullable, def);
-                case ColumnTypeName.Int8:
-                    return new SqlServerInt8Column(name, isNullable, def);
-                case ColumnTypeName.Int16:
-                    return new SqlServerInt16Column(name, isNullable, def);
-                case ColumnTypeName.Int64:
-                    return new SqlServerInt64Column(name, isNullable, def);
-                case ColumnTypeName.Money:
-                    return new SqlServerMoneyColumn(name, isNullable, def);
-                case ColumnTypeName.Float:
-                    return new SqlServerFloatColumn(name, isNullable, def);
-                case ColumnTypeName.Dec:
-                    return new SqlServerDecColumn(name, prec, scale, isNullable, def);
+                case ColumnTypeName.Char:
+                    return new SqlServerCharColumn(name, length, isNullable, def, collation);
                 case ColumnTypeName.Date:
                     return new SqlServerDateColumn(name, isNullable, def);
                 case ColumnTypeName.DateTime:
                     return new SqlServerDatetimeColumn(name, isNullable, def);
                 case ColumnTypeName.DateTime2:
                     return new SqlServerDatetime2Column(name, isNullable, def);
+                case ColumnTypeName.Dec:
+                    return new SqlServerDecColumn(name, prec, scale, isNullable, def);
+                case ColumnTypeName.Float:
+                    return new SqlServerFloatColumn(name, isNullable, def);
                 case ColumnTypeName.Guid:
                     return new SqlServerGuidColumn(name, isNullable, def);
-                case ColumnTypeName.Blob:
-                case ColumnTypeName.Raw:
-                    return new SqlServerBlobColumn(name, length, isNullable, def);
                 case ColumnTypeName.Identity:
                     return new SqlServerIdentityColumn(name, isNullable, def);
+                case ColumnTypeName.Int:
+                    return new SqlServerInt32Column(name, isNullable, def);
+                case ColumnTypeName.Int16:
+                    return new SqlServerInt16Column(name, isNullable, def);
+                case ColumnTypeName.Int64:
+                    return new SqlServerInt64Column(name, isNullable, def);
+                case ColumnTypeName.Int8:
+                    return new SqlServerInt8Column(name, isNullable, def);
+                case ColumnTypeName.LongText:
+                    return new SqlServerLongTextColumn(name, isNullable, def, collation);
+                case ColumnTypeName.NChar:
+                    return new SqlServerNCharColumn(name, length, isNullable, def, collation);
+                case ColumnTypeName.NVarchar:
+                    return new SqlServerNVarcharColumn(name, length, isNullable, def, collation);
+                case ColumnTypeName.Money:
+                    return new SqlServerMoneyColumn(name, isNullable, def);
+                case ColumnTypeName.Varchar:
+                    return new SqlServerVarcharColumn(name, length, isNullable, def, collation);
             }
 
             throw new AColumnTypeException($"Illegal type: {type}");

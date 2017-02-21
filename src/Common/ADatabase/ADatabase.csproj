@@ -160,6 +160,7 @@
     <Compile Include="SqlServer\Columns\SqlServerLongTextColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerMoneyColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerBlobColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerNCharColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerNVarcharColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerVarcharColumn.cs" />
     <Compile Include="SqlServer\InternalSqlServerCommand.cs" />

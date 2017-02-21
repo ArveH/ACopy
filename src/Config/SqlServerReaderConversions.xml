@@ -19,7 +19,7 @@
   <Type Source="longtext" Destination="varchar(-1)"/>
   <Type Source="money" Destination="money"/>
   <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>
-  <Type Source="nlongtext" Destination="nvarbinary(-1)"/>
+  <Type Source="nlongtext" Destination="nvarchar(-1)"/>
   <Type Source="nvarchar(@Length)" Destination="nvarchar(@Length)"/>
   <Type Source="raw(@Length)" Destination="varbinary(@Length)"/>
   <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>
