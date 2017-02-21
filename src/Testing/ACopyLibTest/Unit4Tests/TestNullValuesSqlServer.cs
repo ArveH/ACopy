@@ -3,15 +3,15 @@ using ADatabase;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ACopyLibTest.IntegrationTests
+namespace ACopyLibTest.Unit4Tests
 {
     [TestClass]
-    public class TestNullValuesOracle : TestNullValues
+    public class TestNullValuesSqlServer : TestNullValues
     {
         [TestInitialize]
         public override void Setup()
         {
-            DbContext = DbContextFactory.CreateOracleContext(ConnectionStrings.GetOracle());
+            DbContext = DbContextFactory.CreateSqlServerContext(ConnectionStrings.GetSqlServer());
             base.Setup();
         }
 
@@ -27,50 +27,50 @@ namespace ACopyLibTest.IntegrationTests
             val.Should().BeOfType<DBNull>();
         }
 
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraNullValue_When_Int()
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestMSNullValue_When_Int()
         {
             TestNullValue_When_Int(CheckValue);
         }
 
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraNullValue_When_Float()
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestMSNullValue_When_Float()
         {
             TestNullValue_When_Float(CheckValue);
         }
 
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraNullValue_When_Varchar()
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestMSNullValue_When_Varchar()
         {
             TestNullValue_When_Varchar(CheckValue);
         }
 
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraNullValue_When_LongText()
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestMSNullValue_When_LongText()
         {
             TestNullValue_When_LongText(CheckValue);
         }
 
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraNullValue_When_Bool()
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestMSNullValue_When_Bool()
         {
             TestNullValue_When_Bool(CheckValue);
         }
 
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraNullValue_When_Int64()
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestMSNullValue_When_Int64()
         {
             TestNullValue_When_Int64(CheckValue);
         }
 
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraNullValue_When_Guid()
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestMSNullValue_When_Guid()
         {
             TestNullValue_When_Guid(CheckValue);
         }
 
-        [TestMethod, TestCategory("Oracle")]
-        public void TestOraNullValue_When_Blob()
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestMSNullValue_When_Blob()
         {
             TestNullValue_When_Blob(CheckValue);
         }

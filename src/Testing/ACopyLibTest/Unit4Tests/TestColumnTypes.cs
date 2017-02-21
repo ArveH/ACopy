@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ADatabase;
 using FluentAssertions;
 
-namespace ACopyLibTest.IntegrationTests
+namespace ACopyLibTest.Unit4Tests
 {
     public abstract class TestColumnTypes: TestBase
     {

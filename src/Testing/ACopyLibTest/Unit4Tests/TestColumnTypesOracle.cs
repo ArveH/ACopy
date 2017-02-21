@@ -3,7 +3,7 @@ using ADatabase;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ACopyLibTest.IntegrationTests
+namespace ACopyLibTest.Unit4Tests
 {
     [TestClass]
     public class TestColumnTypesOracle : TestColumnTypes

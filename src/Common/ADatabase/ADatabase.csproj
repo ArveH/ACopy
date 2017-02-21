@@ -118,9 +118,9 @@
     <Compile Include="Interfaces\ITableDefinition.cs" />
     <Compile Include="Interfaces\ITableShortInfo.cs" />
     <Compile Include="Oracle\Columns\OracleBlobColumn.cs" />
+    <Compile Include="Oracle\Columns\OracleCharColumn.cs" />
     <Compile Include="Oracle\Columns\OracleColumn.cs" />
     <Compile Include="Oracle\Columns\OracleDateColumn.cs" />
-    <Compile Include="Oracle\Columns\OracleBinaryFloatColumn.cs" />
     <Compile Include="Oracle\Columns\OracleClobColumn.cs" />
     <Compile Include="Oracle\Columns\OracleNumberColumn.cs" />
     <Compile Include="Oracle\Columns\OracleRawColumn.cs" />

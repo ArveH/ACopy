@@ -11,8 +11,14 @@ namespace ADatabase.Oracle
         {
             switch (type)
             {
-                case ColumnTypeName.Varchar:
                 case ColumnTypeName.Char:
+                    return new OracleCharColumn(name, length, isNullable, def);
+                case ColumnTypeName.Date:
+                case ColumnTypeName.DateTime:
+                case ColumnTypeName.DateTime2:
+                    return new OracleDateColumn(name, isNullable, def);
+                case ColumnTypeName.Varchar:
+                    return new OracleVarchar2Column(name, length, isNullable, def);
                 case ColumnTypeName.NVarchar:
                 case ColumnTypeName.NChar:
                     return new OracleVarchar2Column(name, length, isNullable, def);
@@ -27,8 +33,6 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.Float:
                 case ColumnTypeName.Dec:
                     return new OracleNumberColumn(name, type, prec, scale, isNullable, def);
-                case ColumnTypeName.DateTime:
-                    return new OracleDateColumn(name, isNullable, def);
                 case ColumnTypeName.Guid:
                     return new OracleRawColumn(name, 16, isNullable, def);
                 case ColumnTypeName.Raw:

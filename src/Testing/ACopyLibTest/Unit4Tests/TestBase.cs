@@ -5,7 +5,7 @@ using ACopyLib.Writer;
 using ACopyTestHelper;
 using ADatabase;
 
-namespace ACopyLibTest.IntegrationTests
+namespace ACopyLibTest.Unit4Tests
 {
     public abstract class TestBase
     {

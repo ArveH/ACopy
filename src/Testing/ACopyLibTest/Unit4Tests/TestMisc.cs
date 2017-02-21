@@ -6,7 +6,7 @@ using ACopyTestHelper;
 using ADatabase;
 using FluentAssertions;
 
-namespace ACopyLibTest.IntegrationTests
+namespace ACopyLibTest.Unit4Tests
 {
     public abstract class TestMisc
     {

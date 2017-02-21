@@ -1,7 +1,7 @@
 ﻿using ADatabase;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ACopyLibTest.IntegrationTests
+namespace ACopyLibTest.Unit4Tests
 {
     [TestClass]
     public class TestMiscOracle: TestMisc

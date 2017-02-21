@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Data;
-using ACopyTestHelper;
 using ADatabase;
-using ADatabase.Extensions;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -36,8 +34,44 @@ namespace ADatabaseTest
         public void TestBoolCol_When_Oracle()
         {
             CreateTable(ColumnTypeName.Bool, 0, 1, 0, false, "0", null);
-            VerifyColumnType("NUMBER", null, 1, 0); // Oracle will report data_length as 4000 (strange, but probably since up to 4000 bytes can be stored in-line in the tablespace).
+            VerifyColumnType("NUMBER", null, 1, 0);
         }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestCharCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Char, 10, 0, 0, false, "", null);
+            VerifyColumnType("CHAR", 10, 0, 0);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestDateCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Date, 0, 0, 0, false, "", null);
+            VerifyColumnType("DATE", null, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestDatetimeCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.DateTime, 0, 0, 0, false, "", null);
+            VerifyColumnType("DATE", null, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestDatetime2Col_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.DateTime2, 0, 0, 0, false, "", null);
+            VerifyColumnType("DATE", null, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestDecCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Dec, 0, 5, 0, false, "", null);
+            VerifyColumnType("NUMBER", null, 5, 0);
+        }
+
 
         #region Private helpers
 

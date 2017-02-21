@@ -1,7 +1,7 @@
 ﻿using System;
 using ADatabase;
 
-namespace ACopyLibTest.IntegrationTests
+namespace ACopyLibTest.Unit4Tests
 {
     public abstract class TestNullValues: TestBase
     {
