@@ -167,6 +167,20 @@ namespace ACopyLibTest
             VerifyColumnType("NVARCHAR2", 50, null, null);
         }
 
+        [TestMethod, TestCategory("Oracle")]
+        public void TestRawCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Raw, 1000, 0, 0, false, "", null);
+            VerifyColumnType("RAW", 1000, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestVarcharCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Varchar, 250, 0, 0, false, "", null);
+            VerifyColumnType("VARCHAR2", 250, null, null);
+        }
+
         #region Private helpers
 
         protected void CreateTable(ColumnTypeName type, int length, int prec, int scale, bool isNullable, string def, string collation)
