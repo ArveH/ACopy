@@ -146,6 +146,8 @@
     <Compile Include="SqlServer\Columns\SqlServerBoolColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerCharColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerDateColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerDatetime2Column.cs" />
     <Compile Include="SqlServer\Columns\SqlServerDatetimeColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerDecColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerFloatColumn.cs" />

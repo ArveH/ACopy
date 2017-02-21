@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ADatabase.Oracle.Columns
+﻿namespace ADatabase.Oracle.Columns
 {
     public class OracleNClobColumn: OracleVarchar2Column
     {

@@ -35,8 +35,12 @@ namespace ADatabase.SqlServer
                     return new SqlServerFloatColumn(name, isNullable, def);
                 case ColumnTypeName.Dec:
                     return new SqlServerDecColumn(name, prec, scale, isNullable, def);
+                case ColumnTypeName.Date:
+                    return new SqlServerDateColumn(name, isNullable, def);
                 case ColumnTypeName.DateTime:
                     return new SqlServerDatetimeColumn(name, isNullable, def);
+                case ColumnTypeName.DateTime2:
+                    return new SqlServerDatetime2Column(name, isNullable, def);
                 case ColumnTypeName.Guid:
                     return new SqlServerGuidColumn(name, isNullable, def);
                 case ColumnTypeName.Blob:
