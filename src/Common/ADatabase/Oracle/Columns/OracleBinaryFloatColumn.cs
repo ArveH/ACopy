@@ -3,9 +3,9 @@ using System.Globalization;
 
 namespace ADatabase.Oracle.Columns
 {
-    public class OracleFloatColumn: OracleColumn
+    public class OracleBinaryFloatColumn: OracleColumn
     {
-        public OracleFloatColumn(string name, bool isNullable, string def)
+        public OracleBinaryFloatColumn(string name, bool isNullable, string def)
             : base(name, ColumnTypeName.Float,  isNullable, def)
         {
         }

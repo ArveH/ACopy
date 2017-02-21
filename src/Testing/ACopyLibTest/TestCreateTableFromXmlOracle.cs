@@ -160,6 +160,13 @@ namespace ACopyLibTest
             VerifyColumnType("NCLOB", null, null, null);
         }
 
+        [TestMethod, TestCategory("Oracle")]
+        public void TestNVarcharCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.NVarchar, 50, 0, 0, false, "", null);
+            VerifyColumnType("NVARCHAR2", 50, null, null);
+        }
+
         #region Private helpers
 
         protected void CreateTable(ColumnTypeName type, int length, int prec, int scale, bool isNullable, string def, string collation)

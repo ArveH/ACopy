@@ -28,9 +28,9 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.DateTime2:
                     return new OracleDateColumn(name, isNullable, def);
                 case ColumnTypeName.Double:
-                    return new OracleDoubleColumn(name, isNullable, def);
+                    return new OracleBinaryDoubleColumn(name, isNullable, def);
                 case ColumnTypeName.Float:
-                    return new OracleFloatColumn(name, isNullable, def);
+                    return new OracleBinaryFloatColumn(name, isNullable, def);
                 case ColumnTypeName.Guid:
                     return new OracleRawColumn(name, 16, isNullable, def);
                 case ColumnTypeName.LongText:
@@ -38,7 +38,9 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.NChar:
                     return new OracleNCharColumn(name, length, isNullable, def);
                 case ColumnTypeName.NLongText:
-                    return new OracleNLongTextColumn(name, isNullable, def);
+                    return new OracleNClobColumn(name, isNullable, def);
+                case ColumnTypeName.NVarchar:
+                    return new OracleNVarchar2Column(name, length, isNullable, def);
                 case ColumnTypeName.Raw:
                     return new OracleRawColumn(name, length, isNullable, def);
                 case ColumnTypeName.Varchar:

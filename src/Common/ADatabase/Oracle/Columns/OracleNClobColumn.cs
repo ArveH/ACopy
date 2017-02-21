@@ -2,9 +2,9 @@
 
 namespace ADatabase.Oracle.Columns
 {
-    public class OracleNLongTextColumn: OracleVarchar2Column
+    public class OracleNClobColumn: OracleVarchar2Column
     {
-        public OracleNLongTextColumn(string name, bool isNullable, string def)
+        public OracleNClobColumn(string name, bool isNullable, string def)
             : base(name, -1, isNullable, def)
         {
             Type = ColumnTypeName.NLongText;
