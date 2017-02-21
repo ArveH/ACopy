@@ -90,6 +90,48 @@ namespace ACopyLibTest
             VerifyColumnType("BINARY_FLOAT", null, null, null);
         }
 
+        [TestMethod, TestCategory("Oracle")]
+        public void TestGuidCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Guid, 0, 0, 0, false, "", null);
+            VerifyColumnType("RAW", 16, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestIdentityCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Identity, 0, 20, 0, false, "", null);
+            VerifyColumnType("NUMBER", null, 20, 0);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestIntCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Int, 0, 0, 0, false, "", null);
+            VerifyColumnType("NUMBER", null, 38, 0);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestInt16Col_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Int16, 0, 0, 0, false, "", null);
+            VerifyColumnType("NUMBER", null, 38, 0);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestInt64Col_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Int64, 0, 0, 0, false, "", null);
+            VerifyColumnType("NUMBER", null, 38, 0);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestInt8Col_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Int8, 0, 0, 0, false, "", null);
+            VerifyColumnType("NUMBER", null, 3, 0);
+        }
+
         #region Private helpers
 
         protected void CreateTable(ColumnTypeName type, int length, int prec, int scale, bool isNullable, string def, string collation)

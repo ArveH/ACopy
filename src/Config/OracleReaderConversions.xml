@@ -12,9 +12,9 @@
   <Type Source="float" Destination="binary_float"/>
   <Type Source="guid" Destination="raw(16)"/>
   <Type Source="identity(@Length)" Destination="number(@Length,0)"/>
-  <Type Source="int" Destination="int"/>
-  <Type Source="int16" Destination="number(5,0)"/>
-  <Type Source="int64" Destination="number(20,0)"/>
+  <Type Source="int" Destination="number(38,0)"/>
+  <Type Source="int16" Destination="number(38,0)"/>
+  <Type Source="int64" Destination="number(38,0)"/>
   <Type Source="int8" Destination="number(3,0)"/>
   <Type Source="longtext" Destination="clob"/>
   <Type Source="money" Destination="number(19,4)"/>
