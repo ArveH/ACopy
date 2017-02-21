@@ -99,17 +99,17 @@
     <Compile Include="Unit4Tests\TestColumnTypesSqlServer.cs" />
     <Compile Include="Unit4Tests\TestColumnTypesOracle.cs" />
     <Compile Include="Unit4Tests\TestColumnTypes.cs" />
-    <Compile Include="ReaderWriter\TestReader.cs" />
-    <Compile Include="ReaderWriter\TestReaderOracle.cs" />
-    <Compile Include="ReaderWriter\TestWriter.cs" />
-    <Compile Include="ReaderWriter\TestWriterOracle.cs" />
+    <Compile Include="Unit4Tests\TestReader.cs" />
+    <Compile Include="Unit4Tests\TestReaderOracle.cs" />
+    <Compile Include="Unit4Tests\TestWriter.cs" />
+    <Compile Include="Unit4Tests\TestWriterOracle.cs" />
     <Compile Include="Unit4Tests\TestIndexes.cs" />
     <Compile Include="Unit4Tests\TestDoViews.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReaderWriter\TestWriterSqlServer.cs" />
-    <Compile Include="ReaderWriter\TestReaderSqlServer.cs" />
-    <Compile Include="NonDB\TestDataFileReader.cs" />
-    <Compile Include="NonDB\TestFileHelper.cs" />
+    <Compile Include="Unit4Tests\TestWriterSqlServer.cs" />
+    <Compile Include="Unit4Tests\TestReaderSqlServer.cs" />
+    <Compile Include="Unit4Tests\TestDataFileReader.cs" />
+    <Compile Include="Unit4Tests\TestFileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ACopyLib\ACopyLib.csproj">

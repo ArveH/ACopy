@@ -9,7 +9,7 @@ using ADatabase.SqlServer;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ACopyLibTest
+namespace ACopyLibTest.Unit4Tests
 {
     [TestClass]
     public class TestDataFileReader

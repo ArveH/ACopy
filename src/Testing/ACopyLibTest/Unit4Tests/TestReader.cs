@@ -5,11 +5,11 @@ using System.IO.Compression;
 using System.Text;
 using ACopyLib.Reader;
 using ACopyLib.Writer;
-using FluentAssertions;
 using ACopyTestHelper;
 using ADatabase;
+using FluentAssertions;
 
-namespace ACopyLibTest
+namespace ACopyLibTest.Unit4Tests
 {
     public abstract class TestReader
     {

@@ -4,7 +4,7 @@ using ADatabase.Oracle;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ACopyLibTest
+namespace ACopyLibTest.Unit4Tests
 {
     [TestClass]
     public class TestReaderOracle: TestReader
