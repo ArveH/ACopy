@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using ACopyLib.Xml;
-using ACopyLibTest.Helpers;
 using ADatabase;
-using ADatabase.Extensions;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -30,7 +26,7 @@ namespace ACopyLibTest
         [TestMethod, TestCategory("Oracle")]
         public void TestBlobCol_When_Oracle()
         {
-            CreateTable(ColumnTypeName.Blob, -1, 0, 0, true, null, null);
+            CreateTable(ColumnTypeName.Blob, 0, 0, 0, true, null, null);
             VerifyColumnType("BLOB", null, null, null);
         }
 
@@ -182,15 +178,6 @@ namespace ACopyLibTest
         }
 
         #region Private helpers
-
-        protected void CreateTable(ColumnTypeName type, int length, int prec, int scale, bool isNullable, string def, string collation)
-        {
-            IAXmlReader xmlReader = new AXmlReader(DbContext);
-            ITableDefinition expectedTableDefinition = xmlReader.ReadSchema(
-                DbContext.ColumnTypeConverterForRead,
-                XmlFileHelper.CreateSchemaXmlOneColumn(TableName, type.ConvertToString(), length, prec, scale, isNullable, def, collation));
-            DbSchema.CreateTable(expectedTableDefinition);
-        }
 
         private void VerifyColumnType(string expectedType, int? expectedLength, int? expectedPrec, int? expectedScale)
         {

@@ -22,6 +22,5 @@
   <Type Source="nlongtext" Destination="nclob"/>
   <Type Source="nvarchar(@Length)" Destination="nvarchar2(@Length)"/>
   <Type Source="raw" Destination="raw"/>
-  <Type Source="longraw" Destination="longraw"/>
   <Type Source="varchar(@Length)" Destination="varchar2(@Length)"/>
 </TypeConversions>

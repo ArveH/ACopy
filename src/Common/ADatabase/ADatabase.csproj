@@ -198,6 +198,14 @@
       <Link>Resources\OracleWriterConversions.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\..\Config\SqlServerReaderConversions.xml">
+      <Link>Resources\SqlServerReaderConversions.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Config\SqlServerWriterConversions.xml">
+      <Link>Resources\SqlServerWriterConversions.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\..\Config\Unit4MssReaderConversions.xml">
       <Link>Resources\Unit4MssReaderConversions.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

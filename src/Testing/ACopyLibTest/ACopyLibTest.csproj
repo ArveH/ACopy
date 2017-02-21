@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="Helpers\XmlFileHelper.cs" />
     <Compile Include="TestColumnTypesBase.cs" />
+    <Compile Include="TestCreateTableFromXmlSqlServer.cs" />
     <Compile Include="TestCreateTableFromXmlOracle.cs" />
     <Compile Include="Unit4Tests\TestDoViewsSqlServer.cs" />
     <Compile Include="Unit4Tests\TestDoViewsOracle.cs" />

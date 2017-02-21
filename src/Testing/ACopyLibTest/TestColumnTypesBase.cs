@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using ACopyLib.Xml;
+using ACopyLibTest.Helpers;
 using ACopyTestHelper;
 using ADatabase;
+using ADatabase.Extensions;
 
 namespace ACopyLibTest
 {
@@ -28,6 +29,13 @@ namespace ACopyLibTest
             DbSchema.DropTable(TableName);
         }
 
-
+        protected void CreateTable(ColumnTypeName type, int length, int prec, int scale, bool isNullable, string def, string collation)
+        {
+            IAXmlReader xmlReader = new AXmlReader(DbContext);
+            ITableDefinition expectedTableDefinition = xmlReader.ReadSchema(
+                DbContext.ColumnTypeConverterForRead,
+                XmlFileHelper.CreateSchemaXmlOneColumn(TableName, type.ConvertToString(), length, prec, scale, isNullable, def, collation));
+            DbSchema.CreateTable(expectedTableDefinition);
+        }
     }
 }

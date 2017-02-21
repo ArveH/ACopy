@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Default type conversion file for ACopy (Oracle writer)-->
+<TypeConversions From="Oracle" To="Default">
+  <Type Source="binary_float" Destination="float"></Type>
+  <Type Source="binary_double" Destination="float"></Type>
+  <Type Source="blob" Destination="blob"></Type>
+  <Type Source="char(@Length)" Destination="char(@Length)"/>
+  <Type Source="clob" Destination="longtext"/>
+  <Type Source="date" Destination="datetime"></Type>
+  <Type Source="float(@Length)" Destination="float(@Length)"></Type>
+  <Type Source="integer" Destination="int"/>
+  <Type Source="longraw" Destination="blob"></Type>
+  <Type Source="long" Destination="clob"></Type>
+  <Type Source="varchar2(@Length)" Destination="varchar(@Length)"/>
+  <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>
+  <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>
+  <Type Source="nclob" Destination="nclob"/>
+  <Type Source="number(@Prec,@Scale)" Destination="int8">
+    <Prec Operator="=">3</Prec>
+    <Scale Operator="=">0</Scale>
+  </Type>
+  <Type Source="number(@Prec,@Scale)" Destination="int16">
+    <Prec Operator="=">5</Prec>
+    <Scale Operator="=">0</Scale>
+  </Type>
+  <Type Source="number(@Prec,@Scale)" Destination="int">
+    <Prec Operator="=">15</Prec>
+    <Scale Operator="=">0</Scale>
+  </Type>
+  <Type Source="number(@Prec,@Scale)" Destination="int64">
+    <Prec Operator=">=">20</Prec>
+    <Scale Operator="=">0</Scale>
+  </Type>
+  <Type Source="number(@Prec,@Scale)" Destination="money">
+    <Prec Operator=">=">19</Prec>
+    <Scale Operator="=">4</Scale>
+  </Type>
+  <Type Source="number(@Prec,@Scale)" Destination="number(@Prec,@Scale)"></Type>
+  <Type Source="nvarchar2(@Length)" Destination="nvarchar(@Length)"/>
+  <Type Source="raw(@Length)" Destination="guid">
+    <Length Operator="in">16,32,17,34</Length>
+  </Type>
+  <Type Source="raw" Destination="blob"></Type>
+</TypeConversions>

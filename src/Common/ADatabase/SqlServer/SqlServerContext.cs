@@ -6,8 +6,8 @@ namespace ADatabase.SqlServer
 {
     public class SqlServerContext : DbContext
     {
-        private const string ConversionFileForWrite = @"Resources\Unit4MssWriterConversions.xml";
-        private const string ConversionFileForRead = @"Resources\Unit4MssReaderConversions.xml";
+        private const string ConversionFileForWrite = @"Resources\SqlServerWriterConversions.xml";
+        private const string ConversionFileForRead = @"Resources\SqlServerReaderConversions.xml";
 
         public SqlServerContext(IALogger logger=null)
             : base(new SqlServerPowerPlant(), logger)
