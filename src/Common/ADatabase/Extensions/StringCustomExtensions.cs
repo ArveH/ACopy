@@ -58,12 +58,12 @@ namespace ADatabase.Extensions
                     return ADatabase.ColumnTypeName.Money;
                 case "nchar":
                     return ADatabase.ColumnTypeName.NChar;
+                case "nclob":
                 case "nlongtext":
                     return ADatabase.ColumnTypeName.NLongText;
                 case "number":
                     return ADatabase.ColumnTypeName.Dec;
                 case "nvarchar":
-                    return ADatabase.ColumnTypeName.NVarchar;
                 case "nvarchar2":
                     return ADatabase.ColumnTypeName.NVarchar;
                 case "raw":
@@ -77,7 +77,6 @@ namespace ADatabase.Extensions
                 case "varbinary":
                     return ADatabase.ColumnTypeName.Raw;
                 case "varchar":
-                    return ADatabase.ColumnTypeName.Varchar;
                 case "varchar2":
                     return ADatabase.ColumnTypeName.Varchar;
             }

@@ -2,7 +2,7 @@
 {
     public class OracleClobColumn: OracleVarchar2Column
     {
-        public OracleClobColumn(string name, bool isNullable, string def, string collation)
+        public OracleClobColumn(string name, bool isNullable, string def)
             : base(name, -1, isNullable, def)
         {
             Type = ColumnTypeName.LongText;

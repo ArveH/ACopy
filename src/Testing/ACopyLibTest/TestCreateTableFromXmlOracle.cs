@@ -132,6 +132,34 @@ namespace ACopyLibTest
             VerifyColumnType("NUMBER", null, 3, 0);
         }
 
+        [TestMethod, TestCategory("Oracle")]
+        public void TestLongTextCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.LongText, 0, 0, 0, false, "", null);
+            VerifyColumnType("CLOB", null, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestMoneyCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Money, 0, 0, 0, false, "", null);
+            VerifyColumnType("NUMBER", null, 19, 4);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestNCharCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.NChar, 10, 0, 0, false, "", null);
+            VerifyColumnType("NCHAR", 10, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestNLongTextCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.NLongText, 0, 0, 0, false, "", null);
+            VerifyColumnType("NCLOB", null, null, null);
+        }
+
         #region Private helpers
 
         protected void CreateTable(ColumnTypeName type, int length, int prec, int scale, bool isNullable, string def, string collation)

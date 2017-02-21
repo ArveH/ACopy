@@ -34,10 +34,11 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.Guid:
                     return new OracleRawColumn(name, 16, isNullable, def);
                 case ColumnTypeName.LongText:
-                    return new OracleClobColumn(name, isNullable, def, collation);
-                case ColumnTypeName.NVarchar:
+                    return new OracleClobColumn(name, isNullable, def);
                 case ColumnTypeName.NChar:
-                    return new OracleVarchar2Column(name, length, isNullable, def);
+                    return new OracleNCharColumn(name, length, isNullable, def);
+                case ColumnTypeName.NLongText:
+                    return new OracleNLongTextColumn(name, isNullable, def);
                 case ColumnTypeName.Raw:
                     return new OracleRawColumn(name, length, isNullable, def);
                 case ColumnTypeName.Varchar:

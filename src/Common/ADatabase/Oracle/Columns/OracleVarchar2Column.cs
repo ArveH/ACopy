@@ -12,7 +12,7 @@ namespace ADatabase.Oracle.Columns
 
         public override string TypeToString()
         {
-            return string.Format("varchar2({0} char)", (int)Details["Length"]);
+            return $"varchar2({(int) Details["Length"]} char)";
         }
 
         public override string ToString(object value)
