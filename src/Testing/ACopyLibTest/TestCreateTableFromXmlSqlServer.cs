@@ -115,13 +115,6 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("SqlServer")]
-        public void TestIdentityCol_When_SqlServer()
-        {
-            CreateTable(ColumnTypeName.Identity, 0, 20, 0, false, "", null);
-            VerifyColumnType("decimal", null, 20, 0);
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
         public void TestIntCol_When_SqlServer()
         {
             CreateTable(ColumnTypeName.Int, 0, 0, 0, false, "", null);

@@ -5,7 +5,7 @@ namespace ADatabase.SqlServer.Columns
     public class SqlServerBoolColumn : SqlServerInt32Column
     {
         public SqlServerBoolColumn(string name, bool isNullable, string def)
-            : base(name, isNullable, def)
+            : base(name, isNullable, false, def)
         {
             Type = ColumnTypeName.Bool;
         }

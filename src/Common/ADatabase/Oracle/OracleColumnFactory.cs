@@ -7,7 +7,7 @@ namespace ADatabase.Oracle
 {
     public class OracleColumnFactory : IColumnFactory
     {
-        public IColumn CreateInstance(ColumnTypeName type, string name, int length, int prec, int scale, bool isNullable, string def, string collation)
+        public IColumn CreateInstance(ColumnTypeName type, string name, int length, int prec, int scale, bool isNullable, bool isIdentity, string def, string collation)
         {
             switch (type)
             {
@@ -55,12 +55,12 @@ namespace ADatabase.Oracle
 
         public IColumn CreateInstance(ColumnTypeName type, string name, int length, bool isNullable, string def, string collation)
         {
-            return CreateInstance(type, name, length, 0, 0, isNullable, def, collation);
+            return CreateInstance(type, name, length, 0, 0, isNullable, false, def, collation);
         }
 
         public IColumn CreateInstance(ColumnTypeName type, string name, bool isNullable, string def)
         {
-            return CreateInstance(type, name, 0, 0, 0, isNullable, def, "");
+            return CreateInstance(type, name, 0, 0, 0, isNullable, false, def, "");
         }
 
         public IColumn CreateInstance(ColumnTypeName columnType, string colName, bool isNullable, string def, Dictionary<string, object> details)
@@ -69,6 +69,7 @@ namespace ADatabase.Oracle
             int prec = 0;
             int scale = 0;
             string collation = "";
+            bool isIdentity = false;
 
             if (details.ContainsKey("Length"))
             {
@@ -86,8 +87,12 @@ namespace ADatabase.Oracle
             {
                 collation = details["Collation"].ToString();
             }
+            if (details.ContainsKey("Identity"))
+            {
+                isIdentity = Convert.ToBoolean(details["Identity"]);
+            }
 
-            return CreateInstance(columnType, colName, length, prec, scale, isNullable, def, collation);
+            return CreateInstance(columnType, colName, length, prec, scale, isNullable, isIdentity, def, collation);
         }
     }
 }

@@ -118,12 +118,9 @@ namespace ADatabase.SqlServer
                     bool isNullable = reader.GetBoolean(5);
                     string collation = reader.GetString(6);
                     string def = reader.GetString(7);
+                    bool isIdentity = reader.GetBoolean(8);
                     string sourceType = type.AddParameters();
                     ColumnTypeName colType = columnTypeConverter.GetDestinationType(sourceType, ref length, ref prec, ref scale).ColumnTypeName();
-                    if (reader.GetBoolean(8))
-                    {
-                        colType = ColumnTypeName.Identity;
-                    }
                     if (colType == ColumnTypeName.Blob)
                     {
                         tableHasBlobColumn = true;
@@ -136,6 +133,7 @@ namespace ADatabase.SqlServer
                             prec,
                             scale,
                             isNullable,
+                            isIdentity,
                             def,
                             collation)
                             );
@@ -205,9 +203,9 @@ namespace ADatabase.SqlServer
 
         private string AddIdentityColumn(ITableDefinition tableDefinition)
         {
-            if (!tableDefinition.Columns.Exists(c => c.Type == ColumnTypeName.Identity))
+            if (!tableDefinition.Columns.Exists(c => c.IsIdentity))
             {
-                IColumn col = DbContext.PowerPlant.CreateColumnFactory().CreateInstance(ColumnTypeName.Identity, "agrtid", false, "");
+                IColumn col = DbContext.PowerPlant.CreateColumnFactory().CreateInstance(ColumnTypeName.Int64, "agrtid", 0, 0, 0, false, true, "0", "");
                 return ", agrtid " + col.GetColumnDefinition();
             }
 

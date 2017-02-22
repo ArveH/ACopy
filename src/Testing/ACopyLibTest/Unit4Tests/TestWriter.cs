@@ -216,8 +216,8 @@ namespace ACopyLibTest.Unit4Tests
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             List<IColumn> columns = new List<IColumn>
             { 
-                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 20, 0, false, "0", ""),
-                columnFactory.CreateInstance(ColumnTypeName.Int, "seq_no", 0, 15, 0, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 20, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int, "seq_no", 0, 15, 0, false, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "val", 50, false, "' '", "Danish_Norwegian_CI_AS") 
             };
             TableDefinition tableDefinition = new TableDefinition(TestTable, columns, "");
@@ -253,8 +253,8 @@ namespace ACopyLibTest.Unit4Tests
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             List<IColumn> columns = new List<IColumn>
             { 
-                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 20, 0, false, "0", ""),
-                columnFactory.CreateInstance(ColumnTypeName.Int, "seq_no", 0, 15, 0, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 20, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int, "seq_no", 0, 15, 0, false, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Blob, "val", true, "") 
             };
             TableDefinition tableDefinition = new TableDefinition(testTable, columns, "");
@@ -267,17 +267,17 @@ namespace ACopyLibTest.Unit4Tests
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             List<IColumn> columns = new List<IColumn>
             { 
-                columnFactory.CreateInstance(ColumnTypeName.Bool, "bool_col", 0, 20, 0, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Bool, "bool_col", 0, 20, 0, false, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Char, "char_col", 2, false, "' '", "Danish_Norwegian_CI_AS"),
                 columnFactory.CreateInstance(ColumnTypeName.DateTime, "date_col", false, "convert(datetime,'19000101',112)"),
-                columnFactory.CreateInstance(ColumnTypeName.Float, "float_col", 0, 30, 8, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Float, "float_col", 0, 30, 8, false, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Guid, "guid_col", true, ""),
-                columnFactory.CreateInstance(ColumnTypeName.Int, "int_col", 0, 15, 0, false, "0", ""),
-                columnFactory.CreateInstance(ColumnTypeName.Int8, "int8_col", 0, 3, 0, false, "0", ""),
-                columnFactory.CreateInstance(ColumnTypeName.Int16, "int16_col", 0, 5, 0, false, "0", ""),
-                columnFactory.CreateInstance(ColumnTypeName.Int64, "int64_col", 0, 20, 0, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int, "int_col", 0, 15, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int8, "int8_col", 0, 3, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int16, "int16_col", 0, 5, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "int64_col", 0, 20, 0, false, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.LongText, "longtext_col", 0, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnTypeName.Money, "money_col", 0, 30, 3, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Money, "money_col", 0, 30, 3, false, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Blob, "blob_col", true, ""),
                 columnFactory.CreateInstance(ColumnTypeName.NVarchar, "nvarchar_col", 50, false, "' '", "Danish_Norwegian_CI_AS"),
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "varchar_col", 50, false, "' '", "Danish_Norwegian_CI_AS")
@@ -302,8 +302,8 @@ namespace ACopyLibTest.Unit4Tests
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             List<IColumn> columns = new List<IColumn>
             { 
-                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 20, 0, false, "0", ""),
-                columnFactory.CreateInstance(ColumnTypeName.Int, "seq_no", 0, 15, 0, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 20, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int, "seq_no", 0, 15, 0, false, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Blob, "val", true, "") 
             };
             TableDefinition tableDefinition = new TableDefinition(testTable, columns, "");

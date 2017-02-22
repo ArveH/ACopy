@@ -12,7 +12,6 @@
         Dec,
         Float,
         Guid,
-        Identity,
         Int,
         Int16,
         Int64,

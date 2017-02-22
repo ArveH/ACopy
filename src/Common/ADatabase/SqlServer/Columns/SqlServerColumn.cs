@@ -5,11 +5,12 @@ namespace ADatabase.SqlServer.Columns
 {
     public abstract class SqlServerColumn : IColumn
     {
-        protected SqlServerColumn(string name, ColumnTypeName type, bool isNullable, string def)
+        protected SqlServerColumn(string name, ColumnTypeName type, bool isNullable, bool isIdentity, string def)
         {
             Name = name;
             Type = type;
             IsNullable = isNullable;
+            IsIdentity = isIdentity;
             _default = def;
             _details = new Dictionary<string, object>();
         }
@@ -17,6 +18,8 @@ namespace ADatabase.SqlServer.Columns
         public string Name { get; set; }
         public ColumnTypeName Type { get; set; }
         public bool IsNullable { get; set; }
+
+        public bool IsIdentity { get; private set; }
 
         private string _default;
 
@@ -26,6 +29,7 @@ namespace ADatabase.SqlServer.Columns
         }
 
         private readonly Dictionary<string, object> _details;
+
         public Dictionary<string, object> Details
         {
             get { return _details; }

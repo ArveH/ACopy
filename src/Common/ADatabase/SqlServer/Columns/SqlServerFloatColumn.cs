@@ -8,7 +8,7 @@ namespace ADatabase.SqlServer.Columns
         private readonly string _typeToString;
 
         public SqlServerFloatColumn(string name, int length, bool isNullable, string def)
-            : base(name, isNullable, def)
+            : base(name, isNullable, false, def)
         {
             if (length > 0)
             {

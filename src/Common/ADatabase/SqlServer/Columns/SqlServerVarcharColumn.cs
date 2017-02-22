@@ -8,7 +8,7 @@ namespace ADatabase.SqlServer.Columns
         protected string TypeString;
 
         public SqlServerVarcharColumn(string name, int length, bool isNullable, string def, string collation)
-            : base(name, ColumnTypeName.Varchar, isNullable, AdjustDefaultValue(def))
+            : base(name, ColumnTypeName.Varchar, isNullable, false, AdjustDefaultValue(def))
         {
             Details["Length"] = length;
             Details["Collation"] = collation;

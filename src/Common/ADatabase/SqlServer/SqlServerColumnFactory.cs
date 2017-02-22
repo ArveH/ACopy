@@ -7,7 +7,7 @@ namespace ADatabase.SqlServer
 {
     public class SqlServerColumnFactory : IColumnFactory
     {
-        public IColumn CreateInstance(ColumnTypeName type, string name, int length, int prec, int scale, bool isNullable, string def, string collation)
+        public IColumn CreateInstance(ColumnTypeName type, string name, int length, int prec, int scale, bool isNullable, bool isIdentity, string def, string collation)
         {
             switch (type)
             {
@@ -24,21 +24,19 @@ namespace ADatabase.SqlServer
                 case ColumnTypeName.DateTime:
                     return new SqlServerDatetimeColumn(name, isNullable, def);
                 case ColumnTypeName.Dec:
-                    return new SqlServerDecColumn(name, prec, scale, isNullable, def);
+                    return new SqlServerDecColumn(name, prec, scale, isNullable, isIdentity, def);
                 case ColumnTypeName.Float:
                     return new SqlServerFloatColumn(name, length, isNullable, def);
                 case ColumnTypeName.Guid:
                     return new SqlServerGuidColumn(name, isNullable, def);
-                case ColumnTypeName.Identity:
-                    return new SqlServerIdentityColumn(name, isNullable, def);
                 case ColumnTypeName.Int:
-                    return new SqlServerInt32Column(name, isNullable, def);
+                    return new SqlServerInt32Column(name, isNullable, isIdentity, def);
                 case ColumnTypeName.Int16:
-                    return new SqlServerInt16Column(name, isNullable, def);
+                    return new SqlServerInt16Column(name, isNullable, isIdentity, def);
                 case ColumnTypeName.Int64:
-                    return new SqlServerInt64Column(name, isNullable, def);
+                    return new SqlServerInt64Column(name, isNullable, isIdentity, def);
                 case ColumnTypeName.Int8:
-                    return new SqlServerInt8Column(name, isNullable, def);
+                    return new SqlServerInt8Column(name, isNullable, isIdentity, def);
                 case ColumnTypeName.LongText:
                     return new SqlServerLongTextColumn(name, isNullable, def, collation);
                 case ColumnTypeName.NChar:
@@ -60,12 +58,12 @@ namespace ADatabase.SqlServer
 
         public IColumn CreateInstance(ColumnTypeName type, string name, int length, bool isNullable, string def, string collation)
         {
-            return CreateInstance(type, name, length, 0, 0, isNullable, def, collation);
+            return CreateInstance(type, name, length, 0, 0, isNullable, false, def, collation);
         }
 
         public IColumn CreateInstance(ColumnTypeName type, string name, bool isNullable, string def)
         {
-            return CreateInstance(type, name, 0, 0, 0, isNullable, def, "");
+            return CreateInstance(type, name, 0, 0, 0, isNullable, false, def, "");
         }
 
         public IColumn CreateInstance(ColumnTypeName columnType, string colName, bool isNullable, string def, Dictionary<string, object> details)
@@ -74,6 +72,7 @@ namespace ADatabase.SqlServer
             int prec = 0;
             int scale = 0;
             string collation = "";
+            bool isIdentity = false;
 
             if (details.ContainsKey("Length"))
             {
@@ -91,8 +90,12 @@ namespace ADatabase.SqlServer
             {
                 collation = details["Collation"].ToString();
             }
+            if (details.ContainsKey("Identity"))
+            {
+                isIdentity = Convert.ToBoolean(details["Identity"]);
+            }
 
-            return CreateInstance(columnType, colName, length, prec, scale, isNullable, def, collation);
+            return CreateInstance(columnType, colName, length, prec, scale, isNullable, isIdentity, def, collation);
         }
     }
 }

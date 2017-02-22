@@ -14,26 +14,10 @@ namespace ADatabase.Oracle.Columns
             Details = new Dictionary<string, object>();
         }
 
-        private string _name;
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-
-        private ColumnTypeName _type;
-        public ColumnTypeName Type
-        {
-            get { return _type; }
-            set { _type = value; }
-        }
-
-        private bool _isNullable;
-        public bool IsNullable
-        {
-            get { return _isNullable; }
-            set { _isNullable = value; }
-        }
+        public string Name { get; set; }
+        public ColumnTypeName Type { get; set; }
+        public bool IsNullable { get; set; }
+        public bool IsIdentity { get; } = false;
 
         private string _default;
         public virtual string Default
@@ -59,7 +43,7 @@ namespace ADatabase.Oracle.Columns
             {
                 defaultValue = string.Format("default {0} ", ParseDefaultValue(_default));
             }
-            var notNullConstraint = _isNullable ? "null " : "not null ";
+            var notNullConstraint = IsNullable ? "null " : "not null ";
 
             return string.Format("{0} {1}{2}", TypeToString(), defaultValue, notNullConstraint);
         }

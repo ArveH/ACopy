@@ -9,6 +9,7 @@ namespace ADatabase
         ColumnTypeName Type { get; set; }
         Dictionary<string, object> Details { get; }
         bool IsNullable { get; set; }
+        bool IsIdentity { get; }
         string Default { get; set; }
         string TypeToString();
         string GetColumnDefinition();

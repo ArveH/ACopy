@@ -12,7 +12,6 @@
   <Type Source="float" Destination="float"/>
   <Type Source="float(@Length)" Destination="float(@Length)"/>
   <Type Source="guid" Destination="raw(16)"/>
-  <Type Source="identity(@Length)" Destination="number(@Length,0)"/>
   <Type Source="image" Destination="blob"/>
   <Type Source="int" Destination="number(38,0)"/>
   <Type Source="int16" Destination="number(38,0)"/>

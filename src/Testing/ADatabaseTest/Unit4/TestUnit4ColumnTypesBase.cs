@@ -47,7 +47,7 @@ namespace ADatabaseTest
 
         protected void TestColumn(ColumnTypeName type, int length, int prec, int scale, bool isNullable, string def, string collation)
         {
-            List<IColumn> columns = new List<IColumn> { ColumnFactory.CreateInstance(type, "col1", length, prec, scale, isNullable, def, collation) };
+            List<IColumn> columns = new List<IColumn> { ColumnFactory.CreateInstance(type, "col1", length, prec, scale, isNullable, false, def, collation) };
             ITableDefinition expectedTableDefinition = PowerPlant.CreateTableDefinition(TableName, columns, "");
             DbSchema.CreateTable(expectedTableDefinition);
             var columnTypeConverter = DbContext.PowerPlant.CreateColumnTypeConverter(ConversionFileForWrite);

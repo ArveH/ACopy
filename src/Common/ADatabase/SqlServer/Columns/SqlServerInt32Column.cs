@@ -4,8 +4,8 @@ namespace ADatabase.SqlServer.Columns
 {
     public class SqlServerInt32Column : SqlServerColumn
     {
-        public SqlServerInt32Column(string name, bool isNullable, string def)
-            : base(name, ColumnTypeName.Int, isNullable, AdjustDefaultValue(def))
+        public SqlServerInt32Column(string name, bool isNullable, bool isIdentity, string def)
+            : base(name, ColumnTypeName.Int, isNullable, isIdentity, AdjustDefaultValue(def))
         {
         }
 

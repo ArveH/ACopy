@@ -6,7 +6,7 @@ namespace ADatabase.SqlServer.Columns
     public class SqlServerMoneyColumn : SqlServerInt32Column
     {
         public SqlServerMoneyColumn(string name, bool isNullable, string def)
-            : base(name, isNullable, def)
+            : base(name, isNullable, false, def)
         {
             Type = ColumnTypeName.Money;
         }

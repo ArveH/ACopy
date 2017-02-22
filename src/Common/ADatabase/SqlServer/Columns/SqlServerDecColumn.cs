@@ -7,8 +7,8 @@ namespace ADatabase.SqlServer.Columns
     {
         private readonly string _typeToString;
 
-        public SqlServerDecColumn(string name, int prec, int scale, bool isNullable, string def)
-            : base(name, isNullable, def)
+        public SqlServerDecColumn(string name, int prec, int scale, bool isNullable, bool isIdentity, string def)
+            : base(name, isNullable, isIdentity, def)
         {
             Details["Prec"] = prec;
             Details["Scale"] = scale;

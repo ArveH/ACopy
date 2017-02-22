@@ -94,8 +94,9 @@ namespace ACopyLib.Xml
             var prec = colDetails.ContainsKey("Prec") ? Convert.ToInt32(colDetails["Prec"]) : 0;
             var scale = colDetails.ContainsKey("Scale") ? Convert.ToInt32(colDetails["Scale"]) : 0;
             var collation = colDetails.ContainsKey("Collation") ? (string)colDetails["Collation"] : "";
+            bool isIdentity = colDetails.ContainsKey("IsIdentity") ? Convert.ToBoolean(col["IsIdentity"]) : false;
             var destinationType = columnsTypeConverter.GetDestinationType(type, ref length, ref prec, ref scale).ColumnTypeName();
-            columns.Add(columnFactory.CreateInstance(destinationType, colName, length, prec, scale, isNullable, def, collation));
+            columns.Add(columnFactory.CreateInstance(destinationType, colName, length, prec, scale, isNullable, isIdentity, def, collation));
         }
 
         private static Dictionary<string, object> ReadColumnDetails(XmlNode col)

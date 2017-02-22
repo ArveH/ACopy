@@ -42,8 +42,6 @@ namespace ADatabase.Extensions
                     return ADatabase.ColumnTypeName.Float;
                 case "guid":
                     return ADatabase.ColumnTypeName.Guid;
-                case "identity":
-                    return ADatabase.ColumnTypeName.Identity;
                 case "int":
                     return ADatabase.ColumnTypeName.Int;
                 case "int16":

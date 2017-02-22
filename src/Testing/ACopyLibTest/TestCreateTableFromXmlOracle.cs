@@ -115,13 +115,6 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("Oracle")]
-        public void TestIdentityCol_When_Oracle()
-        {
-            CreateTable(ColumnTypeName.Identity, 0, 20, 0, false, "", null);
-            VerifyColumnType("NUMBER", null, 20, 0);
-        }
-
-        [TestMethod, TestCategory("Oracle")]
         public void TestIntCol_When_Oracle()
         {
             CreateTable(ColumnTypeName.Int, 0, 0, 0, false, "", null);

@@ -51,7 +51,7 @@ namespace ADatabase.Oracle
                     string def = reader.IsDBNull(6) ? "" : reader.GetString(6).TrimEnd();
                     string sourceType = type.AddParameters();
                     var colType = columnTypeConverter.GetDestinationType(sourceType, ref length, ref prec, ref scale).ColumnTypeName();
-                    columns.Add(columnFactory.CreateInstance(colType, name, length, prec, scale, isNullable, def, ""));
+                    columns.Add(columnFactory.CreateInstance(colType, name, length, prec, scale, isNullable, false, def, ""));
                 }
             }
             finally

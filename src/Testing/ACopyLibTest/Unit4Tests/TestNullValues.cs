@@ -18,7 +18,7 @@ namespace ACopyLibTest.Unit4Tests
         //TestMethod
         protected void TestNullValue_When_Int(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int, "test_col", 0, 15, 0, true, "", "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int, "test_col", 0, 15, 0, true, false, "", "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -27,7 +27,7 @@ namespace ACopyLibTest.Unit4Tests
         //TestMethod
         protected void TestNullValue_When_Float(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Float, "test_col", 0, 30, 8, true, "", "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Float, "test_col", 0, 30, 8, true, false, "", "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -54,7 +54,7 @@ namespace ACopyLibTest.Unit4Tests
         //TestMethod
         protected void TestNullValue_When_Bool(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Bool, "test_col", 0, 1, 0, true, "", "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Bool, "test_col", 0, 1, 0, true, false, "", "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();
@@ -63,7 +63,7 @@ namespace ACopyLibTest.Unit4Tests
         //TestMethod
         protected void TestNullValue_When_Int64(Action checkValue)
         {
-            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int64, "test_col", 0, 20, 0, true, "", "");
+            IColumn col = ColumnFactory.CreateInstance(ColumnTypeName.Int64, "test_col", 0, 20, 0, true, false, "", "");
             CreateTestTable1Row3Columns1Value(col);
             WriteAndRead();
             checkValue();

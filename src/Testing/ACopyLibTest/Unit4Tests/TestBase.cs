@@ -63,7 +63,7 @@ namespace ACopyLibTest.Unit4Tests
             IColumnFactory columnFactory = DbContext.PowerPlant.CreateColumnFactory();
             List<IColumn> columns = new List<IColumn>
             { 
-                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 20, 0, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "id", 0, 20, 0, false, false, "0", ""),
                 col,
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "val", 50, false, "' '", "Danish_Norwegian_CI_AS") 
             };
