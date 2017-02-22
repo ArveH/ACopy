@@ -12,13 +12,12 @@
   <Type Source="float" Destination="float"/>
   <Type Source="float(@Length)" Destination="float(@Length)"/>
   <Type Source="guid" Destination="uniqueidentity"/>
-  <Type Source="image" Destination="image"/>
   <Type Source="int" Destination="int"/>
   <Type Source="int16" Destination="smallint"/>
   <Type Source="int64" Destination="bigint"/>
   <Type Source="int8" Destination="tinyint"/>
   <Type Source="long" Destination="varchar(-1)"/>
-  <Type Source="longraw" Destination="varbinary(-1)"/>
+  <Type Source="oldraw" Destination="image"/>
   <Type Source="longtext" Destination="varchar(-1)"/>
   <Type Source="money" Destination="money"/>
   <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>

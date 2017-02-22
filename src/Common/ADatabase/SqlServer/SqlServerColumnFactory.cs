@@ -14,9 +14,9 @@ namespace ADatabase.SqlServer
                 case ColumnTypeName.BinaryFloat:
                     return new SqlServerFloatColumn(name, 24, isNullable, def);
                 case ColumnTypeName.Blob:
-                    return new SqlServerBlobColumn(name, length, isNullable, def);
+                    return new SqlServerVarBinaryColumn(name, length, isNullable, def);
                 case ColumnTypeName.Bool:
-                    return new SqlServerBoolColumn(name, isNullable, def);
+                    return new SqlServerBitColumn(name, isNullable, def);
                 case ColumnTypeName.Char:
                     return new SqlServerCharColumn(name, length, isNullable, def, collation);
                 case ColumnTypeName.Date:
@@ -43,10 +43,12 @@ namespace ADatabase.SqlServer
                     return new SqlServerNCharColumn(name, length, isNullable, def, collation);
                 case ColumnTypeName.NVarchar:
                     return new SqlServerNVarcharColumn(name, length, isNullable, def, collation);
+                case ColumnTypeName.OldRaw:
+                    return new SqlServerImageColumn(name, isNullable, def);
                 case ColumnTypeName.Money:
                     return new SqlServerMoneyColumn(name, isNullable, def);
                 case ColumnTypeName.Raw:
-                    return new SqlServerBlobColumn(name, length, isNullable, def);
+                    return new SqlServerVarBinaryColumn(name, length, isNullable, def);
                 case ColumnTypeName.Timestamp:
                     return new SqlServerDatetime2Column(name, length, isNullable, def);
                 case ColumnTypeName.Varchar:

@@ -2,10 +2,10 @@
 
 namespace ADatabase.SqlServer.Columns
 {
-    public class SqlServerBlobColumn : SqlServerColumn
+    public class SqlServerVarBinaryColumn : SqlServerColumn
     {
         private readonly string _typeString;
-        public SqlServerBlobColumn(string name, int length, bool isNullable, string def)
+        public SqlServerVarBinaryColumn(string name, int length, bool isNullable, string def)
             : base(name, ColumnTypeName.Blob, isNullable, false, def)
         {
             Details["Length"] = length;
