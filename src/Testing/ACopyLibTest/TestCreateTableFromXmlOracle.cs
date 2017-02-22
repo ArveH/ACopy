@@ -115,9 +115,9 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("Oracle")]
-        public void TestOldRawCol_When_Oracle()
+        public void TestOldBlobCol_When_Oracle()
         {
-            CreateTable(ColumnTypeName.OldRaw, 0, 0, 0, false, "", null);
+            CreateTable(ColumnTypeName.OldBlob, 0, 0, 0, false, "", null);
             VerifyColumnType("LONG RAW", null, null, null);
         }
 

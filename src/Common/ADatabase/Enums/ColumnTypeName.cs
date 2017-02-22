@@ -21,7 +21,7 @@
         NChar,
         NLongText,
         NVarchar,
-        OldRaw,
+        OldBlob,
         Raw,
         SmallDateTime,
         SmallMoney,

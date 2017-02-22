@@ -115,9 +115,9 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("SqlServer")]
-        public void TestOldRawCol_When_SqlServer()
+        public void TestOldBlobCol_When_SqlServer()
         {
-            CreateTable(ColumnTypeName.OldRaw, 0, 0, 0, false, "", null);
+            CreateTable(ColumnTypeName.OldBlob, 0, 0, 0, false, "", null);
             VerifyColumnType("image", null, null, null);
         }
 

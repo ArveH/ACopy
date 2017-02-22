@@ -5,7 +5,7 @@ namespace ADatabase.Oracle.Columns
     public class OracleLongRawColumn: OracleColumn
     {
         public OracleLongRawColumn(string name, bool isNullable, string def)
-            : base(name, ColumnTypeName.OldRaw, isNullable, def)
+            : base(name, ColumnTypeName.OldBlob, isNullable, def)
         {
         }
 
@@ -32,12 +32,12 @@ namespace ADatabase.Oracle.Columns
 
         public override string ToString(object value)
         {
-            throw new NotImplementedException("Column.ToFile for OLDRAW");
+            throw new NotImplementedException("Column.ToFile for OLDBLOB");
         }
 
         public override object ToInternalType(string value)
         {
-            throw new NotImplementedException("Column.ToInternalType for OLDRAW");
+            throw new NotImplementedException("Column.ToInternalType for OLDBLOB");
         }
 
         public override Type GetDotNetType()

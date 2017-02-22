@@ -43,7 +43,7 @@ namespace ADatabase.Extensions
                 case "guid":
                     return ADatabase.ColumnTypeName.Guid;
                 case "image":
-                    return ADatabase.ColumnTypeName.OldRaw;
+                    return ADatabase.ColumnTypeName.OldBlob;
                 case "int":
                     return ADatabase.ColumnTypeName.Int;
                 case "int16":
@@ -55,7 +55,7 @@ namespace ADatabase.Extensions
                 case "longtext":
                     return ADatabase.ColumnTypeName.LongText;
                 case "longraw":
-                    return ADatabase.ColumnTypeName.OldRaw;
+                    return ADatabase.ColumnTypeName.OldBlob;
                 case "money":
                     return ADatabase.ColumnTypeName.Money;
                 case "nchar":
@@ -68,8 +68,8 @@ namespace ADatabase.Extensions
                 case "nvarchar":
                 case "nvarchar2":
                     return ADatabase.ColumnTypeName.NVarchar;
-                case "oldraw":
-                    return ADatabase.ColumnTypeName.OldRaw;
+                case "oldblob":
+                    return ADatabase.ColumnTypeName.OldBlob;
                 case "raw":
                     return ADatabase.ColumnTypeName.Raw;
                 case "real":

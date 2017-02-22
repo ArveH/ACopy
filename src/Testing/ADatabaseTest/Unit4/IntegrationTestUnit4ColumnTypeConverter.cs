@@ -176,9 +176,9 @@ namespace ADatabaseTest
         }
 
         [TestMethod]
-        public void TestGetDestinationType_When_OldRawToBlob()
+        public void TestGetDestinationType_When_OldBlobToBlob()
         {
-            var destinationType = GetDestinationTypeWhenOracleToACopy("oldraw", ref _length, ref _prec, ref _scale);
+            var destinationType = GetDestinationTypeWhenOracleToACopy("oldblob", ref _length, ref _prec, ref _scale);
             destinationType.Should().Be("blob");
         }
 

@@ -17,7 +17,7 @@
   <Type Source="int64" Destination="bigint"/>
   <Type Source="int8" Destination="tinyint"/>
   <Type Source="long" Destination="varchar(-1)"/>
-  <Type Source="oldraw" Destination="image"/>
+  <Type Source="oldblob" Destination="image"/>
   <Type Source="longtext" Destination="varchar(-1)"/>
   <Type Source="money" Destination="money"/>
   <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>

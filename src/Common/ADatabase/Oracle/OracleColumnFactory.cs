@@ -42,7 +42,7 @@ namespace ADatabase.Oracle
                     return new OracleNClobColumn(name, isNullable, def);
                 case ColumnTypeName.NVarchar:
                     return new OracleNVarchar2Column(name, length, isNullable, def);
-                case ColumnTypeName.OldRaw:
+                case ColumnTypeName.OldBlob:
                     return new OracleLongRawColumn(name, isNullable, def);
                 case ColumnTypeName.Raw:
                     return new OracleRawColumn(name, length, isNullable, def);

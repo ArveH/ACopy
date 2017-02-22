@@ -7,7 +7,7 @@ namespace ADatabase.SqlServer.Columns
         public SqlServerImageColumn(string name, bool isNullable, string def)
             : base(name, -1, isNullable, def)
         {
-            Type = ColumnTypeName.OldRaw;
+            Type = ColumnTypeName.OldBlob;
         }
 
         public override string TypeToString()
@@ -17,12 +17,12 @@ namespace ADatabase.SqlServer.Columns
 
         public override string ToString(object value)
         {
-            throw new NotImplementedException("Column.ToFile for OLDRAW");
+            throw new NotImplementedException("Column.ToFile for OLDBLOB");
         }
 
         public override object ToInternalType(string value)
         {
-            throw new NotImplementedException("Column.ToInternalType for OLDRAW");
+            throw new NotImplementedException("Column.ToInternalType for OLDBLOB");
         }
     }
 }
