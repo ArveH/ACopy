@@ -48,7 +48,7 @@ namespace ADatabase.Oracle.Columns
             }
         }
 
-        private static string ConvertNativeDateToKeyword(string date)
+        protected static string ConvertNativeDateToKeyword(string date)
         {
             if ((date.IndexOf("19000101", StringComparison.Ordinal) > 0 || date.IndexOf("1900 01 01", StringComparison.Ordinal) > 0))
             {

@@ -11,8 +11,9 @@ namespace ADatabase.SqlServer
         {
             switch (type)
             {
+                case ColumnTypeName.BinaryFloat:
+                    return new SqlServerFloatColumn(name, 24, isNullable, def);
                 case ColumnTypeName.Blob:
-                case ColumnTypeName.Raw:
                     return new SqlServerBlobColumn(name, length, isNullable, def);
                 case ColumnTypeName.Bool:
                     return new SqlServerBoolColumn(name, isNullable, def);
@@ -22,12 +23,10 @@ namespace ADatabase.SqlServer
                     return new SqlServerDateColumn(name, isNullable, def);
                 case ColumnTypeName.DateTime:
                     return new SqlServerDatetimeColumn(name, isNullable, def);
-                case ColumnTypeName.DateTime2:
-                    return new SqlServerDatetime2Column(name, isNullable, def);
                 case ColumnTypeName.Dec:
                     return new SqlServerDecColumn(name, prec, scale, isNullable, def);
                 case ColumnTypeName.Float:
-                    return new SqlServerFloatColumn(name, isNullable, def);
+                    return new SqlServerFloatColumn(name, length, isNullable, def);
                 case ColumnTypeName.Guid:
                     return new SqlServerGuidColumn(name, isNullable, def);
                 case ColumnTypeName.Identity:
@@ -48,6 +47,10 @@ namespace ADatabase.SqlServer
                     return new SqlServerNVarcharColumn(name, length, isNullable, def, collation);
                 case ColumnTypeName.Money:
                     return new SqlServerMoneyColumn(name, isNullable, def);
+                case ColumnTypeName.Raw:
+                    return new SqlServerBlobColumn(name, length, isNullable, def);
+                case ColumnTypeName.Timestamp:
+                    return new SqlServerDatetime2Column(name, length, isNullable, def);
                 case ColumnTypeName.Varchar:
                     return new SqlServerVarcharColumn(name, length, isNullable, def, collation);
             }

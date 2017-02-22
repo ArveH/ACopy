@@ -59,10 +59,17 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("Oracle")]
-        public void TestDatetime2Col_When_Oracle()
+        public void TestTimestampCol_When_Oracle()
         {
-            CreateTable(ColumnTypeName.DateTime2, 0, 0, 0, false, "", null);
-            VerifyColumnType("DATE", null, null, null);
+            CreateTable(ColumnTypeName.Timestamp, 0, 0, 0, false, "", null);
+            VerifyColumnType("TIMESTAMP(6)", null, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestTimestampWithLengthCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Timestamp, 9, 0, 0, false, "", null);
+            VerifyColumnType("TIMESTAMP(9)", null, null, null);
         }
 
         [TestMethod, TestCategory("Oracle")]
@@ -73,17 +80,31 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("Oracle")]
-        public void TestDoubleCol_When_Oracle()
+        public void TestBinaryDoubleCol_When_Oracle()
         {
-            CreateTable(ColumnTypeName.Double, 0, 0, 0, false, "", null);
+            CreateTable(ColumnTypeName.BinaryDouble, 0, 0, 0, false, "", null);
             VerifyColumnType("BINARY_DOUBLE", null, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestBinaryFloatCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.BinaryFloat, 0, 0, 0, false, "", null);
+            VerifyColumnType("BINARY_FLOAT", null, null, null);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestFloatCol_When_Oracle()
         {
             CreateTable(ColumnTypeName.Float, 0, 0, 0, false, "", null);
-            VerifyColumnType("BINARY_FLOAT", null, null, null);
+            VerifyColumnType("FLOAT", null, 126, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestFloatColWithLength_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Float, 47, 0, 0, false, "", null);
+            VerifyColumnType("FLOAT", null, 47, null);
         }
 
         [TestMethod, TestCategory("Oracle")]

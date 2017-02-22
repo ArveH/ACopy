@@ -2,14 +2,14 @@
 {
     public enum ColumnTypeName
     {
+        BinaryDouble,
+        BinaryFloat,
         Blob,
         Bool,
         Char,
         Date,
         DateTime,
-        DateTime2,
         Dec,
-        Double,
         Float,
         Guid,
         Identity,
@@ -18,6 +18,7 @@
         Int64,
         Int8,
         LongText,
+        LongRaw,
         Money,
         NChar,
         NLongText,
@@ -25,6 +26,7 @@
         Raw,
         SmallDateTime,
         SmallMoney,
+        Text,
         Timestamp,
         Varchar,
         Xml

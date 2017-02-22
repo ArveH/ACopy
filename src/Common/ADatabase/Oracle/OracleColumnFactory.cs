@@ -11,6 +11,10 @@ namespace ADatabase.Oracle
         {
             switch (type)
             {
+                case ColumnTypeName.BinaryDouble:
+                    return new OracleBinaryDoubleColumn(name, isNullable, def);
+                case ColumnTypeName.BinaryFloat:
+                    return new OracleBinaryFloatColumn(name, isNullable, def);
                 case ColumnTypeName.Blob:
                     return new OracleBlobColumn(name, isNullable, def);
                 case ColumnTypeName.Bool:
@@ -25,12 +29,9 @@ namespace ADatabase.Oracle
                     return new OracleCharColumn(name, length, isNullable, def);
                 case ColumnTypeName.Date:
                 case ColumnTypeName.DateTime:
-                case ColumnTypeName.DateTime2:
                     return new OracleDateColumn(name, isNullable, def);
-                case ColumnTypeName.Double:
-                    return new OracleBinaryDoubleColumn(name, isNullable, def);
                 case ColumnTypeName.Float:
-                    return new OracleBinaryFloatColumn(name, isNullable, def);
+                    return new OracleFloatColumn(name, length, isNullable, def);
                 case ColumnTypeName.Guid:
                     return new OracleRawColumn(name, 16, isNullable, def);
                 case ColumnTypeName.LongText:
@@ -43,6 +44,8 @@ namespace ADatabase.Oracle
                     return new OracleNVarchar2Column(name, length, isNullable, def);
                 case ColumnTypeName.Raw:
                     return new OracleRawColumn(name, length, isNullable, def);
+                case ColumnTypeName.Timestamp:
+                    return new OracleTimestampColumn(name, length, isNullable, def);
                 case ColumnTypeName.Varchar:
                     return new OracleVarchar2Column(name, length, isNullable, def);
             }

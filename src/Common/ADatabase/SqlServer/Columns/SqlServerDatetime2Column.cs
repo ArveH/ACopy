@@ -2,15 +2,26 @@
 {
     public class SqlServerDatetime2Column: SqlServerDatetimeColumn
     {
-        public SqlServerDatetime2Column(string name, bool isNullable, string def)
+        private readonly string _typeToString;
+
+        public SqlServerDatetime2Column(string name, int length, bool isNullable, string def)
             : base(name, isNullable, ConvertNativeDateToKeyword(def))
         {
-            Type = ColumnTypeName.DateTime2;
+            if (length > 0)
+            {
+                Type = ColumnTypeName.Timestamp;
+                Details["Length"] = length;
+                _typeToString = $"datetime2({length})";
+            }
+            else
+            {
+                _typeToString = "datetime2";
+            }
         }
 
         public override string TypeToString()
         {
-            return "datetime2";
+            return _typeToString;
         }
 
         protected override string ParseDefaultValue(string def)

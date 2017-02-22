@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Globalization;
 
-namespace ADatabase.SqlServer.Columns
+namespace ADatabase.Oracle.Columns
 {
-    public class SqlServerFloatColumn : SqlServerInt32Column
+    public class OracleFloatColumn: OracleColumn
     {
         private readonly string _typeToString;
 
-        public SqlServerFloatColumn(string name, int length, bool isNullable, string def)
-            : base(name, isNullable, def)
+        public OracleFloatColumn(string name, int length, bool isNullable, string def)
+            : base(name, ColumnTypeName.Float, isNullable, def)
         {
             if (length > 0)
             {
-                Type = ColumnTypeName.Float;
                 Details["Length"] = length;
                 _typeToString = $"float({length})";
             }
@@ -29,21 +28,22 @@ namespace ADatabase.SqlServer.Columns
 
         public override string ToString(object value)
         {
-            return Convert.ToDecimal(value).ToString(CultureInfo.InvariantCulture);
+            // The # removes trailing zero. Will round up last number if more than 8 decimals. 
+            return Convert.ToDecimal(value).ToString("0.########", CultureInfo.InvariantCulture);
+        }
+
+        public override Type GetDotNetType()
+        {
+            return typeof(double);
         }
 
         public override object ToInternalType(string value)
         {
             if (value == null)
             {
-                return null;
+                return DBNull.Value;
             }
-            return decimal.Parse(value, CultureInfo.InvariantCulture);
-        }
-
-        public override Type GetDotNetType()
-        {
-            return typeof(double);
+            return double.Parse(value, CultureInfo.InvariantCulture);
         }
     }
 }

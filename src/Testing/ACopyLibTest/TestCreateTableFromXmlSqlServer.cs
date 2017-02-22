@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Data;
-using ACopyTestHelper;
 using ADatabase;
-using ADatabase.Extensions;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -61,10 +59,17 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("SqlServer")]
-        public void TestDatetime2Col_When_SqlServer()
+        public void TestTimestampCol_When_SqlServer()
         {
-            CreateTable(ColumnTypeName.DateTime2, 0, 0, 0, false, "", null);
+            CreateTable(ColumnTypeName.Timestamp, 0, 0, 0, false, "", null);
             VerifyColumnType("datetime2", null, null, null);
+        }
+
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestTimestampWithLengthCol_When_SqlServer()
+        {
+            CreateTable(ColumnTypeName.Timestamp, 5, 0, 0, false, "", null);
+            VerifyColumnType("datetime2", null, null, 5);
         }
 
         [TestMethod, TestCategory("SqlServer")]
@@ -75,17 +80,31 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("SqlServer")]
-        public void TestDoubleCol_When_SqlServer()
+        public void TestBinaryDoubleCol_When_SqlServer()
         {
-            CreateTable(ColumnTypeName.Double, 0, 0, 0, false, "", null);
-            VerifyColumnType("float", null, null, null);
+            CreateTable(ColumnTypeName.BinaryDouble, 0, 0, 0, false, "", null);
+            VerifyColumnType("float", null, 53, null);
+        }
+
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestBinaryFloatCol_When_SqlServer()
+        {
+            CreateTable(ColumnTypeName.BinaryFloat, 0, 0, 0, false, "", null);
+            VerifyColumnType("real", null, null, null);
         }
 
         [TestMethod, TestCategory("SqlServer")]
         public void TestFloatCol_When_SqlServer()
         {
             CreateTable(ColumnTypeName.Float, 0, 0, 0, false, "", null);
-            VerifyColumnType("float", null, null, null);
+            VerifyColumnType("float", null, 53, null);
+        }
+
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestFloatColWithLength_When_SqlServer()
+        {
+            CreateTable(ColumnTypeName.Float, 47, 0, 0, false, "", null);
+            VerifyColumnType("float", null, 53, null); // it's always 24 or 53
         }
 
         [TestMethod, TestCategory("SqlServer")]

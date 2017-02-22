@@ -17,9 +17,9 @@ namespace ADatabase.Extensions
                 case "bigint":
                     return ADatabase.ColumnTypeName.Int64;
                 case "binary_float":
-                    return ADatabase.ColumnTypeName.Float;
+                    return ADatabase.ColumnTypeName.BinaryFloat;
                 case "binary_double":
-                    return ADatabase.ColumnTypeName.Double;
+                    return ADatabase.ColumnTypeName.BinaryDouble;
                 case "bit":
                     return ADatabase.ColumnTypeName.Bool;
                 case "blob":
@@ -35,7 +35,7 @@ namespace ADatabase.Extensions
                 case "datetime":
                     return ADatabase.ColumnTypeName.DateTime;
                 case "datetime2":
-                    return ADatabase.ColumnTypeName.DateTime2;
+                    return ADatabase.ColumnTypeName.Timestamp;
                 case "dec":
                     return ADatabase.ColumnTypeName.Dec;
                 case "float":
@@ -68,8 +68,12 @@ namespace ADatabase.Extensions
                     return ADatabase.ColumnTypeName.NVarchar;
                 case "raw":
                     return ADatabase.ColumnTypeName.Raw;
+                case "real":
+                    return ADatabase.ColumnTypeName.BinaryFloat;
                 case "smallint":
                     return ADatabase.ColumnTypeName.Int16;
+                case "timestamp":
+                    return ADatabase.ColumnTypeName.Timestamp;
                 case "tinyint":
                     return ADatabase.ColumnTypeName.Int8;
                 case "uniqueidentity":

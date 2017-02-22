@@ -6,7 +6,7 @@ namespace ADatabase.Oracle.Columns
     public class OracleBinaryDoubleColumn: OracleColumn
     {
         public OracleBinaryDoubleColumn(string name, bool isNullable, string def)
-            : base(name, ColumnTypeName.Double,  isNullable, def)
+            : base(name, ColumnTypeName.BinaryDouble,  isNullable, def)
         {
         }
 
