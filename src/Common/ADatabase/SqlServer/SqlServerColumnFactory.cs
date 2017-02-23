@@ -53,6 +53,10 @@ namespace ADatabase.SqlServer
                     return new SqlServerVarBinaryColumn(name, length, isNullable, def);
                 case ColumnTypeName.SmallDateTime:
                     return new SqlServerSmallDateTimeColumn(name, isNullable, def);
+                case ColumnTypeName.SmallMoney:
+                    return new SqlServerSmallMoneyColumn(name, isNullable, def);
+                case ColumnTypeName.Time:
+                    return new SqlServerTimeColumn(name, isNullable, def);
                 case ColumnTypeName.Timestamp:
                     return new SqlServerDatetime2Column(name, length, isNullable, def);
                 case ColumnTypeName.Varchar:

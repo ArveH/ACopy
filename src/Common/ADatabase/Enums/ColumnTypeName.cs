@@ -26,8 +26,8 @@
         Raw,
         SmallDateTime,
         SmallMoney,
+        Time,
         Timestamp,
-        Varchar,
-        Xml
+        Varchar
     }
 }

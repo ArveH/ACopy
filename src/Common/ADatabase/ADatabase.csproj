@@ -164,7 +164,9 @@
     <Compile Include="SqlServer\Columns\SqlServerInt8Column.cs" />
     <Compile Include="SqlServer\Columns\SqlServerLongTextColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerMoneyColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerSmallMoneyColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerTextColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerTimeColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerVarBinaryColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerNCharColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerNVarcharColumn.cs" />

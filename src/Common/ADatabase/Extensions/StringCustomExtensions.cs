@@ -82,8 +82,12 @@ namespace ADatabase.Extensions
                     return ADatabase.ColumnTypeName.SmallDateTime;
                 case "smallint":
                     return ADatabase.ColumnTypeName.Int16;
+                case "smallmoney":
+                    return ADatabase.ColumnTypeName.SmallMoney;
                 case "text":
                     return ADatabase.ColumnTypeName.OldText;
+                case "time":
+                    return ADatabase.ColumnTypeName.Time;
                 case "timestamp":
                     return ADatabase.ColumnTypeName.Timestamp;
                 case "tinyint":

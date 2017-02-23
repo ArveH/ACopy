@@ -206,6 +206,20 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("Oracle")]
+        public void TestSmallMoneyCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.SmallMoney, 0, 0, 0, false, "", null);
+            VerifyColumnType("NUMBER", null, 10, 4);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestTimeCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Time, 0, 0, 0, false, "", null);
+            VerifyColumnType("DATE", null, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
         public void TestVarcharCol_When_Oracle()
         {
             CreateTable(ColumnTypeName.Varchar, 250, 0, 0, false, "", null);
