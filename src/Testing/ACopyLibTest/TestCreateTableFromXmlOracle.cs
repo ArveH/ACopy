@@ -122,6 +122,13 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("Oracle")]
+        public void TestOldTextCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.OldText, 0, 0, 0, false, "", null);
+            VerifyColumnType("LONG", null, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
         public void TestIntCol_When_Oracle()
         {
             CreateTable(ColumnTypeName.Int, 0, 0, 0, false, "", null);

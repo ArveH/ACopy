@@ -54,6 +54,8 @@ namespace ADatabase.Extensions
                     return ADatabase.ColumnTypeName.Int8;
                 case "longtext":
                     return ADatabase.ColumnTypeName.LongText;
+                case "long":
+                    return ADatabase.ColumnTypeName.OldText;
                 case "longraw":
                     return ADatabase.ColumnTypeName.OldBlob;
                 case "money":
@@ -70,12 +72,16 @@ namespace ADatabase.Extensions
                     return ADatabase.ColumnTypeName.NVarchar;
                 case "oldblob":
                     return ADatabase.ColumnTypeName.OldBlob;
+                case "oldtext":
+                    return ADatabase.ColumnTypeName.OldText;
                 case "raw":
                     return ADatabase.ColumnTypeName.Raw;
                 case "real":
                     return ADatabase.ColumnTypeName.BinaryFloat;
                 case "smallint":
                     return ADatabase.ColumnTypeName.Int16;
+                case "text":
+                    return ADatabase.ColumnTypeName.OldText;
                 case "timestamp":
                     return ADatabase.ColumnTypeName.Timestamp;
                 case "tinyint":

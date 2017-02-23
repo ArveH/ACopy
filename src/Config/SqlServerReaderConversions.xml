@@ -16,7 +16,7 @@
   <Type Source="int16" Destination="smallint"/>
   <Type Source="int64" Destination="bigint"/>
   <Type Source="int8" Destination="tinyint"/>
-  <Type Source="long" Destination="varchar(-1)"/>
+  <Type Source="oldtext" Destination="text"/>
   <Type Source="oldblob" Destination="image"/>
   <Type Source="longtext" Destination="varchar(-1)"/>
   <Type Source="money" Destination="money"/>
@@ -27,7 +27,6 @@
   <Type Source="real" Destination="real"/>
   <Type Source="smalldatetime" Destination="date"/>
   <Type Source="smallmoney" Destination="smallmoney"/>
-  <Type Source="text" Destination="text"/>
   <Type Source="time" Destination="time"/>
   <Type Source="timestamp" Destination="datetime2"/>
   <Type Source="timestamp(@Length)" Destination="datetime2(@Length)"/>

@@ -16,7 +16,7 @@
   <Type Source="int16" Destination="number(38,0)"/>
   <Type Source="int64" Destination="number(38,0)"/>
   <Type Source="int8" Destination="number(3,0)"/>
-  <Type Source="long" Destination="long"/>
+  <Type Source="oldtext" Destination="long"/>
   <Type Source="oldblob" Destination="longraw"/>
   <Type Source="longtext" Destination="clob"/>
   <Type Source="money" Destination="number(19,4)"/>
@@ -27,7 +27,6 @@
   <Type Source="real" Destination="binary_float"/>
   <Type Source="smalldatetime" Destination="date"/>
   <Type Source="smallmoney" Destination="number(10,4)"/>
-  <Type Source="text" Destination="clob"/>
   <Type Source="time" Destination="date"/>
   <Type Source="timestamp" Destination="timestamp"/>
   <Type Source="timestamp(@Length)" Destination="timestamp(@Length)"/>

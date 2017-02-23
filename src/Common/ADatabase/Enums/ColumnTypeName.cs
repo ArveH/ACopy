@@ -22,10 +22,10 @@
         NLongText,
         NVarchar,
         OldBlob,
+        OldText,
         Raw,
         SmallDateTime,
         SmallMoney,
-        Text,
         Timestamp,
         Varchar,
         Xml

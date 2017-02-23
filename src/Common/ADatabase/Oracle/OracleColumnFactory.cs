@@ -44,6 +44,8 @@ namespace ADatabase.Oracle
                     return new OracleNVarchar2Column(name, length, isNullable, def);
                 case ColumnTypeName.OldBlob:
                     return new OracleLongRawColumn(name, isNullable, def);
+                case ColumnTypeName.OldText:
+                    return new OracleLongColumn(name, isNullable, def);
                 case ColumnTypeName.Raw:
                     return new OracleRawColumn(name, length, isNullable, def);
                 case ColumnTypeName.Timestamp:

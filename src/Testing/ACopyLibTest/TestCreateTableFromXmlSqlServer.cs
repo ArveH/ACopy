@@ -122,6 +122,13 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("SqlServer")]
+        public void TestOldTextCol_When_SqlServer()
+        {
+            CreateTable(ColumnTypeName.OldText, 0, 0, 0, false, "", null);
+            VerifyColumnType("text", null, null, null);
+        }
+
+        [TestMethod, TestCategory("SqlServer")]
         public void TestIntCol_When_SqlServer()
         {
             CreateTable(ColumnTypeName.Int, 0, 0, 0, false, "", null);

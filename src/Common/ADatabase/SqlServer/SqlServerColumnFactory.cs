@@ -45,6 +45,8 @@ namespace ADatabase.SqlServer
                     return new SqlServerNVarcharColumn(name, length, isNullable, def, collation);
                 case ColumnTypeName.OldBlob:
                     return new SqlServerImageColumn(name, isNullable, def);
+                case ColumnTypeName.OldText:
+                    return new SqlServerTextColumn(name, isNullable, def, collation);
                 case ColumnTypeName.Money:
                     return new SqlServerMoneyColumn(name, isNullable, def);
                 case ColumnTypeName.Raw:

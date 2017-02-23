@@ -46,7 +46,7 @@ namespace ADatabase.SqlServer.Columns
             }
         }
 
-        private static string AdjustDefaultValue(string def)
+        protected static string AdjustDefaultValue(string def)
         {
             if (def.Length >= 4)
             {
