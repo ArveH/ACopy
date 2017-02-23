@@ -147,6 +147,7 @@
     <Compile Include="Oracle\OracleSchema.cs" />
     <Compile Include="PowerPlant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerSmallDateTimeColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerBitColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerCharColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerColumn.cs" />

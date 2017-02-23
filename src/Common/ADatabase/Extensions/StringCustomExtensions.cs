@@ -78,6 +78,8 @@ namespace ADatabase.Extensions
                     return ADatabase.ColumnTypeName.Raw;
                 case "real":
                     return ADatabase.ColumnTypeName.BinaryFloat;
+                case "smalldatetime":
+                    return ADatabase.ColumnTypeName.SmallDateTime;
                 case "smallint":
                     return ADatabase.ColumnTypeName.Int16;
                 case "text":

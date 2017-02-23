@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-
-namespace ADatabase.Oracle.Columns
+﻿namespace ADatabase.Oracle.Columns
 {
     public class OracleTimestampColumn: OracleDateColumn
     {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ADatabase.SqlServer.Columns
+﻿namespace ADatabase.SqlServer.Columns
 {
     public class SqlServerTextColumn: SqlServerVarcharColumn
     {

@@ -16,16 +16,15 @@
   <Type Source="int16" Destination="smallint"/>
   <Type Source="int64" Destination="bigint"/>
   <Type Source="int8" Destination="tinyint"/>
-  <Type Source="oldtext" Destination="text"/>
   <Type Source="oldblob" Destination="image"/>
+  <Type Source="oldtext" Destination="text"/>
   <Type Source="longtext" Destination="varchar(-1)"/>
   <Type Source="money" Destination="money"/>
   <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>
   <Type Source="nlongtext" Destination="nvarchar(-1)"/>
   <Type Source="nvarchar(@Length)" Destination="nvarchar(@Length)"/>
-  <Type Source="raw(@Length)" Destination="binary(@Length)"/>
-  <Type Source="real" Destination="real"/>
-  <Type Source="smalldatetime" Destination="date"/>
+  <Type Source="raw(@Length)" Destination="varbinary(@Length)"/>
+  <Type Source="smalldatetime" Destination="smalldatetime"/>
   <Type Source="smallmoney" Destination="smallmoney"/>
   <Type Source="time" Destination="time"/>
   <Type Source="timestamp" Destination="datetime2"/>

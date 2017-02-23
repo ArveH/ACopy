@@ -199,6 +199,13 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("SqlServer")]
+        public void TestSmallDateTimeCol_When_SqlServer()
+        {
+            CreateTable(ColumnTypeName.SmallDateTime, 0, 0, 0, false, "", null);
+            VerifyColumnType("smalldatetime", null, null, null);
+        }
+
+        [TestMethod, TestCategory("SqlServer")]
         public void TestVarcharCol_When_SqlServer()
         {
             CreateTable(ColumnTypeName.Varchar, 250, 0, 0, false, "", null);
