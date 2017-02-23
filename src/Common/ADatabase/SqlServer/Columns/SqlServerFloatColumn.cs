@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace ADatabase.SqlServer.Columns
 {
-    public class SqlServerFloatColumn : SqlServerInt32Column
+    public class SqlServerFloatColumn : SqlServerIntColumn
     {
         private readonly string _typeToString;
 

@@ -2,9 +2,9 @@
 
 namespace ADatabase.SqlServer.Columns
 {
-    public class SqlServerInt16Column : SqlServerInt32Column
+    public class SqlServerSmallIntColumn : SqlServerIntColumn
     {
-        public SqlServerInt16Column(string name, bool isNullable, bool isIdentity, string def)
+        public SqlServerSmallIntColumn(string name, bool isNullable, bool isIdentity, string def)
             : base(name, isNullable, isIdentity, def)
         {
             Type = ColumnTypeName.Int16;

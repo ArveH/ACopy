@@ -2,8 +2,6 @@
 {
     public class SqlServerTimeColumn: SqlServerDatetimeColumn
     {
-        private readonly string _typeToString;
-
         public SqlServerTimeColumn(string name, bool isNullable, string def)
             : base(name, isNullable, def)
         {

@@ -1,11 +1,118 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using ADatabase;
 
 namespace ACopyTestHelper
 {
     public static class TestTableCreator
     {
-        public static void CreateTestableWithAllTypes(IDbContext dbContext, string tableName)
+        public static void CreateTestTableWithAllTypes(IDbContext dbContext, string tableName)
+        {
+            var columnFactory = dbContext.PowerPlant.CreateColumnFactory();
+            var columns = new List<IColumn>
+            {
+                columnFactory.CreateInstance(ColumnTypeName.BinaryDouble, "binarydouble_col", 0, 0, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.BinaryFloat, "binaryfloat_col", 0, 0, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Blob, "blob_col", true, ""),
+                columnFactory.CreateInstance(ColumnTypeName.Bool, "bool_col", 0, 1, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Char, "char_col", 2, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.Date, "date_col", false, "MIN_DATE"),
+                columnFactory.CreateInstance(ColumnTypeName.DateTime, "datetime_col", false, "MIN_DATE"),
+                columnFactory.CreateInstance(ColumnTypeName.Dec, "dec_col", 0, 8, 5, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Float, "float_col", 0, 0, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Float, "float47_col", 47, 0, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Guid, "guid_col", true, ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int, "int_col", 0, 15, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int16, "int16_col", 0, 5, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int64, "int64_col", 0, 20, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Int8, "int8_col", 0, 3, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.LongText, "longtext_col", 0, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.Money, "money_col", 0, 0, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.NChar, "nchar_col", 2, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.NLongText, "nlongtext_col", 0, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.NVarchar, "nvarchar_col", 50, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.OldBlob, "oldblob_col", true, ""),
+                columnFactory.CreateInstance(ColumnTypeName.OldText, "oldtext_col", 0, false, "' '", "Danish_Norwegian_CI_AS"),
+                columnFactory.CreateInstance(ColumnTypeName.Raw, "raw_col", 1000, 0, 0, true, false, "", ""),
+                columnFactory.CreateInstance(ColumnTypeName.SmallDateTime, "smalldatetime_col", false, "MIN_DATE"),
+                columnFactory.CreateInstance(ColumnTypeName.SmallMoney, "smallmoney_col", 0, 0, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Time, "time_col", false, "MIN_DATE"),
+                columnFactory.CreateInstance(ColumnTypeName.Timestamp, "timestamp_col", false, "MIN_DATE"),
+                columnFactory.CreateInstance(ColumnTypeName.Timestamp, "timestamp5_col", 5, 0, 0, false, false, "MIN_DATE", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Varchar, "varchar_col", 50, false, "' '", "Danish_Norwegian_CI_AS")
+            };
+            var tableDefinition = new TableDefinition(tableName, columns, "");
+            var dbSchema = dbContext.PowerPlant.CreateDbSchema();
+            dbSchema.CreateTable(tableDefinition);
+            var stmt = new StringBuilder();
+            stmt.Append($"insert into {tableName} (");
+            stmt.Append("binarydouble_col, ");
+            stmt.Append("binaryfloat_col, ");
+            stmt.Append("blob_col, ");
+            stmt.Append("bool_col, ");
+            stmt.Append("char_col, ");
+            stmt.Append("date_col, ");
+            stmt.Append("datetime_col, ");
+            stmt.Append("dec_col, ");
+            stmt.Append("float_col, ");
+            stmt.Append("float47_col, ");
+            stmt.Append("guid_col, ");
+            stmt.Append("int_col, ");
+            stmt.Append("int16_col, ");
+            stmt.Append("int64_col, ");
+            stmt.Append("int8_col, ");
+            stmt.Append("longtext_col, ");
+            stmt.Append("money_col, ");
+            stmt.Append("nchar_col, ");
+            stmt.Append("nlongtext_col, ");
+            stmt.Append("nvarchar_col, ");
+            stmt.Append("oldblob_col, ");
+            stmt.Append("oldtext_col, ");
+            stmt.Append("raw_col, ");
+            stmt.Append("smalldatetime_col, ");
+            stmt.Append("smallmoney_col, ");
+            stmt.Append("time_col, ");
+            stmt.Append("timestamp_col, ");
+            stmt.Append("timestamp5_col, ");
+            stmt.Append("varchar_col) ");
+
+            stmt.Append("values (");
+
+            //convert(varbinary, 'Lots of bytes'), N'A unicode ﺽ string', 'A varchar string')";
+            stmt.Append("1.123456789012345, ");
+            stmt.Append("1.1234567890, ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "convert(varbinary, 'Lots of bytes'), " : "utl_raw.cast_to_raw('Lots of bytes'), ");
+            stmt.Append("1, ");
+            stmt.Append("'MO', ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "'Feb 23 1900', " : "to_date('Feb 23 1900', 'Mon DD YYYY'), ");
+            stmt.Append("'Feb 23 1900 11:12:12', ");
+            stmt.Append("123.12345, ");
+            stmt.Append("123456789012345.123456789012345, ");
+            stmt.Append("1234567890.1234567890, ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "'3f2504e0-4f89-11d3-9a0c-0305e82c3301', " : "hextoraw('3f2504e04f8911d39a0c0305e82c3301'), ");
+            stmt.Append("1234567890, ");
+            stmt.Append("12345, ");
+            stmt.Append("123456789012345, ");
+            stmt.Append("150, ");
+            stmt.Append("'Very long text with æøå', ");
+            stmt.Append("123.123, ");
+            stmt.Append("'ﺽ', ");
+            stmt.Append("'Very long unicode text with ﺽ æøå', ");
+            stmt.Append("'A unicode varchar ﺽ string', ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "convert(image, 'Lots of old bytes'), " : "utl_raw.cast_to_raw('Lots of bytes'), ");
+            stmt.Append("'A very long old text', ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "convert(varbinary, 'Lots of old bytes'), " : "utl_raw.cast_to_raw('Lots of bytes'), ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "'Feb 23 1900', " : "to_date('Feb 23 1900', 'Mon DD YYYY'), ");
+            stmt.Append("123.123, ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "'12:13:14', " : "to_date('12:13:14', 'HH24:MI:SS'), ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "'Feb 23 1900 11:12:13.12345678', " : "to_timestamp('19000223 11:12:13.12345678', 'YYYYMMDD HH24:MI:SS.FF')");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "'Feb 23 1900 11:12:13.12345678', " : "to_timestamp('19000223 11:12:13.12345678', 'YYYYMMDD HH24:MI:SS.FF')");
+            stmt.Append("'A varchar string') ");
+            var commands = dbContext.PowerPlant.CreateCommands();
+            commands.ExecuteNonQuery(stmt.ToString());
+        }
+
+        public static void CreateUnit4TestableWithAllTypes(IDbContext dbContext, string tableName)
         {
             var columnFactory = dbContext.PowerPlant.CreateColumnFactory();
             var columns = new List<IColumn>

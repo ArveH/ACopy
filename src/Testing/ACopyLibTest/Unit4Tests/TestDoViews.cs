@@ -18,7 +18,7 @@ namespace ACopyLibTest.Unit4Tests
             DbSchema.DropView(Testview);
             DbSchema.DropTable(Asysview);
             DbSchema.DropTable(Aagview);
-            TestTableCreator.CreateTestableWithAllTypes(DbContext, TestTable);
+            TestTableCreator.CreateUnit4TestableWithAllTypes(DbContext, TestTable);
             CreateViewTables();
         }
 

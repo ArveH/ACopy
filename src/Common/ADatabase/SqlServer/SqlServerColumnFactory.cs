@@ -11,6 +11,8 @@ namespace ADatabase.SqlServer
         {
             switch (type)
             {
+                case ColumnTypeName.BinaryDouble:
+                    return new SqlServerFloatColumn(name, 53, isNullable, def);
                 case ColumnTypeName.BinaryFloat:
                     return new SqlServerFloatColumn(name, 24, isNullable, def);
                 case ColumnTypeName.Blob:
@@ -30,17 +32,19 @@ namespace ADatabase.SqlServer
                 case ColumnTypeName.Guid:
                     return new SqlServerGuidColumn(name, isNullable, def);
                 case ColumnTypeName.Int:
-                    return new SqlServerInt32Column(name, isNullable, isIdentity, def);
+                    return new SqlServerIntColumn(name, isNullable, isIdentity, def);
                 case ColumnTypeName.Int16:
-                    return new SqlServerInt16Column(name, isNullable, isIdentity, def);
+                    return new SqlServerSmallIntColumn(name, isNullable, isIdentity, def);
                 case ColumnTypeName.Int64:
-                    return new SqlServerInt64Column(name, isNullable, isIdentity, def);
+                    return new SqlServerBigIntColumn(name, isNullable, isIdentity, def);
                 case ColumnTypeName.Int8:
-                    return new SqlServerInt8Column(name, isNullable, isIdentity, def);
+                    return new SqlServerTinyIntColumn(name, isNullable, isIdentity, def);
                 case ColumnTypeName.LongText:
-                    return new SqlServerLongTextColumn(name, isNullable, def, collation);
+                    return new SqlServerVarcharColumn(name, -1, isNullable, def, collation);
                 case ColumnTypeName.NChar:
                     return new SqlServerNCharColumn(name, length, isNullable, def, collation);
+                case ColumnTypeName.NLongText:
+                    return new SqlServerNVarcharColumn(name, -1, isNullable, def, collation);
                 case ColumnTypeName.NVarchar:
                     return new SqlServerNVarcharColumn(name, length, isNullable, def, collation);
                 case ColumnTypeName.OldBlob:

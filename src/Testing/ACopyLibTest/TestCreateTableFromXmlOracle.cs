@@ -7,12 +7,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ACopyLibTest
 {
     [TestClass]
-    public class TestCreateTableFromXmlOracle: TestColumnTypesBase
+    public class TestCreateTableFromXmlOracle: TestCopyLibBase
     {
         [TestInitialize]
         public override void Setup()
         {
             DbContext = DbContextFactory.CreateOracleContext(ConnectionStrings.GetOracle());
+            TableName = "htablefromxml";
 
             base.Setup();
         }
@@ -21,6 +22,20 @@ namespace ACopyLibTest
         public override void Cleanup()
         {
             base.Cleanup();
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestBinaryDoubleCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.BinaryDouble, 0, 0, 0, false, "", null);
+            VerifyColumnType("BINARY_DOUBLE", null, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestBinaryFloatCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.BinaryFloat, 0, 0, 0, false, "", null);
+            VerifyColumnType("BINARY_FLOAT", null, null, null);
         }
 
         [TestMethod, TestCategory("Oracle")]
@@ -59,38 +74,10 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("Oracle")]
-        public void TestTimestampCol_When_Oracle()
-        {
-            CreateTable(ColumnTypeName.Timestamp, 0, 0, 0, false, "", null);
-            VerifyColumnType("TIMESTAMP(6)", null, null, null);
-        }
-
-        [TestMethod, TestCategory("Oracle")]
-        public void TestTimestampWithLengthCol_When_Oracle()
-        {
-            CreateTable(ColumnTypeName.Timestamp, 9, 0, 0, false, "", null);
-            VerifyColumnType("TIMESTAMP(9)", null, null, null);
-        }
-
-        [TestMethod, TestCategory("Oracle")]
         public void TestDecCol_When_Oracle()
         {
             CreateTable(ColumnTypeName.Dec, 0, 5, 0, false, "", null);
             VerifyColumnType("NUMBER", null, 5, 0);
-        }
-
-        [TestMethod, TestCategory("Oracle")]
-        public void TestBinaryDoubleCol_When_Oracle()
-        {
-            CreateTable(ColumnTypeName.BinaryDouble, 0, 0, 0, false, "", null);
-            VerifyColumnType("BINARY_DOUBLE", null, null, null);
-        }
-
-        [TestMethod, TestCategory("Oracle")]
-        public void TestBinaryFloatCol_When_Oracle()
-        {
-            CreateTable(ColumnTypeName.BinaryFloat, 0, 0, 0, false, "", null);
-            VerifyColumnType("BINARY_FLOAT", null, null, null);
         }
 
         [TestMethod, TestCategory("Oracle")]
@@ -217,6 +204,20 @@ namespace ACopyLibTest
         {
             CreateTable(ColumnTypeName.Time, 0, 0, 0, false, "", null);
             VerifyColumnType("DATE", null, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestTimestampCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Timestamp, 0, 0, 0, false, "", null);
+            VerifyColumnType("TIMESTAMP(6)", null, null, null);
+        }
+
+        [TestMethod, TestCategory("Oracle")]
+        public void TestTimestampWithLengthCol_When_Oracle()
+        {
+            CreateTable(ColumnTypeName.Timestamp, 9, 0, 0, false, "", null);
+            VerifyColumnType("TIMESTAMP(9)", null, null, null);
         }
 
         [TestMethod, TestCategory("Oracle")]

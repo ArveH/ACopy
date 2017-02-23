@@ -2,7 +2,7 @@
 
 namespace ADatabase.SqlServer.Columns
 {
-    public class SqlServerBitColumn : SqlServerInt32Column
+    public class SqlServerBitColumn : SqlServerIntColumn
     {
         public SqlServerBitColumn(string name, bool isNullable, string def)
             : base(name, isNullable, false, def)

@@ -2,22 +2,22 @@
 
 namespace ADatabase.SqlServer.Columns
 {
-    public class SqlServerInt8Column : SqlServerInt32Column
+    public class SqlServerBigIntColumn : SqlServerIntColumn
     {
-        public SqlServerInt8Column(string name, bool isNullable, bool isIdentity, string def)
+        public SqlServerBigIntColumn(string name, bool isNullable, bool isIdentity, string def)
             : base(name, isNullable, isIdentity, def)
         {
-            Type = ColumnTypeName.Int8;
+            Type = ColumnTypeName.Int64;
         }
 
         public override string TypeToString()
         {
-            return "tinyint";
+            return "bigint";
         }
 
         public override string ToString(object value)
         {
-            return Convert.ToByte(value).ToString();
+            return Convert.ToInt64(value).ToString();
         }
 
         public override object ToInternalType(string value)
@@ -26,12 +26,12 @@ namespace ADatabase.SqlServer.Columns
             {
                 return null;
             }
-            return Convert.ToByte(value);
+            return Convert.ToInt64(value);
         }
 
         public override Type GetDotNetType()
         {
-            return typeof(byte);
+            return typeof(long);
         }
     }
 }

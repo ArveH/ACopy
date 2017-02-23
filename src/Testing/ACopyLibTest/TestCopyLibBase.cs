@@ -6,21 +6,18 @@ using ADatabase.Extensions;
 
 namespace ACopyLibTest
 {
-    public class TestColumnTypesBase
+    public class TestCopyLibBase
     {
-        protected ConnectionStrings ConnectionStrings = new ConnectionStrings();
+        protected readonly ConnectionStrings ConnectionStrings = new ConnectionStrings();
         protected IPowerPlant PowerPlant;
         protected IDbContext DbContext;
         protected IDbSchema DbSchema;
-        protected IColumnFactory ColumnFactory;
         protected string TableName;
 
         public virtual void Setup()
         {
             PowerPlant = DbContext.PowerPlant;
             DbSchema = PowerPlant.CreateDbSchema();
-            ColumnFactory = PowerPlant.CreateColumnFactory();
-            TableName = "htestcolumntypes";
             DbSchema.DropTable(TableName);
         }
 
@@ -36,6 +33,14 @@ namespace ACopyLibTest
                 DbContext.ColumnTypeConverterForRead,
                 XmlFileHelper.CreateSchemaXmlOneColumn(TableName, type.ConvertToString(), length, prec, scale, isNullable, def, collation));
             DbSchema.CreateTable(expectedTableDefinition);
+        }
+
+        protected void CreateTableWithAllColumns()
+        {
+            if (!DbSchema.IsTable(TableName))
+            {
+                TestTableCreator.CreateTestTableWithAllTypes(DbContext, TableName);
+            }
         }
     }
 }

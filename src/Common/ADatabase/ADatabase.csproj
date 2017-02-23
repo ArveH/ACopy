@@ -158,11 +158,10 @@
     <Compile Include="SqlServer\Columns\SqlServerFloatColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerGuidColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerImageColumn.cs" />
-    <Compile Include="SqlServer\Columns\SqlServerInt16Column.cs" />
-    <Compile Include="SqlServer\Columns\SqlServerInt32Column.cs" />
-    <Compile Include="SqlServer\Columns\SqlServerInt64Column.cs" />
-    <Compile Include="SqlServer\Columns\SqlServerInt8Column.cs" />
-    <Compile Include="SqlServer\Columns\SqlServerLongTextColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerSmallIntColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerIntColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerBigIntColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerTinyIntColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerMoneyColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerSmallMoneyColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerTextColumn.cs" />

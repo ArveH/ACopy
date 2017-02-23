@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--Default type conversion file for ACopy (Oracle Reader)-->
-<TypeConversions From="Default" To="Oracle">
+<TypeConversions From="Default" To="SqlServer">
   <Type Source="binarydouble" Destination="float(53)"/>
   <Type Source="binaryfloat" Destination="real"/>
   <Type Source="blob" Destination="varbinary(-1)"/>

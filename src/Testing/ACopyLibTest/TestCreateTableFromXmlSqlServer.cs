@@ -7,12 +7,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ACopyLibTest
 {
     [TestClass]
-    public class TestCreateTableFromXmlSqlServer: TestColumnTypesBase
+    public class TestCreateTableFromXmlSqlServer: TestCopyLibBase
     {
         [TestInitialize]
         public override void Setup()
         {
             DbContext = DbContextFactory.CreateSqlServerContext(ConnectionStrings.GetSqlServer());
+            TableName = "htablefromxml";
 
             base.Setup();
         }
@@ -21,6 +22,20 @@ namespace ACopyLibTest
         public override void Cleanup()
         {
             base.Cleanup();
+        }
+
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestBinaryDoubleCol_When_SqlServer()
+        {
+            CreateTable(ColumnTypeName.BinaryDouble, 0, 0, 0, false, "", null);
+            VerifyColumnType("float", null, 53, null);
+        }
+
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestBinaryFloatCol_When_SqlServer()
+        {
+            CreateTable(ColumnTypeName.BinaryFloat, 0, 0, 0, false, "", null);
+            VerifyColumnType("real", null, null, null);
         }
 
         [TestMethod, TestCategory("SqlServer")]
@@ -59,38 +74,10 @@ namespace ACopyLibTest
         }
 
         [TestMethod, TestCategory("SqlServer")]
-        public void TestTimestampCol_When_SqlServer()
-        {
-            CreateTable(ColumnTypeName.Timestamp, 0, 0, 0, false, "", null);
-            VerifyColumnType("datetime2", null, null, null);
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
-        public void TestTimestampWithLengthCol_When_SqlServer()
-        {
-            CreateTable(ColumnTypeName.Timestamp, 5, 0, 0, false, "", null);
-            VerifyColumnType("datetime2", null, null, 5);
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
         public void TestDecCol_When_SqlServer()
         {
             CreateTable(ColumnTypeName.Dec, 0, 5, 0, false, "", null);
             VerifyColumnType("decimal", null, 5, 0);
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
-        public void TestBinaryDoubleCol_When_SqlServer()
-        {
-            CreateTable(ColumnTypeName.BinaryDouble, 0, 0, 0, false, "", null);
-            VerifyColumnType("float", null, 53, null);
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
-        public void TestBinaryFloatCol_When_SqlServer()
-        {
-            CreateTable(ColumnTypeName.BinaryFloat, 0, 0, 0, false, "", null);
-            VerifyColumnType("real", null, null, null);
         }
 
         [TestMethod, TestCategory("SqlServer")]
@@ -217,6 +204,20 @@ namespace ACopyLibTest
         {
             CreateTable(ColumnTypeName.Time, 0, 0, 0, false, "", null);
             VerifyColumnType("time", null, null, null);
+        }
+
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestTimestampCol_When_SqlServer()
+        {
+            CreateTable(ColumnTypeName.Timestamp, 0, 0, 0, false, "", null);
+            VerifyColumnType("datetime2", null, null, null);
+        }
+
+        [TestMethod, TestCategory("SqlServer")]
+        public void TestTimestampWithLengthCol_When_SqlServer()
+        {
+            CreateTable(ColumnTypeName.Timestamp, 5, 0, 0, false, "", null);
+            VerifyColumnType("datetime2", null, null, 5);
         }
 
         [TestMethod, TestCategory("SqlServer")]

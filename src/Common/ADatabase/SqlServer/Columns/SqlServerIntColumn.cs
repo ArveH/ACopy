@@ -2,9 +2,9 @@
 
 namespace ADatabase.SqlServer.Columns
 {
-    public class SqlServerInt32Column : SqlServerColumn
+    public class SqlServerIntColumn : SqlServerColumn
     {
-        public SqlServerInt32Column(string name, bool isNullable, bool isIdentity, string def)
+        public SqlServerIntColumn(string name, bool isNullable, bool isIdentity, string def)
             : base(name, ColumnTypeName.Int, isNullable, isIdentity, AdjustDefaultValue(def))
         {
         }
