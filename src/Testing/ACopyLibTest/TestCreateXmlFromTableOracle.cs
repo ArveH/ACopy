@@ -1,4 +1,5 @@
 ﻿using ADatabase;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ACopyLibTest
@@ -11,9 +12,9 @@ namespace ACopyLibTest
         {
             DbContext = DbContextFactory.CreateOracleContext(ConnectionStrings.GetOracle());
             TableName = "htablewithallcolumns";
-            CreateTableWithAllColumns();
 
             base.Setup();
+            CreateTableWithAllColumns(false);
         }
 
         [TestCleanup]
@@ -22,6 +23,10 @@ namespace ACopyLibTest
             base.Cleanup();
         }
 
-
+        [TestMethod]
+        public void TestSomething()
+        {
+            true.Should().Be(true);
+        }
     }
 }

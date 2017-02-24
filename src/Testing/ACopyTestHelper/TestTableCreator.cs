@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using ADatabase;
 
@@ -6,7 +7,7 @@ namespace ACopyTestHelper
 {
     public static class TestTableCreator
     {
-        public static void CreateTestTableWithAllTypes(IDbContext dbContext, string tableName)
+        public static void CreateTestTableWithAllTypes(IDbContext dbContext, string tableName, bool addDepercatedTypes)
         {
             var columnFactory = dbContext.PowerPlant.CreateColumnFactory();
             var columns = new List<IColumn>
@@ -27,20 +28,23 @@ namespace ACopyTestHelper
                 columnFactory.CreateInstance(ColumnTypeName.Int64, "int64_col", 0, 20, 0, false, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Int8, "int8_col", 0, 3, 0, false, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.LongText, "longtext_col", 0, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnTypeName.Money, "money_col", 0, 0, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Money, "money_col", 0, 19, 4, false, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.NChar, "nchar_col", 2, false, "' '", "Danish_Norwegian_CI_AS"),
                 columnFactory.CreateInstance(ColumnTypeName.NLongText, "nlongtext_col", 0, false, "' '", "Danish_Norwegian_CI_AS"),
                 columnFactory.CreateInstance(ColumnTypeName.NVarchar, "nvarchar_col", 50, false, "' '", "Danish_Norwegian_CI_AS"),
-                columnFactory.CreateInstance(ColumnTypeName.OldBlob, "oldblob_col", true, ""),
-                columnFactory.CreateInstance(ColumnTypeName.OldText, "oldtext_col", 0, false, "' '", "Danish_Norwegian_CI_AS"),
                 columnFactory.CreateInstance(ColumnTypeName.Raw, "raw_col", 1000, 0, 0, true, false, "", ""),
                 columnFactory.CreateInstance(ColumnTypeName.SmallDateTime, "smalldatetime_col", false, "MIN_DATE"),
-                columnFactory.CreateInstance(ColumnTypeName.SmallMoney, "smallmoney_col", 0, 0, 0, false, false, "0", ""),
+                columnFactory.CreateInstance(ColumnTypeName.SmallMoney, "smallmoney_col", 0, 10, 4, false, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Time, "time_col", false, "MIN_DATE"),
                 columnFactory.CreateInstance(ColumnTypeName.Timestamp, "timestamp_col", false, "MIN_DATE"),
                 columnFactory.CreateInstance(ColumnTypeName.Timestamp, "timestamp5_col", 5, 0, 0, false, false, "MIN_DATE", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "varchar_col", 50, false, "' '", "Danish_Norwegian_CI_AS")
             };
+            if (addDepercatedTypes)
+            {
+                columns.Add(columnFactory.CreateInstance(ColumnTypeName.OldBlob, "oldblob_col", true, ""));
+                columns.Add(columnFactory.CreateInstance(ColumnTypeName.OldText, "oldtext_col", 0, false, "' '", "Danish_Norwegian_CI_AS"));
+            }
             var tableDefinition = new TableDefinition(tableName, columns, "");
             var dbSchema = dbContext.PowerPlant.CreateDbSchema();
             dbSchema.CreateTable(tableDefinition);
@@ -66,51 +70,88 @@ namespace ACopyTestHelper
             stmt.Append("nchar_col, ");
             stmt.Append("nlongtext_col, ");
             stmt.Append("nvarchar_col, ");
-            stmt.Append("oldblob_col, ");
-            stmt.Append("oldtext_col, ");
             stmt.Append("raw_col, ");
             stmt.Append("smalldatetime_col, ");
             stmt.Append("smallmoney_col, ");
             stmt.Append("time_col, ");
             stmt.Append("timestamp_col, ");
             stmt.Append("timestamp5_col, ");
-            stmt.Append("varchar_col) ");
+            stmt.Append("varchar_col");
+            if (addDepercatedTypes)
+            {
+                stmt.Append(", oldblob_col, ");
+                stmt.Append("oldtext_col ");
+            }
+            stmt.Append(")");
 
             stmt.Append("values (");
 
-            //convert(varbinary, 'Lots of bytes'), N'A unicode ﺽ string', 'A varchar string')";
-            stmt.Append("1.123456789012345, ");
-            stmt.Append("1.1234567890, ");
-            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "convert(varbinary, 'Lots of bytes'), " : "utl_raw.cast_to_raw('Lots of bytes'), ");
-            stmt.Append("1, ");
-            stmt.Append("'MO', ");
-            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "'Feb 23 1900', " : "to_date('Feb 23 1900', 'Mon DD YYYY'), ");
-            stmt.Append("'Feb 23 1900 11:12:12', ");
-            stmt.Append("123.12345, ");
-            stmt.Append("123456789012345.123456789012345, ");
-            stmt.Append("1234567890.1234567890, ");
-            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "'3f2504e0-4f89-11d3-9a0c-0305e82c3301', " : "hextoraw('3f2504e04f8911d39a0c0305e82c3301'), ");
-            stmt.Append("1234567890, ");
-            stmt.Append("12345, ");
-            stmt.Append("123456789012345, ");
-            stmt.Append("150, ");
-            stmt.Append("'Very long text with æøå', ");
-            stmt.Append("123.123, ");
-            stmt.Append("'ﺽ', ");
-            stmt.Append("'Very long unicode text with ﺽ æøå', ");
-            stmt.Append("'A unicode varchar ﺽ string', ");
-            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "convert(image, 'Lots of old bytes'), " : "utl_raw.cast_to_raw('Lots of bytes'), ");
-            stmt.Append("'A very long old text', ");
-            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "convert(varbinary, 'Lots of old bytes'), " : "utl_raw.cast_to_raw('Lots of bytes'), ");
-            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "'Feb 23 1900', " : "to_date('Feb 23 1900', 'Mon DD YYYY'), ");
-            stmt.Append("123.123, ");
-            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "'12:13:14', " : "to_date('12:13:14', 'HH24:MI:SS'), ");
-            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "'Feb 23 1900 11:12:13.12345678', " : "to_timestamp('19000223 11:12:13.12345678', 'YYYYMMDD HH24:MI:SS.FF')");
-            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? "'Feb 23 1900 11:12:13.12345678', " : "to_timestamp('19000223 11:12:13.12345678', 'YYYYMMDD HH24:MI:SS.FF')");
-            stmt.Append("'A varchar string') ");
+            stmt.Append($"{BinaryDoubleValue:F15}, ");
+            stmt.Append($"{BinaryFloatValue:F10}, ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"convert(varbinary, '{BlobValue}'), " : $"utl_raw.cast_to_raw('{BlobValue}'), ");
+            stmt.Append(BoolValue ? "1, ": "0, ");
+            stmt.Append($"'{CharValue}', ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"'{DateValue.ToString("MMM dd yyyy")}', " : $"to_date('{DateValue.ToString("MMM dd yyyy")}', 'Mon DD YYYY'), ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"'{DateTimeValue.ToString("MMM dd yyyy HH:mm:ss")}', " : $"to_date('{DateTimeValue.ToString("MMM dd yyyy HH:mm:ss")}', 'Mon DD YYYY HH24:MI:SS'), ");
+            stmt.Append($"{DecValue.ToString("###.#####")}, ");
+            stmt.Append($"{FloatValue:F15}, ");
+            stmt.Append($"{Float47Value:F15}, ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"'{GuidValue}', " : $"hextoraw('{GuidValue.ToString().Replace("-","")}'), ");
+            stmt.Append($"{IntValue}, ");
+            stmt.Append($"{Int16Value}, ");
+            stmt.Append($"{Int64Value}, ");
+            stmt.Append($"{Int8Value}, ");
+            stmt.Append($"'{LongTextValue}', ");
+            stmt.Append($"{MoneyValue}, ");
+            stmt.Append($"'{NCharValue}', ");
+            stmt.Append($"'{NLongTextValue}', ");
+            stmt.Append($"'{NVarcharValue}', ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"convert(varbinary, '{RawValue}'), " : $"utl_raw.cast_to_raw('{RawValue}'), ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"'{SmallDateTimeValue.ToString("MMM dd yyyy")}', " : $"to_date('{SmallDateTimeValue.ToString("MMM dd yyyy")}', 'Mon DD YYYY'), ");
+            stmt.Append($"{SmallMoneyValue:F3}, ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"'{TimeValue.ToString("HH:mm:ss")}', " : $"to_date('{TimeValue.ToString("HH:mm:ss")}', 'HH24:MI:SS'), ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"'{TimeStampValue.ToString("MMM dd yyyy HH:mm:ss.fffffff")}', " : $"to_timestamp('{TimeStampValue.ToString("MMM dd yyyy HH:mm:ss.fffffff")}', 'Mon DD YYYY HH24:MI:SS.FF'), ");
+            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"'{TimeStamp5Value.ToString("MMM dd yyyy HH:mm:ss.fffff")}', " : $"to_timestamp('{TimeStamp5Value.ToString("MMM dd yyyy HH:mm:ss.fffff")}', 'Mon DD YYYY HH24:MI:SS.FF'), ");
+            stmt.Append($"'{VarcharValue}'");
+            if (addDepercatedTypes)
+            {
+                stmt.Append(", ");
+                stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"convert(image, '{BlobValue}'), " : $"utl_raw.cast_to_raw('{BlobValue}'), ");
+                stmt.Append($"'{LongTextValue}'");
+            }
+            stmt.Append(")");
+
             var commands = dbContext.PowerPlant.CreateCommands();
             commands.ExecuteNonQuery(stmt.ToString());
         }
+
+        public static double BinaryDoubleValue { get; } = 1.01234567890123;
+        public static double BinaryFloatValue { get; } = 1.01234567;
+        public static string BlobValue { get; } = "Lots of bytes";
+        public static bool BoolValue { get; } = true;
+        public static string CharValue { get; } = "MO";
+        public static DateTime DateValue { get; } = new DateTime(1900, 2, 23);
+        public static DateTime DateTimeValue { get; } = new DateTime(1900, 2, 23, 11, 12, 13);
+        public static decimal DecValue { get; } = 123.12345m;
+        public static decimal FloatValue { get; } = 1234567890.012345678901234m;
+        public static decimal Float47Value { get; } = 1234567890.012345m;
+        public static Guid GuidValue { get; } = new Guid("3f2504e0-4f89-11d3-9a0c-0305e82c3301");
+        public static int IntValue { get; } = 1234567890;
+        public static int Int16Value { get; } = 12345;
+        public static long Int64Value { get; } = 123456789012345;
+        public static int Int8Value { get; } = 150;
+        public static string LongTextValue { get; } = "Very long text with æøå";
+        public static decimal MoneyValue { get; } = 123.123m;
+        public static string NCharValue { get; } = "ﺽ";
+        public static string NLongTextValue { get; } = "Very long unicode text with ﺽ æøå";
+        public static string NVarcharValue { get; } = "A unicode varchar ﺽ string";
+        public static string RawValue { get; } = "Raw bytes";
+        public static DateTime SmallDateTimeValue { get; } = new DateTime(1900, 2, 23);
+        public static decimal SmallMoneyValue { get; } = 123.123m;
+        public static DateTime TimeValue { get; } = new DateTime(1900, 2, 23, 11, 12, 13);
+        public static DateTime TimeStampValue { get; } = DateTime.Parse("Feb 23 1900 11:12:13.12345678");
+        public static DateTime TimeStamp5Value { get; } = DateTime.Parse("Feb 23 1900 11:12:13.12345");
+        public static string VarcharValue { get; } = "A varchar string";
 
         public static void CreateUnit4TestableWithAllTypes(IDbContext dbContext, string tableName)
         {

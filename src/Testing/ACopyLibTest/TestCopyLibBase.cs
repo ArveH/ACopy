@@ -23,7 +23,7 @@ namespace ACopyLibTest
 
         public virtual void Cleanup()
         {
-            DbSchema.DropTable(TableName);
+            //DbSchema.DropTable(TableName);
         }
 
         protected void CreateTable(ColumnTypeName type, int length, int prec, int scale, bool isNullable, string def, string collation)
@@ -35,11 +35,11 @@ namespace ACopyLibTest
             DbSchema.CreateTable(expectedTableDefinition);
         }
 
-        protected void CreateTableWithAllColumns()
+        protected void CreateTableWithAllColumns(bool addDeprecatedTypes)
         {
             if (!DbSchema.IsTable(TableName))
             {
-                TestTableCreator.CreateTestTableWithAllTypes(DbContext, TableName);
+                TestTableCreator.CreateTestTableWithAllTypes(DbContext, TableName, addDeprecatedTypes);
             }
         }
     }

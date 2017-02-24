@@ -14,7 +14,7 @@ namespace ACopyLibTest
             TableName = "htablewithallcolumns";
 
             base.Setup();
-            CreateTableWithAllColumns();
+            CreateTableWithAllColumns(true);
         }
 
         [TestCleanup]

@@ -24,6 +24,7 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.Int64:
                 case ColumnTypeName.Int8:
                 case ColumnTypeName.Money:
+                case ColumnTypeName.SmallMoney:
                     return new OracleNumberColumn(name, type, prec, scale, isNullable, def);
                 case ColumnTypeName.Char:
                     return new OracleCharColumn(name, length, isNullable, def);
@@ -48,6 +49,9 @@ namespace ADatabase.Oracle
                     return new OracleLongColumn(name, isNullable, def);
                 case ColumnTypeName.Raw:
                     return new OracleRawColumn(name, length, isNullable, def);
+                case ColumnTypeName.SmallDateTime:
+                case ColumnTypeName.Time:
+                    return new OracleDateColumn(name, isNullable, def);
                 case ColumnTypeName.Timestamp:
                     return new OracleTimestampColumn(name, length, isNullable, def);
                 case ColumnTypeName.Varchar:
