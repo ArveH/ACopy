@@ -65,6 +65,18 @@ namespace ADatabase
                        && Constraints[0].ConstraintType == "Prec" && Constraints[1].ConstraintType == "Scale"
                        && Constraints[0].IsWithinConstraint(prec) && Constraints[1].IsWithinConstraint(scale);
             }
+            if (match.Groups["first"].Value == "Prec")
+            {
+                return Constraints.Count == 1
+                       && Constraints[0].ConstraintType == "Prec"
+                       && Constraints[0].IsWithinConstraint(prec);
+            }
+            if (match.Groups["first"].Value == "Scale")
+            {
+                return Constraints.Count == 1
+                       && Constraints[0].ConstraintType == "Scale"
+                       && Constraints[0].IsWithinConstraint(scale);
+            }
 
             return false;
         }
@@ -78,12 +90,26 @@ namespace ADatabase
                 prec = 0;
                 scale = 0;
             }
+            else if (ConvertToParameters.ContainsKey("Prec") && ConvertToParameters.ContainsKey("Scale"))
+            {
+                if (prec == 0 && ConvertToParameters["Prec"] == -99) throw new AColumnTypeException($"No Precision value given for destination type '{ConvertTo}'");
+                if (scale == 0 && ConvertToParameters["Scale"] == -99) throw new AColumnTypeException($"No Scale value given for destination type '{ConvertTo}'");
+                length = 0;
+                if (ConvertToParameters["Prec"] != -99) prec = ConvertToParameters["Prec"];
+                if (ConvertToParameters["Scale"] != -99) scale = ConvertToParameters["Scale"];
+            }
             else if (ConvertToParameters.ContainsKey("Prec"))
             {
                 if (prec == 0 && ConvertToParameters["Prec"] == -99) throw new AColumnTypeException($"No Precision value given for destination type '{ConvertTo}'");
-                if (!ConvertToParameters.ContainsKey("Scale")) throw new AColumnTypeException($"No Scale value given for destination type '{ConvertTo}'");
                 length = 0;
+                scale = 0;
                 if (ConvertToParameters["Prec"] != -99) prec = ConvertToParameters["Prec"];
+            }
+            else if (ConvertToParameters.ContainsKey("Scale"))
+            {
+                if (scale == 0 && ConvertToParameters["Scale"] == -99) throw new AColumnTypeException($"No Scale value given for destination type '{ConvertTo}'");
+                length = 0;
+                prec = 0;
                 if (ConvertToParameters["Scale"] != -99) scale = ConvertToParameters["Scale"];
             }
             return ConvertTo;
@@ -108,7 +134,7 @@ namespace ADatabase
             {
                 int tmp;
                 if (!int.TryParse(match.Groups["first"].Value, out tmp)) tmp = -99;
-                parameters.Add("Length", tmp);
+                parameters.Add(match.Groups["first"].Value, tmp);
             }
 
             return convertTo;

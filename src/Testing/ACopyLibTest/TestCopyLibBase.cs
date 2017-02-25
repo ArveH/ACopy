@@ -19,7 +19,6 @@ namespace ACopyLibTest
         {
             PowerPlant = DbContext.PowerPlant;
             DbSchema = PowerPlant.CreateDbSchema();
-            DbSchema.DropTable(TableName);
         }
 
         public virtual void Cleanup()

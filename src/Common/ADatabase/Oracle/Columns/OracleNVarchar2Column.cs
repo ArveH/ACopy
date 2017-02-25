@@ -5,7 +5,7 @@
         public OracleNVarchar2Column(string name, int length, bool isNullable, string def)
             : base(name, length, isNullable, def)
         {
-            Type = ColumnTypeName.NChar;
+            Type = ColumnTypeName.NVarchar;
         }
 
         public override string TypeToString()

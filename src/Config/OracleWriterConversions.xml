@@ -13,6 +13,8 @@
   <Type Source="long" Destination="long"></Type>
   <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>
   <Type Source="nclob" Destination="nclob"/>
+  <Type Source="number" Destination="dec"></Type>
+  <Type Source="number(@Prec)" Destination="dec(@Prec)"></Type>
   <Type Source="number(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
   <Type Source="nvarchar2(@Length)" Destination="nvarchar(@Length)"/>
   <Type Source="raw(@Length)" Destination="guid">

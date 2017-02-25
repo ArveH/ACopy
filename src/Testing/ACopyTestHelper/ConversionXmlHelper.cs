@@ -1,10 +1,10 @@
 ﻿using System.Xml;
 
-namespace ADatabaseTest.Helpers
+namespace ACopyTestHelper
 {
     public static class ConversionXmlHelper
     {
-        private static string GetHeadingXml()
+        public static string GetHeadingXml()
         {
             return
                 "<?xml version=\"1.0\" encoding=\"utf-8\"?> " +
@@ -18,7 +18,7 @@ namespace ADatabaseTest.Helpers
             return xmlDocument.FirstChild;
         }
 
-        private static string GetOneNumberTypeXml(string destinationType, string prec, string scale)
+        public static string GetOneNumberTypeXml(string destinationType, string prec, string scale)
         {
             return $"<Type Source=\"number(@Prec,@Scale)\" Destination=\"{destinationType}\">\n" +
                    $"<Prec Operator=\"=\">{prec}</Prec>\n" +
@@ -26,10 +26,9 @@ namespace ADatabaseTest.Helpers
                    $"</Type>\n";
         }
 
-        private static string GetOneTypeNoOperatorXml(string sourceType, string destinationType)
+        public static string GetOneTypeNoOperatorXml(string sourceType, string destinationType)
         {
-            return $"<Type Source=\"{sourceType}\" Destination=\"{destinationType}\">\n" +
-                   $"</Type>\n";
+            return $"<Type Source=\"{sourceType}\" Destination=\"{destinationType}\"/>\n";
         }
 
         public static string LegalXmlButIncorrectRootElement()

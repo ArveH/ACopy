@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
+using ACopyTestHelper;
 using ADatabase;
-using ADatabaseTest.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 

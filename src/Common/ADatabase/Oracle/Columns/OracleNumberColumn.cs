@@ -12,7 +12,10 @@ namespace ADatabase.Oracle.Columns
         {
             Details["Prec"] = prec;
             Details["Scale"] = scale;
-            _typeToString = $"number({prec},{scale})";
+            if (prec == 0 && scale == 0) _typeToString = "number";
+            else if (prec == 0 && scale != 0) _typeToString = $"number(*,{scale})";
+            else if (prec != 0 && scale == 0) _typeToString = $"number({prec})";
+            else _typeToString = $"number({prec},{scale})";
         }
 
         public override string TypeToString()

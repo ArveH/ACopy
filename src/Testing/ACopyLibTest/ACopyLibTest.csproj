@@ -86,6 +86,7 @@
       <Link>SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Helpers\XmlFileHelper.cs" />
+    <Compile Include="TestColumnTypeConverter.cs" />
     <Compile Include="TestCopyLibBase.cs" />
     <Compile Include="TestCreateTableFromXmlSqlServer.cs" />
     <Compile Include="TestCreateTableFromXmlOracle.cs" />
