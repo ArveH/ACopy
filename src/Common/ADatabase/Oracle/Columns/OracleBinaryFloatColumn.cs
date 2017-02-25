@@ -6,7 +6,7 @@ namespace ADatabase.Oracle.Columns
     public class OracleBinaryFloatColumn: OracleColumn
     {
         public OracleBinaryFloatColumn(string name, bool isNullable, string def)
-            : base(name, ColumnTypeName.Float,  isNullable, def)
+            : base(name, ColumnTypeName.BinaryFloat,  isNullable, def)
         {
         }
 

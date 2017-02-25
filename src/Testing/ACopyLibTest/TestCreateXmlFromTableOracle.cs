@@ -48,5 +48,23 @@ namespace ACopyLibTest
             typeNode.Should().NotBeNull("because column has to have Type");
             typeNode?.InnerText.Should().Be("BinaryDouble");
         }
+
+        [TestMethod]
+        public void TestBinaryFloat_When_Oracle()
+        {
+            var colDescr = "binary_float";
+            var sqlTxt = $"create table {TableName} (col1 {colDescr})";
+            Commands.ExecuteNonQuery(sqlTxt);
+            var tableDefinition = DbSchema.GetTableDefinition(DbContext.ColumnTypeConverterForWrite,
+                TableName);
+            var xmlWriter = AXmlFactory.CreateWriter();
+            xmlWriter.WriteSchema(tableDefinition, _schemaFilePath);
+
+            var xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(File.ReadAllText(_schemaFilePath));
+            var typeNode = xmlDocument.DocumentElement?.SelectSingleNode("/Table/Columns/Column/Type");
+            typeNode.Should().NotBeNull("because column has to have Type");
+            typeNode?.InnerText.Should().Be("BinaryFloat");
+        }
     }
 }
