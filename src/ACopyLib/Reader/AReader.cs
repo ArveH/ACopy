@@ -128,7 +128,7 @@ namespace ACopyLib.Reader
 
         private ITableDefinition CreateTable(string schemaFile)
         {
-            var tableDefinition = XmlSchemaFactory.CreateInstance(_dbContext).GetTableDefinition(_dbContext.ColumnTypeConverterForRead, schemaFile);
+            var tableDefinition = XmlSchemaFactory.CreateInstance(_dbContext).GetTableDefinition(schemaFile);
             SetCollationIfUseCollationParameterUsed(tableDefinition);
             _dbSchema.DropTable(tableDefinition.Name);
             if (_dbContext.DbType == DbTypeName.Oracle)

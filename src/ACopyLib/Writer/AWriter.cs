@@ -130,7 +130,7 @@ namespace ACopyLib.Writer
 
                 var xmlSchema = XmlSchemaFactory.CreateInstance(_dbContext);
                 if (UseU4Indexes) xmlSchema.U4Indexes = U4IndexesFactory.CreateInstance(_dbContext);
-                ITableDefinition tableDefinition = xmlSchema.Write(Directory, _dbContext.ColumnTypeConverterForWrite, tableName, SchemaFileSuffix);
+                ITableDefinition tableDefinition = xmlSchema.Write(Directory, tableName, SchemaFileSuffix);
 	
 	            if (tableDefinition.HasBlobColumn)
 	            {

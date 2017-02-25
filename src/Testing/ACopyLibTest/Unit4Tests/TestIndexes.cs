@@ -65,8 +65,8 @@ namespace ACopyLibTest.Unit4Tests
 
         private ITableDefinition WriteAndReadSchema(IXmlSchema xmlSchema)
         {
-            xmlSchema.Write(".\\", DbContext.ColumnTypeConverterForWrite, TestTable, "aschema");
-            var tableDefinition = xmlSchema.GetTableDefinition(DbContext.ColumnTypeConverterForRead, ".\\" + TestTable + ".aschema");
+            xmlSchema.Write(".\\", TestTable, "aschema");
+            var tableDefinition = xmlSchema.GetTableDefinition(".\\" + TestTable + ".aschema");
             return tableDefinition;
         }
 

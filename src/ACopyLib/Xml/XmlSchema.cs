@@ -30,9 +30,9 @@ namespace ACopyLib.Xml
 
         public IU4Indexes U4Indexes { get; set; }
 
-        public ITableDefinition Write(string directory, IColumnTypeConverter columnsTypeConverter, string tableName, string schemaFileSuffix)
+        public ITableDefinition Write(string directory, string tableName, string schemaFileSuffix)
         {
-            ITableDefinition tableDefinition = _dbSchema.GetTableDefinition(columnsTypeConverter, tableName);
+            ITableDefinition tableDefinition = _dbSchema.GetTableDefinition(_dbContext.ColumnTypeConverterForWrite, tableName);
 
             tableDefinition.Indexes = _dbSchema.GetIndexDefinitions(tableName);
             if (U4Indexes != null)
@@ -46,11 +46,11 @@ namespace ACopyLib.Xml
             return tableDefinition;
         }
 
-        public ITableDefinition GetTableDefinition(IColumnTypeConverter columnsTypeConverter, string fileName)
+        public ITableDefinition GetTableDefinition(string fileName)
         {
             try
             {
-                return XmlReader.ReadSchema(columnsTypeConverter, File.ReadAllText(fileName));
+                return XmlReader.ReadSchema(_dbContext.ColumnTypeConverterForRead, File.ReadAllText(fileName));
             }
             catch (XmlException ex)
             {

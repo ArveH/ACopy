@@ -17,8 +17,10 @@ namespace ADatabase.Extensions
                 case "bigint":
                     return ADatabase.ColumnTypeName.Int64;
                 case "binary_float":
+                case "binaryfloat":
                     return ADatabase.ColumnTypeName.BinaryFloat;
                 case "binary_double":
+                case "binarydouble":
                     return ADatabase.ColumnTypeName.BinaryDouble;
                 case "bit":
                     return ADatabase.ColumnTypeName.Bool;
