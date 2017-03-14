@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Xml;
-using ACopyLib.Exceptions;
 using ADatabase;
 using ADatabase.Extensions;
 using ADatabase.Interfaces;

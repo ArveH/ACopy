@@ -1,5 +1,4 @@
-﻿using System.IO;
-using ACopyTestHelper;
+﻿using ACopyTestHelper;
 using ADatabase;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

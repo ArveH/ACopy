@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-
-namespace ADatabase.SqlServer.Columns
+﻿namespace ADatabase.SqlServer.Columns
 {
     public class SqlServerSmallMoneyColumn: SqlServerMoneyColumn
     {
