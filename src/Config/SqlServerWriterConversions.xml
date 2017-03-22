@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--Default type conversion file for ACopy (Oracle writer)-->
+<!--Default type conversion file for ACopy (SqlServer writer)-->
 <TypeConversions From="SqlServer" To="Default">
   <Type Source="bigint" Destination="int64"></Type>
   <Type Source="binary(@length)" Destination="raw(@Length)"></Type>
@@ -10,13 +10,13 @@
   <Type Source="datetime2(@Length)" Destination="datetime2(@Length)"></Type>
   <Type Source="decimal(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
   <Type Source="numeric(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
-  <Type Source="float(@Length)" Destination="binaryfloat">
-      <Length Operator="=">24</Length>
+  <Type Source="float(@Prec)" Destination="binaryfloat">
+      <Prec Operator="=">24</Prec>
   </Type>
-  <Type Source="float(@Length)" Destination="binarydouble">
-      <Length Operator="=">53</Length>
+  <Type Source="float(@Prec)" Destination="binarydouble">
+      <Prec Operator="=">53</Prec>
   </Type>
-  <Type Source="float(@Length)" Destination="float(@Length)"></Type>
+  <Type Source="float(@Prec)" Destination="float(@Prec)"></Type>
   <Type Source="image" Destination="oldblob"></Type>
   <Type Source="int" Destination="int"></Type>
   <Type Source="money" Destination="money"></Type>
@@ -25,7 +25,7 @@
   <Type Source="nvarchar(@Length)" Destination="nlongtext">
       <Length Operator="=">-1</Length>
   </Type>
-  <Type Source="nvarchar" Destination="nvarchar(@Length)"></Type>
+  <Type Source="nvarchar(@Length)" Destination="nvarchar(@Length)"></Type>
   <Type Source="real" Destination="binaryfloat"></Type>
   <Type Source="smalldatetime" Destination="smalldatetime"></Type>
   <Type Source="smallmoney" Destination="smallmoney"></Type>

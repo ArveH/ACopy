@@ -110,19 +110,22 @@ namespace ADatabase.Extensions
         {
             switch (str)
             {
-                case "VARCHAR2":
-                case "VARCHAR":
-                case "varchar":
                 case "CHAR":
                 case "char":
-                case "RAW":
-                case "varbinary":
+                case "NCHAR":
+                case "nchar":
                 case "NVARCHAR2":
                 case "NVARCHAR":
                 case "nvarchar":
-                case "NCHAR":
-                case "nchar":
+                case "RAW":
+                case "VARCHAR2":
+                case "VARCHAR":
+                case "varchar":
+                case "varbinary":
                     return str.ToLower() + "(@Length)";
+                case "FLOAT":
+                case "float":
+                    return "float(@Prec)";
                 case "LONG RAW":
                     return "longraw(@Length)";
                 case "NUMBER":

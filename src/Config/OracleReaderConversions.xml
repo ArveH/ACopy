@@ -10,7 +10,7 @@
   <Type Source="datetime" Destination="date"/>
   <Type Source="dec(@Prec,@Scale)" Destination="number(@Prec,@Scale)"/>
   <Type Source="float" Destination="float"/>
-  <Type Source="float(@Length)" Destination="float(@Length)"/>
+  <Type Source="float(@Prec)" Destination="float(@Prec)"/>
   <Type Source="guid" Destination="raw(16)"/>
   <Type Source="int" Destination="number(38,0)"/>
   <Type Source="int16" Destination="number(38,0)"/>

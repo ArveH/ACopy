@@ -92,25 +92,27 @@ namespace ADatabase
             }
             else if (ConvertToParameters.ContainsKey("Prec") && ConvertToParameters.ContainsKey("Scale"))
             {
-                if (prec == 0 && ConvertToParameters["Prec"] == -99) throw new AColumnTypeException($"No Precision value given for destination type '{ConvertTo}'");
-                if (scale == 0 && ConvertToParameters["Scale"] == -99) throw new AColumnTypeException($"No Scale value given for destination type '{ConvertTo}'");
                 length = 0;
                 if (ConvertToParameters["Prec"] != -99) prec = ConvertToParameters["Prec"];
                 if (ConvertToParameters["Scale"] != -99) scale = ConvertToParameters["Scale"];
             }
             else if (ConvertToParameters.ContainsKey("Prec"))
             {
-                if (prec == 0 && ConvertToParameters["Prec"] == -99) throw new AColumnTypeException($"No Precision value given for destination type '{ConvertTo}'");
                 length = 0;
                 scale = 0;
                 if (ConvertToParameters["Prec"] != -99) prec = ConvertToParameters["Prec"];
             }
             else if (ConvertToParameters.ContainsKey("Scale"))
             {
-                if (scale == 0 && ConvertToParameters["Scale"] == -99) throw new AColumnTypeException($"No Scale value given for destination type '{ConvertTo}'");
                 length = 0;
                 prec = 0;
                 if (ConvertToParameters["Scale"] != -99) scale = ConvertToParameters["Scale"];
+            }
+            else
+            {
+                length = 0;
+                prec = 0;
+                scale = 0;
             }
             return ConvertTo;
         }

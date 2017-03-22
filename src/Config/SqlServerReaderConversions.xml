@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--Default type conversion file for ACopy (Oracle Reader)-->
+<!--Default type conversion file for ACopy (SqlServer Reader)-->
 <TypeConversions From="Default" To="SqlServer">
   <Type Source="binarydouble" Destination="float(53)"/>
   <Type Source="binaryfloat" Destination="real"/>
@@ -10,7 +10,7 @@
   <Type Source="datetime" Destination="datetime"/>
   <Type Source="dec(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"/>
   <Type Source="float" Destination="float"/>
-  <Type Source="float(@Length)" Destination="float(@Length)"/>
+  <Type Source="float(@Prec)" Destination="float(@Prec)"/>
   <Type Source="guid" Destination="uniqueidentity"/>
   <Type Source="int" Destination="int"/>
   <Type Source="int16" Destination="smallint"/>

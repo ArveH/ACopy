@@ -15,12 +15,6 @@ namespace ACopyLibTest
                         new TypeConstraintFactory(
                             new TypeOperatorFactory()))));
 
-        private string GetDestinationTypeWhenOracleToACopy(string input, ref int length, ref int prec, ref int scale)
-        {
-            _columnTypeConverter.Initialize(ConversionXmlHelper.Unit4OracleWriterConversionsXml());
-            return _columnTypeConverter.GetDestinationType(input, ref length, ref prec, ref scale);
-        }
-
         [TestInitialize]
         public void Setup()
         {
@@ -34,7 +28,7 @@ namespace ACopyLibTest
         [TestMethod]
         public void TestNumber_When_PrecAndScaleHasValues()
         {
-            _columnTypeConverter.Initialize(GetConversionsXmlFor("number(@Prec,@Scale)", "dec(@Prec,@Scale)"));
+            _columnTypeConverter.Initialize(GetConversionsXmlForNumberWithScaleAndPrec());
             int length = 22;
             int prec = 19;
             int scale = 4;
@@ -47,7 +41,7 @@ namespace ACopyLibTest
         [TestMethod]
         public void TestNumber_When_OnlyPrecHasValue()
         {
-            _columnTypeConverter.Initialize(GetConversionsXmlFor("number(@Prec,@Scale)", "dec(@Prec,@Scale)"));
+            _columnTypeConverter.Initialize(GetConversionsXmlForNumberWithScaleAndPrec());
             int length = 22;
             int prec = 19;
             int scale = 0;
@@ -60,6 +54,7 @@ namespace ACopyLibTest
         [TestMethod]
         public void TestNumber_When_OnlyScaleHasValue()
         {
+            _columnTypeConverter.Initialize(GetConversionsXmlForNumberWithScaleAndPrec());
             int length = 22;
             int prec = 0;
             int scale = 2;
@@ -69,12 +64,43 @@ namespace ACopyLibTest
             scale.Should().Be(2);
         }
 
+        [TestMethod]
+        public void TestFloat_When_BinaryFloat()
+        {
+            _columnTypeConverter.Initialize(GetConversionsXmlForFloat());
+            int length = 4;
+            int prec = 24;
+            int scale = 0;
+            var type = _columnTypeConverter.GetDestinationType("float(@Prec)", ref length, ref prec, ref scale);
+            type.Should().Be("binaryfloat");
+            length.Should().Be(0);
+            prec.Should().Be(0);
+            scale.Should().Be(0);
+        }
+
+
         #region Private Helper functions
-        public static string GetConversionsXmlFor(string from, string to)
+        public static string GetConversionsXmlForNumberWithScaleAndPrec()
         {
             return ConversionXmlHelper.GetHeadingXml() +
                 "<TypeConversions From=\"DB\" To=\"ACopy\">\n" +
-                ConversionXmlHelper.GetOneTypeNoOperatorXml(from, to) +
+                //ConversionXmlHelper.GetOneTypeNoOperatorXml("number", "dec") +
+                //ConversionXmlHelper.GetOneTypeNoOperatorXml("number(@Prec)", "dec(@Prec)") +
+                ConversionXmlHelper.GetOneTypeNoOperatorXml("number(@Prec,@Scale)", "dec(@Prec,@Scale)") +
+                "</TypeConversions>";
+        }
+
+        public static string GetConversionsXmlForFloat()
+        {
+            return ConversionXmlHelper.GetHeadingXml() +
+                "<TypeConversions From=\"SqlServer\" To=\"Default\">\n" +
+                "<Type Source=\"float(@Prec)\" Destination=\"binaryfloat\">\n" +
+                "     <Prec Operator=\"=\">24</Prec>\n" +
+                "</Type>\n" +
+                "<Type Source=\"float(@Prec)\" Destination=\"binarydouble\">\n" +
+                "     <Prec Operator=\"=\">53</Prec>\n" +
+                "</Type>\n" +
+                "<Type Source=\"float(@Prec)\" Destination=\"float(@Prec)\"></Type>\n" +
                 "</TypeConversions>";
         }
         #endregion
