@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using ADatabase;
 
@@ -188,7 +189,7 @@ namespace ACopyTestHelper
         public static string GetCharSqlValue() { return $"'{CharValue}'"; }
         public static string GetDateSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{DateValue:MMM dd yyyy}'" : $"to_date('{DateValue:MMM dd yyyy}', 'Mon DD YYYY')"; }
         public static string GetDateTimeSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{DateTimeValue:MMM dd yyyy HH:mm:ss}'" : $"to_date('{DateTimeValue:MMM dd yyyy HH:mm:ss}', 'Mon DD YYYY HH24:MI:SS')"; }
-        public static string GetDecSqlValue() { return $"{DecValue:###.#####}"; }
+        public static string GetDecSqlValue() { return $"{DecValue.ToString("###.#####", CultureInfo.InvariantCulture)}"; }
         public static string GetFloatSqlValue() { return $"{FloatValue:F15}"; }
         public static string GetFloat47SqlValue() { return $"{Float47Value:F15}"; }
         public static string GetGuidSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{GuidValue}'" : $"hextoraw('{GuidValue.ToString().Replace("-","")}')"; }

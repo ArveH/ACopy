@@ -125,6 +125,19 @@ namespace ACopyLibTest
         [TestMethod]
         public void TestDateTime2()
         {
+            _mssTableCreator.DateTime2Column(0);
+
+            WriteAndVerify(
+                "<Type>DateTime2</Type>",
+                "<Scale>7</Scale>",
+                TestTableCreator.DateTimeValue.ToString("yyyyMMdd hh:mm:ss"));
+
+            ReadAndVerify("datetime2", null, null, 7);
+        }
+
+        [TestMethod]
+        public void TestDateTime2_5()
+        {
             _mssTableCreator.DateTime2Column(5);
 
             WriteAndVerify(
@@ -133,6 +146,20 @@ namespace ACopyLibTest
                 TestTableCreator.DateTimeValue.ToString("yyyyMMdd hh:mm:ss"));
 
             ReadAndVerify("datetime2", null, null, 5);
+        }
+
+        [TestMethod]
+        public void TestDecimal()
+        {
+            _mssTableCreator.DecimalColumn(21,5);
+
+            WriteAndVerify(
+                "<Type>Dec</Type>",
+                "<Prec>21</Prec>",
+                "<Scale>5</Scale>",
+                TestTableCreator.GetDecSqlValue());
+
+            ReadAndVerify("decimal", null, 21, 5);
         }
 
         #region Private
@@ -159,6 +186,23 @@ namespace ACopyLibTest
                 },
                 expectedData);
         }
+
+        private void WriteAndVerify(
+            string exptectedType,
+            string exptectedNum1,
+            string exptectedNum2,
+            string expectedData)
+        {
+            WriteAndVerify(
+                new List<string>()
+                {
+                    exptectedType,
+                    exptectedNum2,
+                    exptectedNum1
+                },
+                expectedData);
+        }
+
 
         private void WriteAndVerify(
             List<string> exptectedSchemaStuff,

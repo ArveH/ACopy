@@ -137,8 +137,9 @@ namespace ADatabase.Extensions
                 case "DECIMAL":
                     return "number(@Prec, @Scale)";
                 case "dec":
-                case "decimal":
                     return "dec(@Prec, @Scale)";
+                case "decimal":
+                    return "decimal(@Prec, @Scale)";
                 default:
                     return str.ToLower();
             }

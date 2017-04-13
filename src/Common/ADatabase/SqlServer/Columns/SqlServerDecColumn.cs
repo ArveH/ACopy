@@ -12,7 +12,7 @@ namespace ADatabase.SqlServer.Columns
         {
             Details["Prec"] = prec;
             Details["Scale"] = scale;
-            Type = ColumnTypeName.Float;
+            Type = ColumnTypeName.Dec;
             _typeToString = $"dec({prec},{scale})";
         }
 

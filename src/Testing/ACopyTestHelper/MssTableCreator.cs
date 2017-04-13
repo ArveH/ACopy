@@ -47,7 +47,14 @@ namespace ACopyTestHelper
 
         public void DateTime2Column(int length)
         {
-            CreateTable($"datetime2({length})", TestTableCreator.GetDateTimeSqlValue(_dbContext));
+            var type = "datetime2";
+            if (length > 0) type += $"({length})";
+            CreateTable(type, TestTableCreator.GetDateTimeSqlValue(_dbContext));
+        }
+
+        public void DecimalColumn(int prec, int scale)
+        {
+            CreateTable($"decimal({prec}, {scale})", TestTableCreator.GetDecSqlValue());
         }
 
         #region Private
