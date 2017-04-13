@@ -81,6 +81,54 @@ namespace ADatabase.SqlServer
             return (string)Commands.ExecuteScalar(selectStmt);
         }
 
+        public override void GetRawColumnDefinition(string tableName, string colName, out string type, out int length, out int prec, out int scale)
+        {
+            type = "";
+            length = prec = scale = 0;
+
+            var selectStmt = "";
+            selectStmt += "SELECT c.name, " + "\n";
+            selectStmt += "       t.name AS t_name, " + "\n";
+            selectStmt += "       isnull(c.max_length, 0) as length, " + "\n";
+            selectStmt += "       isnull(c.precision, 0) as prec, " + "\n";
+            selectStmt += "       isnull(c.scale, 0) as scale, " + "\n";
+            selectStmt += "       c.is_nullable, " + "\n";
+            selectStmt += "       convert(varchar(256), isnull(c.collation_name, '')) as collation, " + "\n";
+            selectStmt += "       isnull(object_definition(c.default_object_id), '') as def, " + "\n";
+            selectStmt += "       c.is_identity " + "\n";
+            selectStmt += "FROM   sys.columns c " + "\n";
+            selectStmt += "       JOIN sys.types t " + "\n";
+            selectStmt += "         ON c.user_type_id = t.user_type_id " + "\n";
+            selectStmt += $"WHERE  c.object_id = Object_id('{tableName}') " + "\n";
+            selectStmt += $"  AND  c.name = '{colName}' " + "\n";
+            selectStmt += "ORDER  BY c.column_id ";
+
+            IDataCursor cursor = null;
+            try
+            {
+                cursor = DbContext.PowerPlant.CreateDataCursor();
+                var reader = cursor.ExecuteReader(selectStmt);
+                while (reader.Read())
+                {
+                    var name = reader.GetString(0);
+                    type = reader.GetString(1);
+                    length = reader.GetInt16(2);
+                    if (length != -1 && (type == "nvarchar" || type == "nchar")) length /= 2;
+                    prec = reader.GetByte(3);
+                    scale = reader.GetByte(4);
+                    var isNullable = reader.GetBoolean(5);
+                    var collation = reader.GetString(6);
+                    var def = reader.GetString(7);
+                    var isIdentity = reader.GetBoolean(8);
+                    var sourceType = type.AddParameters();
+                }
+            }
+            finally
+            {
+                cursor?.Close();
+            }
+        }
+
         public override ITableDefinition GetTableDefinition(IColumnTypeConverter columnTypeConverter, string tableName)
         {
             string selectStmt = "";

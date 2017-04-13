@@ -15,7 +15,7 @@ namespace ACopyTestHelper
             _commands = dbContext.PowerPlant.CreateCommands();
         }
 
-        public void SqlServerBigIntColumn()
+        public void BigIntColumn()
         {
             var stmt = $"if OBJECT_ID('{TableName}', 'U') is not null drop table {TableName}";
             _commands.ExecuteNonQuery(stmt);
@@ -24,5 +24,16 @@ namespace ACopyTestHelper
             stmt = $"insert into {TableName} (col1) values ({TestTableCreator.GetInt64SqlValue()})";
             _commands.ExecuteNonQuery(stmt);
         }
+
+        public void BinaryColumn()
+        {
+            var stmt = $"if OBJECT_ID('{TableName}', 'U') is not null drop table {TableName}";
+            _commands.ExecuteNonQuery(stmt);
+            stmt = $"create table {TableName} (col1 binary(50))";
+            _commands.ExecuteNonQuery(stmt);
+            stmt = $"insert into {TableName} (col1) values ({TestTableCreator.GetRawSqlValue(_dbContext)})";
+            _commands.ExecuteNonQuery(stmt);
+        }
+
     }
 }

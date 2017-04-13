@@ -54,7 +54,7 @@ namespace ADatabase.SqlServer
                 case ColumnTypeName.Money:
                     return new SqlServerMoneyColumn(name, isNullable, def);
                 case ColumnTypeName.Raw:
-                    return new SqlServerVarBinaryColumn(name, length, isNullable, def);
+                    return new SqlServerBinaryColumn(name, length, isNullable, def);
                 case ColumnTypeName.SmallDateTime:
                     return new SqlServerSmallDateTimeColumn(name, isNullable, def);
                 case ColumnTypeName.SmallMoney:

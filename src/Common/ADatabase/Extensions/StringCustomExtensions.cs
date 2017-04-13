@@ -110,6 +110,8 @@ namespace ADatabase.Extensions
         {
             switch (str)
             {
+                case "binary":
+                    return "binary(@Length)";
                 case "CHAR":
                 case "char":
                 case "NCHAR":

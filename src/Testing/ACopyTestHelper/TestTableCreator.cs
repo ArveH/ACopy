@@ -201,7 +201,7 @@ namespace ACopyTestHelper
         public static string GetNCharSqlValue() { return $"'{NCharValue}'"; }
         public static string GetNLongTextSqlValue() { return $"'{NLongTextValue}'"; }
         public static string GetNVarcharSqlValue() { return $"'{NVarcharValue}'"; }
-        public static string GetRawSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"convert(varbinary, '{RawValue}'), " : $"utl_raw.cast_to_raw('{RawValue}')"; }
+        public static string GetRawSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"convert(binary, '{RawValue}')" : $"utl_raw.cast_to_raw('{RawValue}')"; }
         public static string GetSmallDateTimeSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{SmallDateTimeValue:MMM dd yyyy}', " : $"to_date('{SmallDateTimeValue:MMM dd yyyy}', 'Mon DD YYYY')"; }
         public static string GetSmallMoneySqlValue() { return $"{SmallMoneyValue:F3}"; }
         public static string GetTimeSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{TimeValue:HH:mm:ss}', " : $"to_date('{TimeValue:HH:mm:ss}', 'HH24:MI:SS')"; }

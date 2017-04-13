@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using ACopyLib.Reader;
 using ACopyLib.Writer;
 using ACopyTestHelper;
@@ -47,17 +49,37 @@ namespace ACopyLibTest
         [TestMethod]
         public void TestBigInt()
         {
-            _mssTableCreator.SqlServerBigIntColumn();
+            _mssTableCreator.BigIntColumn();
             _writer.WriteTable(TableName);
-            int tableCounter;
-            int errorCounter;
-            _reader.Read(new List<string>() {TableName}, out tableCounter, out errorCounter);
-
             var fileContent = File.ReadAllText(_schemaFileName);
             fileContent.Should().Contain("<Type>Int64</Type>");
 
             fileContent = File.ReadAllText(_dataFileName);
             fileContent.Should().Contain(TestTableCreator.GetInt64SqlValue());
+
+            _reader.Read(new List<string>() { TableName }, out int tableCounter, out int errorCounter);
+
+
+        }
+
+        [TestMethod]
+        public void TestBinary50()
+        {
+            _mssTableCreator.BinaryColumn();
+            _writer.WriteTable(TableName);
+            var fileContent = File.ReadAllText(_schemaFileName);
+            fileContent.Should().Contain("<Type>Raw</Type>");
+            fileContent.Should().Contain("<Length>50</Length>");
+
+            fileContent = File.ReadAllText(_dataFileName);
+            var expectedBase64Content = Convert.ToBase64String(
+                Encoding.UTF8.GetBytes(TestTableCreator.RawValue));
+            fileContent.Should().Contain(expectedBase64Content);
+
+            _reader.Read(new List<string>() { TableName }, out int tableCounter, out int errorCounter);
+            DbSchema.GetRawColumnDefinition(TableName, "col1", out string type, out int length, out int prec, out int scale);
+            type.Should().Be("binary");
+            length.Should().Be(50);
         }
     }
 }

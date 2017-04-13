@@ -24,6 +24,7 @@ namespace ADatabase
         }
 
         public abstract List<ITableShortInfo> GetTableNames(string searchString);
+        public abstract void GetRawColumnDefinition(string tableName, string colName, out string type, out int length, out int prec, out int scale);
         public abstract ITableDefinition GetTableDefinition(IColumnTypeConverter columnTypeConverter, string name);
         public abstract bool IsTable(string tableName);
         public abstract void CreateTable(ITableDefinition tableDefinition);
