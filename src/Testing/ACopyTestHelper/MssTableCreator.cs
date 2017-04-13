@@ -64,7 +64,9 @@ namespace ACopyTestHelper
 
         public void FloatColumn(int prec)
         {
-            CreateTable($"float({prec})", TestTableCreator.GetBinaryFloatSqlValue());
+            var type = "float";
+            if (prec > 0) type += $"({prec})";
+            CreateTable(type, TestTableCreator.GetBinaryFloatSqlValue());
         }
 
         #region Private
