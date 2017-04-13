@@ -79,6 +79,21 @@ namespace ACopyLibTest
             ReadAndVerify("binary", 50, null, null);
         }
 
+        [TestMethod]
+        public void TestBit()
+        {
+            _mssTableCreator.BitColumn();
+
+            WriteAndVerify(
+                new List<string>()
+                {
+                    "<Type>Bool</Type>",
+                },
+                TestTableCreator.GetBoolSqlValue());
+
+            ReadAndVerify("bit", null, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(

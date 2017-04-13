@@ -17,23 +17,31 @@ namespace ACopyTestHelper
 
         public void BigIntColumn()
         {
-            var stmt = $"if OBJECT_ID('{TableName}', 'U') is not null drop table {TableName}";
-            _commands.ExecuteNonQuery(stmt);
-            stmt = $"create table {TableName} (col1 bigint)";
-            _commands.ExecuteNonQuery(stmt);
-            stmt = $"insert into {TableName} (col1) values ({TestTableCreator.GetInt64SqlValue()})";
-            _commands.ExecuteNonQuery(stmt);
+            CreateTable("bigint", TestTableCreator.GetInt64SqlValue());
         }
 
         public void BinaryColumn()
         {
+            CreateTable("binary(50)", TestTableCreator.GetRawSqlValue(_dbContext));
+        }
+
+        public void BitColumn()
+        {
+            CreateTable("bit", TestTableCreator.GetBoolSqlValue());
+        }
+
+        #region Private
+
+        private void CreateTable(string type, string sqlValue)
+        {
             var stmt = $"if OBJECT_ID('{TableName}', 'U') is not null drop table {TableName}";
             _commands.ExecuteNonQuery(stmt);
-            stmt = $"create table {TableName} (col1 binary(50))";
+            stmt = $"create table {TableName} (col1 {type})";
             _commands.ExecuteNonQuery(stmt);
-            stmt = $"insert into {TableName} (col1) values ({TestTableCreator.GetRawSqlValue(_dbContext)})";
+            stmt = $"insert into {TableName} (col1) values ({sqlValue})";
             _commands.ExecuteNonQuery(stmt);
         }
 
+        #endregion
     }
 }

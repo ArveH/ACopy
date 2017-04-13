@@ -183,15 +183,15 @@ namespace ACopyTestHelper
 
         public static string GetVinaryDoubleSqlValue() { return $"{BinaryDoubleValue:F15}"; }
         public static string GetBinaryFloatSqlValue() { return $"{BinaryFloatValue:F10}"; }
-        public static string GetBlobSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"convert(varbinary, '{BlobValue}'), " : $"utl_raw.cast_to_raw('{BlobValue}')"; }
-        public static string GetBoolSqlValue() { return BoolValue? "1, ": "0"; }
+        public static string GetBlobSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"convert(varbinary, '{BlobValue}')" : $"utl_raw.cast_to_raw('{BlobValue}')"; }
+        public static string GetBoolSqlValue() { return BoolValue ? "1": "0"; }
         public static string GetCharSqlValue() { return $"'{CharValue}'"; }
-        public static string GetDateSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{DateValue:MMM dd yyyy}', " : $"to_date('{DateValue:MMM dd yyyy}', 'Mon DD YYYY')"; }
-        public static string GetDateTimeSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{DateTimeValue:MMM dd yyyy HH:mm:ss}', " : $"to_date('{DateTimeValue:MMM dd yyyy HH:mm:ss}', 'Mon DD YYYY HH24:MI:SS')"; }
+        public static string GetDateSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{DateValue:MMM dd yyyy}'" : $"to_date('{DateValue:MMM dd yyyy}', 'Mon DD YYYY')"; }
+        public static string GetDateTimeSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{DateTimeValue:MMM dd yyyy HH:mm:ss}'" : $"to_date('{DateTimeValue:MMM dd yyyy HH:mm:ss}', 'Mon DD YYYY HH24:MI:SS')"; }
         public static string GetDecSqlValue() { return $"{DecValue:###.#####}"; }
         public static string GetFloatSqlValue() { return $"{FloatValue:F15}"; }
         public static string GetFloat47SqlValue() { return $"{Float47Value:F15}"; }
-        public static string GetGuidSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{GuidValue}', " : $"hextoraw('{GuidValue.ToString().Replace("-","")}')"; }
+        public static string GetGuidSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{GuidValue}'" : $"hextoraw('{GuidValue.ToString().Replace("-","")}')"; }
         public static string GetIntSqlValue() { return $"{IntValue}"; }
         public static string GetInt16SqlValue() { return $"{Int16Value}"; }
         public static string GetInt64SqlValue() { return $"{Int64Value}"; }
@@ -202,11 +202,11 @@ namespace ACopyTestHelper
         public static string GetNLongTextSqlValue() { return $"'{NLongTextValue}'"; }
         public static string GetNVarcharSqlValue() { return $"'{NVarcharValue}'"; }
         public static string GetRawSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"convert(binary, '{RawValue}')" : $"utl_raw.cast_to_raw('{RawValue}')"; }
-        public static string GetSmallDateTimeSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{SmallDateTimeValue:MMM dd yyyy}', " : $"to_date('{SmallDateTimeValue:MMM dd yyyy}', 'Mon DD YYYY')"; }
+        public static string GetSmallDateTimeSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{SmallDateTimeValue:MMM dd yyyy}'" : $"to_date('{SmallDateTimeValue:MMM dd yyyy}', 'Mon DD YYYY')"; }
         public static string GetSmallMoneySqlValue() { return $"{SmallMoneyValue:F3}"; }
-        public static string GetTimeSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{TimeValue:HH:mm:ss}', " : $"to_date('{TimeValue:HH:mm:ss}', 'HH24:MI:SS')"; }
-        public static string GetTimeStampSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{TimeStampValue:MMM dd yyyy HH:mm:ss.fffffff}', " : $"to_timestamp('{TimeStampValue:MMM dd yyyy HH:mm:ss.fffffff}', 'Mon DD YYYY HH24:MI:SS.FF')"; }
-        public static string GetTimeStamp5SqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{TimeStamp5Value:MMM dd yyyy HH:mm:ss.fffff}', " : $"to_timestamp('{TimeStamp5Value:MMM dd yyyy HH:mm:ss.fffff}', 'Mon DD YYYY HH24:MI:SS.FF')"; }
+        public static string GetTimeSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{TimeValue:HH:mm:ss}'" : $"to_date('{TimeValue:HH:mm:ss}', 'HH24:MI:SS')"; }
+        public static string GetTimeStampSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{TimeStampValue:MMM dd yyyy HH:mm:ss.fffffff}'" : $"to_timestamp('{TimeStampValue:MMM dd yyyy HH:mm:ss.fffffff}', 'Mon DD YYYY HH24:MI:SS.FF')"; }
+        public static string GetTimeStamp5SqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{TimeStamp5Value:MMM dd yyyy HH:mm:ss.fffff}'" : $"to_timestamp('{TimeStamp5Value:MMM dd yyyy HH:mm:ss.fffff}', 'Mon DD YYYY HH24:MI:SS.FF')"; }
         public static string GetVarcharSqlValue() { return $"'{VarcharValue}'"; }
 
     public static void CreateUnit4TestableWithAllTypes(IDbContext dbContext, string tableName)
