@@ -50,36 +50,67 @@ namespace ACopyLibTest
         public void TestBigInt()
         {
             _mssTableCreator.BigIntColumn();
-            _writer.WriteTable(TableName);
-            var fileContent = File.ReadAllText(_schemaFileName);
-            fileContent.Should().Contain("<Type>Int64</Type>");
 
-            fileContent = File.ReadAllText(_dataFileName);
-            fileContent.Should().Contain(TestTableCreator.GetInt64SqlValue());
+            WriteAndVerify(
+                new List<string>()
+                {
+                    "<Type>Int64</Type>"
+                },
+                TestTableCreator.GetInt64SqlValue());
 
-            _reader.Read(new List<string>() { TableName }, out int tableCounter, out int errorCounter);
-
-
+            ReadAndVerify("bigint", null, null, null);
         }
 
         [TestMethod]
         public void TestBinary50()
         {
             _mssTableCreator.BinaryColumn();
+
+            WriteAndVerify(
+                new List<string>()
+                {
+                    "<Type>Raw</Type>",
+                    "<Length>50</Length>"
+                },
+                Convert.ToBase64String(
+                    Encoding.UTF8.GetBytes(
+                        TestTableCreator.RawValue)));
+
+            ReadAndVerify("binary", 50, null, null);
+        }
+
+        #region Private
+
+        private void WriteAndVerify(
+            List<string> exptectedSchemaStuff,
+            string expectedData)
+        {
             _writer.WriteTable(TableName);
             var fileContent = File.ReadAllText(_schemaFileName);
-            fileContent.Should().Contain("<Type>Raw</Type>");
-            fileContent.Should().Contain("<Length>50</Length>");
+            foreach (var str in exptectedSchemaStuff)
+            {
+                fileContent.Should().Contain(str);
+            }
 
             fileContent = File.ReadAllText(_dataFileName);
-            var expectedBase64Content = Convert.ToBase64String(
-                Encoding.UTF8.GetBytes(TestTableCreator.RawValue));
-            fileContent.Should().Contain(expectedBase64Content);
+            fileContent.Should().Contain(expectedData);
+        }
 
+        private void ReadAndVerify(
+            string expectedType,
+            int? expectedLength,
+            int? expectedPrec,
+            int? expectedScale)
+        {
             _reader.Read(new List<string>() { TableName }, out int tableCounter, out int errorCounter);
             DbSchema.GetRawColumnDefinition(TableName, "col1", out string type, out int length, out int prec, out int scale);
-            type.Should().Be("binary");
-            length.Should().Be(50);
+
+            type.Should().Be(expectedType);
+            if (expectedLength.HasValue) length.Should().Be(expectedLength.Value);
+            if (expectedPrec.HasValue) prec.Should().Be(expectedPrec.Value);
+            if (expectedScale.HasValue) length.Should().Be(expectedScale.Value);
         }
+
+        #endregion
     }
 }
