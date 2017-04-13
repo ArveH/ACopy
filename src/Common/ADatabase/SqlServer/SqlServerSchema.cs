@@ -163,6 +163,7 @@ namespace ADatabase.SqlServer
                     if (length != -1 && (type == "nvarchar" || type == "nchar")) length /= 2;
                     int prec = reader.GetByte(3);
                     int scale = reader.GetByte(4);
+                    if (scale != 0 && type == "datetime2") prec = 0;
                     bool isNullable = reader.GetBoolean(5);
                     string collation = reader.GetString(6);
                     string def = reader.GetString(7);

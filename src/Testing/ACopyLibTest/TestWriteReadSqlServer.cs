@@ -122,6 +122,19 @@ namespace ACopyLibTest
             ReadAndVerify("datetime", null, null, null);
         }
 
+        [TestMethod]
+        public void TestDateTime2()
+        {
+            _mssTableCreator.DateTime2Column(5);
+
+            WriteAndVerify(
+                "<Type>DateTime2</Type>",
+                "<Scale>5</Scale>",
+                TestTableCreator.DateTimeValue.ToString("yyyyMMdd hh:mm:ss"));
+
+            ReadAndVerify("datetime2", null, null, 5);
+        }
+
         #region Private
 
         private void WriteAndVerify(
@@ -174,7 +187,7 @@ namespace ACopyLibTest
             type.Should().Be(expectedType);
             if (expectedLength.HasValue) length.Should().Be(expectedLength.Value);
             if (expectedPrec.HasValue) prec.Should().Be(expectedPrec.Value);
-            if (expectedScale.HasValue) length.Should().Be(expectedScale.Value);
+            if (expectedScale.HasValue) scale.Should().Be(expectedScale.Value);
         }
 
         #endregion

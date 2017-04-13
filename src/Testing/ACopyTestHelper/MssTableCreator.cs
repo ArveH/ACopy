@@ -37,12 +37,17 @@ namespace ACopyTestHelper
 
         public void DateColumn()
         {
-            CreateTable($"date", TestTableCreator.GetDateSqlValue(_dbContext));
+            CreateTable("date", TestTableCreator.GetDateSqlValue(_dbContext));
         }
 
         public void DateTimeColumn()
         {
-            CreateTable($"datetime", TestTableCreator.GetDateTimeSqlValue(_dbContext));
+            CreateTable("datetime", TestTableCreator.GetDateTimeSqlValue(_dbContext));
+        }
+
+        public void DateTime2Column(int length)
+        {
+            CreateTable($"datetime2({length})", TestTableCreator.GetDateTimeSqlValue(_dbContext));
         }
 
         #region Private

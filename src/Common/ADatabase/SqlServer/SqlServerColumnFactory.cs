@@ -25,6 +25,8 @@ namespace ADatabase.SqlServer
                     return new SqlServerDateColumn(name, isNullable, def);
                 case ColumnTypeName.DateTime:
                     return new SqlServerDatetimeColumn(name, isNullable, def);
+                case ColumnTypeName.DateTime2:
+                    return new SqlServerDatetime2Column(name, scale, isNullable, def);
                 case ColumnTypeName.Dec:
                     return new SqlServerDecColumn(name, prec, scale, isNullable, isIdentity, def);
                 case ColumnTypeName.Float:

@@ -37,7 +37,7 @@ namespace ADatabase.Extensions
                 case "datetime":
                     return ADatabase.ColumnTypeName.DateTime;
                 case "datetime2":
-                    return ADatabase.ColumnTypeName.Timestamp;
+                    return ADatabase.ColumnTypeName.DateTime2;
                 case "dec":
                     return ADatabase.ColumnTypeName.Dec;
                 case "float":
@@ -112,6 +112,8 @@ namespace ADatabase.Extensions
             {
                 case "binary":
                     return "binary(@Length)";
+                case "datetime2":
+                    return "datetime2(@Scale)";
                 case "CHAR":
                 case "char":
                 case "NCHAR":

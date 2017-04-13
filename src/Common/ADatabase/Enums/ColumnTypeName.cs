@@ -9,6 +9,7 @@
         Char,
         Date,
         DateTime,
+        DateTime2,
         Dec,
         Float,
         Guid,

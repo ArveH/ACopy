@@ -4,14 +4,14 @@
     {
         private readonly string _typeToString;
 
-        public SqlServerDatetime2Column(string name, int length, bool isNullable, string def)
+        public SqlServerDatetime2Column(string name, int scale, bool isNullable, string def)
             : base(name, isNullable, ConvertNativeDateToKeyword(def))
         {
-            if (length > 0)
+            if (scale > 0)
             {
-                Type = ColumnTypeName.Timestamp;
-                Details["Length"] = length;
-                _typeToString = $"datetime2({length})";
+                Type = ColumnTypeName.DateTime2;
+                Details["Scale"] = scale;
+                _typeToString = $"datetime2({scale})";
             }
             else
             {

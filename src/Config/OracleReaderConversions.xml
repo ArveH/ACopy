@@ -8,6 +8,7 @@
   <Type Source="char(@Length)" Destination="char(@Length)"/>
   <Type Source="date" Destination="date"/>
   <Type Source="datetime" Destination="date"/>
+  <Type Source="datetime2" Destination="date"/>
   <Type Source="dec(@Prec,@Scale)" Destination="number(@Prec,@Scale)"/>
   <Type Source="float" Destination="float"/>
   <Type Source="float(@Prec)" Destination="float(@Prec)"/>
