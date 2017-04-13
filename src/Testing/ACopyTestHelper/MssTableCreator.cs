@@ -57,6 +57,16 @@ namespace ACopyTestHelper
             CreateTable($"decimal({prec}, {scale})", TestTableCreator.GetDecSqlValue());
         }
 
+        public void NumericColumn(int prec, int scale)
+        {
+            CreateTable($"numeric({prec}, {scale})", TestTableCreator.GetDecSqlValue());
+        }
+
+        public void FloatColumn(int prec)
+        {
+            CreateTable($"float({prec})", TestTableCreator.GetBinaryFloatSqlValue());
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

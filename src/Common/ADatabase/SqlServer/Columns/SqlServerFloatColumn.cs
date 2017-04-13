@@ -7,14 +7,14 @@ namespace ADatabase.SqlServer.Columns
     {
         private readonly string _typeToString;
 
-        public SqlServerFloatColumn(string name, int length, bool isNullable, string def)
+        public SqlServerFloatColumn(string name, int prec, bool isNullable, string def)
             : base(name, isNullable, false, def)
         {
-            if (length > 0)
+            if (prec > 0)
             {
                 Type = ColumnTypeName.Float;
-                Details["Length"] = length;
-                _typeToString = $"float({length})";
+                Details["Prec"] = prec;
+                _typeToString = $"float({prec})";
             }
             else
             {

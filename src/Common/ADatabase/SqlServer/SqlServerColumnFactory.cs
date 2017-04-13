@@ -30,7 +30,7 @@ namespace ADatabase.SqlServer
                 case ColumnTypeName.Dec:
                     return new SqlServerDecColumn(name, prec, scale, isNullable, isIdentity, def);
                 case ColumnTypeName.Float:
-                    return new SqlServerFloatColumn(name, length, isNullable, def);
+                    return new SqlServerFloatColumn(name, prec, isNullable, def);
                 case ColumnTypeName.Guid:
                     return new SqlServerGuidColumn(name, isNullable, def);
                 case ColumnTypeName.Int:

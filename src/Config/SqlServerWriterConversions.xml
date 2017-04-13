@@ -10,12 +10,6 @@
   <Type Source="datetime2(@Scale)" Destination="datetime2(@Scale)"></Type>
   <Type Source="decimal(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
   <Type Source="numeric(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
-  <Type Source="float(@Prec)" Destination="binaryfloat">
-      <Prec Operator="=">24</Prec>
-  </Type>
-  <Type Source="float(@Prec)" Destination="binarydouble">
-      <Prec Operator="=">53</Prec>
-  </Type>
   <Type Source="float(@Prec)" Destination="float(@Prec)"></Type>
   <Type Source="image" Destination="oldblob"></Type>
   <Type Source="int" Destination="int"></Type>

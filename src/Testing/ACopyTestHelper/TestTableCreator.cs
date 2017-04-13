@@ -155,7 +155,7 @@ namespace ACopyTestHelper
         }
 
         public static double BinaryDoubleValue { get; } = 1.01234567890123;
-        public static double BinaryFloatValue { get; } = 1.01234567;
+        public static double BinaryFloatValue { get; } = 1.0123456;
         public static string BlobValue { get; } = "Lots of bytes";
         public static bool BoolValue { get; } = true;
         public static string CharValue { get; } = "MO";
@@ -183,7 +183,7 @@ namespace ACopyTestHelper
         public static string VarcharValue { get; } = "A varchar string";
 
         public static string GetVinaryDoubleSqlValue() { return $"{BinaryDoubleValue:F15}"; }
-        public static string GetBinaryFloatSqlValue() { return $"{BinaryFloatValue:F10}"; }
+        public static string GetBinaryFloatSqlValue() { return $"{BinaryFloatValue.ToString("###.#####", CultureInfo.InvariantCulture)}"; }
         public static string GetBlobSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"convert(varbinary, '{BlobValue}')" : $"utl_raw.cast_to_raw('{BlobValue}')"; }
         public static string GetBoolSqlValue() { return BoolValue ? "1": "0"; }
         public static string GetCharSqlValue() { return $"'{CharValue}'"; }

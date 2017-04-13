@@ -162,6 +162,35 @@ namespace ACopyLibTest
             ReadAndVerify("decimal", null, 21, 5);
         }
 
+        [TestMethod]
+        public void TestNumeric()
+        {
+            _mssTableCreator.NumericColumn(21, 5);
+
+            WriteAndVerify(
+                "<Type>Dec</Type>",
+                "<Prec>21</Prec>",
+                "<Scale>5</Scale>",
+                TestTableCreator.GetDecSqlValue());
+
+            ReadAndVerify("decimal", null, 21, 5);
+        }
+
+        [TestMethod]
+        public void TestFloat24()
+        {
+            _mssTableCreator.FloatColumn(24);
+
+            WriteAndVerify(
+                "<Type>Float</Type>",
+                "<Prec>24</Prec>",
+                TestTableCreator.GetBinaryFloatSqlValue());
+
+            // OBS: Prec <= 24 will result in real and prec=24
+            //      Prec > 24 will result in float(53)
+            ReadAndVerify("real", null, 24, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(
