@@ -74,6 +74,11 @@ namespace ACopyTestHelper
             CreateTable("image", TestTableCreator.GetBlobSqlValue(_dbContext));
         }
 
+        public void IntColumn()
+        {
+            CreateTable("int", TestTableCreator.GetIntSqlValue());
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

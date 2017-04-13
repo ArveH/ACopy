@@ -222,6 +222,19 @@ namespace ACopyLibTest
             ReadAndVerify("image", null, null, null);
         }
 
+        [TestMethod]
+        public void TestInt()
+        {
+            _mssTableCreator.IntColumn();
+
+            WriteAndVerify(
+                "<Type>Int</Type>",
+                TestTableCreator.GetIntSqlValue());
+
+            ReadAndVerify("int", null, null, null);
+        }
+
+
         #region Private
 
         private void WriteAndVerify(
