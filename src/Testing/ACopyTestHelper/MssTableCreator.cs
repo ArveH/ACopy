@@ -69,6 +69,11 @@ namespace ACopyTestHelper
             CreateTable(type, TestTableCreator.GetBinaryFloatSqlValue());
         }
 
+        public void ImageColumn()
+        {
+            CreateTable("image", TestTableCreator.GetBlobSqlValue(_dbContext));
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

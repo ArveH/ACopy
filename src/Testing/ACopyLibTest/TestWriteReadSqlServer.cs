@@ -19,6 +19,7 @@ namespace ACopyLibTest
         private IAReader _reader;
         private string _schemaFileName;
         private string _dataFileName;
+        private string _blobFileName;
 
         [TestInitialize]
         public override void Setup()
@@ -34,6 +35,7 @@ namespace ACopyLibTest
 
             _schemaFileName = $@".\{TableName}.{_writer.SchemaFileSuffix}";
             _dataFileName = $@".\{TableName}.{_writer.DataFileSuffix}";
+            _blobFileName = $@".\{TableName}\i000000000000000.raw";
 
             base.Setup();
         }
@@ -204,6 +206,20 @@ namespace ACopyLibTest
             // OBS: Prec <= 24 will result in real and prec=24
             //      Prec > 24 will result in float(53)
             ReadAndVerify("float", null, 53, null);
+        }
+
+        [TestMethod]
+        public void TestImage()
+        {
+            _mssTableCreator.ImageColumn();
+
+            WriteAndVerify(
+                "<Type>OldBlob</Type>",
+                "i000000000000000.raw");
+            var blobContent = File.ReadAllText(_blobFileName);
+            blobContent.Should().Be(TestTableCreator.BlobValue);
+
+            ReadAndVerify("image", null, null, null);
         }
 
         #region Private

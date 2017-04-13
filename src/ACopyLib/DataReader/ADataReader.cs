@@ -179,7 +179,7 @@ namespace ACopyLib.DataReader
 
         public object GetValue(int i)
         {
-            if (_tableDefinition.Columns[i].Type == ColumnTypeName.Blob)
+            if (_tableDefinition.Columns[i].Type == ColumnTypeName.Blob || _tableDefinition.Columns[i].Type == ColumnTypeName.OldBlob)
             {
                 if (_columnValues[i] == null)
                 {

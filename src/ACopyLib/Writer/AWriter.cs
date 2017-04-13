@@ -195,7 +195,7 @@ namespace ACopyLib.Writer
                     continue;
                 }
 
-                if (tableDefinition.Columns[i].Type == ColumnTypeName.Blob)
+                if (tableDefinition.Columns[i].Type == ColumnTypeName.Blob || tableDefinition.Columns[i].Type == ColumnTypeName.OldBlob)
                 {
                     string rawFileName = $"i{rowCounter:D15}.raw";
                     dataWriter.Write(rawFileName);
