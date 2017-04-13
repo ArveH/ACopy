@@ -98,6 +98,18 @@ namespace ACopyLibTest
             ReadAndVerify("char", 10, null, null);
         }
 
+        [TestMethod]
+        public void TestDate()
+        {
+            _mssTableCreator.DateColumn();
+
+            WriteAndVerify(
+                "<Type>Date</Type>",
+                TestTableCreator.DateValue.ToString("yyyyMMdd"));
+
+            ReadAndVerify("date", null, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(
