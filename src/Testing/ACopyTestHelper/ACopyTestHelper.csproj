@@ -41,6 +41,7 @@
     </Compile>
     <Compile Include="ConnectionStrings.cs" />
     <Compile Include="ConversionXmlHelper.cs" />
+    <Compile Include="MssTableCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestTableCreator.cs" />
   </ItemGroup>

@@ -91,7 +91,7 @@
     <Compile Include="TestCreateTableFromXmlSqlServer.cs" />
     <Compile Include="TestCreateTableFromXmlOracle.cs" />
     <Compile Include="TestCreateXmlFromTableOracle.cs" />
-    <Compile Include="TestCreateXmlFromTableSqlServer.cs" />
+    <Compile Include="TestWriteReadSqlServer.cs" />
     <Compile Include="Unit4Tests\TestDoViewsSqlServer.cs" />
     <Compile Include="Unit4Tests\TestDoViewsOracle.cs" />
     <Compile Include="Unit4Tests\TestIndexesOracle.cs" />
