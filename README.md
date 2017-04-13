@@ -1,5 +1,5 @@
 For the current status of the program, more information, downloads and documentation:
-<http://arvehansen.net/codecave/>
+<https://arvehansen.net/codecave/>
 
 ## ACopy
 A tool for copying a complete database to/from text files. It creates schema files and data files per table. The text files can be copied into either an Oracle, Sql Server (or Sql Azure) database. This means that you can copy a complete database from Oracle to Sql Server (or vise versa). It should:
