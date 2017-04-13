@@ -30,6 +30,11 @@ namespace ACopyTestHelper
             CreateTable("bit", TestTableCreator.GetBoolSqlValue());
         }
 
+        public void CharColumn(int length)
+        {
+            CreateTable($"char({length})", TestTableCreator.GetCharSqlValue());
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

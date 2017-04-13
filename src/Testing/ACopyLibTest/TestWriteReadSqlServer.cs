@@ -52,10 +52,7 @@ namespace ACopyLibTest
             _mssTableCreator.BigIntColumn();
 
             WriteAndVerify(
-                new List<string>()
-                {
-                    "<Type>Int64</Type>"
-                },
+                "<Type>Int64</Type>",
                 TestTableCreator.GetInt64SqlValue());
 
             ReadAndVerify("bigint", null, null, null);
@@ -67,11 +64,8 @@ namespace ACopyLibTest
             _mssTableCreator.BinaryColumn();
 
             WriteAndVerify(
-                new List<string>()
-                {
-                    "<Type>Raw</Type>",
-                    "<Length>50</Length>"
-                },
+                "<Type>Raw</Type>",
+                "<Length>50</Length>",
                 Convert.ToBase64String(
                     Encoding.UTF8.GetBytes(
                         TestTableCreator.RawValue)));
@@ -85,16 +79,49 @@ namespace ACopyLibTest
             _mssTableCreator.BitColumn();
 
             WriteAndVerify(
-                new List<string>()
-                {
-                    "<Type>Bool</Type>",
-                },
+                "<Type>Bool</Type>",
                 TestTableCreator.GetBoolSqlValue());
 
             ReadAndVerify("bit", null, null, null);
         }
 
+        [TestMethod]
+        public void TestChar10()
+        {
+            _mssTableCreator.CharColumn(10);
+
+            WriteAndVerify(
+                "<Type>Char</Type>",
+                "<Length>10</Length>",
+                TestTableCreator.GetCharSqlValue());
+
+            ReadAndVerify("char", 10, null, null);
+        }
+
         #region Private
+
+        private void WriteAndVerify(
+            string exptectedType,
+            string expectedData)
+        {
+            WriteAndVerify(
+                new List<string>() {exptectedType},
+                expectedData);
+        }
+
+        private void WriteAndVerify(
+            string exptectedType,
+            string exptectedNum1,
+            string expectedData)
+        {
+            WriteAndVerify(
+                new List<string>()
+                {
+                    exptectedType,
+                    exptectedNum1
+                },
+                expectedData);
+        }
 
         private void WriteAndVerify(
             List<string> exptectedSchemaStuff,
