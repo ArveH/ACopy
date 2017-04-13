@@ -40,6 +40,11 @@ namespace ACopyTestHelper
             CreateTable($"date", TestTableCreator.GetDateSqlValue(_dbContext));
         }
 
+        public void DateTimeColumn()
+        {
+            CreateTable($"datetime", TestTableCreator.GetDateTimeSqlValue(_dbContext));
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

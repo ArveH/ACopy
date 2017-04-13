@@ -110,6 +110,18 @@ namespace ACopyLibTest
             ReadAndVerify("date", null, null, null);
         }
 
+        [TestMethod]
+        public void TestDateTime()
+        {
+            _mssTableCreator.DateTimeColumn();
+
+            WriteAndVerify(
+                "<Type>DateTime</Type>",
+                TestTableCreator.DateTimeValue.ToString("yyyyMMdd hh:mm:ss"));
+
+            ReadAndVerify("datetime", null, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(
