@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using ADatabase.Exceptions;
 
@@ -107,6 +108,18 @@ namespace ADatabase
                 length = 0;
                 prec = 0;
                 if (ConvertToParameters["Scale"] != -99) scale = ConvertToParameters["Scale"];
+            }
+            else if (ConvertToParameters.Count == 1)
+            {
+                length = ConvertToParameters.First().Value;
+                prec = 0;
+                scale = 0;
+            }
+            else if (ConvertToParameters.Count == 2)
+            {
+                length = 0;
+                prec = ConvertToParameters.ElementAt(0).Value;
+                scale = ConvertToParameters.ElementAt(1).Value;
             }
             else
             {

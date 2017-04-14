@@ -295,6 +295,31 @@ namespace ACopyLibTest
             ReadAndVerify("ntext", null, null, null);
         }
 
+        [TestMethod]
+        public void TestNVarcharMax()
+        {
+            _mssTableCreator.NVarchar(-1);
+
+            WriteAndVerify(
+                "<Type>NLongText</Type>",
+                TestTableCreator.NVarcharValue);
+
+            ReadAndVerify("nvarchar", -1, null, null);
+        }
+
+        [TestMethod]
+        public void TestNVarchar50()
+        {
+            _mssTableCreator.NVarchar(50);
+
+            WriteAndVerify(
+                "<Type>NVarchar</Type>",
+                "<Length>50</Length>",
+                TestTableCreator.NVarcharValue);
+
+            ReadAndVerify("nvarchar", 50, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(

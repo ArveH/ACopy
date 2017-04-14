@@ -91,7 +91,13 @@ namespace ACopyTestHelper
 
         public void NTextColumn()
         {
-            CreateTable($"ntext", TestTableCreator.GetNLongTextSqlValue());
+            CreateTable("ntext", TestTableCreator.GetNLongTextSqlValue());
+        }
+
+        public void NVarchar(int length)
+        {
+            var type = length == -1 ? "nvarchar(max)" : $"nvarchar({length})";
+            CreateTable(type, TestTableCreator.GetNVarcharSqlValue());
         }
 
         public void SmallIntColumn()
