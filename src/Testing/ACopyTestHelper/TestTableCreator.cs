@@ -37,8 +37,7 @@ namespace ACopyTestHelper
                 columnFactory.CreateInstance(ColumnTypeName.SmallDateTime, "smalldatetime_col", false, "MIN_DATE"),
                 columnFactory.CreateInstance(ColumnTypeName.SmallMoney, "smallmoney_col", 0, 10, 4, false, false, "0", ""),
                 columnFactory.CreateInstance(ColumnTypeName.Time, "time_col", false, "MIN_DATE"),
-                columnFactory.CreateInstance(ColumnTypeName.Timestamp, "timestamp_col", false, "MIN_DATE"),
-                columnFactory.CreateInstance(ColumnTypeName.Timestamp, "timestamp5_col", 5, 0, 0, false, false, "MIN_DATE", ""),
+                columnFactory.CreateInstance(ColumnTypeName.Timestamp, "timestamp_col", false, ""),
                 columnFactory.CreateInstance(ColumnTypeName.Varchar, "varchar_col", 50, false, "' '", "Danish_Norwegian_CI_AS")
             };
             if (addDepercatedTypes)
@@ -76,7 +75,6 @@ namespace ACopyTestHelper
             stmt.Append("smallmoney_col, ");
             stmt.Append("time_col, ");
             stmt.Append("timestamp_col, ");
-            stmt.Append("timestamp5_col, ");
             stmt.Append("varchar_col");
             if (addDepercatedTypes)
             {
@@ -112,7 +110,6 @@ namespace ACopyTestHelper
             stmt.Append(GetSmallMoneySqlValue());
             stmt.Append(GetTimeSqlValue(dbContext));
             stmt.Append(GetTimeStampSqlValue(dbContext));
-            stmt.Append(GetTimeStamp5SqlValue(dbContext));
             stmt.Append(GetVarcharSqlValue());
 
             stmt.Append($"{BinaryDoubleValue:F15}, ");
@@ -140,7 +137,6 @@ namespace ACopyTestHelper
             stmt.Append($"{SmallMoneyValue:F3}, ");
             stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"'{TimeValue:HH:mm:ss}', " : $"to_date('{TimeValue:HH:mm:ss}', 'HH24:MI:SS'), ");
             stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"'{TimeStampValue:MMM dd yyyy HH:mm:ss.fffffff}', " : $"to_timestamp('{TimeStampValue:MMM dd yyyy HH:mm:ss.fffffff}', 'Mon DD YYYY HH24:MI:SS.FF'), ");
-            stmt.Append(dbContext.DbType == DbTypeName.SqlServer ? $"'{TimeStamp5Value:MMM dd yyyy HH:mm:ss.fffff}', " : $"to_timestamp('{TimeStamp5Value:MMM dd yyyy HH:mm:ss.fffff}', 'Mon DD YYYY HH24:MI:SS.FF'), ");
             stmt.Append($"'{VarcharValue}'");
             if (addDepercatedTypes)
             {
@@ -179,7 +175,6 @@ namespace ACopyTestHelper
         public static decimal SmallMoneyValue { get; } = 123.123m;
         public static TimeSpan TimeValue { get; } = new TimeSpan(0, 11, 9, 13, 123);
         public static DateTime TimeStampValue { get; } = DateTime.Parse("Feb 23 1900 11:12:13.12345678");
-        public static DateTime TimeStamp5Value { get; } = DateTime.Parse("Feb 23 1900 11:12:13.12345");
         public static string VarcharValue { get; } = "A varchar string";
 
         public static string GetVinaryDoubleSqlValue() { return $"{BinaryDoubleValue:F15}"; }
@@ -207,7 +202,6 @@ namespace ACopyTestHelper
         public static string GetSmallMoneySqlValue() { return $"{SmallMoneyValue.ToString("F3", CultureInfo.InvariantCulture)}"; }
         public static string GetTimeSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"convert(time,'{TimeValue:c}')" : $"to_date('{TimeValue:HH:mm:ss}', 'HH24:MI:SS')"; }
         public static string GetTimeStampSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{TimeStampValue:MMM dd yyyy HH:mm:ss.fffffff}'" : $"to_timestamp('{TimeStampValue:MMM dd yyyy HH:mm:ss.fffffff}', 'Mon DD YYYY HH24:MI:SS.FF')"; }
-        public static string GetTimeStamp5SqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{TimeStamp5Value:MMM dd yyyy HH:mm:ss.fffff}'" : $"to_timestamp('{TimeStamp5Value:MMM dd yyyy HH:mm:ss.fffff}', 'Mon DD YYYY HH24:MI:SS.FF')"; }
         public static string GetVarcharSqlValue() { return $"'{VarcharValue}'"; }
 
     public static void CreateUnit4TestableWithAllTypes(IDbContext dbContext, string tableName)

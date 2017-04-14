@@ -164,6 +164,7 @@
     <Compile Include="SqlServer\Columns\SqlServerSmallIntColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerIntColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerBigIntColumn.cs" />
+    <Compile Include="SqlServer\Columns\SqlServerTimestampColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerTinyIntColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerMoneyColumn.cs" />
     <Compile Include="SqlServer\Columns\SqlServerSmallMoneyColumn.cs" />

@@ -66,7 +66,7 @@ namespace ADatabase.SqlServer
                 case ColumnTypeName.Time:
                     return new SqlServerTimeColumn(name, isNullable, def);
                 case ColumnTypeName.Timestamp:
-                    return new SqlServerDatetime2Column(name, length, isNullable, def);
+                    return new SqlServerTimestampColumn(name, isNullable, def);
                 case ColumnTypeName.Varchar:
                     return new SqlServerVarcharColumn(name, length, isNullable, def, collation);
             }

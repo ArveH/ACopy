@@ -26,7 +26,7 @@
   <Type Source="smallmoney" Destination="smallmoney"></Type>
   <Type Source="text" Destination="oldtext"></Type>
   <Type Source="time" Destination="time"></Type>
-  <Type Source="timestamp(@Length)" Destination="timestamp(@Length)"></Type>
+  <Type Source="timestamp" Destination="timestamp"></Type>
   <Type Source="tinyint" Destination="int8"></Type>
   <Type Source="uniqueidentifier" Destination="guid"></Type>
   <Type Source="varbinary(@Length)" Destination="blob">

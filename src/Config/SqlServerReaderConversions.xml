@@ -29,7 +29,6 @@
   <Type Source="smalldatetime" Destination="smalldatetime"/>
   <Type Source="smallmoney" Destination="smallmoney"/>
   <Type Source="time" Destination="time"/>
-  <Type Source="timestamp" Destination="datetime2"/>
-  <Type Source="timestamp(@Length)" Destination="timestamp(@Length)"/>
+  <Type Source="timestamp" Destination="timestamp"/>
   <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>
 </TypeConversions>
