@@ -119,7 +119,7 @@ namespace ACopyLibTest
 
             WriteAndVerify(
                 "<Type>DateTime</Type>",
-                TestTableCreator.DateTimeValue.ToString("yyyyMMdd hh:mm:ss"));
+                TestTableCreator.DateTimeValue.ToString("yyyyMMdd HH:mm:ss"));
 
             ReadAndVerify("datetime", null, null, null);
         }
@@ -132,7 +132,7 @@ namespace ACopyLibTest
             WriteAndVerify(
                 "<Type>DateTime2</Type>",
                 "<Scale>7</Scale>",
-                TestTableCreator.DateTimeValue.ToString("yyyyMMdd hh:mm:ss"));
+                TestTableCreator.DateTimeValue.ToString("yyyyMMdd HH:mm:ss"));
 
             ReadAndVerify("datetime2", null, null, 7);
         }
@@ -145,7 +145,7 @@ namespace ACopyLibTest
             WriteAndVerify(
                 "<Type>DateTime2</Type>",
                 "<Scale>5</Scale>",
-                TestTableCreator.DateTimeValue.ToString("yyyyMMdd hh:mm:ss"));
+                TestTableCreator.DateTimeValue.ToString("yyyyMMdd HH:mm:ss"));
 
             ReadAndVerify("datetime2", null, null, 5);
         }
@@ -179,13 +179,12 @@ namespace ACopyLibTest
         }
 
         [TestMethod]
-        public void TestFloat24()
+        public void TestFloat20()
         {
-            _mssTableCreator.FloatColumn(24);
+            _mssTableCreator.FloatColumn(20);
 
             WriteAndVerify(
-                "<Type>Float</Type>",
-                "<Prec>24</Prec>",
+                "<Type>BinaryFloat</Type>",
                 TestTableCreator.GetBinaryFloatSqlValue());
 
             // OBS: Prec <= 24 will result in real and prec=24
@@ -244,30 +243,6 @@ namespace ACopyLibTest
                 TestTableCreator.GetMoneySqlValue());
 
             ReadAndVerify("money", null, null, null);
-        }
-
-        [TestMethod]
-        public void TestSmallMoney()
-        {
-            _mssTableCreator.SmallMoneyColumn();
-
-            WriteAndVerify(
-                "<Type>SmallMoney</Type>",
-                TestTableCreator.GetSmallMoneySqlValue());
-
-            ReadAndVerify("smallmoney", null, null, null);
-        }
-
-        [TestMethod]
-        public void TestSmallInt()
-        {
-            _mssTableCreator.SmallIntColumn();
-
-            WriteAndVerify(
-                "<Type>Int16</Type>",
-                TestTableCreator.GetInt16SqlValue());
-
-            ReadAndVerify("smallint", null, null, null);
         }
 
         [TestMethod]
@@ -330,6 +305,42 @@ namespace ACopyLibTest
                 TestTableCreator.GetBinaryFloatSqlValue());
 
             ReadAndVerify("real", null, null, null);
+        }
+
+        [TestMethod]
+        public void TestSmallDateTime()
+        {
+            _mssTableCreator.SmallDateTime();
+
+            WriteAndVerify(
+                "<Type>SmallDateTime</Type>",
+                TestTableCreator.SmallDateTimeValue.ToString("yyyyMMdd HH:mm:ss"));
+
+            ReadAndVerify("smalldatetime", null, null, null);
+        }
+
+        [TestMethod]
+        public void TestSmallMoney()
+        {
+            _mssTableCreator.SmallMoneyColumn();
+
+            WriteAndVerify(
+                "<Type>SmallMoney</Type>",
+                TestTableCreator.GetSmallMoneySqlValue());
+
+            ReadAndVerify("smallmoney", null, null, null);
+        }
+
+        [TestMethod]
+        public void TestSmallInt()
+        {
+            _mssTableCreator.SmallIntColumn();
+
+            WriteAndVerify(
+                "<Type>Int16</Type>",
+                TestTableCreator.GetInt16SqlValue());
+
+            ReadAndVerify("smallint", null, null, null);
         }
 
         #region Private

@@ -100,6 +100,11 @@ namespace ACopyTestHelper
             CreateTable(type, TestTableCreator.GetNVarcharSqlValue());
         }
 
+        public void SmallDateTime()
+        {
+            CreateTable("smalldatetime", TestTableCreator.GetSmallDateTimeSqlValue(_dbContext));
+        }
+
         public void SmallIntColumn()
         {
             CreateTable("smallint", TestTableCreator.GetInt16SqlValue());
