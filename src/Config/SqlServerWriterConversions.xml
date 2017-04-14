@@ -22,6 +22,7 @@
   <Type Source="nvarchar(@Length)" Destination="nvarchar(@Length)"></Type>
   <Type Source="real" Destination="binaryfloat"></Type>
   <Type Source="smalldatetime" Destination="smalldatetime"></Type>
+  <Type Source="smallint" Destination="int16"></Type>
   <Type Source="smallmoney" Destination="smallmoney"></Type>
   <Type Source="text" Destination="oldtext"></Type>
   <Type Source="time" Destination="time"></Type>

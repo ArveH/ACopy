@@ -234,6 +234,41 @@ namespace ACopyLibTest
             ReadAndVerify("int", null, null, null);
         }
 
+        [TestMethod]
+        public void TestMoney()
+        {
+            _mssTableCreator.MoneyColumn();
+
+            WriteAndVerify(
+                "<Type>Money</Type>",
+                TestTableCreator.GetMoneySqlValue());
+
+            ReadAndVerify("money", null, null, null);
+        }
+
+        [TestMethod]
+        public void TestSmallMoney()
+        {
+            _mssTableCreator.SmallMoneyColumn();
+
+            WriteAndVerify(
+                "<Type>SmallMoney</Type>",
+                TestTableCreator.GetSmallMoneySqlValue());
+
+            ReadAndVerify("smallmoney", null, null, null);
+        }
+
+        [TestMethod]
+        public void TestSmallInt()
+        {
+            _mssTableCreator.SmallIntColumn();
+
+            WriteAndVerify(
+                "<Type>Int16</Type>",
+                TestTableCreator.GetInt16SqlValue());
+
+            ReadAndVerify("smallint", null, null, null);
+        }
 
         #region Private
 

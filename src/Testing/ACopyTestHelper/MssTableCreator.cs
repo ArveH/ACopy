@@ -79,6 +79,21 @@ namespace ACopyTestHelper
             CreateTable("int", TestTableCreator.GetIntSqlValue());
         }
 
+        public void MoneyColumn()
+        {
+            CreateTable("money", TestTableCreator.GetMoneySqlValue());
+        }
+
+        public void SmallMoneyColumn()
+        {
+            CreateTable("smallmoney", TestTableCreator.GetSmallMoneySqlValue());
+        }
+
+        public void SmallIntColumn()
+        {
+            CreateTable("smallint", TestTableCreator.GetInt16SqlValue());
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)
