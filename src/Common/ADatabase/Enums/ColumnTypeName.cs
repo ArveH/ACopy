@@ -30,6 +30,7 @@
         SmallMoney,
         Time,
         Timestamp,
-        Varchar
+        Varchar,
+        VarRaw
     }
 }

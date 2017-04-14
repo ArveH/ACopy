@@ -405,6 +405,21 @@ namespace ACopyLibTest
             ReadAndVerify("varbinary", -1, null, null);
         }
 
+        [TestMethod]
+        public void TestVarbinary5000()
+        {
+            _mssTableCreator.Varbinary(5000);
+
+            WriteAndVerify(
+                "<Type>VarRaw</Type>",
+                "<Length>5000</Length>",
+                Convert.ToBase64String(
+                    Encoding.UTF8.GetBytes(
+                        TestTableCreator.BlobValue)));
+
+            ReadAndVerify("varbinary", 5000, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(

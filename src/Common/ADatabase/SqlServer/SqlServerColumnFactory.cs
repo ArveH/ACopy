@@ -69,6 +69,8 @@ namespace ADatabase.SqlServer
                     return new SqlServerTimestampColumn(name, isNullable, def);
                 case ColumnTypeName.Varchar:
                     return new SqlServerVarcharColumn(name, length, isNullable, def, collation);
+                case ColumnTypeName.VarRaw:
+                    return new SqlServerVarBinaryColumn(name, length, isNullable, def);
             }
 
             throw new AColumnTypeException($"Illegal type: {type}");

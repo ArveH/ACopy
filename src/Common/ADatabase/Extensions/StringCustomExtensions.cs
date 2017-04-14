@@ -16,6 +16,8 @@ namespace ADatabase.Extensions
             {
                 case "bigint":
                     return ADatabase.ColumnTypeName.Int64;
+                case "binary":
+                    return ADatabase.ColumnTypeName.Raw;
                 case "binary_float":
                 case "binaryfloat":
                     return ADatabase.ColumnTypeName.BinaryFloat;
@@ -100,10 +102,12 @@ namespace ADatabase.Extensions
                 case "uniqueidentity":
                     return ADatabase.ColumnTypeName.Guid;
                 case "varbinary":
-                    return length <= 0 ? ADatabase.ColumnTypeName.Blob : ADatabase.ColumnTypeName.Raw;
+                    return length <= 0 ? ADatabase.ColumnTypeName.Blob : ADatabase.ColumnTypeName.VarRaw;
                 case "varchar":
                 case "varchar2":
                     return ADatabase.ColumnTypeName.Varchar;
+                case "varraw":
+                    return ADatabase.ColumnTypeName.VarRaw;
             }
 
             throw new ADatabaseException($"Copy program doesn't have a representation for ACopy column type {str}");

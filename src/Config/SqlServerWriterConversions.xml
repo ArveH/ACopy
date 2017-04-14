@@ -9,13 +9,13 @@
   <Type Source="datetime" Destination="datetime"></Type>
   <Type Source="datetime2(@Scale)" Destination="datetime2(@Scale)"></Type>
   <Type Source="decimal(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
-  <Type Source="numeric(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
   <Type Source="float(@Prec)" Destination="float(@Prec)"></Type>
   <Type Source="image" Destination="oldblob"></Type>
   <Type Source="int" Destination="int"></Type>
   <Type Source="money" Destination="money"></Type>
   <Type Source="nchar(@Length)" Destination="nchar(@Length)"></Type>
   <Type Source="ntext" Destination="noldtext"></Type>
+  <Type Source="numeric(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
   <Type Source="nvarchar(@Length)" Destination="nlongtext">
       <Length Operator="=">-1</Length>
   </Type>
@@ -32,7 +32,7 @@
   <Type Source="varbinary(@Length)" Destination="blob">
       <Length Operator="=">-1</Length>
   </Type>
-  <Type Source="varbinary(@Length)" Destination="raw(@Length)"></Type>
+  <Type Source="varbinary(@Length)" Destination="varraw(@Length)"></Type>
   <Type Source="varchar(@Length)" Destination="longtext">
       <Length Operator="=">-1</Length>
   </Type>

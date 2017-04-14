@@ -16,6 +16,7 @@ namespace ADatabase.SqlServer.Columns
             {
                 Details["Length"] = length;
                 _typeString = $"varbinary({length})";
+                Type = ColumnTypeName.VarRaw;
             }
         }
 
@@ -38,12 +39,20 @@ namespace ADatabase.SqlServer.Columns
 
         public override string ToString(object value)
         {
-            throw new NotImplementedException("Column.ToFile for BLOB");
+            if (Type == ColumnTypeName.Blob) throw new NotImplementedException("Column.ToFile for BLOB");
+
+            return Convert.ToBase64String((byte[])value);
         }
 
         public override object ToInternalType(string value)
         {
-            throw new NotImplementedException("Column.ToInternalType for BLOB");
+            if (Type == ColumnTypeName.Blob) throw new NotImplementedException("Column.ToInternalType for BLOB");
+
+            if (value == null)
+            {
+                return DBNull.Value;
+            }
+            return Convert.FromBase64String(value);
         }
 
         public override Type GetDotNetType()

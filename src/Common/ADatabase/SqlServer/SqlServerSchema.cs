@@ -169,7 +169,7 @@ namespace ADatabase.SqlServer
                     string def = reader.GetString(7);
                     bool isIdentity = reader.GetBoolean(8);
                     string sourceType = type.AddParameters();
-                    ColumnTypeName colType = columnTypeConverter.GetDestinationType(sourceType, ref length, ref prec, ref scale).ColumnTypeName();
+                    ColumnTypeName colType = columnTypeConverter.GetDestinationType(sourceType, ref length, ref prec, ref scale).ColumnTypeName(length);
                     if (colType == ColumnTypeName.Blob || colType == ColumnTypeName.OldBlob)
                     {
                         tableHasBlobColumn = true;
