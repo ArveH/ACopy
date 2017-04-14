@@ -199,7 +199,7 @@ namespace ACopyTestHelper
         public static string GetInt8SqlValue() { return $"{Int8Value}"; }
         public static string GetLongTextSqlValue() { return $"'{LongTextValue}'"; }
         public static string GetMoneySqlValue() { return $"{MoneyValue.ToString(CultureInfo.InvariantCulture)}"; }
-        public static string GetNCharSqlValue() { return $"'{NCharValue}'"; }
+        public static string GetNCharSqlValue() { return $"N'{NCharValue}'"; }
         public static string GetNLongTextSqlValue() { return $"'{NLongTextValue}'"; }
         public static string GetNVarcharSqlValue() { return $"'{NVarcharValue}'"; }
         public static string GetRawSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"convert(binary, '{RawValue}')" : $"utl_raw.cast_to_raw('{RawValue}')"; }

@@ -270,6 +270,19 @@ namespace ACopyLibTest
             ReadAndVerify("smallint", null, null, null);
         }
 
+        [TestMethod]
+        public void TestNChar10()
+        {
+            _mssTableCreator.NCharColumn(10);
+
+            WriteAndVerify(
+                "<Type>NChar</Type>",
+                "<Length>10</Length>",
+                TestTableCreator.NCharValue);
+
+            ReadAndVerify("nchar", 10, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(
