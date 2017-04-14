@@ -130,6 +130,11 @@ namespace ACopyTestHelper
             CreateTable("time", TestTableCreator.GetTimeSqlValue(_dbContext));
         }
 
+        public void TinyInt()
+        {
+            CreateTable("tinyint", TestTableCreator.GetInt8SqlValue());
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

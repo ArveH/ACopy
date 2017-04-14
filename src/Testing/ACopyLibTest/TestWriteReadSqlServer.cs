@@ -367,6 +367,18 @@ namespace ACopyLibTest
             ReadAndVerify("time", null, null, null);
         }
 
+        [TestMethod]
+        public void TestTinyInt()
+        {
+            _mssTableCreator.TinyInt();
+
+            WriteAndVerify(
+                "<Type>Int8</Type>",
+                TestTableCreator.GetInt8SqlValue());
+
+            ReadAndVerify("tinyint", null, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(
