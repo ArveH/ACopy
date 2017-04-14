@@ -120,6 +120,11 @@ namespace ACopyTestHelper
             CreateTable("real", TestTableCreator.GetBinaryFloatSqlValue());
         }
 
+        public void Text()
+        {
+            CreateTable("text", TestTableCreator.GetLongTextSqlValue());
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

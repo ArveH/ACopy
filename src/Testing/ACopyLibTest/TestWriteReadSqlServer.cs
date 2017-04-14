@@ -343,6 +343,18 @@ namespace ACopyLibTest
             ReadAndVerify("smallint", null, null, null);
         }
 
+        [TestMethod]
+        public void TestText()
+        {
+            _mssTableCreator.Text();
+
+            WriteAndVerify(
+                "<Type>OldText</Type>",
+                TestTableCreator.LongTextValue);
+
+            ReadAndVerify("text", null, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(
