@@ -125,6 +125,11 @@ namespace ACopyTestHelper
             CreateTable("text", TestTableCreator.GetLongTextSqlValue());
         }
 
+        public void Time()
+        {
+            CreateTable("time", TestTableCreator.GetTimeSqlValue(_dbContext));
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

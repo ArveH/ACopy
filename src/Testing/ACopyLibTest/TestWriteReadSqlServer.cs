@@ -355,6 +355,18 @@ namespace ACopyLibTest
             ReadAndVerify("text", null, null, null);
         }
 
+        [TestMethod]
+        public void TestTime()
+        {
+            _mssTableCreator.Time();
+
+            WriteAndVerify(
+                "<Type>Time</Type>",
+                TestTableCreator.TimeValue.ToString("c"));
+
+            ReadAndVerify("time", null, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(
