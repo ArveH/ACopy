@@ -420,6 +420,31 @@ namespace ACopyLibTest
             ReadAndVerify("varbinary", 5000, null, null);
         }
 
+        [TestMethod]
+        public void TestVarcharMax()
+        {
+            _mssTableCreator.Varchar(-1);
+
+            WriteAndVerify(
+                "<Type>LongText</Type>",
+                TestTableCreator.GetLongTextSqlValue());
+
+            ReadAndVerify("varchar", -1, null, null);
+        }
+
+        [TestMethod]
+        public void TestVarchar50()
+        {
+            _mssTableCreator.Varchar(50);
+
+            WriteAndVerify(
+                "<Type>Varchar</Type>",
+                "<Length>50</Length>",
+                TestTableCreator.GetLongTextSqlValue());
+
+            ReadAndVerify("varchar", 50, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(

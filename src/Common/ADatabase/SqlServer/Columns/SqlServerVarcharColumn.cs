@@ -10,9 +10,17 @@ namespace ADatabase.SqlServer.Columns
         public SqlServerVarcharColumn(string name, int length, bool isNullable, string def, string collation)
             : base(name, ColumnTypeName.Varchar, isNullable, false, AdjustDefaultValue(def))
         {
-            Details["Length"] = length;
+            if (length <= 0)
+            {
+                TypeString = "varchar(max)";
+                Type = ColumnTypeName.LongText;
+            }
+            else
+            {
+                Details["Length"] = length;
+                TypeString = $"varchar({length})";
+            }
             Details["Collation"] = collation;
-            TypeString = length == -1 ? "varchar(max)" : $"varchar({length})";
         }
 
         public override string TypeToString()

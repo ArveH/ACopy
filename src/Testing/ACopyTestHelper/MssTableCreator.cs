@@ -146,6 +146,12 @@ namespace ACopyTestHelper
             CreateTable(type, TestTableCreator.GetBlobSqlValue(_dbContext));
         }
 
+        public void Varchar(int length)
+        {
+            var type = length == -1 ? "varchar(max)" : $"varchar({length})";
+            CreateTable(type, TestTableCreator.GetLongTextSqlValue());
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)
