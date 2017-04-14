@@ -140,6 +140,12 @@ namespace ACopyTestHelper
             CreateTable("uniqueidentifier", TestTableCreator.GetGuidSqlValue(_dbContext));
         }
 
+        public void Varbinary(int length)
+        {
+            var type = length == -1 ? "varbinary(max)" : $"varbinary({length})";
+            CreateTable(type, TestTableCreator.GetBlobSqlValue(_dbContext));
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

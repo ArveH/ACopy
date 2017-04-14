@@ -8,8 +8,15 @@ namespace ADatabase.SqlServer.Columns
         public SqlServerVarBinaryColumn(string name, int length, bool isNullable, string def)
             : base(name, ColumnTypeName.Blob, isNullable, false, def)
         {
-            Details["Length"] = length;
-            _typeString = length == 0 || length == -1 ? "varbinary(max)" : $"varbinary({length})";
+            if (length <= 0)
+            {
+                _typeString = "varbinary(max)";
+            }
+            else
+            {
+                Details["Length"] = length;
+                _typeString = $"varbinary({length})";
+            }
         }
 
         public override string TypeToString()
@@ -22,11 +29,11 @@ namespace ADatabase.SqlServer.Columns
             string defaultValue = "";
             if (!string.IsNullOrEmpty(Default))
             {
-                defaultValue = string.Format("default {0} ", Default);
+                defaultValue = $"default {Default} ";
             }
             string notNullConstraint = IsNullable ? "null " : "not null ";
 
-            return string.Format("{0} {1}{2}", TypeToString(), defaultValue, notNullConstraint);
+            return $"{TypeToString()} {defaultValue}{notNullConstraint}";
         }
 
         public override string ToString(object value)

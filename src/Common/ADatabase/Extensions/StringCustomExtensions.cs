@@ -10,7 +10,7 @@ namespace ADatabase.Extensions
             return (TEnumType)Enum.Parse(typeof(TEnumType), enumValue);
         }
 
-        public static ColumnTypeName ColumnTypeName(this string str)
+        public static ColumnTypeName ColumnTypeName(this string str, int length=0)
         {
             switch (str)
             {
@@ -100,7 +100,7 @@ namespace ADatabase.Extensions
                 case "uniqueidentity":
                     return ADatabase.ColumnTypeName.Guid;
                 case "varbinary":
-                    return ADatabase.ColumnTypeName.Raw;
+                    return length <= 0 ? ADatabase.ColumnTypeName.Blob : ADatabase.ColumnTypeName.Raw;
                 case "varchar":
                 case "varchar2":
                     return ADatabase.ColumnTypeName.Varchar;

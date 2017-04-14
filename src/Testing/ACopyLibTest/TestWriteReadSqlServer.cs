@@ -391,6 +391,20 @@ namespace ACopyLibTest
             ReadAndVerify("uniqueidentifier", null, null, null);
         }
 
+        [TestMethod]
+        public void TestBlob()
+        {
+            _mssTableCreator.Varbinary(-1);
+
+            WriteAndVerify(
+                "<Type>Blob</Type>",
+                "i000000000000000.raw");
+            var blobContent = File.ReadAllText(_blobFileName);
+            blobContent.Should().Be(TestTableCreator.BlobValue);
+
+            ReadAndVerify("varbinary", -1, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(
