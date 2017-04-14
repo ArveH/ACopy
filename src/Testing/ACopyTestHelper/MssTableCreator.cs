@@ -110,6 +110,11 @@ namespace ACopyTestHelper
             CreateTable("smallmoney", TestTableCreator.GetSmallMoneySqlValue());
         }
 
+        public void Real()
+        {
+            CreateTable("real", TestTableCreator.GetBinaryFloatSqlValue());
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

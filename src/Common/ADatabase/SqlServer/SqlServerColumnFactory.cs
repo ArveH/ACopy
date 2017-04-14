@@ -14,7 +14,7 @@ namespace ADatabase.SqlServer
                 case ColumnTypeName.BinaryDouble:
                     return new SqlServerFloatColumn(name, 53, isNullable, def);
                 case ColumnTypeName.BinaryFloat:
-                    return new SqlServerFloatColumn(name, 24, isNullable, def);
+                    return new SqlServerRealColumn(name, isNullable, def);
                 case ColumnTypeName.Blob:
                     return new SqlServerVarBinaryColumn(name, length, isNullable, def);
                 case ColumnTypeName.Bool:

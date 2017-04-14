@@ -320,6 +320,18 @@ namespace ACopyLibTest
             ReadAndVerify("nvarchar", 50, null, null);
         }
 
+        [TestMethod]
+        public void TestReal()
+        {
+            _mssTableCreator.Real();
+
+            WriteAndVerify(
+                "<Type>BinaryFloat</Type>",
+                TestTableCreator.GetBinaryFloatSqlValue());
+
+            ReadAndVerify("real", null, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(
