@@ -200,8 +200,8 @@ namespace ACopyTestHelper
         public static string GetLongTextSqlValue() { return $"'{LongTextValue}'"; }
         public static string GetMoneySqlValue() { return $"{MoneyValue.ToString(CultureInfo.InvariantCulture)}"; }
         public static string GetNCharSqlValue() { return $"N'{NCharValue}'"; }
-        public static string GetNLongTextSqlValue() { return $"'{NLongTextValue}'"; }
-        public static string GetNVarcharSqlValue() { return $"'{NVarcharValue}'"; }
+        public static string GetNLongTextSqlValue() { return $"N'{NLongTextValue}'"; }
+        public static string GetNVarcharSqlValue() { return $"N'{NVarcharValue}'"; }
         public static string GetRawSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"convert(binary, '{RawValue}')" : $"utl_raw.cast_to_raw('{RawValue}')"; }
         public static string GetSmallDateTimeSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{SmallDateTimeValue:MMM dd yyyy}'" : $"to_date('{SmallDateTimeValue:MMM dd yyyy}', 'Mon DD YYYY')"; }
         public static string GetSmallMoneySqlValue() { return $"{SmallMoneyValue.ToString("F3", CultureInfo.InvariantCulture)}"; }

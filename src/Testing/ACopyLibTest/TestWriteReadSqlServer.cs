@@ -283,6 +283,18 @@ namespace ACopyLibTest
             ReadAndVerify("nchar", 10, null, null);
         }
 
+        [TestMethod]
+        public void TestNText()
+        {
+            _mssTableCreator.NTextColumn();
+
+            WriteAndVerify(
+                "<Type>NOldText</Type>",
+                TestTableCreator.NLongTextValue);
+
+            ReadAndVerify("ntext", null, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(

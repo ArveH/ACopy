@@ -64,6 +64,9 @@ namespace ADatabase.Extensions
                     return ADatabase.ColumnTypeName.Money;
                 case "nchar":
                     return ADatabase.ColumnTypeName.NChar;
+                case "noldtext":
+                case "ntext":
+                    return ADatabase.ColumnTypeName.NOldText;
                 case "nclob":
                 case "nlongtext":
                     return ADatabase.ColumnTypeName.NLongText;

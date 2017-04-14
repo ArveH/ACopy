@@ -89,6 +89,11 @@ namespace ACopyTestHelper
             CreateTable($"nchar({length})", TestTableCreator.GetNCharSqlValue());
         }
 
+        public void NTextColumn()
+        {
+            CreateTable($"ntext", TestTableCreator.GetNLongTextSqlValue());
+        }
+
         public void SmallIntColumn()
         {
             CreateTable("smallint", TestTableCreator.GetInt16SqlValue());

@@ -47,6 +47,8 @@ namespace ADatabase.SqlServer
                     return new SqlServerNCharColumn(name, length, isNullable, def, collation);
                 case ColumnTypeName.NLongText:
                     return new SqlServerNVarcharColumn(name, -1, isNullable, def, collation);
+                case ColumnTypeName.NOldText:
+                    return new SqlServerNTextColumn(name, isNullable, def, collation);
                 case ColumnTypeName.NVarchar:
                     return new SqlServerNVarcharColumn(name, length, isNullable, def, collation);
                 case ColumnTypeName.OldBlob:

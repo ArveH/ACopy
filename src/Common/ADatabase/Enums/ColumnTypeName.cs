@@ -21,6 +21,7 @@
         Money,
         NChar,
         NLongText,
+        NOldText,
         NVarchar,
         OldBlob,
         OldText,

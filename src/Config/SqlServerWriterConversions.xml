@@ -15,7 +15,7 @@
   <Type Source="int" Destination="int"></Type>
   <Type Source="money" Destination="money"></Type>
   <Type Source="nchar(@Length)" Destination="nchar(@Length)"></Type>
-  <Type Source="ntext" Destination="oldtext"></Type>
+  <Type Source="ntext" Destination="noldtext"></Type>
   <Type Source="nvarchar(@Length)" Destination="nlongtext">
       <Length Operator="=">-1</Length>
   </Type>
