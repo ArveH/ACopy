@@ -135,6 +135,11 @@ namespace ACopyTestHelper
             CreateTable("tinyint", TestTableCreator.GetInt8SqlValue());
         }
 
+        public void Guid()
+        {
+            CreateTable("uniqueidentifier", TestTableCreator.GetGuidSqlValue(_dbContext));
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

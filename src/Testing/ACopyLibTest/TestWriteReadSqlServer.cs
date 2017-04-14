@@ -379,6 +379,18 @@ namespace ACopyLibTest
             ReadAndVerify("tinyint", null, null, null);
         }
 
+        [TestMethod]
+        public void TestGuid()
+        {
+            _mssTableCreator.Guid();
+
+            WriteAndVerify(
+                "<Type>Guid</Type>",
+                TestTableCreator.GuidValue.ToString("D"));
+
+            ReadAndVerify("uniqueidentifier", null, null, null);
+        }
+
         #region Private
 
         private void WriteAndVerify(
