@@ -86,18 +86,18 @@ namespace ACopyTestHelper
 
         public void NCharColumn(int length)
         {
-            CreateTable($"nchar({length})", TestTableCreator.GetNCharSqlValue());
+            CreateTable($"nchar({length})", TestTableCreator.GetNCharSqlValue(_dbContext));
         }
 
         public void NTextColumn()
         {
-            CreateTable("ntext", TestTableCreator.GetNLongTextSqlValue());
+            CreateTable("ntext", TestTableCreator.GetNLongTextSqlValue(_dbContext));
         }
 
         public void NVarchar(int length)
         {
             var type = length == -1 ? "nvarchar(max)" : $"nvarchar({length})";
-            CreateTable(type, TestTableCreator.GetNVarcharSqlValue());
+            CreateTable(type, TestTableCreator.GetNVarcharSqlValue(_dbContext));
         }
 
         public void SmallDateTime()

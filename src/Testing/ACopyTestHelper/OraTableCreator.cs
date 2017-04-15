@@ -73,6 +73,11 @@ namespace ACopyTestHelper
             CreateTable("long", TestTableCreator.GetLongTextSqlValue());
         }
 
+        public void NCharColumn(int length)
+        {
+            CreateTable($"nchar({length})", TestTableCreator.GetNCharSqlValue(_dbContext));
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

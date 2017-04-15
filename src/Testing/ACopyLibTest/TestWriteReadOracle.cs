@@ -154,6 +154,19 @@ namespace ACopyLibTest
         }
 
         [TestMethod]
+        public void TestLong()
+        {
+            _oraTableCreator.LongColumn();
+
+            WriteAndVerify(
+                "OldText",
+                TestTableCreator.GetLongTextSqlValue());
+            CheckThatDetailDoesNotExist(_schemaFileName, "Length");
+
+            ReadAndVerify("long", null, null, null);
+        }
+
+        [TestMethod]
         public void TestLongRaw()
         {
             _oraTableCreator.LongRawColumn();
@@ -169,16 +182,16 @@ namespace ACopyLibTest
         }
 
         [TestMethod]
-        public void TestLong()
+        public void TestNChar10()
         {
-            _oraTableCreator.LongColumn();
+            _oraTableCreator.NCharColumn(10);
 
             WriteAndVerify(
-                "OldText",
-                TestTableCreator.GetLongTextSqlValue());
-            CheckThatDetailDoesNotExist(_schemaFileName, "Length");
+                "NChar",
+                "Length", 10,
+                TestTableCreator.GetNCharSqlValue(DbContext));
 
-            ReadAndVerify("long", null, null, null);
+            ReadAndVerify("nchar", 10, null, null);
         }
 
         #region Private
