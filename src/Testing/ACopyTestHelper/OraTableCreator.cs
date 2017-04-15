@@ -63,6 +63,11 @@ namespace ACopyTestHelper
             }
         }
 
+        public void LongRawColumn()
+        {
+            CreateTable("long raw", TestTableCreator.GetBlobSqlValue(_dbContext));
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

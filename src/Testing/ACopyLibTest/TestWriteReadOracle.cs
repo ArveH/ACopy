@@ -153,6 +153,21 @@ namespace ACopyLibTest
             ReadAndVerify("float", null, 20, null);
         }
 
+        [TestMethod]
+        public void TestLongRaw()
+        {
+            _oraTableCreator.LongRawColumn();
+
+            WriteAndVerify(
+                "OldBlob",
+                "i000000000000000.raw");
+            var blobContent = File.ReadAllText(_blobFileName);
+            blobContent.Should().Be(TestTableCreator.BlobValue);
+            CheckThatDetailDoesNotExist(_schemaFileName, "Length");
+
+            ReadAndVerify("long raw", null, null, null);
+        }
+
         #region Private
 
         private void CheckDataFile(string expectedData)

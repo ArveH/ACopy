@@ -8,7 +8,7 @@
   <Type Source="clob" Destination="longtext"/>
   <Type Source="date" Destination="datetime"></Type>
   <Type Source="float(@Prec)" Destination="float(@Prec)"></Type>
-  <Type Source="integer" Destination="int"/>
+<!--ANSI types int, integer and smallint are all created as NUMBER without prec and scale-->
   <Type Source="longraw" Destination="longraw"></Type>
   <Type Source="long" Destination="long"></Type>
   <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>
@@ -19,6 +19,7 @@
     <Length Operator="in">16,32,17,34</Length>
   </Type>
   <Type Source="raw(@Length)" Destination="raw(@Length)"></Type>
+<!--ANSI type real is created as FLOAT(63)-->
   <Type Source="timestamp(@Length)" Destination="timestamp(@Length)"></Type>
   <Type Source="varchar2(@Length)" Destination="varchar(@Length)"/>
   <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>

@@ -27,6 +27,8 @@ namespace ADatabase
                 ToSystem = _xmlConversionsReader.GetDestinationSystem(rootNode);
                 foreach (XmlNode typeNode in rootNode.ChildNodes)
                 {
+                    if (typeNode.NodeType == XmlNodeType.Comment) continue;
+
                     var typeDescription = _xmlConversionsReader.GetColumnTypeDescription(typeNode);
                     _types.Add(typeDescription);
                 }
