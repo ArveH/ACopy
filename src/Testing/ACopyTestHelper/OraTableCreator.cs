@@ -78,6 +78,11 @@ namespace ACopyTestHelper
             CreateTable($"nchar({length})", TestTableCreator.GetNCharSqlValue(_dbContext));
         }
 
+        public void NClobColumn()
+        {
+            CreateTable("nclob", TestTableCreator.GetNLongTextSqlValue(_dbContext));
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

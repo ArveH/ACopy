@@ -12,7 +12,7 @@
   <Type Source="long" Destination="oldtext"></Type>
   <Type Source="longraw" Destination="oldblob"></Type>
   <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>
-  <Type Source="nclob" Destination="nclob"/>
+  <Type Source="nclob" Destination="nlongtext"/>
   <Type Source="number(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
   <Type Source="nvarchar2(@Length)" Destination="nvarchar(@Length)"/>
   <Type Source="raw(@Length)" Destination="guid">

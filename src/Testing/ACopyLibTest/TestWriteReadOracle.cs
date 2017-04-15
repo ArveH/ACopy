@@ -194,6 +194,19 @@ namespace ACopyLibTest
             ReadAndVerify("nchar", 10, null, null);
         }
 
+        [TestMethod]
+        public void TestNClob()
+        {
+            _oraTableCreator.NClobColumn();
+
+            WriteAndVerify(
+                "NLongText",
+                TestTableCreator.GetNLongTextSqlValue(DbContext));
+            CheckThatDetailDoesNotExist(_schemaFileName, "Length");
+
+            ReadAndVerify("nclob", null, null, null);
+        }
+
         #region Private
 
         private void CheckDataFile(string expectedData)
