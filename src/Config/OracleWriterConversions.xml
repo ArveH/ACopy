@@ -9,8 +9,8 @@
   <Type Source="date" Destination="datetime"></Type>
   <Type Source="float(@Prec)" Destination="float(@Prec)"></Type>
 <!--ANSI types int, integer and smallint are all created as NUMBER without prec and scale-->
-  <Type Source="longraw" Destination="longraw"></Type>
-  <Type Source="long" Destination="long"></Type>
+  <Type Source="long" Destination="oldtext"></Type>
+  <Type Source="longraw" Destination="oldblob"></Type>
   <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>
   <Type Source="nclob" Destination="nclob"/>
   <Type Source="number(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>

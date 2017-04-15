@@ -168,6 +168,19 @@ namespace ACopyLibTest
             ReadAndVerify("long raw", null, null, null);
         }
 
+        [TestMethod]
+        public void TestLong()
+        {
+            _oraTableCreator.LongColumn();
+
+            WriteAndVerify(
+                "OldText",
+                TestTableCreator.GetLongTextSqlValue());
+            CheckThatDetailDoesNotExist(_schemaFileName, "Length");
+
+            ReadAndVerify("long", null, null, null);
+        }
+
         #region Private
 
         private void CheckDataFile(string expectedData)
