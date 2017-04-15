@@ -27,6 +27,11 @@ namespace ACopyTestHelper
             CreateTable("binary_float", TestTableCreator.GetBinaryFloatSqlValue());
         }
 
+        public void Blob()
+        {
+            CreateTable("blob", TestTableCreator.GetBlobSqlValue(_dbContext));
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

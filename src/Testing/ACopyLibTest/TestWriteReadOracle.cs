@@ -74,6 +74,20 @@ namespace ACopyLibTest
             ReadAndVerify("binary_float", null, null, null);
         }
 
+        [TestMethod]
+        public void TestBlob()
+        {
+            _oraTableCreator.Blob();
+
+            WriteAndVerify(
+                "Blob",
+                "i000000000000000.raw");
+            var blobContent = File.ReadAllText(_blobFileName);
+            blobContent.Should().Be(TestTableCreator.BlobValue);
+            CheckThatDetailDoesNotExist(_schemaFileName, "Length");
+
+            ReadAndVerify("blob", null, null, null);
+        }
 
         #region Private
 
