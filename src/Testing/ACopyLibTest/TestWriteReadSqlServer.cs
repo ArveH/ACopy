@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml;
 using ACopyLib.Reader;
 using ACopyLib.Writer;
 using ACopyTestHelper;
@@ -54,7 +55,7 @@ namespace ACopyLibTest
             _mssTableCreator.BigIntColumn();
 
             WriteAndVerify(
-                "<Type>Int64</Type>",
+                "Int64",
                 TestTableCreator.GetInt64SqlValue());
 
             ReadAndVerify("bigint", null, null, null);
@@ -66,8 +67,8 @@ namespace ACopyLibTest
             _mssTableCreator.BinaryColumn();
 
             WriteAndVerify(
-                "<Type>Raw</Type>",
-                "<Length>50</Length>",
+                "Raw",
+                "Length", 50,
                 Convert.ToBase64String(
                     Encoding.UTF8.GetBytes(
                         TestTableCreator.RawValue)));
@@ -81,7 +82,7 @@ namespace ACopyLibTest
             _mssTableCreator.BitColumn();
 
             WriteAndVerify(
-                "<Type>Bool</Type>",
+                "Bool",
                 TestTableCreator.GetBoolSqlValue());
 
             ReadAndVerify("bit", null, null, null);
@@ -93,8 +94,8 @@ namespace ACopyLibTest
             _mssTableCreator.CharColumn(10);
 
             WriteAndVerify(
-                "<Type>Char</Type>",
-                "<Length>10</Length>",
+                "Char",
+                "Length", 10,
                 TestTableCreator.GetCharSqlValue());
 
             ReadAndVerify("char", 10, null, null);
@@ -106,7 +107,7 @@ namespace ACopyLibTest
             _mssTableCreator.DateColumn();
 
             WriteAndVerify(
-                "<Type>Date</Type>",
+                "Date",
                 TestTableCreator.DateValue.ToString("yyyyMMdd"));
 
             ReadAndVerify("date", null, null, null);
@@ -118,7 +119,7 @@ namespace ACopyLibTest
             _mssTableCreator.DateTimeColumn();
 
             WriteAndVerify(
-                "<Type>DateTime</Type>",
+                "DateTime",
                 TestTableCreator.DateTimeValue.ToString("yyyyMMdd HH:mm:ss"));
 
             ReadAndVerify("datetime", null, null, null);
@@ -130,8 +131,8 @@ namespace ACopyLibTest
             _mssTableCreator.DateTime2Column(0);
 
             WriteAndVerify(
-                "<Type>DateTime2</Type>",
-                "<Scale>7</Scale>",
+                "DateTime2",
+                "Scale", 7,
                 TestTableCreator.DateTimeValue.ToString("yyyyMMdd HH:mm:ss"));
 
             ReadAndVerify("datetime2", null, null, 7);
@@ -143,8 +144,8 @@ namespace ACopyLibTest
             _mssTableCreator.DateTime2Column(5);
 
             WriteAndVerify(
-                "<Type>DateTime2</Type>",
-                "<Scale>5</Scale>",
+                "DateTime2",
+                "Scale", 5,
                 TestTableCreator.DateTimeValue.ToString("yyyyMMdd HH:mm:ss"));
 
             ReadAndVerify("datetime2", null, null, 5);
@@ -156,9 +157,8 @@ namespace ACopyLibTest
             _mssTableCreator.DecimalColumn(21,5);
 
             WriteAndVerify(
-                "<Type>Dec</Type>",
-                "<Prec>21</Prec>",
-                "<Scale>5</Scale>",
+                "Dec",
+                21, 5,
                 TestTableCreator.GetDecSqlValue());
 
             ReadAndVerify("decimal", null, 21, 5);
@@ -170,9 +170,8 @@ namespace ACopyLibTest
             _mssTableCreator.NumericColumn(21, 5);
 
             WriteAndVerify(
-                "<Type>Dec</Type>",
-                "<Prec>21</Prec>",
-                "<Scale>5</Scale>",
+                "Dec",
+                21, 5,
                 TestTableCreator.GetDecSqlValue());
 
             ReadAndVerify("decimal", null, 21, 5);
@@ -184,7 +183,7 @@ namespace ACopyLibTest
             _mssTableCreator.FloatColumn(20);
 
             WriteAndVerify(
-                "<Type>BinaryFloat</Type>",
+                "BinaryFloat",
                 TestTableCreator.GetBinaryFloatSqlValue());
 
             // OBS: Prec <= 24 will result in real and prec=24
@@ -198,8 +197,8 @@ namespace ACopyLibTest
             _mssTableCreator.FloatColumn(0);
 
             WriteAndVerify(
-                "<Type>Float</Type>",
-                "<Prec>53</Prec>",
+                "Float",
+                "Prec", 53,
                 TestTableCreator.GetBinaryFloatSqlValue());
 
             // OBS: Prec <= 24 will result in real and prec=24
@@ -213,10 +212,11 @@ namespace ACopyLibTest
             _mssTableCreator.ImageColumn();
 
             WriteAndVerify(
-                "<Type>OldBlob</Type>",
+                "OldBlob",
                 "i000000000000000.raw");
             var blobContent = File.ReadAllText(_blobFileName);
             blobContent.Should().Be(TestTableCreator.BlobValue);
+            CheckThatDetailDoesNotExist(_schemaFileName, "Length");
 
             ReadAndVerify("image", null, null, null);
         }
@@ -227,7 +227,7 @@ namespace ACopyLibTest
             _mssTableCreator.IntColumn();
 
             WriteAndVerify(
-                "<Type>Int</Type>",
+                "Int",
                 TestTableCreator.GetIntSqlValue());
 
             ReadAndVerify("int", null, null, null);
@@ -239,7 +239,7 @@ namespace ACopyLibTest
             _mssTableCreator.MoneyColumn();
 
             WriteAndVerify(
-                "<Type>Money</Type>",
+                "Money",
                 TestTableCreator.GetMoneySqlValue());
 
             ReadAndVerify("money", null, null, null);
@@ -251,8 +251,8 @@ namespace ACopyLibTest
             _mssTableCreator.NCharColumn(10);
 
             WriteAndVerify(
-                "<Type>NChar</Type>",
-                "<Length>10</Length>",
+                "NChar",
+                "Length", 10,
                 TestTableCreator.NCharValue);
 
             ReadAndVerify("nchar", 10, null, null);
@@ -264,7 +264,7 @@ namespace ACopyLibTest
             _mssTableCreator.NTextColumn();
 
             WriteAndVerify(
-                "<Type>NOldText</Type>",
+                "NOldText",
                 TestTableCreator.NLongTextValue);
 
             ReadAndVerify("ntext", null, null, null);
@@ -276,7 +276,7 @@ namespace ACopyLibTest
             _mssTableCreator.NVarchar(-1);
 
             WriteAndVerify(
-                "<Type>NLongText</Type>",
+                "NLongText",
                 TestTableCreator.NVarcharValue);
 
             ReadAndVerify("nvarchar", -1, null, null);
@@ -288,8 +288,8 @@ namespace ACopyLibTest
             _mssTableCreator.NVarchar(50);
 
             WriteAndVerify(
-                "<Type>NVarchar</Type>",
-                "<Length>50</Length>",
+                "NVarchar",
+                "Length", 50,
                 TestTableCreator.NVarcharValue);
 
             ReadAndVerify("nvarchar", 50, null, null);
@@ -301,7 +301,7 @@ namespace ACopyLibTest
             _mssTableCreator.Real();
 
             WriteAndVerify(
-                "<Type>BinaryFloat</Type>",
+                "BinaryFloat",
                 TestTableCreator.GetBinaryFloatSqlValue());
 
             ReadAndVerify("real", null, null, null);
@@ -313,7 +313,7 @@ namespace ACopyLibTest
             _mssTableCreator.SmallDateTime();
 
             WriteAndVerify(
-                "<Type>SmallDateTime</Type>",
+                "SmallDateTime",
                 TestTableCreator.SmallDateTimeValue.ToString("yyyyMMdd HH:mm:ss"));
 
             ReadAndVerify("smalldatetime", null, null, null);
@@ -325,7 +325,7 @@ namespace ACopyLibTest
             _mssTableCreator.SmallMoneyColumn();
 
             WriteAndVerify(
-                "<Type>SmallMoney</Type>",
+                "SmallMoney",
                 TestTableCreator.GetSmallMoneySqlValue());
 
             ReadAndVerify("smallmoney", null, null, null);
@@ -337,7 +337,7 @@ namespace ACopyLibTest
             _mssTableCreator.SmallIntColumn();
 
             WriteAndVerify(
-                "<Type>Int16</Type>",
+                "Int16",
                 TestTableCreator.GetInt16SqlValue());
 
             ReadAndVerify("smallint", null, null, null);
@@ -349,7 +349,7 @@ namespace ACopyLibTest
             _mssTableCreator.Text();
 
             WriteAndVerify(
-                "<Type>OldText</Type>",
+                "OldText",
                 TestTableCreator.LongTextValue);
 
             ReadAndVerify("text", null, null, null);
@@ -361,7 +361,7 @@ namespace ACopyLibTest
             _mssTableCreator.Time();
 
             WriteAndVerify(
-                "<Type>Time</Type>",
+                "Time",
                 TestTableCreator.TimeValue.ToString("c"));
 
             ReadAndVerify("time", null, null, null);
@@ -373,7 +373,7 @@ namespace ACopyLibTest
             _mssTableCreator.TinyInt();
 
             WriteAndVerify(
-                "<Type>Int8</Type>",
+                "Int8",
                 TestTableCreator.GetInt8SqlValue());
 
             ReadAndVerify("tinyint", null, null, null);
@@ -385,7 +385,7 @@ namespace ACopyLibTest
             _mssTableCreator.Guid();
 
             WriteAndVerify(
-                "<Type>Guid</Type>",
+                "Guid",
                 TestTableCreator.GuidValue.ToString("D"));
 
             ReadAndVerify("uniqueidentifier", null, null, null);
@@ -397,10 +397,11 @@ namespace ACopyLibTest
             _mssTableCreator.Varbinary(-1);
 
             WriteAndVerify(
-                "<Type>Blob</Type>",
+                "Blob",
                 "i000000000000000.raw");
             var blobContent = File.ReadAllText(_blobFileName);
             blobContent.Should().Be(TestTableCreator.BlobValue);
+            CheckThatDetailDoesNotExist(_schemaFileName, "Length");
 
             ReadAndVerify("varbinary", -1, null, null);
         }
@@ -411,8 +412,8 @@ namespace ACopyLibTest
             _mssTableCreator.Varbinary(5000);
 
             WriteAndVerify(
-                "<Type>VarRaw</Type>",
-                "<Length>5000</Length>",
+                "VarRaw",
+                "Length", 5000,
                 Convert.ToBase64String(
                     Encoding.UTF8.GetBytes(
                         TestTableCreator.BlobValue)));
@@ -426,8 +427,9 @@ namespace ACopyLibTest
             _mssTableCreator.Varchar(-1);
 
             WriteAndVerify(
-                "<Type>LongText</Type>",
+                "LongText",
                 TestTableCreator.GetLongTextSqlValue());
+            CheckThatDetailDoesNotExist(_schemaFileName, "Length");
 
             ReadAndVerify("varchar", -1, null, null);
         }
@@ -438,8 +440,8 @@ namespace ACopyLibTest
             _mssTableCreator.Varchar(50);
 
             WriteAndVerify(
-                "<Type>Varchar</Type>",
-                "<Length>50</Length>",
+                "Varchar",
+                "Length", 50,
                 TestTableCreator.GetLongTextSqlValue());
 
             ReadAndVerify("varchar", 50, null, null);
@@ -447,59 +449,49 @@ namespace ACopyLibTest
 
         #region Private
 
-        private void WriteAndVerify(
-            string exptectedType,
-            string expectedData)
+        private void CheckDataFile(string expectedData)
         {
-            WriteAndVerify(
-                new List<string>() {exptectedType},
-                expectedData);
+            var fileContent = File.ReadAllText(_dataFileName);
+            fileContent.Should().Contain(expectedData);
         }
 
-        private void WriteAndVerify(
-            string exptectedType,
-            string exptectedNum1,
-            string expectedData)
-        {
-            WriteAndVerify(
-                new List<string>()
-                {
-                    exptectedType,
-                    exptectedNum1
-                },
-                expectedData);
-        }
-
-        private void WriteAndVerify(
-            string exptectedType,
-            string exptectedNum1,
-            string exptectedNum2,
-            string expectedData)
-        {
-            WriteAndVerify(
-                new List<string>()
-                {
-                    exptectedType,
-                    exptectedNum2,
-                    exptectedNum1
-                },
-                expectedData);
-        }
-
-
-        private void WriteAndVerify(
-            List<string> exptectedSchemaStuff,
-            string expectedData)
+        private XmlDocument GetXmlDocument()
         {
             _writer.WriteTable(TableName);
-            var fileContent = File.ReadAllText(_schemaFileName);
-            foreach (var str in exptectedSchemaStuff)
-            {
-                fileContent.Should().Contain(str);
-            }
+            var xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(File.ReadAllText(_schemaFileName));
+            return xmlDocument;
+        }
 
-            fileContent = File.ReadAllText(_dataFileName);
-            fileContent.Should().Contain(expectedData);
+        private void WriteAndVerify(
+            string expectedType,
+            string expectedData)
+        {
+            var xmlDocument = GetXmlDocument();
+            CheckColumnType(xmlDocument, expectedType);
+            CheckDataFile(expectedData);
+        }
+
+        private void WriteAndVerify(
+            string expectedType,
+            string tagName,
+            int size,
+            string expectedData)
+        {
+            var xmlDocument = GetXmlDocument();
+            CheckColumnType(xmlDocument, expectedType, tagName, size);
+            CheckDataFile(expectedData);
+        }
+
+        private void WriteAndVerify(
+            string exptectedType,
+            int prec,
+            int scale,
+            string expectedData)
+        {
+            var xmlDocument = GetXmlDocument();
+            CheckColumnType(xmlDocument, exptectedType, prec, scale);
+            CheckDataFile(expectedData);
         }
 
         private void ReadAndVerify(

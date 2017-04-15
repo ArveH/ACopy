@@ -183,36 +183,6 @@ namespace ACopyLibTest
             return xmlDocument;
         }
 
-        private static void CheckColumnType(XmlDocument xmlDocument, string columnType)
-        {
-            var typeNode = xmlDocument.DocumentElement?.SelectSingleNode("/Table/Columns/Column/Type");
-            typeNode.Should().NotBeNull("because column has to have Type");
-            typeNode?.InnerText.Should().Be(columnType);
-        }
-
-        private static void CheckColumnType(XmlDocument xmlDocument, string columnType, int length)
-        {
-            CheckColumnType(xmlDocument, columnType);
-
-            var detailsNode = xmlDocument.DocumentElement?.SelectSingleNode("/Table/Columns/Column/Details");
-            var lengthNode = detailsNode?.SelectSingleNode("Length");
-            lengthNode.Should().NotBeNull("because column should have precision");
-            lengthNode?.InnerText.Should().Be(length.ToString());
-        }
-
-        private static void CheckColumnType(XmlDocument xmlDocument, string columnType, int prec, int scale)
-        {
-            CheckColumnType(xmlDocument, columnType);
-
-            var detailsNode = xmlDocument.DocumentElement?.SelectSingleNode("/Table/Columns/Column/Details");
-            var precNode = detailsNode?.SelectSingleNode("Prec");
-            precNode.Should().NotBeNull("because column should have precision");
-            precNode?.InnerText.Should().Be(prec.ToString());
-            var scaleNode = detailsNode?.SelectSingleNode("Scale");
-            scaleNode.Should().NotBeNull("because column should have scale");
-            scaleNode?.InnerText.Should().Be(scale.ToString());
-        }
-
         #endregion
     }
 }
