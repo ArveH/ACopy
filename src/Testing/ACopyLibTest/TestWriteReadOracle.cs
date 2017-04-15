@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Xml;
@@ -206,6 +207,59 @@ namespace ACopyLibTest
 
             ReadAndVerify("nclob", null, null, null);
         }
+
+        [TestMethod]
+        public void TestNumber()
+        {
+            _oraTableCreator.Number();
+
+            WriteAndVerify(
+                "Dec",
+                0, 0,
+                TestTableCreator.GetFloatSqlValue());
+
+            ReadAndVerify("number", null, 0, 0);
+        }
+
+        [TestMethod]
+        public void TestNumberWithPrec()
+        {
+            _oraTableCreator.Number("23", null);
+
+            WriteAndVerify(
+                "Dec",
+                23, 0,
+                Convert.ToString((int)TestTableCreator.FloatValue));
+
+            ReadAndVerify("number", null, 23, 0);
+        }
+
+        [TestMethod]
+        public void TestNumberWithScale()
+        {
+            _oraTableCreator.Number("*", "15");
+
+            WriteAndVerify(
+                "Dec",
+                0, 15,
+                TestTableCreator.GetFloatSqlValue());
+
+            ReadAndVerify("number", null, 0, 15);
+        }
+
+        [TestMethod]
+        public void TestNumberWithPrecAndScale()
+        {
+            _oraTableCreator.Number("30", "15");
+
+            WriteAndVerify(
+                "Dec",
+                30, 15,
+                TestTableCreator.GetFloatSqlValue());
+
+            ReadAndVerify("number", null, 30, 15);
+        }
+
 
         #region Private
 

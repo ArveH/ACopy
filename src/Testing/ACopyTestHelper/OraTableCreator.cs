@@ -83,6 +83,23 @@ namespace ACopyTestHelper
             CreateTable("nclob", TestTableCreator.GetNLongTextSqlValue(_dbContext));
         }
 
+        public void Number()
+        {
+            CreateTable("number", TestTableCreator.GetFloatSqlValue());
+        }
+
+        public void Number(string prec, string scale)
+        {
+            if (scale == null)
+            {
+                CreateTable($"number({prec})", TestTableCreator.GetFloat47SqlValue());
+            }
+            else
+            {
+                CreateTable($"number({prec}, {scale})", TestTableCreator.GetFloatSqlValue());
+            }
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

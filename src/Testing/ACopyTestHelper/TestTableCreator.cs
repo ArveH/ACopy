@@ -185,8 +185,8 @@ namespace ACopyTestHelper
         public static string GetDateSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{DateValue:MMM dd yyyy}'" : $"to_date('{DateValue:MMM dd yyyy}', 'Mon DD YYYY')"; }
         public static string GetDateTimeSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{DateTimeValue:MMM dd yyyy HH:mm:ss}'" : $"to_date('{DateTimeValue:MMM dd yyyy HH:mm:ss}', 'Mon DD YYYY HH24:MI:SS')"; }
         public static string GetDecSqlValue() { return $"{DecValue.ToString("###.#####", CultureInfo.InvariantCulture)}"; }
-        public static string GetFloatSqlValue() { return $"{FloatValue:F15}"; }
-        public static string GetFloat47SqlValue() { return $"{Float47Value:F15}"; }
+        public static string GetFloatSqlValue() { return $"{FloatValue.ToString("F15", CultureInfo.InvariantCulture)}"; }
+        public static string GetFloat47SqlValue() { return $"{Float47Value.ToString("F15", CultureInfo.InvariantCulture)}"; }
         public static string GetGuidSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"'{GuidValue}'" : $"hextoraw('{GuidValue.ToString().Replace("-","")}')"; }
         public static string GetIntSqlValue() { return $"{IntValue}"; }
         public static string GetInt16SqlValue() { return $"{Int16Value.ToString(CultureInfo.InvariantCulture)}"; }
