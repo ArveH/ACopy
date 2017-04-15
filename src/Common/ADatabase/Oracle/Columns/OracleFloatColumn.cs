@@ -7,13 +7,13 @@ namespace ADatabase.Oracle.Columns
     {
         private readonly string _typeToString;
 
-        public OracleFloatColumn(string name, int length, bool isNullable, string def)
+        public OracleFloatColumn(string name, int prec, bool isNullable, string def)
             : base(name, ColumnTypeName.Float, isNullable, def)
         {
-            if (length > 0)
+            if (prec > 0)
             {
-                Details["Length"] = length;
-                _typeToString = $"float({length})";
+                Details["Prec"] = prec;
+                _typeToString = $"float({prec})";
             }
             else
             {
@@ -28,8 +28,7 @@ namespace ADatabase.Oracle.Columns
 
         public override string ToString(object value)
         {
-            // The # removes trailing zero. Will round up last number if more than 8 decimals. 
-            return Convert.ToDecimal(value).ToString("0.########", CultureInfo.InvariantCulture);
+            return Convert.ToDecimal(value).ToString(CultureInfo.InvariantCulture);
         }
 
         public override Type GetDotNetType()

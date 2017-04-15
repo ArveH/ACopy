@@ -32,6 +32,37 @@ namespace ACopyTestHelper
             CreateTable("blob", TestTableCreator.GetBlobSqlValue(_dbContext));
         }
 
+        public void CharColumn(int length)
+        {
+            CreateTable($"char({length})", TestTableCreator.GetCharSqlValue());
+        }
+
+        public void Clob()
+        {
+            CreateTable("clob", TestTableCreator.GetLongTextSqlValue());
+        }
+
+        public void Date()
+        {
+            CreateTable("date", TestTableCreator.GetDateTimeSqlValue(_dbContext));
+        }
+
+        public void FloatColumn(int length)
+        {
+            if (length <= 0)
+            {
+                CreateTable("float", TestTableCreator.GetBinaryDoubleSqlValue());
+            }
+            else if (length > 24)
+            {
+                CreateTable($"float({length})", TestTableCreator.GetBinaryDoubleSqlValue());
+            }
+            else
+            {
+                CreateTable($"float({length})", TestTableCreator.GetBinaryFloatSqlValue());
+            }
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

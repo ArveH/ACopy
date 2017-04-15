@@ -6,6 +6,7 @@
             : base(name, -1, isNullable, def)
         {
             Type = ColumnTypeName.LongText;
+            Details.Remove("Length");
         }
 
         public override string TypeToString()

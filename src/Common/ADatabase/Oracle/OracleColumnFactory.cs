@@ -32,7 +32,7 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.DateTime:
                     return new OracleDateColumn(name, isNullable, def);
                 case ColumnTypeName.Float:
-                    return new OracleFloatColumn(name, length, isNullable, def);
+                    return new OracleFloatColumn(name, prec, isNullable, def);
                 case ColumnTypeName.Guid:
                     return new OracleRawColumn(name, 16, isNullable, def);
                 case ColumnTypeName.LongText:

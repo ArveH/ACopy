@@ -89,6 +89,70 @@ namespace ACopyLibTest
             ReadAndVerify("blob", null, null, null);
         }
 
+        [TestMethod]
+        public void TestChar10()
+        {
+            _oraTableCreator.CharColumn(10);
+
+            WriteAndVerify(
+                "Char",
+                "Length", 10,
+                TestTableCreator.GetCharSqlValue());
+
+            ReadAndVerify("char", 10, null, null);
+        }
+
+        [TestMethod]
+        public void TestClob()
+        {
+            _oraTableCreator.Clob();
+
+            WriteAndVerify(
+                "LongText",
+                TestTableCreator.GetLongTextSqlValue());
+            CheckThatDetailDoesNotExist(_schemaFileName, "Length");
+
+            ReadAndVerify("clob", null, null, null);
+        }
+
+        [TestMethod]
+        public void TestDate()
+        {
+            _oraTableCreator.Date();
+
+            WriteAndVerify(
+                "DateTime",
+                TestTableCreator.DateTimeValue.ToString("yyyyMMdd HH:mm:ss"));
+
+            ReadAndVerify("date", null, null, null);
+        }
+
+        [TestMethod]
+        public void TestFloat()
+        {
+            _oraTableCreator.FloatColumn(0);
+
+            WriteAndVerify(
+                "Float",
+                TestTableCreator.GetBinaryDoubleSqlValue());
+            CheckThatDetailDoesNotExist(_schemaFileName, "Length");
+
+            ReadAndVerify("float", null, 126, null);
+        }
+
+        [TestMethod]
+        public void TestFloat20()
+        {
+            _oraTableCreator.FloatColumn(20);
+
+            WriteAndVerify(
+                "Float",
+                "Prec", 20,
+                TestTableCreator.GetBinaryFloatSqlValue());
+
+            ReadAndVerify("float", null, 20, null);
+        }
+
         #region Private
 
         private void CheckDataFile(string expectedData)
