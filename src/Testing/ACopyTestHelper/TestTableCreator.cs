@@ -85,7 +85,7 @@ namespace ACopyTestHelper
 
             stmt.Append("values (");
 
-            stmt.Append(GetVinaryDoubleSqlValue());
+            stmt.Append(GetBinaryDoubleSqlValue());
             stmt.Append(GetBinaryFloatSqlValue());
             stmt.Append(GetBlobSqlValue(dbContext));
             stmt.Append(GetBoolSqlValue());
@@ -151,7 +151,7 @@ namespace ACopyTestHelper
         }
 
         public static double BinaryDoubleValue { get; } = 1.01234567890123;
-        public static double BinaryFloatValue { get; } = 1.0123456;
+        public static double BinaryFloatValue { get; } = 1.01234;
         public static string BlobValue { get; } = "Lots of bytes";
         public static bool BoolValue { get; } = true;
         public static string CharValue { get; } = "MO";
@@ -177,7 +177,7 @@ namespace ACopyTestHelper
         public static DateTime TimeStampValue { get; } = DateTime.Parse("Feb 23 1900 11:12:13.12345678");
         public static string VarcharValue { get; } = "A varchar string";
 
-        public static string GetVinaryDoubleSqlValue() { return $"{BinaryDoubleValue:F15}"; }
+        public static string GetBinaryDoubleSqlValue() { return $"{BinaryDoubleValue.ToString("###.############", CultureInfo.InvariantCulture)}"; }
         public static string GetBinaryFloatSqlValue() { return $"{BinaryFloatValue.ToString("###.#####", CultureInfo.InvariantCulture)}"; }
         public static string GetBlobSqlValue(IDbContext dbContext) { return dbContext.DbType == DbTypeName.SqlServer? $"convert(varbinary, '{BlobValue}')" : $"utl_raw.cast_to_raw('{BlobValue}')"; }
         public static string GetBoolSqlValue() { return BoolValue ? "1": "0"; }

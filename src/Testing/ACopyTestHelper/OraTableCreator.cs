@@ -19,7 +19,12 @@ namespace ACopyTestHelper
 
         public void BinaryDoubleColumn()
         {
-            CreateTable("binary_double", TestTableCreator.GetBinaryFloatSqlValue());
+            CreateTable("binary_double", TestTableCreator.GetBinaryDoubleSqlValue());
+        }
+
+        public void BinaryFloatColumn()
+        {
+            CreateTable("binary_float", TestTableCreator.GetBinaryFloatSqlValue());
         }
 
         #region Private

@@ -18,7 +18,7 @@ namespace ADatabase.Oracle.Columns
         public override string ToString(object value)
         {
             // The # removes trailing zero. Will round up last number if more than 8 decimals. 
-            return Convert.ToDouble(value).ToString("0.########", CultureInfo.InvariantCulture);
+            return Convert.ToDouble(value).ToString(CultureInfo.InvariantCulture);
         }
 
         public override Type GetDotNetType()

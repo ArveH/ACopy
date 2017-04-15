@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Xml;
 using ACopyLib.Reader;
@@ -48,15 +49,29 @@ namespace ACopyLibTest
         }
 
         [TestMethod]
-        public void TestBinaryDouble_When_Oracle()
+        public void TestBinaryDouble()
         {
             _oraTableCreator.BinaryDoubleColumn();
 
             WriteAndVerify(
                 "BinaryDouble",
-                TestTableCreator.GetBinaryFloatSqlValue());
+                // Check the first 11 decimals to avoid double rounding problems
+                TestTableCreator.BinaryDoubleValue.ToString("F11", CultureInfo.InvariantCulture));
 
             ReadAndVerify("binary_double", null, null, null);
+        }
+
+        [TestMethod]
+        public void TestBinaryFloat()
+        {
+            _oraTableCreator.BinaryFloatColumn();
+
+            WriteAndVerify(
+                "BinaryFloat",
+                // Test value for BinaryFloat has 5 decimals, so check the first 4 to handle float rounding problems
+                TestTableCreator.BinaryFloatValue.ToString("F4", CultureInfo.InvariantCulture));
+
+            ReadAndVerify("binary_float", null, null, null);
         }
 
 
