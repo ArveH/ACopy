@@ -339,6 +339,19 @@ namespace ACopyLibTest
             ReadAndVerify("timestamp(9)", null, null, 9);
         }
 
+        [TestMethod]
+        public void TestVarchar2()
+        {
+            _oraTableCreator.Varchar2(20);
+
+            WriteAndVerify(
+                "Varchar",
+                "Length", 20,
+                TestTableCreator.GetVarcharSqlValue());
+
+            ReadAndVerify("varchar2", 20, null, null);
+        }
+
         #region Private
 
         private void CheckDataFile(string expectedData)

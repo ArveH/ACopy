@@ -116,6 +116,11 @@ namespace ACopyTestHelper
             CreateTable(type, TestTableCreator.GetTimeStampSqlValue(_dbContext));
         }
 
+        public void Varchar2(int length)
+        {
+            CreateTable($"varchar2({length})", TestTableCreator.GetVarcharSqlValue());
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)
