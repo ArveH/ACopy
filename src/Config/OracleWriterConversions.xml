@@ -15,9 +15,9 @@
   <Type Source="nclob" Destination="nlongtext"/>
   <Type Source="number(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
   <Type Source="nvarchar2(@Length)" Destination="nvarchar(@Length)"/>
-  <Type Source="raw(@Length)" Destination="guid">
-    <Length Operator="in">16,32,17,34</Length>
-  </Type>
+  <!--<Type Source="raw(@Length)" Destination="guid">
+    <Length Operator="in">16,32</Length>
+  </Type>-->
   <Type Source="raw(@Length)" Destination="raw(@Length)"></Type>
 <!--ANSI type real is created as FLOAT(63)-->
   <Type Source="timestamp(@Length)" Destination="timestamp(@Length)"></Type>

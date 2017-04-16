@@ -34,7 +34,7 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.Float:
                     return new OracleFloatColumn(name, prec, isNullable, def);
                 case ColumnTypeName.Guid:
-                    return new OracleRawColumn(name, 16, isNullable, def);
+                    return new OracleRawColumn(name, type, 16, isNullable, def);
                 case ColumnTypeName.LongText:
                     return new OracleClobColumn(name, isNullable, def);
                 case ColumnTypeName.NChar:
@@ -48,7 +48,7 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.OldText:
                     return new OracleLongColumn(name, isNullable, def);
                 case ColumnTypeName.Raw:
-                    return new OracleRawColumn(name, length, isNullable, def);
+                    return new OracleRawColumn(name, type, length, isNullable, def);
                 case ColumnTypeName.SmallDateTime:
                 case ColumnTypeName.Time:
                     return new OracleDateColumn(name, isNullable, def);

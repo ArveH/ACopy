@@ -9,7 +9,7 @@ namespace ADatabase
         List<IColumn> Columns { get; }
         List<IIndexDefinition> Indexes { get; set; }
         bool HasBlobColumn { get; set; }
-        void SetSizeForGuid(int rawLength);
         void SetCollation(string collation);
+        List<string> GetRaw16Columns();
     }
 }

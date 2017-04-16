@@ -260,6 +260,58 @@ namespace ACopyLibTest
             ReadAndVerify("number", null, 30, 15);
         }
 
+        [TestMethod]
+        public void TestRaw()
+        {
+            _oraTableCreator.Raw(10);
+
+            WriteAndVerify(
+                "Raw",
+                "Length", 10,
+                TestTableCreator.RawValue);
+
+            ReadAndVerify("raw", 10, null, null);
+        }
+
+        [TestMethod]
+        public void TestRaw16()
+        {
+            _oraTableCreator.Raw(16);
+
+            WriteAndVerify(
+                "Raw",
+                "Length", 16,
+                TestTableCreator.RawValue);
+
+            ReadAndVerify("raw", 16, null, null);
+        }
+
+        // Oracle doesn't have guids. Modify writerconversions.xml file to test guids.
+        //[TestMethod]
+        //public void TestGuid()
+        //{
+        //    _oraTableCreator.Guid();
+
+        //    WriteAndVerify(
+        //        "Guid",
+        //        "Length", 16,
+        //        TestTableCreator.GuidValue.ToString());
+
+        //    ReadAndVerify("raw", 16, null, null);
+        //}
+
+        [TestMethod]
+        public void TestRaw17()
+        {
+            _oraTableCreator.Raw(17);
+
+            WriteAndVerify(
+                "Raw",
+                "Length", 17,
+                TestTableCreator.RawValue);
+
+            ReadAndVerify("raw", 17, null, null);
+        }
 
         #region Private
 

@@ -100,6 +100,16 @@ namespace ACopyTestHelper
             }
         }
 
+        public void Raw(int length)
+        {
+            CreateTable($"raw({length})", TestTableCreator.GetRawSqlValue(_dbContext));
+        }
+
+        public void Guid()
+        {
+            CreateTable($"raw(16)", TestTableCreator.GetGuidSqlValue(_dbContext));
+        }
+
         #region Private
 
         private void CreateTable(string type, string sqlValue)

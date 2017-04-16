@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ADatabase
 {
@@ -24,15 +25,25 @@ namespace ADatabase
         public bool HasBlobColumn { get; set; }
 
         /// <summary>
-        /// Special handling used because of a bug in Oracle. We temporarily set guid columns to raw(17) (instead of raw(16)).
-        /// This method will look up all guid columns in the table definition, and set the length accordingly
+        /// Special handling used because of a bug in Oracle. We temporarily set raw(16) columns to raw(17).
+        /// This method will find all guid and raw(16) columns in the table definition.
         /// </summary>
-        /// <param name="rawLength">Length for the guid column</param>
-        public void SetSizeForGuid(int rawLength)
+        public List<string> GetRaw16Columns()
         {
-            Columns
-                .FindAll(c => c.Type == ColumnTypeName.Guid)
-                .ForEach(c => c.Details["Length"] = rawLength);
+            var raw16ColumnNames = new List<string>();
+            var raw16Columns = Columns
+                .FindAll(
+                    c =>
+                        (c.Type == ColumnTypeName.Guid || c.Type == ColumnTypeName.Raw) &&
+                        c.Details.ContainsKey("Length") &&
+                        (int) c.Details["Length"] == 16);
+            if (raw16Columns.Count > 0)
+            {
+                raw16ColumnNames.AddRange(
+                    raw16Columns.Select(c => c.Name));
+            }
+
+            return raw16ColumnNames;
         }
 
         public static DbTypeName ConvertStringToDbType(string dbType)

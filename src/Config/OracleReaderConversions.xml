@@ -12,7 +12,11 @@
   <Type Source="dec(@Prec,@Scale)" Destination="number(@Prec,@Scale)"/>
   <Type Source="float(@Prec)" Destination="float(@Prec)"/>
   <Type Source="float" Destination="float"/>
-  <Type Source="guid" Destination="raw(16)"/>
+  <!--OBS Guid should NOT have Destination="raw(16) since the guid string in the
+          data file will not be converted correctly. A raw value is stored as 
+          a base64 encoded string in the data file, while a guid is stored in 
+          clear text."-->
+  <Type Source="guid" Destination="guid"/>
   <Type Source="int" Destination="number(38,0)"/>
   <Type Source="int16" Destination="number(38,0)"/>
   <Type Source="int64" Destination="number(38,0)"/>

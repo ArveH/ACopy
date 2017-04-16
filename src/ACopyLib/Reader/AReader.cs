@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ACopyLib.DataReader;
@@ -85,14 +86,22 @@ namespace ACopyLib.Reader
             long rowCounter;
             try
             {
-                var tableDefinition = CreateTable(schemaFile);
+                var tableDefinition = GetTableDefinition(schemaFile);
+                var raw16Columns = _dbContext.DbType == DbTypeName.Oracle ? tableDefinition.GetRaw16Columns() : new List<string>();
+                tableDefinition.Columns
+                    .FindAll(c => raw16Columns.Contains(c.Name))
+                    .ForEach(c => c.Details["Length"] = 17);
+
+                _dbSchema.DropTable(tableDefinition.Name);
+                _dbSchema.CreateTable(tableDefinition);
+
                 ClusteredIndexOnAgrtid(tableDefinition);
 
                 currentTableName = tableDefinition.Name;
                 _logger.Write($"{currentTableName,30} Started...");
                 var fileName = GetDataFileName(currentTableName);
                 rowCounter = BulkLoadData(tableDefinition, fileName);
-                WhenOracleThenCleanupGuidColumns(tableDefinition);
+                WhenOracleAlterRaw16Columns(tableDefinition.Name, raw16Columns, 16);
 
                 _dbSchema.CreateIndexes(tableDefinition.Indexes);
             }
@@ -126,16 +135,10 @@ namespace ACopyLib.Reader
             }
         }
 
-        private ITableDefinition CreateTable(string schemaFile)
+        private ITableDefinition GetTableDefinition(string schemaFile)
         {
             var tableDefinition = XmlSchemaFactory.CreateInstance(_dbContext).GetTableDefinition(schemaFile);
             SetCollationIfUseCollationParameterUsed(tableDefinition);
-            _dbSchema.DropTable(tableDefinition.Name);
-            if (_dbContext.DbType == DbTypeName.Oracle)
-            {
-                tableDefinition.SetSizeForGuid(17);
-            }
-            _dbSchema.CreateTable(tableDefinition);
             return tableDefinition;
         }
 
@@ -203,37 +206,17 @@ namespace ACopyLib.Reader
             return fileName;
         }
 
-        private void WhenOracleThenCleanupGuidColumns(ITableDefinition tableDefinition)
+        // Workaround to get OracleDataReader to work with raw(16):
+        //    create column as raw(17)
+        //    copy data
+        //    resize to raw(16)
+        // This is because of a bug with the oracle reader.
+        private void WhenOracleAlterRaw16Columns(string tableName, List<string> colNames, int length)
         {
-            if (tableDefinition == null)
-            {
-                return;
-            }
+            if (_dbContext.DbType != DbTypeName.Oracle || colNames.Count == 0) return;
 
-            WhenOracleThenAlterTableOnGuidColumns(tableDefinition);
-            tableDefinition.SetSizeForGuid(16);
-        }
-
-        private void WhenOracleThenAlterTableOnGuidColumns(ITableDefinition tableDefinition)
-        {
-            if (_dbContext.DbType != DbTypeName.Oracle)
-            {
-                return;
-            }
-
-            var guidColumns = tableDefinition.Columns.FindAll(c => c.Type == ColumnTypeName.Guid);
             var commands = _dbContext.PowerPlant.CreateCommands();
-            foreach (var guidCol in guidColumns)
-            {
-                // Workaround to get OracleDataReader to work with raw(16):
-                //    create column as raw(17)
-                //    copy data
-                //    resize to raw(16)
-                // This is a bug with the oracle reader.
-                commands.ExecuteNonQuery($"alter table {tableDefinition.Name} modify {guidCol.Name} raw(16)");
-            }
+            colNames.ForEach(colName => commands.ExecuteNonQuery($"alter table {tableName} modify {colName} raw(16)"));
         }
-
-
     }
 }
