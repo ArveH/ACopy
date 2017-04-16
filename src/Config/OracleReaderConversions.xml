@@ -8,7 +8,9 @@
   <Type Source="char(@Length)" Destination="char(@Length)"/>
   <Type Source="date" Destination="date"/>
   <Type Source="datetime" Destination="date"/>
-  <Type Source="datetime2" Destination="date"/>
+  <!--Timestamp has a different meaning in Sql Server (more like a rowid), 
+      so we use datetime2 to describe "bigger" datetime values-->
+  <Type Source="datetime2(@Scale)" Destination="datetime2(@Scale)"/>
   <Type Source="dec(@Prec,@Scale)" Destination="number(@Prec,@Scale)"/>
   <Type Source="float(@Prec)" Destination="float(@Prec)"/>
   <Type Source="float" Destination="float"/>
@@ -32,7 +34,5 @@
   <Type Source="smalldatetime" Destination="date"/>
   <Type Source="smallmoney" Destination="number(10,4)"/>
   <Type Source="time" Destination="date"/>
-  <Type Source="timestamp" Destination="timestamp"/>
-  <Type Source="timestamp(@Length)" Destination="timestamp(@Length)"/>
   <Type Source="varchar(@Length)" Destination="varchar2(@Length)"/>
 </TypeConversions>

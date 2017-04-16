@@ -1,17 +1,20 @@
-﻿namespace ADatabase.Oracle.Columns
+﻿using System;
+using System.Globalization;
+
+namespace ADatabase.Oracle.Columns
 {
     public class OracleTimestampColumn: OracleDateColumn
     {
         private readonly string _typeToString;
 
-        public OracleTimestampColumn(string name, int length, bool isNullable, string def)
+        public OracleTimestampColumn(string name, int scale, bool isNullable, string def)
             : base(name, isNullable, ConvertNativeDateToKeyword(def))
         {
-            if (length > 0)
+            if (scale > 0)
             {
-                Type = ColumnTypeName.Timestamp;
-                Details["Length"] = length;
-                _typeToString = $"timestamp({length})";
+                Type = ColumnTypeName.DateTime2;
+                Details["Scale"] = scale;
+                _typeToString = $"timestamp({scale})";
             }
             else
             {
@@ -19,6 +22,19 @@
             }
         }
 
+        public override string ToString(object value)
+        {
+            return Convert.ToDateTime(value).ToString("yyyyMMdd HH:mm:ss.fffffff");
+        }
+
+        public override object ToInternalType(string value)
+        {
+            if (value == null)
+            {
+                return DBNull.Value;
+            }
+            return DateTime.ParseExact(value, "yyyyMMdd HH:mm:ss.fffffff", CultureInfo.InvariantCulture);
+        }
 
         public override string TypeToString()
         {

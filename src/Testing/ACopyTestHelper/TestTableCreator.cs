@@ -174,7 +174,7 @@ namespace ACopyTestHelper
         public static DateTime SmallDateTimeValue { get; } = new DateTime(1900, 2, 23);
         public static decimal SmallMoneyValue { get; } = 123.123m;
         public static TimeSpan TimeValue { get; } = new TimeSpan(0, 11, 9, 13, 123);
-        public static DateTime TimeStampValue { get; } = DateTime.Parse("Feb 23 1900 11:12:13.12345678");
+        public static DateTime TimeStampValue { get; } = DateTime.Parse("Feb 23 1900 11:12:13.1234567");
         public static string VarcharValue { get; } = "A varchar string";
 
         public static string GetBinaryDoubleSqlValue() { return $"{BinaryDoubleValue.ToString("###.############", CultureInfo.InvariantCulture)}"; }

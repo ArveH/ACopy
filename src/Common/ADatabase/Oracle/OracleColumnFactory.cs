@@ -31,6 +31,8 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.Date:
                 case ColumnTypeName.DateTime:
                     return new OracleDateColumn(name, isNullable, def);
+                case ColumnTypeName.DateTime2:
+                    return new OracleTimestampColumn(name, scale, isNullable, def);
                 case ColumnTypeName.Float:
                     return new OracleFloatColumn(name, prec, isNullable, def);
                 case ColumnTypeName.Guid:
@@ -52,8 +54,6 @@ namespace ADatabase.Oracle
                 case ColumnTypeName.SmallDateTime:
                 case ColumnTypeName.Time:
                     return new OracleDateColumn(name, isNullable, def);
-                case ColumnTypeName.Timestamp:
-                    return new OracleTimestampColumn(name, length, isNullable, def);
                 case ColumnTypeName.Varchar:
                     return new OracleVarchar2Column(name, length, isNullable, def);
             }

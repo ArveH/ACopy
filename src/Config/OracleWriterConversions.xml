@@ -20,7 +20,7 @@
   </Type>-->
   <Type Source="raw(@Length)" Destination="raw(@Length)"></Type>
 <!--ANSI type real is created as FLOAT(63)-->
-  <Type Source="timestamp(@Length)" Destination="timestamp(@Length)"></Type>
+  <Type Source="timestamp(@Scale)" Destination="datetime2(@Scale)"></Type>
   <Type Source="varchar2(@Length)" Destination="varchar(@Length)"/>
-  <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>
+<!--ANSI type varchar is created as VARCHAR2-->
 </TypeConversions>

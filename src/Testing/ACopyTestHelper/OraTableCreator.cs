@@ -107,7 +107,13 @@ namespace ACopyTestHelper
 
         public void Guid()
         {
-            CreateTable($"raw(16)", TestTableCreator.GetGuidSqlValue(_dbContext));
+            CreateTable("raw(16)", TestTableCreator.GetGuidSqlValue(_dbContext));
+        }
+
+        public void Timestamp(int length)
+        {
+            var type = length <= 0 ? "timestamp" : $"timestamp({length})";
+            CreateTable(type, TestTableCreator.GetTimeStampSqlValue(_dbContext));
         }
 
         #region Private

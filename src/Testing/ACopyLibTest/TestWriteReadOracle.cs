@@ -313,6 +313,32 @@ namespace ACopyLibTest
             ReadAndVerify("raw", 17, null, null);
         }
 
+        [TestMethod]
+        public void TestTimestamp()
+        {
+            _oraTableCreator.Timestamp(0);
+
+            WriteAndVerify(
+                "DateTime2",
+                "Scale", 6,
+                TestTableCreator.DateTimeValue.ToString("yyyyMMdd HH:mm:ss"));
+
+            ReadAndVerify("timestamp(6)", null, null, 6);
+        }
+
+        [TestMethod]
+        public void TestTimestamp9()
+        {
+            _oraTableCreator.Timestamp(9);
+
+            WriteAndVerify(
+                "DateTime2",
+                "Scale", 9,
+                TestTableCreator.TimeStampValue.ToString("yyyyMMdd HH:mm:ss.fffffff"));
+
+            ReadAndVerify("timestamp(9)", null, null, 9);
+        }
+
         #region Private
 
         private void CheckDataFile(string expectedData)
