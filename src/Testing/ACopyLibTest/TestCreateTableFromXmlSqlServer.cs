@@ -16,6 +16,7 @@ namespace ACopyLibTest
             TableName = "htablefromxml";
 
             base.Setup();
+            DbSchema.DropTable(TableName);
         }
 
         [TestCleanup]
@@ -182,7 +183,7 @@ namespace ACopyLibTest
         public void TestRawCol_When_SqlServer()
         {
             CreateTable(ColumnTypeName.Raw, 1000, 0, 0, false, "", null);
-            VerifyColumnType("varbinary", 1000, null, null);
+            VerifyColumnType("binary", 1000, null, null);
         }
 
         [TestMethod, TestCategory("SqlServer")]
@@ -204,20 +205,6 @@ namespace ACopyLibTest
         {
             CreateTable(ColumnTypeName.Time, 0, 0, 0, false, "", null);
             VerifyColumnType("time", null, null, null);
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
-        public void TestTimestampCol_When_SqlServer()
-        {
-            CreateTable(ColumnTypeName.Timestamp, 0, 0, 0, false, "", null);
-            VerifyColumnType("datetime2", null, null, null);
-        }
-
-        [TestMethod, TestCategory("SqlServer")]
-        public void TestTimestampWithLengthCol_When_SqlServer()
-        {
-            CreateTable(ColumnTypeName.Timestamp, 5, 0, 0, false, "", null);
-            VerifyColumnType("datetime2", null, null, 5);
         }
 
         [TestMethod, TestCategory("SqlServer")]

@@ -2,11 +2,13 @@
 <!--Type conversion file for Unit4-->
 <!--The From and To parameters are currently not in use -->
 <TypeConversions From="Oracle" To="ACopy">
-  <Type Source="varchar2(@Length)" Destination="varchar(@Length)"/>
-  <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>
+  <Type Source="blob" Destination="blob"></Type>
   <Type Source="char(@Length)" Destination="varchar(@Length)"/>
   <Type Source="clob" Destination="longtext"/>
+  <Type Source="date" Destination="datetime"></Type>
+  <Type Source="float" Destination="float"></Type>
   <Type Source="integer" Destination="int"/>
+  <Type Source="longraw" Destination="blob"></Type>
   <Type Source="number(@Prec,@Scale)" Destination="bool">
     <Prec Operator="=">1</Prec>
     <Scale Operator="=">0</Scale>
@@ -36,12 +38,12 @@
     <Scale Operator="=">3</Scale>
   </Type>
   <Type Source="number(@Prec,@Scale)" Destination="float"></Type>
-  <Type Source="float" Destination="float"></Type>
-  <Type Source="date" Destination="datetime"></Type>
+  <Type Source="oldblob" Destination="oldblob"></Type>
+  <Type Source="oldtext" Destination="oldtext"></Type>
   <Type Source="raw(@Length)" Destination="guid">
     <Length Operator="in">16,32,17,34</Length>
   </Type>
-  <Type Source="blob" Destination="blob"></Type>
   <Type Source="raw" Destination="blob"></Type>
-  <Type Source="longraw" Destination="blob"></Type>
+  <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>
+  <Type Source="varchar2(@Length)" Destination="varchar(@Length)"/>
 </TypeConversions>

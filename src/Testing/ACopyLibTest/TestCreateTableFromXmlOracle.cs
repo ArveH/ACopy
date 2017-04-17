@@ -16,6 +16,7 @@ namespace ACopyLibTest
             TableName = "htablefromxml";
 
             base.Setup();
+            DbSchema.DropTable(TableName);
         }
 
         [TestCleanup]
@@ -90,7 +91,7 @@ namespace ACopyLibTest
         [TestMethod, TestCategory("Oracle")]
         public void TestFloatColWithLength_When_Oracle()
         {
-            CreateTable(ColumnTypeName.Float, 47, 0, 0, false, "", null);
+            CreateTable(ColumnTypeName.Float, 0, 47, 0, false, "", null);
             VerifyColumnType("FLOAT", null, 47, null);
         }
 
@@ -209,14 +210,14 @@ namespace ACopyLibTest
         [TestMethod, TestCategory("Oracle")]
         public void TestTimestampCol_When_Oracle()
         {
-            CreateTable(ColumnTypeName.Timestamp, 0, 0, 0, false, "", null);
+            CreateTable(ColumnTypeName.DateTime2, 0, 0, 0, false, "", null);
             VerifyColumnType("TIMESTAMP(6)", null, null, null);
         }
 
         [TestMethod, TestCategory("Oracle")]
         public void TestTimestampWithLengthCol_When_Oracle()
         {
-            CreateTable(ColumnTypeName.Timestamp, 9, 0, 0, false, "", null);
+            CreateTable(ColumnTypeName.DateTime2, 0, 0, 9, false, "", null);
             VerifyColumnType("TIMESTAMP(9)", null, null, null);
         }
 

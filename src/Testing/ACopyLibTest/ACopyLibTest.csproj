@@ -90,7 +90,6 @@
     <Compile Include="TestCopyLibBase.cs" />
     <Compile Include="TestCreateTableFromXmlSqlServer.cs" />
     <Compile Include="TestCreateTableFromXmlOracle.cs" />
-    <Compile Include="TestCreateXmlFromTableOracle.cs" />
     <Compile Include="TestWriteReadOracle.cs" />
     <Compile Include="TestWriteReadSqlServer.cs" />
     <Compile Include="Unit4Tests\TestDoViewsSqlServer.cs" />
