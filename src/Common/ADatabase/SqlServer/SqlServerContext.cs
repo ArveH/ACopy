@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System.IO;
 using ADatabase.Exceptions;
 using ALogger;
 
@@ -12,12 +13,15 @@ namespace ADatabase.SqlServer
         public SqlServerContext(IALogger logger=null)
             : base(new SqlServerPowerPlant(), logger)
         {
+            var currDir =
+                Path.GetDirectoryName(
+                    System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\";
             DbType = DbTypeName.SqlServer;
             PowerPlant.DbContext = this;
             PowerPlant.DbContext.ColumnTypeConverterForWrite =
-                PowerPlant.CreateColumnTypeConverter(ConversionFileForWrite);
+                PowerPlant.CreateColumnTypeConverter(currDir + ConversionFileForWrite);
             PowerPlant.DbContext.ColumnTypeConverterForRead =
-                PowerPlant.CreateColumnTypeConverter(ConversionFileForRead);
+                PowerPlant.CreateColumnTypeConverter(currDir + ConversionFileForRead);
         }
 
         public SqlServerContext(string conectionString, IALogger logger=null)

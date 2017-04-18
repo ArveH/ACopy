@@ -1,4 +1,5 @@
-﻿using ALogger;
+﻿using System.IO;
+using ALogger;
 using Oracle.DataAccess.Client;
 
 namespace ADatabase.Oracle
@@ -11,12 +12,14 @@ namespace ADatabase.Oracle
         public OracleContext(IALogger logger = null)
             : base(new OraclePowerPlant(), logger)
         {
-            DbType = DbTypeName.Oracle;
+            DbType = DbTypeName.Oracle; var currDir = 
+                Path.GetDirectoryName(
+                    System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\";
             PowerPlant.DbContext = this;
             ColumnTypeConverterForWrite =
-                PowerPlant.CreateColumnTypeConverter(ConversionFileForWrite);
+                PowerPlant.CreateColumnTypeConverter(currDir + ConversionFileForWrite);
             ColumnTypeConverterForRead =
-                PowerPlant.CreateColumnTypeConverter(ConversionFileForRead);
+                PowerPlant.CreateColumnTypeConverter(currDir + ConversionFileForRead);
         }
 
         public OracleContext(string connectionString, IALogger logger=null)
