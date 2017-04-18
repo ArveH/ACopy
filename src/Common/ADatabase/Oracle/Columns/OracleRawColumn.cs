@@ -56,7 +56,7 @@ namespace ADatabase.Oracle.Columns
         public override string ToString(object value)
         {
             if (IsGuid) return OracleGuidHelper.ConvertToGuid((byte[])value).ToString();
-            return Encoding.UTF8.GetString((byte[])value);
+            return Convert.ToBase64String((byte[])value);
         }
 
         public override object ToInternalType(string value)
@@ -66,7 +66,7 @@ namespace ADatabase.Oracle.Columns
                 return DBNull.Value;
             }
             if (IsGuid) return OracleGuidHelper.ConvertToByteArray(Guid.Parse(value));
-            return Encoding.UTF8.GetBytes(value);
+            return Convert.FromBase64String(value);
         }
 
         public override Type GetDotNetType()
