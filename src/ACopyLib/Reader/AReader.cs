@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ACopyLib.DataReader;
@@ -101,7 +100,7 @@ namespace ACopyLib.Reader
                 _logger.Write($"{currentTableName,30} Started...");
                 var fileName = GetDataFileName(currentTableName);
                 rowCounter = BulkLoadData(tableDefinition, fileName);
-                WhenOracleAlterRaw16Columns(tableDefinition.Name, raw16Columns, 16);
+                WhenOracleAlterRawColumns(tableDefinition.Name, raw16Columns, 16);
 
                 _dbSchema.CreateIndexes(tableDefinition.Indexes);
             }
@@ -211,12 +210,12 @@ namespace ACopyLib.Reader
         //    copy data
         //    resize to raw(16)
         // This is because of a bug with the oracle reader.
-        private void WhenOracleAlterRaw16Columns(string tableName, List<string> colNames, int length)
+        private void WhenOracleAlterRawColumns(string tableName, List<string> colNames, int length)
         {
             if (_dbContext.DbType != DbTypeName.Oracle || colNames.Count == 0) return;
 
             var commands = _dbContext.PowerPlant.CreateCommands();
-            colNames.ForEach(colName => commands.ExecuteNonQuery($"alter table {tableName} modify {colName} raw(16)"));
+            colNames.ForEach(colName => commands.ExecuteNonQuery($"alter table {tableName} modify {colName} raw({length})"));
         }
     }
 }

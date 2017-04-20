@@ -1,5 +1,4 @@
 ﻿using ADatabase;
-using ADatabase.SqlServer.Columns;
 
 namespace ACopyTestHelper
 {
