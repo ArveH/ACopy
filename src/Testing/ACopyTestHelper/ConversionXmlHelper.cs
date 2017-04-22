@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using ADatabase;
 
 namespace ACopyTestHelper
 {
@@ -45,19 +46,19 @@ namespace ACopyTestHelper
                 "<TypeConversions />";
         }
 
-        public static string FromAttributeMissingXml()
+        public static string DatabaseAttributeMissingXml()
         {
             return
                 GetHeadingXml() +
-                "<TypeConversions To=\"ACopy\">" +
+                "<TypeConversions Direction=\"ACopy\">" +
                 "</TypeConversions>";
         }
 
-        public static string ToAttributeBlankXml()
+        public static string DirectionAttributeBlankXml()
         {
             return
                 GetHeadingXml() +
-                "<TypeConversions From=\"Oracle\" To=\"\">" +
+                $"<TypeConversions Database=\"{DatabaseSystemName.Oracle}\" Direction=\"\">" +
                 "</TypeConversions>";
         }
 
@@ -65,7 +66,7 @@ namespace ACopyTestHelper
         {
             return
                 GetHeadingXml() +
-                "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
+                $"<TypeConversions Database=\"{DatabaseSystemName.Oracle}\" Direction=\"{CopyDirection.FromFileToTable}\">" +
                 "</TypeConversions>";
         }
 
@@ -116,7 +117,7 @@ namespace ACopyTestHelper
         public static string OracleGuidXml()
         {
             return GetHeadingXml() +
-                   "<TypeConversions From=\"Oracle\" To=\"ACopy\">" +
+                   $"<TypeConversions Database=\"Oracle\" Direction=\"{CopyDirection.FromTableToFile}\">" +
                    "<Type Source=\"raw(@Length)\" Destination=\"guid\">" +
                    "<Length Operator=\"in\">16,32,17,34</Length>" +
                    "</Type>" +
@@ -126,7 +127,7 @@ namespace ACopyTestHelper
         public static string OneNumberTypeXml(string destinationType, string prec, string scale)
         {
             return GetHeadingXml() +
-                "<TypeConversions From=\"Oracle\" To=\"ACopy\">\n" +
+                $"<TypeConversions Database=\"Oracle\" Direction=\"{CopyDirection.FromTableToFile}\">\n" +
                 GetOneNumberTypeXml(destinationType, prec, scale) +
                 "</TypeConversions>";
         }
@@ -134,7 +135,7 @@ namespace ACopyTestHelper
         public static string Unit4OracleWriterConversionsXml()
         {
             return GetHeadingXml() +
-                "<TypeConversions From=\"Oracle\" To=\"ACopy\">\n" +
+                $"<TypeConversions Database=\"Oracle\" Direction=\"{CopyDirection.FromTableToFile}\">\n" +
                 GetOneTypeNoOperatorXml("varchar2(@Length)", "varchar(@Length)") +
                 GetOneTypeNoOperatorXml("varchar(@Length)", "varchar(@Length)") +
                 GetOneTypeNoOperatorXml("char(@Length)", "varchar(@Length)") +
@@ -155,14 +156,14 @@ namespace ACopyTestHelper
                    "</Type>" +
                 GetOneTypeNoOperatorXml("blob", "blob") +
                 GetOneTypeNoOperatorXml("raw", "blob") +
-                GetOneTypeNoOperatorXml("longraw", "blob") +
+                GetOneTypeNoOperatorXml("oldblob", "blob") +
                 "</TypeConversions>";
         }
 
         public static string Unit4OracleReaderConversionsXml()
         {
             return GetHeadingXml() +
-                "<TypeConversions From=\"ACopy\" To=\"Oracle\">\n" +
+                $"<TypeConversions Database=\"Oracle\" Direction=\"{CopyDirection.FromFileToTable}\">\n" +
                 GetOneTypeNoOperatorXml("varchar(@Length)", "varchar2(@Length)") +
                 GetOneTypeNoOperatorXml("char(@Length)", "varchar2(@Length)") +
                 GetOneTypeNoOperatorXml("longtext", "clob") +

@@ -23,8 +23,8 @@ namespace ADatabase
             try
             {
                 var rootNode = _xmlConversionsReader.GetRootNode(conversionXml);
-                FromSystem = _xmlConversionsReader.GetSourceSystem(rootNode);
-                ToSystem = _xmlConversionsReader.GetDestinationSystem(rootNode);
+                FromSystem = _xmlConversionsReader.GetRdbms(rootNode);
+                ToSystem = _xmlConversionsReader.GetDirection(rootNode);
                 foreach (XmlNode typeNode in rootNode.ChildNodes)
                 {
                     if (typeNode.NodeType == XmlNodeType.Comment) continue;

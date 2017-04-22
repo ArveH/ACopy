@@ -37,17 +37,17 @@ namespace ADatabaseTest
         }
 
         [TestMethod]
-        public void TestGetRootNode_When_FromAttributeMissing()
+        public void TestGetRootNode_When_DatabaseAttributeMissing()
         {
-            Action act = () => _xmlConversionsReader.GetRootNode(ConversionXmlHelper.FromAttributeMissingXml());
-            act.ShouldThrow<XmlException>().WithMessage("Error with attribute 'From' for 'TypeConversions'");
+            Action act = () => _xmlConversionsReader.GetRootNode(ConversionXmlHelper.DatabaseAttributeMissingXml());
+            act.ShouldThrow<XmlException>().WithMessage("Error with attribute 'Database' for 'TypeConversions'");
         }
 
         [TestMethod]
-        public void TestGetRootNode_When_ToAttributeMissing()
+        public void TestGetRootNode_When_DirectionAttributeMissing()
         {
-            Action act = () => _xmlConversionsReader.GetRootNode(ConversionXmlHelper.ToAttributeBlankXml());
-            act.ShouldThrow<XmlException>().WithMessage("Error with attribute 'To' for 'TypeConversions'");
+            Action act = () => _xmlConversionsReader.GetRootNode(ConversionXmlHelper.DirectionAttributeBlankXml());
+            act.ShouldThrow<XmlException>().WithMessage("Error with attribute 'Direction' for 'TypeConversions'");
         }
 
         [TestMethod]
@@ -58,19 +58,19 @@ namespace ADatabaseTest
         }
 
         [TestMethod]
-        public void TestGetSourceSystem()
+        public void TestGetRdbms()
         {
             var rootNode = _xmlConversionsReader.GetRootNode(ConversionXmlHelper.Unit4OracleWriterConversionsXml());
-            var sourceSystem = _xmlConversionsReader.GetSourceSystem(rootNode);
-            sourceSystem.Should().Be(DatabaseSystemName.Oracle);
+            var rdbms = _xmlConversionsReader.GetRdbms(rootNode);
+            rdbms.Should().Be(DatabaseSystemName.Oracle);
         }
 
         [TestMethod]
-        public void TestGetDestinationSystem()
+        public void TestGetDirection()
         {
             var rootNode = _xmlConversionsReader.GetRootNode(ConversionXmlHelper.Unit4OracleWriterConversionsXml());
-            var sourceSystem = _xmlConversionsReader.GetDestinationSystem(rootNode);
-            sourceSystem.Should().Be(DatabaseSystemName.ACopy);
+            var direction = _xmlConversionsReader.GetDirection(rootNode);
+            direction.Should().Be(CopyDirection.FromTableToFile);
         }
         #endregion
 

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--Default type conversion file for ACopy (SqlServer Reader)-->
-<TypeConversions From="Default" To="SqlServer">
+<TypeConversions Database="SqlServer" Direction="FromFileToTable">
   <Type Source="binarydouble" Destination="float(53)"/>
   <Type Source="binaryfloat" Destination="real"/>
   <Type Source="blob" Destination="varbinary(-1)"/>

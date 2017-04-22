@@ -83,7 +83,7 @@ namespace ACopyLibTest
         public static string GetConversionsXmlForNumberWithScaleAndPrec()
         {
             return ConversionXmlHelper.GetHeadingXml() +
-                "<TypeConversions From=\"DB\" To=\"ACopy\">\n" +
+                $"<TypeConversions Database=\"Oracle\" Direction=\"{CopyDirection.FromFileToTable}\">\n" +
                 //ConversionXmlHelper.GetOneTypeNoOperatorXml("number", "dec") +
                 //ConversionXmlHelper.GetOneTypeNoOperatorXml("number(@Prec)", "dec(@Prec)") +
                 ConversionXmlHelper.GetOneTypeNoOperatorXml("number(@Prec,@Scale)", "dec(@Prec,@Scale)") +
@@ -93,7 +93,7 @@ namespace ACopyLibTest
         public static string GetConversionsXmlForFloat()
         {
             return ConversionXmlHelper.GetHeadingXml() +
-                "<TypeConversions From=\"SqlServer\" To=\"Default\">\n" +
+                $"<TypeConversions Database=\"SqlServer\" Direction=\"{CopyDirection.FromTableToFile}\">\n" +
                 "<Type Source=\"float(@Prec)\" Destination=\"binaryfloat\">\n" +
                 "     <Prec Operator=\"=\">24</Prec>\n" +
                 "</Type>\n" +

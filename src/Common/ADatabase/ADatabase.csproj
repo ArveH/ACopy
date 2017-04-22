@@ -74,6 +74,7 @@
     <Compile Include="..\..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Enums\CopyDirection.cs" />
     <Compile Include="Enums\DatabaseSystemName.cs" />
     <Compile Include="ColumnTypeConversions\Interfaces\ITypeConstraintFactory.cs" />
     <Compile Include="ColumnTypeConversions\Interfaces\ITypeOperatorFactory.cs" />

@@ -28,12 +28,8 @@ namespace ADatabase
             }
             if (rootNode == null) throw new XmlException("Can't find root element 'TypeConversions'");
             if (rootNode.Attributes == null) throw new XmlException("Root element 'TypeConversions' has no attributes");
-            var sourceSystem = rootNode.Attributes["From"]?.InnerText;
-            if (string.IsNullOrWhiteSpace(sourceSystem))
-                throw new XmlException("Error with attribute 'From' for 'TypeConversions'");
-            var destinationSystem = rootNode.Attributes["To"]?.InnerText;
-            if (string.IsNullOrWhiteSpace(destinationSystem))
-                throw new XmlException("Error with attribute 'To' for 'TypeConversions'");
+            CheckRdbms(rootNode);
+            CheckDirection(rootNode);
 
             if (rootNode.ChildNodes.Count == 0) throw new XmlException("No conversions found");
 
@@ -56,17 +52,34 @@ namespace ADatabase
             return colDesc;
         }
 
-        public string GetSourceSystem(XmlNode rootNode)
+        public string GetRdbms(XmlNode rootNode)
         {
-            return rootNode.Attributes?["From"]?.InnerText;
+            return rootNode.Attributes?["Database"]?.InnerText;
         }
 
-        public string GetDestinationSystem(XmlNode rootNode)
+        public string GetDirection(XmlNode rootNode)
         {
-            return rootNode.Attributes?["To"]?.InnerText;
+            return rootNode.Attributes?["Direction"]?.InnerText;
         }
 
         #region Private
+
+        private static void CheckDirection(XmlNode rootNode)
+        {
+            var direction = rootNode.Attributes?["Direction"]?.InnerText;
+            if (string.IsNullOrWhiteSpace(direction))
+                throw new XmlException("Error with attribute 'Direction' for 'TypeConversions'");
+            if (direction != CopyDirection.FromFileToTable && direction != CopyDirection.FromTableToFile)
+                throw new XmlException(
+                    $"Illegal value '{direction}' for attribute 'Direction'. Legal values are '{CopyDirection.FromFileToTable}' or '{CopyDirection.FromTableToFile}'.");
+        }
+
+        private static void CheckRdbms(XmlNode rootNode)
+        {
+            var rdbms = rootNode.Attributes?["Database"]?.InnerText;
+            if (string.IsNullOrWhiteSpace(rdbms))
+                throw new XmlException("Error with attribute 'Database' for 'TypeConversions'");
+        }
 
         private static bool IsLegalTypeDetail(string detail)
         {

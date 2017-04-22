@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--Type conversion file for Unit4-->
 <!--The From and To parameters are currently not in use -->
-<TypeConversions From="Oracle" To="ACopy">
+<TypeConversions Database="Oracle" Direction="FromTableToFile">
   <Type Source="blob" Destination="blob"></Type>
   <Type Source="char(@Length)" Destination="varchar(@Length)"/>
   <Type Source="clob" Destination="longtext"/>

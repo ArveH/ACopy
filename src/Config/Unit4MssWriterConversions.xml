@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--Type conversion file for Unit4-->
 <!--The From and To parameters are currently not in use -->
-<TypeConversions From="SqlServer" To="ACopy">
+<TypeConversions Database="SqlServer" Direction="FromTableToFile">
   <Type Source="varchar" Destination="longtext">
     <Length Operator="=">-1</Length>
   </Type>

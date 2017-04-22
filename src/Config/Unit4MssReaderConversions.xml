@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--Type conversion file for Unit4-->
-<TypeConversions From="ACopy" To="SqlServer">
+<TypeConversions Database="SqlServer" Direction="FromFileToTable">
   <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>
   <Type Source="char(@Length)" Destination="char(@Length)"/>
   <Type Source="longtext" Destination="varchar(-1)"/>

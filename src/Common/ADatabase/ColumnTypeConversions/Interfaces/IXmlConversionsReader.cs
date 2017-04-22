@@ -6,7 +6,7 @@ namespace ADatabase
     {
         XmlNode GetRootNode(string xmlText);
         ITypeDescription GetColumnTypeDescription(XmlNode rootNode);
-        string GetSourceSystem(XmlNode rootNode);
-        string GetDestinationSystem(XmlNode rootNode);
+        string GetRdbms(XmlNode rootNode);
+        string GetDirection(XmlNode rootNode);
     }
 }

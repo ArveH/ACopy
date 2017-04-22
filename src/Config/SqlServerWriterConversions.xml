@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--Default type conversion file for ACopy (SqlServer writer)-->
-<TypeConversions From="SqlServer" To="Default">
+<TypeConversions Database="SqlServer" Direction="FromTableToFile">
   <Type Source="bigint" Destination="int64"></Type>
   <Type Source="binary(@scale)" Destination="raw(@Length)"></Type>
   <Type Source="bit" Destination="bool"></Type>
