@@ -43,30 +43,74 @@ namespace ACommandLineParserTest
         [TestMethod]
         public void TestGetConnectionStrings_When_SectionEmpty()
         {
-            var xmlString = 
-                GetConfigurationXmlString(
-                    GetConnectionStringsXmlString(null));
-            var xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(xmlString);
+            var xmlDoc = GetConnectionStringsXml(null);
 
             var connectionStrings = _configFileReader.GetConnectionStrings(xmlDoc);
             connectionStrings.Count.Should().Be(0, "because there are no connectionStrings in the config file");
         }
 
         [TestMethod]
-        public void TestGetConnectionStrings_When_IllegalNode()
+        public void TestGetConnectionStrings_When_AddTagMissing()
         {
-            var xmlString =
-                GetConfigurationXmlString(
-                    GetConnectionStringsXmlString("    <illegal key=\"cc\"/>"));
-            var xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(xmlString);
+            var xmlDoc = GetConnectionStringsXml("    <illegal key=\"cc\"/>");
 
             Action act = () => _configFileReader.GetConnectionStrings(xmlDoc);
-            act.ShouldThrow<XmlException>().WithMessage("Error in connectionStrings section");
+            act.ShouldThrow<XmlException>().WithMessage("Error with 'Add' tag in connectionStrings section");
+        }
+
+        [TestMethod]
+        public void TestGetConnectionStrings_When_NameAttributeMissing()
+        {
+            var xmlDoc = GetConnectionStringsXml("    <add key=\"cc\"/>");
+
+            Action act = () => _configFileReader.GetConnectionStrings(xmlDoc);
+            act.ShouldThrow<XmlException>().WithMessage("Error with 'name' attribute in connectionStrings section");
+        }
+
+        [TestMethod]
+        public void TestGetConnectionStrings_When_ConnectionStringAttributeMissing()
+        {
+            var xmlDoc = GetConnectionStringsXml("    <add name=\"cc\"/>");
+
+            Action act = () => _configFileReader.GetConnectionStrings(xmlDoc);
+            act.ShouldThrow<XmlException>().WithMessage("Error with 'connectionString' attribute in connectionStrings section");
+        }
+
+        [TestMethod]
+        public void TestGetConnectionStrings_When_One()
+        {
+            var txt =
+                "    <add name=\"aw\" connectionString=\"Trusted_Connection=True;database=AdventureWorks;server=(local)\"/>";
+            var xmlDoc = GetConnectionStringsXml(txt);
+
+            var connectionStrings = _configFileReader.GetConnectionStrings(xmlDoc);
+            connectionStrings.Count.Should().Be(1, "because we got one connection string in acopy.xml");
+            connectionStrings["aw"].Length.Should().BeGreaterThan(20, "because it's usually at least that long");
+        }
+
+        [TestMethod]
+        public void TestGetConnectionStrings_When_Two()
+        {
+            var txt =
+                "    <add name=\"aw\" connectionString=\"Trusted_Connection=True;database=AdventureWorks;server=(local)\"/>" +
+                "    <add name=\"bw\" connectionString=\"Trusted_Connection=True;database=AdventureWorks;server=(local)\"/>";
+            var xmlDoc = GetConnectionStringsXml(txt);
+
+            var connectionStrings = _configFileReader.GetConnectionStrings(xmlDoc);
+            connectionStrings.Count.Should().Be(2, "because we got two connection strings in acopy.xml");
         }
 
         #region XML Text creation
+
+        private XmlDocument GetConnectionStringsXml(string txt)
+        {
+            var xmlString =
+                GetConfigurationXmlString(
+                    GetConnectionStringsXmlString(txt));
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(xmlString);
+            return xmlDoc;
+        }
 
         private string GetConfigurationXmlString(string connectionStrings)
         {

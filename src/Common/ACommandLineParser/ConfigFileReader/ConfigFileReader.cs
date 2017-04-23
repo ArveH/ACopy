@@ -44,7 +44,13 @@ namespace ACommandLineParser.ConfigFileReader
 
         private void AddConnectionString(Dictionary<string, string> connectionStrings, XmlNode node)
         {
-            throw new XmlException("Error in connectionStrings section");
+            if (node.Name != "add") throw new XmlException("Error with 'Add' tag in connectionStrings section");
+            var name = node.Attributes?["name"]?.InnerText;
+            if (name == null) throw new XmlException("Error with 'name' attribute in connectionStrings section");
+            var cs = node.Attributes?["connectionString"]?.InnerText;
+            if (cs == null) throw new XmlException("Error with 'connectionString' attribute in connectionStrings section");
+
+            connectionStrings.Add(name, cs);
         }
     }
 }
