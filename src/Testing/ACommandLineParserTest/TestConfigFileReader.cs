@@ -102,33 +102,83 @@ namespace ACommandLineParserTest
         }
 
         [TestMethod]
-        public void TestGetConversionFiles_When_XmlInputIsNull()
+        public void TestGetConversionFile_When_XmlInputIsNull()
         {
             Action act = () => _configFileReader.GetConversionFile(null, null, null);
             act.ShouldThrow<ArgumentNullException>().Where(m => m.Message.StartsWith("null value in GetConversionFile"));
         }
 
         [TestMethod]
-        public void TestGetConversionFiles_When_RdbmsIsNull()
+        public void TestGetConversionFile_When_RdbmsIsNull()
         {
             Action act = () => _configFileReader.GetConversionFile(new XmlDocument(), null, null);
             act.ShouldThrow<ArgumentException>().Where(m => m.Message.StartsWith("illegal value ''"));
         }
 
         [TestMethod]
-        public void TestGetConversionFiles_When_DirectionIsIllegal()
+        public void TestGetConversionFile_When_DirectionIsIllegal()
         {
             Action act = () => _configFileReader.GetConversionFile(new XmlDocument(), DatabaseSystemName.Oracle, "test");
             act.ShouldThrow<ArgumentException>().Where(m => m.Message.StartsWith("illegal value 'test'"));
         }
 
+        [TestMethod]
+        public void TestConversionFile_When_SectionNotFound()
+        {
+            var xmlString =
+                GetConfigurationXmlString();
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(xmlString);
+
+            Action act = () => _configFileReader.GetConversionFile(
+                xmlDoc, DatabaseSystemName.Oracle, CopyDirection.FromTableToFile);
+            act.ShouldThrow<XmlException>().WithMessage("conversionFiles tag not found");
+        }
+
+        [TestMethod]
+        public void TestConversionFile_When_ConversionFileNotFound()
+        {
+            var xmlDoc = GetConversionFilesXml(null);
+
+            Action act = () => _configFileReader.GetConversionFile(
+                xmlDoc, DatabaseSystemName.Oracle, CopyDirection.FromTableToFile);
+            act.ShouldThrow<XmlException>().WithMessage("'oracleFromTableToFile' tag not found");
+        }
+
+        [TestMethod]
+        public void TestConversionFile_When_OracleFromTableToFile()
+        {
+            var xmlDoc = GetConversionFilesXml("    <oracleFromTableToFile value=\"ConversionFiles\\OracleWriterConversions.xml\"/>");
+
+            var path = _configFileReader.GetConversionFile(
+                xmlDoc, DatabaseSystemName.Oracle, CopyDirection.FromTableToFile);
+            path.Should().Be(@"ConversionFiles\OracleWriterConversions.xml");
+        }
+
+        [TestMethod]
+        public void TestConversionFile_When_sqlServerFromFileToTable()
+        {
+            var txt =
+                "    <oracleFromTableToFile value=\"ConversionFiles\\OracleWriterConversions.xml\"/>" +
+                "    <sqlServerFromFileToTable value=\"ConversionFiles\\SqlServerReaderConversions.xml\"/>";
+            var xmlDoc = GetConversionFilesXml(txt);
+
+            var path = _configFileReader.GetConversionFile(
+                xmlDoc, DatabaseSystemName.SqlServer, CopyDirection.FromFileToTable);
+            path.Should().Be(@"ConversionFiles\SqlServerReaderConversions.xml");
+        }
+
         #region XML Text creation
 
-        private XmlDocument GetConnectionStringsXml()
+        private XmlDocument GetConversionFilesXml(string txt)
         {
-            return
-                GetConnectionStringsXml(
-                    "    <add name=\"aw\" connectionString=\"Trusted_Connection=True;database=AdventureWorks;server=(local)\"/>");
+            var xmlString =
+                GetConfigurationXmlString(
+                    null, null, null, 
+                    GetConversionFilesXmlString(txt));
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(xmlString);
+            return xmlDoc;
         }
 
         private XmlDocument GetConnectionStringsXml(string txt)
@@ -141,12 +191,19 @@ namespace ACommandLineParserTest
             return xmlDoc;
         }
 
-        private string GetConfigurationXmlString(string connectionStrings)
+        private string GetConfigurationXmlString(
+            string connectionStrings = null,
+            string commandLineParameters = null,
+            string configurationParameters = null,
+            string conversionFiles = null)
         {
             var sb = new StringBuilder();
             sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
             sb.AppendLine("<configuration>");
             if (connectionStrings != null) sb.AppendLine(connectionStrings);
+            if (commandLineParameters != null) sb.AppendLine(commandLineParameters);
+            if (configurationParameters != null) sb.AppendLine(configurationParameters);
+            if (conversionFiles != null) sb.AppendLine(conversionFiles);
             sb.AppendLine("</configuration>");
             return sb.ToString();
         }
@@ -159,6 +216,16 @@ namespace ACommandLineParserTest
             sb.AppendLine("  </connectionStrings>");
             return sb.ToString();
         }
+
+        private string GetConversionFilesXmlString(string conversionFiles)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("  <conversionFiles>");
+            if (conversionFiles != null) sb.AppendLine(conversionFiles);
+            sb.AppendLine("  </conversionFiles>");
+            return sb.ToString();
+        }
+
         #endregion
     }
 }
