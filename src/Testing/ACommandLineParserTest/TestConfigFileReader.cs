@@ -2,6 +2,7 @@
 using System.Text;
 using System.Xml;
 using ACommandLineParser.ConfigFileReader;
+using ADatabase;
 using ALogger;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -100,7 +101,35 @@ namespace ACommandLineParserTest
             connectionStrings.Count.Should().Be(2, "because we got two connection strings in acopy.xml");
         }
 
+        [TestMethod]
+        public void TestGetConversionFiles_When_XmlInputIsNull()
+        {
+            Action act = () => _configFileReader.GetConversionFile(null, null, null);
+            act.ShouldThrow<ArgumentNullException>().Where(m => m.Message.StartsWith("null value in GetConversionFile"));
+        }
+
+        [TestMethod]
+        public void TestGetConversionFiles_When_RdbmsIsNull()
+        {
+            Action act = () => _configFileReader.GetConversionFile(new XmlDocument(), null, null);
+            act.ShouldThrow<ArgumentException>().Where(m => m.Message.StartsWith("illegal value ''"));
+        }
+
+        [TestMethod]
+        public void TestGetConversionFiles_When_DirectionIsIllegal()
+        {
+            Action act = () => _configFileReader.GetConversionFile(new XmlDocument(), DatabaseSystemName.Oracle, "test");
+            act.ShouldThrow<ArgumentException>().Where(m => m.Message.StartsWith("illegal value 'test'"));
+        }
+
         #region XML Text creation
+
+        private XmlDocument GetConnectionStringsXml()
+        {
+            return
+                GetConnectionStringsXml(
+                    "    <add name=\"aw\" connectionString=\"Trusted_Connection=True;database=AdventureWorks;server=(local)\"/>");
+        }
 
         private XmlDocument GetConnectionStringsXml(string txt)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using ADatabase;
 using ALogger;
 
 namespace ACommandLineParser.ConfigFileReader
@@ -39,7 +40,13 @@ namespace ACommandLineParser.ConfigFileReader
 
         public string GetConversionFile(XmlDocument xmlDoc, string rdbms, string direction)
         {
-            throw new System.NotImplementedException();
+            if (xmlDoc == null) throw new ArgumentNullException(nameof(xmlDoc), "null value in GetConversionFile");
+            if (rdbms == null || (rdbms != DatabaseSystemName.Oracle && rdbms != DatabaseSystemName.SqlServer))
+                throw new ArgumentException($"illegal value '{rdbms}'", nameof(rdbms));
+            if (direction == null || (direction != CopyDirection.FromFileToTable && direction != CopyDirection.FromTableToFile))
+                throw new ArgumentException($"illegal value '{direction}'", nameof(direction));
+
+            return null;
         }
 
         private void AddConnectionString(Dictionary<string, string> connectionStrings, XmlNode node)

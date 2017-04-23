@@ -96,6 +96,10 @@
       <Project>{CAA895B3-BFCA-4F04-9660-5F7E3C36D1C9}</Project>
       <Name>ACommandLineParser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\ADatabase\ADatabase.csproj">
+      <Project>{669D0F7B-39E9-4AD8-ABB6-38EC3DC34DBC}</Project>
+      <Name>ADatabase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ALogger\ALogger.csproj">
       <Project>{ADA41B5E-C16F-4F86-9D95-C3B196654FF7}</Project>
       <Name>ALogger</Name>

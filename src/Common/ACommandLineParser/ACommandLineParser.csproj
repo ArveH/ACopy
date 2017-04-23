@@ -96,6 +96,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ADatabase\ADatabase.csproj">
+      <Project>{669D0F7B-39E9-4AD8-ABB6-38EC3DC34DBC}</Project>
+      <Name>ADatabase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ALogger\ALogger.csproj">
       <Project>{ADA41B5E-C16F-4F86-9D95-C3B196654FF7}</Project>
       <Name>ALogger</Name>
