@@ -49,9 +49,21 @@ namespace ACommandLineParserTest
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(xmlString);
 
-            _configFileReader = new ConfigFileReader(_loggerMock.Object);
             var connectionStrings = _configFileReader.GetConnectionStrings(xmlDoc);
             connectionStrings.Count.Should().Be(0, "because there are no connectionStrings in the config file");
+        }
+
+        [TestMethod]
+        public void TestGetConnectionStrings_When_IllegalNode()
+        {
+            var xmlString =
+                GetConfigurationXmlString(
+                    GetConnectionStringsXmlString("    <illegal key=\"cc\"/>"));
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(xmlString);
+
+            Action act = () => _configFileReader.GetConnectionStrings(xmlDoc);
+            act.ShouldThrow<XmlException>().WithMessage("Error in connectionStrings section");
         }
 
         #region XML Text creation
@@ -59,19 +71,19 @@ namespace ACommandLineParserTest
         private string GetConfigurationXmlString(string connectionStrings)
         {
             var sb = new StringBuilder();
-            sb.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-            sb.Append("<configuration>");
-            if (connectionStrings != null) sb.Append(connectionStrings);
-            sb.Append("</configuration>");
+            sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+            sb.AppendLine("<configuration>");
+            if (connectionStrings != null) sb.AppendLine(connectionStrings);
+            sb.AppendLine("</configuration>");
             return sb.ToString();
         }
 
         private string GetConnectionStringsXmlString(string connectionStrings)
         {
             var sb = new StringBuilder();
-            sb.Append("  <connectionStrings>");
-            if (connectionStrings != null) sb.Append(connectionStrings);
-            sb.Append("  </connectionStrings>");
+            sb.AppendLine("  <connectionStrings>");
+            if (connectionStrings != null) sb.AppendLine(connectionStrings);
+            sb.AppendLine("  </connectionStrings>");
             return sb.ToString();
         }
         #endregion

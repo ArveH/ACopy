@@ -26,8 +26,13 @@ namespace ACommandLineParser.ConfigFileReader
             if (xmlDoc == null) throw new ArgumentNullException(nameof(xmlDoc), "null value in GetConnectionStrings");
 
             var connectionStrings = new Dictionary<string, string>();
-            var rootNode = xmlDoc.DocumentElement?.SelectSingleNode("connectionStrings");
-            if (rootNode == null) throw new XmlException("connectionStrings tag not found");
+            var csNode = xmlDoc.DocumentElement?.SelectSingleNode("connectionStrings");
+            if (csNode == null) throw new XmlException("connectionStrings tag not found");
+
+            foreach (XmlNode node in csNode.ChildNodes)
+            {
+                AddConnectionString(connectionStrings, node);
+            }
 
             return connectionStrings;
         }
@@ -35,6 +40,11 @@ namespace ACommandLineParser.ConfigFileReader
         public string GetConversionFile(XmlDocument xmlDoc, string rdbms, string direction)
         {
             throw new System.NotImplementedException();
+        }
+
+        private void AddConnectionString(Dictionary<string, string> connectionStrings, XmlNode node)
+        {
+            throw new XmlException("Error in connectionStrings section");
         }
     }
 }
