@@ -1,139 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <connectionStrings>
+    <add name="aw" connectionString="Trusted_Connection=True;database=AdventureWorks;server=(local)"/>
+  </connectionStrings>
+  <commandLineParameters>
+    <!--
+    For copy in only (-din, FromTileToTable). 
+    Collects rows in a "batch", and sends the batch to the server as one operation.
+    SQL Server: Default is 0 (zero), which means that we send for every row.
+    Oracle: Default is 10000.-->
+  </commandLineParameters>
 
+  <configurationParameters>
+    <!--
+    For copy in only (-din, FromTileToTable). 
+    Collects rows in a "batch", and sends the batch to the server as one operation.
+    SQL Server: Default is 0 (zero), which means that we send for every row.
+    Oracle: Default is 10000.-->
+    <!--<batchSize value=10000/>-->
 
+    <!--
+    Sql Server only. 
+    For copy in only (-din, FromTileToTable). 
+    Override the default database collation. If no collation is given, it will use the 
+    collation it finds in the datafile (the collation from the database it was copied from).-->
+    <!--<collation value="SQL_Latin1_General_CP1_CI_AI"/>-->
 
-<DefaultTypeConversions>
-  <!--Default type conversions for ACopy (SqlServer writer)-->
-  <TypeConversions Database="SqlServer" Direction="FromTableToFile">
-    <Type Source="bigint" Destination="int64"></Type>
-    <Type Source="binary(@scale)" Destination="raw(@Length)"></Type>
-    <Type Source="bit" Destination="bool"></Type>
-    <Type Source="char(@Length)" Destination="char(@Length)"></Type>
-    <Type Source="date" Destination="date"></Type>
-    <Type Source="datetime" Destination="datetime"></Type>
-    <Type Source="datetime2(@Scale)" Destination="datetime2(@Scale)"></Type>
-    <Type Source="decimal(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
-    <Type Source="float(@Prec)" Destination="float(@Prec)"></Type>
-    <Type Source="image" Destination="oldblob"></Type>
-    <Type Source="int" Destination="int"></Type>
-    <Type Source="money" Destination="money"></Type>
-    <Type Source="nchar(@Length)" Destination="nchar(@Length)"></Type>
-    <Type Source="ntext" Destination="noldtext"></Type>
-    <Type Source="numeric(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
-    <Type Source="nvarchar(@Length)" Destination="nlongtext">
-      <Length Operator="=">-1</Length>
-    </Type>
-    <Type Source="nvarchar(@Length)" Destination="nvarchar(@Length)"></Type>
-    <Type Source="real" Destination="binaryfloat"></Type>
-    <Type Source="smalldatetime" Destination="smalldatetime"></Type>
-    <Type Source="smallint" Destination="int16"></Type>
-    <Type Source="smallmoney" Destination="smallmoney"></Type>
-    <Type Source="text" Destination="oldtext"></Type>
-    <Type Source="time" Destination="time"></Type>
-    <Type Source="timestamp" Destination="timestamp"></Type>
-    <Type Source="tinyint" Destination="int8"></Type>
-    <Type Source="uniqueidentifier" Destination="guid"></Type>
-    <Type Source="varbinary(@Length)" Destination="blob">
-      <Length Operator="=">-1</Length>
-    </Type>
-    <Type Source="varbinary(@Length)" Destination="varraw(@Length)"></Type>
-    <Type Source="varchar(@Length)" Destination="longtext">
-      <Length Operator="=">-1</Length>
-    </Type>
-    <Type Source="varchar(@Length)" Destination="varchar(@Length)"></Type>
-  </TypeConversions>
-  <!--Default type conversions for ACopy (SqlServer Reader)-->
-  <TypeConversions Database="SqlServer" Direction="FromFileToTable">
-    <Type Source="binarydouble" Destination="float(53)"/>
-    <Type Source="binaryfloat" Destination="real"/>
-    <Type Source="blob" Destination="varbinary(-1)"/>
-    <Type Source="bool" Destination="bit"/>
-    <Type Source="char(@Length)" Destination="char(@Length)"/>
-    <Type Source="date" Destination="date"/>
-    <Type Source="datetime" Destination="datetime"/>
-    <Type Source="datetime2(@Scale)" Destination="datetime2(@Scale)"/>
-    <Type Source="dec(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"/>
-    <Type Source="float(@Prec)" Destination="float(@Prec)"/>
-    <Type Source="float" Destination="float"/>
-    <Type Source="guid" Destination="uniqueidentity"/>
-    <Type Source="int" Destination="int"/>
-    <Type Source="int16" Destination="smallint"/>
-    <Type Source="int64" Destination="bigint"/>
-    <Type Source="int8" Destination="tinyint"/>
-    <Type Source="longtext" Destination="varchar(-1)"/>
-    <Type Source="money" Destination="money"/>
-    <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>
-    <Type Source="nlongtext" Destination="nvarchar(-1)"/>
-    <Type Source="noldtext" Destination="ntext"/>
-    <Type Source="nvarchar(@Length)" Destination="nvarchar(@Length)"/>
-    <Type Source="oldblob" Destination="image"/>
-    <Type Source="oldtext" Destination="text"/>
-    <Type Source="raw(@Length)" Destination="binary(@Length)"/>
-    <Type Source="smalldatetime" Destination="smalldatetime"/>
-    <Type Source="smallmoney" Destination="smallmoney"/>
-    <Type Source="time" Destination="time"/>
-    <Type Source="timestamp" Destination="timestamp"/>
-    <Type Source="varchar(@Length)" Destination="varchar(@Length)"/>
-    <Type Source="varraw(@Length)" Destination="varbinary(@Length)"/>
-  </TypeConversions>
-  <!--Default type conversions for ACopy (Oracle writer)-->
-  <TypeConversions Database="Oracle" Direction="FromTableToFile">
-    <Type Source="binary_float" Destination="binaryfloat"></Type>
-    <Type Source="binary_double" Destination="binarydouble"></Type>
-    <Type Source="blob" Destination="blob"></Type>
-    <Type Source="char(@Length)" Destination="char(@Length)"/>
-    <Type Source="clob" Destination="longtext"/>
-    <Type Source="date" Destination="datetime"></Type>
-    <Type Source="float(@Prec)" Destination="float(@Prec)"></Type>
-    <!--ANSI types int, integer and smallint are all created as NUMBER without prec and scale-->
-    <Type Source="long" Destination="oldtext"></Type>
-    <Type Source="longraw" Destination="oldblob"></Type>
-    <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>
-    <Type Source="nclob" Destination="nlongtext"/>
-    <Type Source="number(@Prec,@Scale)" Destination="dec(@Prec,@Scale)"></Type>
-    <Type Source="nvarchar2(@Length)" Destination="nvarchar(@Length)"/>
-    <!--<Type Source="raw(@Length)" Destination="guid"><Length Operator="in">16,32</Length></Type>-->
-    <Type Source="raw(@Length)" Destination="raw(@Length)"></Type>
-    <!--ANSI type real is created as FLOAT(63)-->
-    <Type Source="timestamp(@Scale)" Destination="datetime2(@Scale)"></Type>
-    <Type Source="varchar2(@Length)" Destination="varchar(@Length)"/>
-    <!--ANSI type varchar is created as VARCHAR2-->
-  </TypeConversions>
-  <!--Default type conversions for ACopy (Oracle Reader)-->
-  <TypeConversions Database="Oracle" Direction="FromFileToTable">
-    <Type Source="binarydouble" Destination="binary_double"/>
-    <Type Source="binaryfloat" Destination="binary_float"/>
-    <Type Source="blob" Destination="blob"/>
-    <Type Source="bool" Destination="number(1,0)"/>
-    <Type Source="char(@Length)" Destination="char(@Length)"/>
-    <Type Source="date" Destination="date"/>
-    <Type Source="datetime" Destination="date"/>
-    <!--Timestamp has a different meaning in Sql Server (more like a rowid), 
-      so we use datetime2 to describe "bigger" datetime values-->
-    <Type Source="datetime2(@Scale)" Destination="datetime2(@Scale)"/>
-    <Type Source="dec(@Prec,@Scale)" Destination="number(@Prec,@Scale)"/>
-    <Type Source="float(@Prec)" Destination="float(@Prec)"/>
-    <Type Source="float" Destination="float"/>
-    <!--OBS Guid should NOT have Destination="raw(16) since the guid string in the
-          data file will not be converted correctly. A raw value is stored as 
-          a base64 encoded string in the data file, while a guid is stored in 
-          clear text."-->
-    <Type Source="guid" Destination="guid"/>
-    <Type Source="int" Destination="number(38,0)"/>
-    <Type Source="int16" Destination="number(38,0)"/>
-    <Type Source="int64" Destination="number(38,0)"/>
-    <Type Source="int8" Destination="number(3,0)"/>
-    <Type Source="oldblob" Destination="longraw"/>
-    <Type Source="oldtext" Destination="long"/>
-    <Type Source="longtext" Destination="clob"/>
-    <Type Source="money" Destination="number(19,4)"/>
-    <Type Source="nchar(@Length)" Destination="nchar(@Length)"/>
-    <Type Source="nlongtext" Destination="nclob"/>
-    <Type Source="nvarchar(@Length)" Destination="nvarchar2(@Length)"/>
-    <Type Source="raw(@Length)" Destination="raw(@Length)"/>
-    <Type Source="smalldatetime" Destination="date"/>
-    <Type Source="smallmoney" Destination="number(10,4)"/>
-    <Type Source="time" Destination="date"/>
-    <Type Source="varchar(@Length)" Destination="varchar2(@Length)"/>
-  </TypeConversions>
-</DefaultTypeConversions>
+    <!--
+    Default suffix for a data file is 'adata', but you can set it to what you want. 
+    OBS: Remember to use the same value for copy in, as copy out.-->
+    <!--<data_suffix value="adata"/>-->
+
+    <!--
+    Default suffix for a schema file is 'aschema', but you can set it to what you want. 
+    OBS: Remember to use the same value for copy in, as copy out.-->
+    <!--<schema_suffix value="aschema"/>-->
+
+  </configurationParameters>
+
+  <conversionFiles>
+    <oracleFromFileToTable value="ConversionFiles\OracleReaderConversions.xml"/>
+    <oracleFromTableToFile value="ConversionFiles\OracleWriterConversions.xml"/>
+    <SqlServerFromFileToTable value="ConversionFiles\SqlServerReaderConversions.xml"/>
+    <SqlServerFromTableToFile value="ConversionFiles\SqlServerWriterConversions.xml"/>
+  </conversionFiles>
+</configuration>

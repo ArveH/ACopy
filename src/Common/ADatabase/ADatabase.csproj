@@ -203,38 +203,37 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="..\..\Config\OracleReaderConversions.xml">
-      <Link>Resources\OracleReaderConversions.xml</Link>
+      <Link>ConversionFiles\OracleReaderConversions.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Config\OracleWriterConversions.xml">
-      <Link>Resources\OracleWriterConversions.xml</Link>
+      <Link>ConversionFiles\OracleWriterConversions.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Config\SqlServerReaderConversions.xml">
-      <Link>Resources\SqlServerReaderConversions.xml</Link>
+      <Link>ConversionFiles\SqlServerReaderConversions.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Config\SqlServerWriterConversions.xml">
-      <Link>Resources\SqlServerWriterConversions.xml</Link>
+      <Link>ConversionFiles\SqlServerWriterConversions.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Config\Unit4MssReaderConversions.xml">
-      <Link>Resources\Unit4MssReaderConversions.xml</Link>
+      <Link>ConversionFiles\Unit4MssReaderConversions.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Config\Unit4MssWriterConversions.xml">
-      <Link>Resources\Unit4MssWriterConversions.xml</Link>
+      <Link>ConversionFiles\Unit4MssWriterConversions.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Config\Unit4OracleReaderConversions.xml">
-      <Link>Resources\Unit4OracleReaderConversions.xml</Link>
+      <Link>ConversionFiles\Unit4OracleReaderConversions.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Config\Unit4OracleWriterConversions.xml">
-      <Link>Resources\Unit4OracleWriterConversions.xml</Link>
+      <Link>ConversionFiles\Unit4OracleWriterConversions.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

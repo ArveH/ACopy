@@ -47,6 +47,16 @@ namespace ACommandLineParser
             }
         }
 
+        public bool VerifyArguments()
+        {
+            return _arguments.TrueForAll(a => a.IsOptional || a.IsRuleOk(this));
+        }
+
+        public void Accept(IArgumentVisitor argVisitor)
+        {
+            _arguments.ForEach(a => a.Accept(argVisitor));
+        }
+
         private void SetArgumentValue(string arg, string shortName, string argumentValue)
         {
             IArgument tmpArg;
@@ -57,20 +67,10 @@ namespace ACommandLineParser
             tmpArg.Value = argumentValue;
         }
 
-        public bool TryFindArgument(string key, out IArgument argument)
+        private bool TryFindArgument(string key, out IArgument argument)
         {
             argument = _arguments.Find(a => a.ShortName == key || a.Name == key);
             return argument != null;
-        }
-
-        public bool VerifyArguments()
-        {
-            return _arguments.TrueForAll(a => a.IsOptional || a.IsRuleOk(this));
-        }
-
-        public void Accept(IArgumentVisitor argVisitor)
-        {
-            _arguments.ForEach(a => a.Accept(argVisitor));
         }
     }
 }

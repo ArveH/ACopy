@@ -84,6 +84,8 @@
     <Compile Include="Arguments\UserArgument.cs" />
     <Compile Include="Arguments\UseU4IndexesArgument.cs" />
     <Compile Include="Arguments\ViewArgument.cs" />
+    <Compile Include="ConfigFileReader\ConfigFileReader.cs" />
+    <Compile Include="ConfigFileReader\IConfigFileReader.cs" />
     <Compile Include="UsageVisitor.cs" />
     <Compile Include="Arguments\DirectionArgument.cs" />
     <Compile Include="ArgumentVisitorFactory.cs" />
@@ -92,6 +94,12 @@
     <Compile Include="IArgumentCollection.cs" />
     <Compile Include="IArgumentVisitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ALogger\ALogger.csproj">
+      <Project>{ADA41B5E-C16F-4F86-9D95-C3B196654FF7}</Project>
+      <Name>ALogger</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

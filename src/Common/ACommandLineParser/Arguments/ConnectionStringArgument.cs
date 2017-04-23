@@ -10,7 +10,7 @@
 
         public override string Syntax => "-C<connection_string_name>";
 
-        public override string Description => "A connection string name that exists in the app.config file. OBS: Not the connection string itself";
+        public override string Description => "A connection string name that exists in the acopy.xml config file. OBS: Not the connection string itself";
 
         public override bool IsOptional => true;
 
