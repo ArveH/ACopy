@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using ALogger;
 
@@ -22,7 +23,13 @@ namespace ACommandLineParser.ConfigFileReader
 
         public Dictionary<string, string> GetConnectionStrings(XmlDocument xmlDoc)
         {
-            throw new XmlException("connectionStrings tag not found");
+            if (xmlDoc == null) throw new ArgumentNullException(nameof(xmlDoc), "null value in GetConnectionStrings");
+
+            var connectionStrings = new Dictionary<string, string>();
+            var rootNode = xmlDoc.DocumentElement?.SelectSingleNode("connectionStrings");
+            if (rootNode == null) throw new XmlException("connectionStrings tag not found");
+
+            return connectionStrings;
         }
 
         public string GetConversionFile(XmlDocument xmlDoc, string rdbms, string direction)
