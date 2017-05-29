@@ -7,6 +7,6 @@ namespace ACommandLineParser.ConfigFileReader
     {
         Dictionary<string, string> GetConnectionStrings(XmlDocument xmlDoc);
         string GetConversionFile(XmlDocument xmlDoc, string rdbms, string direction);
-        List<IArgument> GetArguments(XmlDocument xmlDoc);
+        List<IArgument> GetCommandLineParameters(XmlDocument xmlDoc);
     }
 }

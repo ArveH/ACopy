@@ -41,7 +41,7 @@
   <conversionFiles>
     <oracleFromFileToTable value="ConversionFiles\OracleReaderConversions.xml"/>
     <oracleFromTableToFile value="ConversionFiles\OracleWriterConversions.xml"/>
-    <SqlServerFromFileToTable value="ConversionFiles\SqlServerReaderConversions.xml"/>
-    <SqlServerFromTableToFile value="ConversionFiles\SqlServerWriterConversions.xml"/>
+    <sqlServerFromFileToTable value="ConversionFiles\SqlServerReaderConversions.xml"/>
+    <sqlServerFromTableToFile value="ConversionFiles\SqlServerWriterConversions.xml"/>
   </conversionFiles>
 </configuration>

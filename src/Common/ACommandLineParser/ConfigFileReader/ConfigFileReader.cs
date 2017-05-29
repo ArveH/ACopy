@@ -15,7 +15,7 @@ namespace ACommandLineParser.ConfigFileReader
             _logger = logger;
         }
 
-        public List<IArgument> GetArguments(XmlDocument xmlDoc)
+        public List<IArgument> GetCommandLineParameters(XmlDocument xmlDoc)
         {
             var args = new List<IArgument>();
 
